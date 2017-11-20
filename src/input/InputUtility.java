@@ -69,8 +69,8 @@ public class InputUtility {
 		canvas.setOnMouseExited((MouseEvent e) -> mouseOnCanvas = false);
 		canvas.setOnMouseMoved((MouseEvent e) -> {
 			if (mouseOnCanvas) {
-				mouseX = e.getX();
-				mouseY = e.getY();
+				mouseX = e.getSceneX();
+				mouseY = e.getSceneY();
 			}
 		});
 	}

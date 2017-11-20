@@ -14,7 +14,9 @@ public class MainMenuScene extends Scene {
 		root = (StackPane) this.getRoot();
 		
 		canvas = new MainMenuCanvas();
+		
 		root.getChildren().add(canvas);		
+		canvas.requestFocus();
 	}
 
 	public MainMenuCanvas getCanvas() {

@@ -9,14 +9,15 @@ import scene.main.MainMenuCanvas;
 import scene.main.MainMenuScene;
 
 public class SceneManeger {
-//	public static final double WIDGTH = 000;
-//	public static final double HEIGHT = 000;
+	public static final double WIDGTH = 1280;
+	public static final double HEIGHT = 720;
 	private static Stage stage;
 	//field for constantly use scene
 	private static MainMenuScene mainScene = new MainMenuScene();
 	
 	public static void initialize(Stage PrimaryStage) {
 		stage = PrimaryStage;
+		stage.setTitle("Rabbikko RPG");
 		stage.show();
 	}
 	
