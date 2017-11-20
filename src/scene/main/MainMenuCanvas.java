@@ -70,14 +70,13 @@ public class MainMenuCanvas extends Canvas {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
-				System.out.println(event.getSceneX());
-				System.out.println(event.getSceneY());
-				if (event.getSceneX() >= 465.0 && event.getSceneX() <= 754.0) {
-					if (event.getSceneY() >= 351.0 && event.getSceneY() <= 436.0 ) {
+//				System.out.println(event.getSceneX());
+//				System.out.println(event.getSceneY());
+				if (event.getSceneX() >= 465.0 && event.getSceneX() <= 754.0
+					&& event.getSceneY() >= 351.0 && event.getSceneY() <= 436.0 ) {
 						gc.setStroke(Color.RED);
 						gc.setLineWidth(5);
 						gc.strokeRect(460, 350, 300, 87);
-					}
 				}
 				else {
 					gc.drawImage(titleScene, 0, 0,1280,780);
