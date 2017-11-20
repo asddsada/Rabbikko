@@ -13,42 +13,38 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import sharedObj.RenderableHolder;
 
 public class MainMenuCanvas extends Canvas {
 	private GraphicsContext gc;
-	private Image newButton;
-	private Image titleScene;
 	private Font f;
 	
 	public MainMenuCanvas() {
 		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 		gc = this.getGraphicsContext2D();
-		//set gc
 		
-		//draw background image
-		String bg_path = "file:res/img/title_scene.jpg";
-		titleScene = new Image(bg_path);
-		gc.drawImage(titleScene, 0, 0,1280,780);
+		this.drawMainMenu();		
+		this.addKeyEventHandler();
+	}
+	
+	private void drawMainMenu() {
 		
-		//draw game's logo
+		//draw bg
+		gc.drawImage(RenderableHolder.mainImage, 0, 0,1280,780);
+		
+		//draw title
 		gc.setFill(Color.WHITE);
 		f = Font.font("Castellar",FontWeight.BOLD,90);
 		gc.setFont(f);
-		gc.fillText("RABBIKKO RPG",260,300);
+		gc.fillText("RABBIKKO RPG",260,300);					
 		
-		//add new game button
-		String button_path = "file:res/img/new_button.png";
-		newButton = new Image(button_path);
+		//draw btn
+		gc.drawImage(RenderableHolder.mainBtnImage, 460, 350);
 		
-		
-		gc.drawImage(newButton, 460, 350);
-				
-		//add credit
+		//draw credit text
 		f = Font.font("Century Schoolbook",20);
 		gc.setFont(f);
 		gc.fillText("Credit : 5930188521 (Natthawan) , 5931044021 (Penpicha)",345,500);
-		
-		this.addKeyEventHandler();
 	}
 
 	//listener method
@@ -79,18 +75,7 @@ public class MainMenuCanvas extends Canvas {
 						gc.strokeRect(460, 350, 300, 87);
 				}
 				else {
-					gc.drawImage(titleScene, 0, 0,1280,780);
-					
-					gc.setFill(Color.WHITE);
-					f = Font.font("Castellar",FontWeight.BOLD,90);
-					gc.setFont(f);
-					gc.fillText("RABBIKKO RPG",260,300);					
-					
-					gc.drawImage(newButton, 460, 350);
-					
-					f = Font.font("Century Schoolbook",20);
-					gc.setFont(f);
-					gc.fillText("Credit : 5930188521 (Natthawan) , 5931044021 (Penpicha)",345,500);
+					drawMainMenu();
 				}
 			}
 		});

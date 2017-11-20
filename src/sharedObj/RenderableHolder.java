@@ -15,6 +15,9 @@ public class RenderableHolder {
 
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
+	
+	public static Image mainImage;
+	public static Image mainBtnImage;
 
 	static {
 		loadResource();
@@ -32,7 +35,8 @@ public class RenderableHolder {
 	public static void loadResource() {
 		//load resource here
 		//e.g. i = new Image(ClassLoader.getSystemResource("path.png").toString());
-		
+		mainImage = new Image("file:res/img/title_scene.jpg");
+		mainBtnImage = new Image("file:res/img/new_button.png");
 	}
 	
 	//add to container with sort
