@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -17,8 +16,9 @@ import javafx.scene.text.FontWeight;
 
 public class MainMenuCanvas extends Canvas {
 	private GraphicsContext gc;
-	private Image new_button;
-	private Image title_scene;
+	private Image newButton;
+	private Image titleScene;
+	private Font f;
 	
 	public MainMenuCanvas() {
 		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
@@ -27,21 +27,21 @@ public class MainMenuCanvas extends Canvas {
 		
 		//draw background image
 		String bg_path = "file:res/img/title_scene.jpg";
-		title_scene = new Image(bg_path);
-		gc.drawImage(title_scene, 0, 0,1280,780);
+		titleScene = new Image(bg_path);
+		gc.drawImage(titleScene, 0, 0,1280,780);
 		
 		//draw game's logo
 		gc.setFill(Color.WHITE);
-		Font f = Font.font("Castellar",FontWeight.BOLD,90);
+		f = Font.font("Castellar",FontWeight.BOLD,90);
 		gc.setFont(f);
 		gc.fillText("RABBIKKO RPG",260,300);
 		
 		//add new game button
 		String button_path = "file:res/img/new_button.png";
-		new_button = new Image(button_path);
+		newButton = new Image(button_path);
 		
 		
-		gc.drawImage(new_button, 460, 350);
+		gc.drawImage(newButton, 460, 350);
 				
 		//add credit
 		f = Font.font("Century Schoolbook",20);
@@ -66,8 +66,7 @@ public class MainMenuCanvas extends Canvas {
 			}
 		});
 		
-		setOnMouseEntered(new EventHandler<MouseEvent>() {
-
+		setOnMouseMoved(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
@@ -79,6 +78,20 @@ public class MainMenuCanvas extends Canvas {
 						gc.setLineWidth(5);
 						gc.strokeRect(460, 350, 300, 87);
 					}
+				}
+				else {
+					gc.drawImage(titleScene, 0, 0,1280,780);
+					
+					gc.setFill(Color.WHITE);
+					f = Font.font("Castellar",FontWeight.BOLD,90);
+					gc.setFont(f);
+					gc.fillText("RABBIKKO RPG",260,300);					
+					
+					gc.drawImage(newButton, 460, 350);
+					
+					f = Font.font("Century Schoolbook",20);
+					gc.setFont(f);
+					gc.fillText("Credit : 5930188521 (Natthawan) , 5931044021 (Penpicha)",345,500);
 				}
 			}
 		});
