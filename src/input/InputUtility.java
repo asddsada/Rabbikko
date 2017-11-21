@@ -42,8 +42,9 @@ public class InputUtility {
 				tickCount++;
 			else
 				tickCount = 1;
-		}
+		}else tickCount=0;
 		prevPressed = pressed;
+		System.out.println(tickCount+" "+prevPressed);
 	}
 
 	public static boolean isTriggered() {
@@ -61,7 +62,7 @@ public class InputUtility {
 		scene.setOnMouseReleased((MouseEvent e) -> {
 			if (e.getButton() == MouseButton.PRIMARY)
 				InputUtility.setMousePressed(false);
-		});
+		});		
 	}
 
 	// set unique listener on some canvas
@@ -74,6 +75,14 @@ public class InputUtility {
 				mouseY = e.getSceneY();
 				System.out.println(mouseX+" "+mouseY);
 			}
+		});
+		canvas.setOnMouseDragged((MouseEvent e) -> {
+			if (e.getButton() == MouseButton.PRIMARY)
+				InputUtility.setMousePressed(true);
+		});
+		canvas.setOnMouseDragReleased((MouseEvent e) -> {
+			if (e.getButton() == MouseButton.PRIMARY)
+				InputUtility.setMousePressed(false);
 		});
 	}
 }
