@@ -1,5 +1,6 @@
 package view.dungeon;
 
+import Main.DungeonMain;
 import input.InputUtility;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,21 +22,40 @@ public class DungeonScene extends Scene{
 		root = (StackPane) this.getRoot();
 		root.setAlignment(Pos.CENTER);
 		
-		canvas = new DungeonCanvas(root);
+		canvas = new DungeonCanvas(this);
 		
 		root.getChildren().add(canvas);		
 		
 		dialog = new DialogPane(this);
 		root.getChildren().add(dialog);
-		dialog.opening();
-		dialog.requestFocus();
+		toDialog(0);
 		
 		InputUtility.bindListeners(this);
 	}
 	
 	public void toDungeon() {
+		//dialog.getChildren().clear();
+		dialog.setVisible(false);
+		DungeonMain.start();
 		canvas.requestFocus();
-		root.getChildren().remove(dialog);
+	}
+	
+	public void toDialog(int c) {
+		dialog.getChildren().clear();
+		dialog.setVisible(true);
+		dialog.requestFocus();
+		DungeonMain.stop();
+		switch(c) {
+		case 0:
+			dialog.opening();
+			break;
+		case 1:
+			dialog.setting();
+			break;
+		case 2:
+			dialog.item();
+			break;
+		}
 	}
 
 	public Canvas getCanvas() {

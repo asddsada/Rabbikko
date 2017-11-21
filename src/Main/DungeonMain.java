@@ -8,21 +8,29 @@ import view.SceneManeger;
 import view.dungeon.DungeonCanvas;
 
 public class DungeonMain {
-	private DungeonCanvas canvas;
-	private GameLogic logic;
+	private static DungeonCanvas canvas;
+	private static GameLogic logic;
 
-	// start game method
-	// stop method
-	public void start() {
+	public DungeonMain() {
 		canvas = (DungeonCanvas) SceneManeger.dungeonScene.getCanvas();
 		logic = new GameLogic();
+	}
+	
+	private static AnimationTimer animation = new AnimationTimer() {
+		public void handle(long now) {
+			canvas.canvasUpdate();
+			logic.logicUpdate();
+		}
+	};
 
+
+	public static void start() {
 		animation.start();
 	}
 
-	AnimationTimer animation=new AnimationTimer(){public void handle(long now){
-		canvas.canvasUpdate();
-		logic.logicUpdate();
-	}};
+	public static void stop() {
+		animation.stop();
+	}
 
+	
 }

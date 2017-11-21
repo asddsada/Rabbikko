@@ -19,6 +19,7 @@ public class InputUtility {
 
 	// hashset key code
 	public static void addKey(KeyCode code) {
+		System.out.println(code);
 		keyPressed.add(code);
 	}
 
@@ -71,6 +72,7 @@ public class InputUtility {
 			if (mouseOnCanvas) {
 				mouseX = e.getSceneX();
 				mouseY = e.getSceneY();
+				System.out.println(mouseX+" "+mouseY);
 			}
 		});
 	}

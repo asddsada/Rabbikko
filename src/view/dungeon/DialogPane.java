@@ -11,11 +11,11 @@ import javafx.scene.text.Text;
 import view.SceneManeger;
 
 public class DialogPane extends VBox {
-	DungeonScene dunScene;
+	DungeonScene scene;
 	
 	public DialogPane(DungeonScene dunScene){
 		super(10);
-		this.dunScene = dunScene;
+		this.scene = dunScene;
 		
 		this.setMaxSize(SceneManeger.WIDGTH/2, SceneManeger.HEIGHT/3);
 		this.setAlignment(Pos.CENTER);
@@ -33,7 +33,15 @@ public class DialogPane extends VBox {
 		this.getChildren().addAll(head,sub,textField,yBtn);
 		
 		yBtn.setOnMouseClicked((MouseEvent e)->{
-			dunScene.toDungeon();
+			scene.toDungeon();
 		});
+	}
+	
+	public void setting() {
+		
+	}
+	
+	public void item() {
+		
 	}
 }

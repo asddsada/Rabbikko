@@ -13,23 +13,26 @@ import view.SceneManeger;
 
 public class DungeonCanvas extends Canvas{
 	private GraphicsContext gc;
-	private StackPane root;
+	private DungeonScene scene;
 	//constructor
 	//listener
 	//loop -> update draw call RenderableHolder
 	
-	public DungeonCanvas(StackPane root) {
+	public DungeonCanvas(DungeonScene scene) {
 		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
-		this.root = root;
+		this.scene = scene;
 		gc = this.getGraphicsContext2D();
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, SceneManeger.WIDGTH, SceneManeger.HEIGHT);
+		
+		InputUtility.bindMouseOnListeners(this);
 	}
 	
 	//public static 
 	
 	public void canvasUpdate() {
 		gc.setFill(Color.BLACK);
+		//if(InputUtility.isPrevPressed()&& mousex in &&mouseyin) scene.toDialog(1); <- how to open menu dialog
 		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
 			if (entity.isVisible() && !entity.isDestroyed()) {
 				entity.draw(gc);
