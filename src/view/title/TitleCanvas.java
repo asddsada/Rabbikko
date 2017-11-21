@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -30,13 +31,12 @@ public class TitleCanvas extends Canvas {
 	}
 
 	private void drawMainMenu() {
-
 		// draw bg
 		gc.drawImage(RenderableHolder.mainImage, 0, 0, SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 
 		// draw title
 		gc.setFill(Color.WHITE);
-		f = Font.font("Castellar", FontWeight.BOLD, 90);
+		f = Font.font("Castellar", 90);
 		gc.setFont(f);
 		gc.setTextAlign(TextAlignment.CENTER);
 		gc.fillText("RABBIKKO RPG", SceneManeger.WIDGTH / 2, SceneManeger.HEIGHT / 3);
@@ -59,8 +59,8 @@ public class TitleCanvas extends Canvas {
 				dunMain.start();
 				SceneManeger.gotoScene(SceneManeger.dungeonScene);
 			}else {
-				gc.setStroke(Color.WHITE);
-				gc.setLineWidth(5);
+				gc.setStroke(Color.GHOSTWHITE);
+				gc.setLineWidth(2);
 				gc.strokeRect(SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2, 300, 87);
 			}
 		} else {

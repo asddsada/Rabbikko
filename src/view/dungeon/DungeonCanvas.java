@@ -22,8 +22,7 @@ public class DungeonCanvas extends Canvas{
 		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 		this.scene = scene;
 		gc = this.getGraphicsContext2D();
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, SceneManeger.WIDGTH, SceneManeger.HEIGHT);
+		gc.drawImage(RenderableHolder.dialogImage, 0, 0,SceneManeger.WIDGTH,SceneManeger.HEIGHT);
 		
 		InputUtility.bindMouseOnListeners(this);
 	}
