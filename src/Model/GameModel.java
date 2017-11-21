@@ -1,5 +1,10 @@
 package Model;
 
-public class GameModel {
+import sharedObj.RenderableHolder;
 
+public class GameModel {
+	public GameModel() {
+		DungeonField field = new DungeonField();
+		RenderableHolder.getInstance().add(field);
+	}
 }

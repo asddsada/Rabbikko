@@ -1,25 +1,25 @@
-package scene.main;
+package view.title;
 
-import drawing.SceneManeger;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
+import view.SceneManeger;
 
 
-public class MainMenuScene extends Scene {
+public class TitleScene extends Scene {
 	private StackPane root;
-	private MainMenuCanvas canvas;
+	private TitleCanvas canvas;
 	
-	public MainMenuScene(){
+	public TitleScene(){
 		super(new StackPane());
 		root = (StackPane) this.getRoot();
 		
-		canvas = new MainMenuCanvas();
+		canvas = new TitleCanvas();
 		
 		root.getChildren().add(canvas);		
 		canvas.requestFocus();
 	}
 
-	public MainMenuCanvas getCanvas() {
+	public TitleCanvas getCanvas() {
 		return canvas;
 	}
 }

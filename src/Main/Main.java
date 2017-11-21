@@ -1,11 +1,11 @@
 package Main;
 
-import drawing.SceneManeger;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import view.SceneManeger;
 
 public class Main extends Application {
 
@@ -13,7 +13,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			SceneManeger.initialize(primaryStage);
-			SceneManeger.gotoScene(SceneManeger.getMainScene());
+			SceneManeger.gotoScene(SceneManeger.mainScene);
 			
 			primaryStage.setTitle("RabbikoRPG");
 			primaryStage.centerOnScreen();

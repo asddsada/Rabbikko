@@ -1,19 +1,21 @@
-package drawing;
+package view;
 
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import scene.main.MainMenuCanvas;
-import scene.main.MainMenuScene;
+import view.dungeon.DungeonScene;
+import view.title.TitleCanvas;
+import view.title.TitleScene;
 
 public class SceneManeger {
-	public static final double WIDGTH = 1280;
-	public static final double HEIGHT = 720;
+	public static final double WIDGTH = 1000;
+	public static final double HEIGHT = 700;
 	private static Stage stage;
 	//field for constantly use scene
-	private static MainMenuScene mainScene = new MainMenuScene();
+	public static TitleScene mainScene = new TitleScene();
+	public static DungeonScene dungeonScene = new DungeonScene();
 	
 	public static void initialize(Stage PrimaryStage) {
 		stage = PrimaryStage;
@@ -34,10 +36,7 @@ public class SceneManeger {
 		canvas.requestFocus();
 		stage.setScene(scene);
 	}
-
-	public static MainMenuScene getMainScene() {
-		return mainScene;
-	}
+	
 	
 	
 }
