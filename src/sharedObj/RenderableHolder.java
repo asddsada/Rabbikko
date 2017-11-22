@@ -25,6 +25,7 @@ public class RenderableHolder {
 	public static Image mainBtnImage;
 	public static Image dialogBtnImage;
 	public static Image dialogFrame;
+	public static Image dungeonBg;
 	public static Image humanImage;
 	//public static AudioClip clickSound;
 
@@ -48,13 +49,16 @@ public class RenderableHolder {
 			mainImage = new Image(ClassLoader.getSystemResource("img/titleScene.jpg").toString());
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
 			
-			dialogBtnImage = new Image(ClassLoader.getSystemResource("img/okButton.png").toString());
+			//dialogBtnImage = new Image(ClassLoader.getSystemResource("img/okButton.png").toString());
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());			
 
 			//clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			
 			//res for game
-			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());		
+			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg.png").toString());
+			
+			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());	
+			
 					
 		} catch (NullPointerException e) {
 			e.printStackTrace();

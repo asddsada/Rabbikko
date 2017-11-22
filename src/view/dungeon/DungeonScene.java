@@ -1,11 +1,11 @@
 package view.dungeon;
 
 import Main.DungeonMain;
-import input.InputUtility;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.StackPane;
+import utility.InputUtility;
 import view.SceneManeger;
 
 

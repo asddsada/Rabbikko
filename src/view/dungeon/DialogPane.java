@@ -74,7 +74,11 @@ public class DialogPane extends VBox {
 			if (textField.getText().trim().isEmpty()) {
 				textField.setPromptText("Please enter your name!!!");
 			}
-			else scene.toDungeon();
+			else {
+				
+				//hero.setname(textField.getText());
+				scene.toDungeon();
+			}
 		});
 	}
 	
