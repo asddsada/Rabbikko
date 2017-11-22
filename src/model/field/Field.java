@@ -1,10 +1,27 @@
-package Model;
+package model.field;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import sharedObj.IRenderable;
+import sharedObj.RenderableHolder;
+import utility.Pair;
 import view.SceneManeger;
 
-public class DungeonField implements IRenderable{
+public abstract class Field implements IRenderable {
+	private boolean visible;
+	private WritableImage bg;
+	private Pair topRight;
+	private double width;
+	private double height;
+
+	public Field(Image bgImage, double width, double height, Pair topRight) {
+		this.visible = true;
+		this.width = width;
+		this.height = height;
+		this.bg = new WritableImage(bgImage.getPixelReader(), (int) width, (int) height);
+		this.topRight = topRight;
+	}
 
 	@Override
 	public int getZ() {
@@ -12,18 +29,20 @@ public class DungeonField implements IRenderable{
 	}
 
 	@Override
-	public void draw(GraphicsContext gc) {
-		gc.clearRect(0, 0, SceneManeger.WIDGTH, SceneManeger.HEIGHT);
-	}
-
-	@Override
 	public boolean isDestroyed() {
-		return false;
+		return visible == false;
 	}
 
 	@Override
 	public boolean isVisible() {
-		return true;
+		return visible == true;
 	}
+
+	@Override
+	public void draw(GraphicsContext gc) {
+		gc.drawImage(bg, topRight.x, topRight.y);
+	}
+
+	public abstract boolean isInBorder(Pair p);
 
 }
