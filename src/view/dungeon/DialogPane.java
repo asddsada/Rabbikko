@@ -5,6 +5,11 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -21,19 +26,21 @@ public class DialogPane extends VBox {
 		this.setMaxSize(SceneManeger.WIDGTH/2, SceneManeger.HEIGHT/3);
 		this.setAlignment(Pos.CENTER);
 		this.setStyle("-fx-background-color : white");
-		//this.setVisible(true);		
+//		this.setBackground(new Background( new BackgroundImage(RenderableHolder.dialogFrame,
+//		        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+//		          BackgroundSize.DEFAULT)));	
 	}
 	
 	public void opening() {
 		Text head = new Text("Welcome!");
-		head.setFont(RenderableHolder.f);
+		head.setFont(RenderableHolder.diaLogFont);
 		
 		Text sub = new Text("Please enter your name:");
-		sub.setFont(RenderableHolder.f);
+		sub.setFont(RenderableHolder.diaLogFont);
 		
-		TextField textField = new TextField();
-		textField.setFont(RenderableHolder.f);
-		textField.setPrefWidth(this.getWidth()/3);
+		TextField textField = new TextField("");
+		textField.setFont(RenderableHolder.diaLogFont);
+		textField.setMaxWidth(SceneManeger.WIDGTH/3);
 		
 		Button yBtn = new Button("OK");
 		
