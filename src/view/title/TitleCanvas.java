@@ -13,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import sharedObj.RenderableHolder;
 import view.SceneManeger;
@@ -55,6 +54,7 @@ public class TitleCanvas extends Canvas {
 		if (event.getSceneX() >= SceneManeger.WIDGTH / 3 && event.getSceneX() <= SceneManeger.WIDGTH / 3 + 300
 				&& event.getSceneY() >= SceneManeger.HEIGHT / 2 && event.getSceneY() <= SceneManeger.HEIGHT / 2 + 87) {
 			if(isGoNext) {
+				//RenderableHolder.clickSound.play(50);
 				DungeonMain dunMain = new DungeonMain();
 				dunMain.start();
 				SceneManeger.gotoScene(SceneManeger.dungeonScene);

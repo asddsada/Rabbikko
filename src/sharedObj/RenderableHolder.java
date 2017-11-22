@@ -23,11 +23,10 @@ public class RenderableHolder {
 	
 	public static Image mainImage;
 	public static Image mainBtnImage;
-	public static Image dialogImage;
 	public static Image dialogBtnImage;
 	public static Image dialogFrame;
 	public static Image humanImage;
-	public static AudioClip  clickSound;
+	//public static AudioClip clickSound;
 
 	static {
 		loadResource();
@@ -49,11 +48,10 @@ public class RenderableHolder {
 			mainImage = new Image(ClassLoader.getSystemResource("img/titleScene.jpg").toString());
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
 			
-			dialogImage = new Image(ClassLoader.getSystemResource("img/dialogScene.jpg").toString());
 			dialogBtnImage = new Image(ClassLoader.getSystemResource("img/okButton.png").toString());
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());			
 
-//			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.wav").toString());
+			//clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			
 			//res for game
 			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());		
