@@ -28,6 +28,7 @@ public class RenderableHolder {
 	public static Image dialogFrame;
 	public static Image dungeonBg;
 	public static Image humanImage;
+	public static Image navigBar;
 	//public static AudioClip clickSound;
 
 	static {
@@ -50,13 +51,14 @@ public class RenderableHolder {
 			mainImage = new Image(ClassLoader.getSystemResource("img/titleScene.jpg").toString());
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
 			
-			//dialogBtnImage = new Image(ClassLoader.getSystemResource("img/okButton.png").toString());
-			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());			
+			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
+			
+			navigBar = new Image(ClassLoader.getSystemResource("img/navig2.png").toString());
 
 			//clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			
 			//res for game
-			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg.png").toString());
+			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());
 			
 			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());	
 			

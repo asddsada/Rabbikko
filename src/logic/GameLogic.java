@@ -8,6 +8,7 @@ import model.attribute.strength;
 import model.entity.Entity;
 import model.entity.Hero;
 import model.field.Dungeon;
+import model.field.Navigation;
 import sharedObj.RenderableHolder;
 
 public class GameLogic {
@@ -17,11 +18,20 @@ public class GameLogic {
 	private List<Entity> localContainer;
 	private Dungeon dungeon;
 	private Hero hero;
+	private Navigation navig;
 	
 	public GameLogic(){
 		this.localContainer = new ArrayList<Entity>();
 		dungeon = new Dungeon();
+<<<<<<< HEAD
 		RenderableHolder.getInstance().add(dungeon);
+||||||| merged common ancestors
+//		RenderableHolder.getInstance().add(dungeon);
+=======
+		RenderableHolder.getInstance().add(dungeon);
+		navig = new Navigation();
+		RenderableHolder.getInstance().add(navig);
+>>>>>>> f79a3c553da17e0a6e3a3cfb8b3b0259119b07b7
 		
 		hero = new Hero(Entity.FRONT, new strength());
 		addNewObject(hero);
