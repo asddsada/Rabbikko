@@ -73,7 +73,7 @@ public class InputUtility {
 			if (mouseOnCanvas) {
 				mouseX = e.getSceneX();
 				mouseY = e.getSceneY();
-				System.out.println(mouseX+" "+mouseY);
+//				System.out.println(mouseX+" "+mouseY);
 			}
 		});
 		canvas.setOnMouseDragged((MouseEvent e) -> {

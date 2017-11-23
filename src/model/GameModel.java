@@ -6,6 +6,13 @@ import sharedObj.RenderableHolder;
 
 public class GameModel {
 	public GameModel() {
+		
+		
+		
+	}
 
+	public void update() {
+		
+		
 	}
 }

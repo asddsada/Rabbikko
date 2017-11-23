@@ -3,11 +3,18 @@ package model.entity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import model.field.Obstructable;
+import utility.Pair;
 
-public class Npc extends Entity implements Obstructable{
+public class Npc extends Entity implements Obstructable {
 
-	public Npc(Image img, int direction) {
-		super(img, direction);
+	public Npc(double x,double y,Image img, int row, int column, int direction) {
+		super(x,y,img, row, column, direction);
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+
 	}
 }

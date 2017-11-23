@@ -1,7 +1,9 @@
 package model.entity;
 
 import javafx.scene.image.Image;
-import model.entity.attribute.Attribute;
+import javafx.scene.image.WritableImage;
+import model.attribute.Attribute;
+import sharedObj.RenderableHolder;
 
 public abstract class DungeonableEntity extends Entity {
 	public static final int HUMANITY = 0;
@@ -15,8 +17,8 @@ public abstract class DungeonableEntity extends Entity {
 	protected int race;
 	protected Attribute atkType;
 
-	public DungeonableEntity(Image img, int direction,Attribute atkType) {
-		super(img, direction);
+	public DungeonableEntity(double x,double y,Image img,int row,int column, int direction,Attribute atkType) {
+		super(x,y, img, row, column, direction);
 		this.atkType=atkType;
 	}
 

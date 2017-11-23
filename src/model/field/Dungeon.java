@@ -10,7 +10,7 @@ public class Dungeon extends Field{
 	private int lvl;
 	
 	public Dungeon() {
-		super(RenderableHolder.dungeonBg , SceneManeger.WIDGTH, SceneManeger.HEIGHT-100, new Pair());
+		super(RenderableHolder.dungeonBg , RenderableHolder.dungeonBg.getWidth(), RenderableHolder.dungeonBg.getHeight(), new Pair());
 		this.lvl=1;
 	}	
 

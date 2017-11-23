@@ -8,6 +8,13 @@ public abstract class gameObject implements IRenderable {
 	protected int z;
 	protected boolean visible;
 
+	public gameObject(double x,double y,int z) {
+		super();
+		this.pos =new Pair(x, y);
+		this.z=z;
+		this.visible = true;
+	}
+
 	@Override
 	public int getZ() {
 		// TODO Auto-generated method stub

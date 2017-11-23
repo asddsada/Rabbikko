@@ -9,32 +9,32 @@ import model.gameObject;
 import utility.Pair;
 
 public abstract class Entity extends gameObject {
-	public static final int DOWN = 1;
+	public static final int FRONT = 1;
 	public static final int LEFT = 2;
 	public static final int RIGHT = 3;
-	public static final int UP = 4;
+	public static final int BACK = 4;
 
-	protected double w;
-	protected double h;
+	protected static double w;
+	protected static double h;
 	protected Image img;
 	protected int direction;
 	private int walkTick;
 	private int maxWalkTick;
 
-	public Entity(Image cutImg, int direction) {
-		super();
+	public Entity(double x,double y,Image img,int row,int column, int direction) {
+		super(x,y,0);
 		this.w = 32;
-		this.h = 32;
-		this.img = cutImg;
+		this.h = 32;		
 		this.direction = direction;
 		this.walkTick=2;
 		this.maxWalkTick=3;
+		this.img = new WritableImage(img.getPixelReader(), (int) w*3*column*walkTick, (int) h*3*row*direction);
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		new WritableImage(img.getPixelReader(), (int) w*walkTick, (int) h*direction);
+		gc.drawImage(img, (int) pos.x, (int) pos.y);
 	}
 
 	public boolean isInArea(Pair pos) {
@@ -49,5 +49,7 @@ public abstract class Entity extends gameObject {
 		if(walkTick==maxWalkTick) walkTick=1;
 		else walkTick++;
 	}
+	
+	public abstract void update();
 
 }
