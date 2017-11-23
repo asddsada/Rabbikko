@@ -23,15 +23,9 @@ public class GameLogic {
 	public GameLogic(){
 		this.localContainer = new ArrayList<Entity>();
 		dungeon = new Dungeon();
-<<<<<<< HEAD
 		RenderableHolder.getInstance().add(dungeon);
-||||||| merged common ancestors
-//		RenderableHolder.getInstance().add(dungeon);
-=======
-		RenderableHolder.getInstance().add(dungeon);
-		navig = new Navigation();
+		navig = new Navigation(hero);
 		RenderableHolder.getInstance().add(navig);
->>>>>>> f79a3c553da17e0a6e3a3cfb8b3b0259119b07b7
 		
 		hero = new Hero(Entity.FRONT, new strength());
 		addNewObject(hero);

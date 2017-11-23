@@ -10,6 +10,10 @@ import utility.InputUtility;
 import view.SceneManeger;
 
 public class Hero extends DungeonableEntity {
+	private int maxHp;
+	private int maxMp;
+	private int currentHp;
+	private int currentMp;
 
 	public Hero(int direction, Attribute atkType) {
 		super(SceneManeger.WIDGTH/2,(SceneManeger.HEIGHT-100)/2, RenderableHolder.humanImage, 0, 3, direction,7, atkType);
@@ -37,4 +41,19 @@ public class Hero extends DungeonableEntity {
 		
 	}
 
+	public int getMaxHp() {
+		return maxHp;
+	}
+	
+	public int getCurrentHp() {
+		return currentHp;
+	}
+	
+	public int getMaxMp() {
+		return maxMp;
+	}
+
+	public int getCurrentMp() {
+		return currentMp;
+	}
 }
