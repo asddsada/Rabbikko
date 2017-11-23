@@ -18,4 +18,17 @@ public class Pair {
 		this.x = o.x;
 		this.y = o.y;
 	}
+	
+	public void add(double x,double y) {
+		this.x+=x;
+		this.y+=y;
+	}
+	
+	public double diffX(double dx) {
+		return Math.abs(x - dx);
+	}
+	
+	public double diffY(double dy) {
+		return Math.abs(y - dy);
+	}
 }

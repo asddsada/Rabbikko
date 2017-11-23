@@ -1,5 +1,6 @@
 package model.entity;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import model.attribute.Attribute;
@@ -13,13 +14,18 @@ public abstract class DungeonableEntity extends Entity {
 	protected int currentHp;
 	protected int maxMp;
 	protected int currentMp;
-	protected int movespeed;
 	protected int race;
 	protected Attribute atkType;
 
-	public DungeonableEntity(double x,double y,Image img,int row,int column, int direction,Attribute atkType) {
-		super(x,y, img, row, column, direction);
+	public DungeonableEntity(double x,double y,Image img,int row,int column, int direction,int movespeed,Attribute atkType) {
+		super(x,y, img, row, column, direction,movespeed);
 		this.atkType=atkType;
+	}
+	
+	@Override
+	public void draw(GraphicsContext gc) {
+		// TODO Auto-generated method stub
+		super.draw(gc);
 	}
 
 	public abstract void attack();

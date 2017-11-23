@@ -30,6 +30,6 @@ public abstract class gameObject implements IRenderable {
 	@Override
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
-		return visible == false;
+		return visible == true;
 	}
 }

@@ -10,6 +10,7 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
+import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 

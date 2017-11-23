@@ -7,47 +7,64 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import model.gameObject;
 import utility.Pair;
+import view.SceneManeger;
 
 public abstract class Entity extends gameObject {
-	public static final int FRONT = 1;
-	public static final int LEFT = 2;
-	public static final int RIGHT = 3;
-	public static final int BACK = 4;
+	public static final int FRONT = 0;
+	public static final int LEFT = 1;
+	public static final int RIGHT = 2;
+	public static final int BACK = 3;
 
 	protected static double w;
 	protected static double h;
 	protected Image img;
 	protected int direction;
+	protected int movespeed;
 	private int walkTick;
 	private int maxWalkTick;
 
-	public Entity(double x,double y,Image img,int row,int column, int direction) {
+	public Entity(double x,double y,Image img,int row,int column, int direction,int movespeed) {
 		super(x,y,0);
 		this.w = 32;
 		this.h = 32;		
 		this.direction = direction;
+		this.movespeed =movespeed;
 		this.walkTick=2;
 		this.maxWalkTick=3;
-		this.img = new WritableImage(img.getPixelReader(), (int) w*3*column*walkTick, (int) h*3*row*direction);
+		this.img = new WritableImage(img.getPixelReader(), (int) w*3*column, (int) h*4*row,(int) w*3, (int) h*4);
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(img, (int) pos.x, (int) pos.y);
+		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w*walkTick, (int) h*direction,(int) w, (int) h)
+				, (int) pos.x-w/2, (int) pos.y,w*2.5,h*2.5);
 	}
 
-	public boolean isInArea(Pair pos) {
-		return Math.abs(pos.x - pos.x) <= (w/2-5) && Math.abs(pos.y - pos.y) <= h;
+	public boolean isInArea(Pair d) {
+		return pos.diffX(d.x) <= (w/2-5) && pos.diffY(d.y) <= h;
 	}
 	
-	public void resetWalkTick() {
+	protected void resetWalkTick() {
 		this.walkTick=2;
 	}
 	
-	public void addWalkTick() {
+	private void addWalkTick() {
 		if(walkTick==maxWalkTick) walkTick=1;
 		else walkTick++;
+	}
+	
+	protected void move(int direction) {
+		if(this.direction == direction) resetWalkTick();
+		else {
+//			addWalkTick();
+			this.direction = direction;
+		}
+		if(direction==FRONT) this.pos.y+=(movespeed*100/SceneManeger.HEIGHT);
+		else if(direction==BACK) this.pos.y-=(movespeed*100/SceneManeger.HEIGHT);
+		else if(direction==RIGHT) this.pos.x+=(movespeed*100/SceneManeger.WIDGTH);
+		else if(direction==LEFT) this.pos.x-=(movespeed*100/SceneManeger.WIDGTH);
+		
 	}
 	
 	public abstract void update();

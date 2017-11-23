@@ -7,8 +7,8 @@ import utility.Pair;
 
 public class Npc extends Entity implements Obstructable {
 
-	public Npc(double x,double y,Image img, int row, int column, int direction) {
-		super(x,y,img, row, column, direction);
+	public Npc(double x,double y,Image img, int row, int column, int direction,int movespeed) {
+		super(x,y,img, row, column, direction,movespeed);
 		// TODO Auto-generated constructor stub
 	}
 

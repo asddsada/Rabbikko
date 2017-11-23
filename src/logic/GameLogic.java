@@ -21,7 +21,7 @@ public class GameLogic {
 	public GameLogic(){
 		this.localContainer = new ArrayList<Entity>();
 		dungeon = new Dungeon();
-//		RenderableHolder.getInstance().add(dungeon);
+		RenderableHolder.getInstance().add(dungeon);
 		
 		hero = new Hero(Entity.FRONT, new strength());
 		addNewObject(hero);

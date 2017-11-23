@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;

@@ -77,6 +77,7 @@ public class DialogPane extends VBox {
 			else {
 				
 				//hero.setname(textField.getText());
+				
 				scene.toDungeon();
 			}
 		});

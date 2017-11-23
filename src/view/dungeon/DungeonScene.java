@@ -46,7 +46,7 @@ public class DungeonScene extends Scene{
 		dialog.requestFocus();
 		DungeonMain.stop();
 		switch(c) {
-		case 0:
+		case 0:			
 			dialog.opening();
 			break;
 		case 1:
