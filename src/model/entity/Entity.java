@@ -23,9 +23,10 @@ public abstract class Entity extends gameObject {
 	private double walkTick;
 	private int currentWalktick;
 	private int maxWalkTick;
-
-	public Entity(double x, double y, Image img, int row, int column, int direction, int movespeed) {
-		super(x, y, 0);
+	private String name;
+	
+	public Entity(double x,double y,Image img,int row,int column, int direction,int movespeed) {
+		super(x,y,0);
 		this.w = 32;
 		this.h = 32;
 		this.direction = direction;
@@ -78,5 +79,13 @@ public abstract class Entity extends gameObject {
 	}
 
 	public abstract void update();
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

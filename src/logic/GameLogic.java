@@ -18,13 +18,14 @@ public class GameLogic {
 	private static List<Entity> localContainer;
 	private static Dungeon dungeon;
 	private static Hero hero;
+	private Navigation navig;
 	
 	public GameLogic(){
 		this.localContainer = new ArrayList<Entity>();
 		dungeon = new Dungeon();
-
+		
 		RenderableHolder.getInstance().add(dungeon);
-		Navigation navig = new Navigation();
+		navig = new Navigation(hero);
 		RenderableHolder.getInstance().add(navig);
 		
 		hero = new Hero(Entity.FRONT, new strength());

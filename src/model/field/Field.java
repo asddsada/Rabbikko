@@ -40,7 +40,7 @@ public abstract class Field implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(bg, topRight.x, topRight.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-100);
+		gc.drawImage(bg, topRight.x, topRight.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-150);
 	}
 
 	protected boolean isInBorderX(double x) {
