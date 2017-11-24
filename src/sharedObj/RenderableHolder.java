@@ -53,7 +53,7 @@ public class RenderableHolder {
 			
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
 			
-			navigBar = new Image(ClassLoader.getSystemResource("img/navig2.png").toString());
+			navigBar = new Image(ClassLoader.getSystemResource("img/navig.png").toString());
 
 			//clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			
