@@ -12,6 +12,7 @@ public abstract class Field implements IRenderable {
 	protected boolean visible;
 	protected WritableImage bg;
 	protected Pair topRight;
+	protected int z;
 	protected double width;
 	protected double height;
 
@@ -25,7 +26,7 @@ public abstract class Field implements IRenderable {
 
 	@Override
 	public int getZ() {
-		return -9999;
+		return z;
 	}
 
 	@Override

@@ -13,6 +13,7 @@ public class Dungeon extends Field {
 		super(RenderableHolder.dungeonBg, RenderableHolder.dungeonBg.getWidth(), RenderableHolder.dungeonBg.getHeight(),
 				new Pair());
 		this.lvl = 1;
+		this.z=-99999;
 	}
 	
 	

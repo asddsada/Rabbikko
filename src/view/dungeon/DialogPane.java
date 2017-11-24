@@ -18,11 +18,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import logic.GameLogic;
+import model.entity.Hero;
+import model.field.Navigation;
 import sharedObj.RenderableHolder;
 import view.SceneManeger;
 
 public class DialogPane extends VBox {
-	DungeonScene scene;
+	private DungeonScene scene;
 	
 	public DialogPane(DungeonScene dunScene){
 		super(10);
@@ -87,10 +90,10 @@ public class DialogPane extends VBox {
 //			textField.setPromptText("Please enter your name!!!");
 //		}
 //		else {
-//			
-//			hero.setname(textField.getText());
 			
+			Navigation.setName(textField.getText().trim());
 			scene.toDungeon();
+			
 //		}
 	}
 	public void setting() {

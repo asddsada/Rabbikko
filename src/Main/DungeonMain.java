@@ -14,9 +14,9 @@ public class DungeonMain {
 	private static GameModel model;
 
 	public DungeonMain() {
+		logic = new GameLogic();
 		canvas = (DungeonCanvas) SceneManeger.dungeonScene.getCanvas();
 		model = new GameModel();
-		logic = new GameLogic();
 	}
 	
 	private static AnimationTimer animation = new AnimationTimer() {

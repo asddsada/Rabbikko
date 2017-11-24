@@ -56,7 +56,6 @@ public class TitleCanvas extends Canvas {
 			if(isGoNext) {
 				//RenderableHolder.clickSound.play(50);
 				DungeonMain dunMain = new DungeonMain();
-				dunMain.start();
 				SceneManeger.gotoScene(SceneManeger.dungeonScene);
 			}else {
 				gc.setStroke(Color.GHOSTWHITE);
