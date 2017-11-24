@@ -23,50 +23,57 @@ public abstract class Entity extends gameObject {
 	private int walkTick;
 	private int maxWalkTick;
 
-	public Entity(double x,double y,Image img,int row,int column, int direction,int movespeed) {
-		super(x,y,0);
+	public Entity(double x, double y, Image img, int row, int column, int direction, int movespeed) {
+		super(x, y, 0);
 		this.w = 32;
-		this.h = 32;		
+		this.h = 32;
 		this.direction = direction;
-		this.movespeed =movespeed;
-		this.walkTick=2;
-		this.maxWalkTick=3;
-		this.img = new WritableImage(img.getPixelReader(), (int) w*3*column, (int) h*4*row,(int) w*3, (int) h*4);
+		this.movespeed = movespeed;
+		this.walkTick = 1;
+		this.maxWalkTick = 2;
+		this.img = new WritableImage(img.getPixelReader(), (int) w * 3 * column, (int) h * 4 * row, (int) w * 3,
+				(int) h * 4);
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w*walkTick, (int) h*direction,(int) w, (int) h)
-				, (int) pos.x-w/2, (int) pos.y,w*2.5,h*2.5);
+		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w * walkTick, (int) h * direction, (int) w, (int) h),
+				(int) pos.x - w / 2, (int) pos.y, w * 2.5, h * 2.5);
 	}
 
 	public boolean isInArea(Pair d) {
-		return pos.diffX(d.x) <= (w/2-5) && pos.diffY(d.y) <= h;
+		return pos.diffX(d.x) <= (w / 2 - 5) && pos.diffY(d.y) <= h;
 	}
-	
+
 	protected void resetWalkTick() {
-		this.walkTick=2;
+		this.walkTick = 1;
 	}
-	
+
 	private void addWalkTick() {
-		if(walkTick==maxWalkTick) walkTick=1;
-		else walkTick++;
+		this.walkTick++;
+		this.walkTick%=(this.maxWalkTick+1);
+
+		System.out.println(walkTick);
 	}
-	
+
 	protected void move(int direction) {
-		if(this.direction == direction) resetWalkTick();
+		if (this.direction == direction)
+			resetWalkTick();
 		else {
-//			addWalkTick();
+			addWalkTick();
 			this.direction = direction;
 		}
-		if(direction==FRONT) this.pos.y+=(movespeed*100/SceneManeger.HEIGHT);
-		else if(direction==BACK) this.pos.y-=(movespeed*100/SceneManeger.HEIGHT);
-		else if(direction==RIGHT) this.pos.x+=(movespeed*100/SceneManeger.WIDGTH);
-		else if(direction==LEFT) this.pos.x-=(movespeed*100/SceneManeger.WIDGTH);
-		
+		if (direction == FRONT)
+			this.pos.y += ((movespeed / 10.0) * SceneManeger.HEIGHT / 150);
+		else if (direction == BACK)
+			this.pos.y -= ((movespeed / 10.0) * SceneManeger.HEIGHT / 150);
+		else if (direction == RIGHT)
+			this.pos.x += ((movespeed / 10.0) * SceneManeger.WIDGTH / 200);
+		else if (direction == LEFT)
+			this.pos.x -= ((movespeed / 10.0) * SceneManeger.WIDGTH / 200);
 	}
-	
+
 	public abstract void update();
 
 }

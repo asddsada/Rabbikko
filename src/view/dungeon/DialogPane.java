@@ -70,19 +70,29 @@ public class DialogPane extends VBox {
 		this.getChildren().addAll(head,sub,textField,okBtn);
 		
 		okBtn.setOnMouseClicked((MouseEvent e)->{
-			//check if player has entered their name
-			//if (textField.getText().trim().isEmpty()) {
-				//textField.setPromptText("Please enter your name!!!");
-			//}
-			//else {
-				
-				//hero.setname(textField.getText());
-				
-				scene.toDungeon();
-			//}
+			dialogAction(textField);
+		});
+		
+		textField.setOnKeyPressed((KeyEvent e)->{
+			if(e.getCode()==KeyCode.ENTER) {
+				dialogAction(textField);
+			}else if (e.getCode()==KeyCode.ESCAPE) {
+				textField.setText("");
+			}
 		});
 	}
-	
+	private void dialogAction(TextField textField) {
+//		check if player has entered their name
+//		if (textField.getText().trim().isEmpty()) {
+//			textField.setPromptText("Please enter your name!!!");
+//		}
+//		else {
+//			
+//			hero.setname(textField.getText());
+			
+			scene.toDungeon();
+//		}
+	}
 	public void setting() {
 		
 	}

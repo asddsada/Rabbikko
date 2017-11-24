@@ -10,13 +10,19 @@ public class Navigation extends Field {
 	public static final double NAVIG_HEIGHT = RenderableHolder.navigBar.getHeight();
 
 	public Navigation() {
-		super(RenderableHolder.navigBar, RenderableHolder.navigBar.getWidth(), RenderableHolder.navigBar.getHeight(), new Pair(0,SceneManeger.HEIGHT-NAVIG_HEIGHT));
+		super(RenderableHolder.navigBar, RenderableHolder.navigBar.getWidth(), RenderableHolder.navigBar.getHeight(),
+				new Pair(0, SceneManeger.HEIGHT - NAVIG_HEIGHT));
 	}
 
 	@Override
-	public boolean isInBorder(Pair p) {
+	public boolean isInBorderX(double x) {
+		// TODO Auto-generated method stub
 		return false;
 	}
-	
 
+	@Override
+	public boolean isInBorderY(double y) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

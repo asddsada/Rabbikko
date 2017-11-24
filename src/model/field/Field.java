@@ -9,11 +9,11 @@ import utility.Pair;
 import view.SceneManeger;
 
 public abstract class Field implements IRenderable {
-	private boolean visible;
-	private WritableImage bg;
-	private Pair topRight;
-	private double width;
-	private double height;
+	protected boolean visible;
+	protected WritableImage bg;
+	protected Pair topRight;
+	protected double width;
+	protected double height;
 
 	public Field(Image bgImage, double width, double height, Pair topRight) {
 		this.visible = true;
@@ -43,6 +43,27 @@ public abstract class Field implements IRenderable {
 		gc.drawImage(bg, topRight.x, topRight.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-100);
 	}
 
-	public abstract boolean isInBorder(Pair p);
+	protected boolean isInBorderX(double x) {
+		if (this.getTopRight().x < x && this.getTopRight().x + this.getWidth() > x)
+			return true;
+		return false;
+	}
 
+	protected boolean isInBorderY(double y) {
+		if (this.getTopRight().y < y && this.getTopRight().y + this.getHeight() > y)
+			return true;
+		return false;
+	}
+	
+	public Pair getTopRight() {
+		return topRight;
+	}
+
+	public double getWidth() {
+		return width;
+	}
+
+	public double getHeight() {
+		return height;
+	}
 }

@@ -9,10 +9,7 @@ import utility.InputUtility;
 import view.SceneManeger;
 
 
-public class DungeonScene extends Scene{
-	//dungeon canvas
-	//navigation bar canvas
-	
+public class DungeonScene extends Scene{	
 	private StackPane root;
 	private Canvas canvas;
 	private DialogPane dialog;
