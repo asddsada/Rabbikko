@@ -15,9 +15,9 @@ public class GameLogic {
 	//constructor  to initialize obj
 	//local container with add method
 	//start (+stop) loop -> update
-	private List<Entity> localContainer;
-	private Dungeon dungeon;
-	private Hero hero;
+	private static List<Entity> localContainer;
+	private static Dungeon dungeon;
+	private static Hero hero;
 	
 	public GameLogic(){
 		this.localContainer = new ArrayList<Entity>();

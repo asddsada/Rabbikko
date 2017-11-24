@@ -20,7 +20,8 @@ public abstract class Entity extends gameObject {
 	protected Image img;
 	protected int direction;
 	protected int movespeed;
-	private int walkTick;
+	private double walkTick;
+	private int currentWalktick;
 	private int maxWalkTick;
 
 	public Entity(double x, double y, Image img, int row, int column, int direction, int movespeed) {
@@ -38,7 +39,7 @@ public abstract class Entity extends gameObject {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w * walkTick, (int) h * direction, (int) w, (int) h),
+		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w * currentWalktick, (int) h * direction, (int) w, (int) h),
 				(int) pos.x - w / 2, (int) pos.y, w * 2.5, h * 2.5);
 	}
 
@@ -48,19 +49,21 @@ public abstract class Entity extends gameObject {
 
 	protected void resetWalkTick() {
 		this.walkTick = 1;
+		this.currentWalktick = 1;
 	}
 
 	private void addWalkTick() {
-		this.walkTick++;
-		this.walkTick%=(this.maxWalkTick+1);
-
-		System.out.println(walkTick);
+		this.walkTick+=0.4;
+		this.currentWalktick=(int) (walkTick%this.maxWalkTick+1);
+//		should use thread here
 	}
 
 	protected void move(int direction) {
-		if (this.direction == direction)
+//		should ask if the change will be in the scene before change
+		if (this.direction != direction) {
 			resetWalkTick();
-		else {
+			this.direction =direction;
+		}else {
 			addWalkTick();
 			this.direction = direction;
 		}
