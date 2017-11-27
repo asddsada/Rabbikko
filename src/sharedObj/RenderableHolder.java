@@ -9,6 +9,7 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import model.entity.Hero;
 import sharedObj.IRenderable;
@@ -29,7 +30,13 @@ public class RenderableHolder {
 	public static Image dungeonBg;
 	public static Image humanImage;
 	public static Image navigBar;
-	//public static AudioClip clickSound;
+	public static Image questIcn;
+	public static Image itemIcn;
+	public static Image weaponIcn;
+	public static Image settingIcn;
+	
+	public static AudioClip clickSound;
+	public static AudioClip titleBgm;
 
 	static {
 		loadResource();
@@ -46,7 +53,6 @@ public class RenderableHolder {
 
 	public static void loadResource() {
 		try {
-			
 			//res for ui
 			mainImage = new Image(ClassLoader.getSystemResource("img/titleScene.jpg").toString());
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
@@ -54,8 +60,14 @@ public class RenderableHolder {
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
 			
 			navigBar = new Image(ClassLoader.getSystemResource("img/navig.png").toString());
-
-			//clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
+			questIcn = new Image(ClassLoader.getSystemResource("img/quest.png").toString());
+			itemIcn = new Image(ClassLoader.getSystemResource("img/item.png").toString());
+			weaponIcn = new Image(ClassLoader.getSystemResource("img/weapon.png").toString());
+			settingIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
+			
+			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
+			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
+			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
 			
 			//res for game
 			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());

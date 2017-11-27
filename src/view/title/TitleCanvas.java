@@ -24,6 +24,9 @@ public class TitleCanvas extends Canvas {
 	public TitleCanvas() {
 		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 		gc = this.getGraphicsContext2D();
+		
+		//play theme song
+		RenderableHolder.titleBgm.play();
 
 		this.drawMainMenu();
 		this.addKeyEventHandler();
@@ -54,7 +57,7 @@ public class TitleCanvas extends Canvas {
 		if (event.getSceneX() >= SceneManeger.WIDGTH / 3 && event.getSceneX() <= SceneManeger.WIDGTH / 3 + 300
 				&& event.getSceneY() >= SceneManeger.HEIGHT / 2 && event.getSceneY() <= SceneManeger.HEIGHT / 2 + 87) {
 			if(isGoNext) {
-				//RenderableHolder.clickSound.play(50);
+				RenderableHolder.clickSound.play(100);
 				DungeonMain dunMain = new DungeonMain();
 				SceneManeger.gotoScene(SceneManeger.dungeonScene);
 			}else {

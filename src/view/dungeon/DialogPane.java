@@ -73,6 +73,8 @@ public class DialogPane extends VBox {
 		this.getChildren().addAll(head,sub,textField,okBtn);
 		
 		okBtn.setOnMouseClicked((MouseEvent e)->{
+			//RenderableHolder.titleBgm.stop();
+			RenderableHolder.clickSound.play(100);
 			dialogAction(textField);
 		});
 		
