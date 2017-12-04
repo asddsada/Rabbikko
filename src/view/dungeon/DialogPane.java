@@ -100,18 +100,50 @@ public class DialogPane extends VBox {
 	}
 	
 	public void quest() {
-		
+		Button close = new Button("Close");
+		this.getChildren().add(close);
+		close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				scene.toDungeon();
+			}
+		});
 	}
 	
 	public void item() {
-		
+		Button close = new Button("Close");
+		this.getChildren().add(close);
+		close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				scene.toDungeon();
+			}
+		});
 	}
 	
 	public void weapon() {
-		
+		Button close = new Button("Close");
+		this.getChildren().add(close);
+		close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				scene.toDungeon();
+			}
+		});
 	}
 	
 	public void setting() {
-		
+		Button close = new Button("Close");
+		this.getChildren().add(close);
+		close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				scene.toDungeon();
+			}
+		});
 	}
 }

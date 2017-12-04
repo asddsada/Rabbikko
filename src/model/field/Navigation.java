@@ -4,6 +4,8 @@ import java.awt.Event;
 import java.awt.GradientPaint;
 import java.awt.MouseInfo;
 
+import javax.swing.plaf.basic.BasicDesktopIconUI.MouseInputHandler;
+
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 
@@ -110,22 +112,18 @@ public class Navigation extends Field {
 	
 	public void update() {
 		// TODO Auto-generated method stub
-		int xPos = MouseInfo.getPointerInfo().getLocation().x;
-		int yPos = MouseInfo.getPointerInfo().getLocation().y;
-		if (xPos >= 709 && xPos <= 772 && yPos >= 680 && yPos <= 740) {
-			System.out.println("1");
+		double xPos = InputUtility.mouseX;
+		double yPos = InputUtility.mouseY;
+		if (xPos >= 623 && xPos <= 685 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
 			SceneManeger.dungeonScene.toDialog(1);
 		}
-		else if (xPos >= 804 && xPos <= 865 && yPos >= 680 && yPos <= 740 ) {
-			System.out.println("2");
+		else if (xPos >= 715 && xPos <= 780 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
 			SceneManeger.dungeonScene.toDialog(2);
 		}
-		else if (xPos >= 900 && xPos <= 963 && yPos >= 680 && yPos <= 740) {
-			System.out.println("3");
+		else if (xPos >= 810 && xPos <= 878 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
 			SceneManeger.dungeonScene.toDialog(3);
 		}
-		else if (xPos >= 995 && xPos <= 1055 && yPos >= 680 && yPos <= 740) {
-			System.out.println("4");
+		else if (xPos >= 905 && xPos <= 973 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
 			SceneManeger.dungeonScene.toDialog(4);
 		}
 	}

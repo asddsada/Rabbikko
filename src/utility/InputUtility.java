@@ -45,7 +45,7 @@ public class InputUtility {
 	}
 	
 	public static boolean isMousePressed() {
-		return mouseTickCount != 0;
+		return mouseTickCount >= 1;
 	}
 
 	public static void setMousePressed(boolean pressed) {
