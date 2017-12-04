@@ -93,7 +93,7 @@ public abstract class Entity extends gameObject {
 		return w *2.5 ;
 	}
 
-	public double getH() {
+	public double getHeight() {
 		return h *2.5 ;
 	}
 }
