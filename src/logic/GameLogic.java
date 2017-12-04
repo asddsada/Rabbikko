@@ -16,7 +16,7 @@ public class GameLogic {
 	//local container with add method
 	//start (+stop) loop -> update
 	private static List<Entity> localContainer;
-	private static Dungeon dungeon;
+	public static Dungeon dungeon;
 	public static Hero hero;
 	private Navigation navig;
 	

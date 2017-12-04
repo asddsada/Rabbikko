@@ -32,4 +32,12 @@ public abstract class gameObject implements IRenderable {
 		// TODO Auto-generated method stub
 		return visible == true;
 	}
+
+	public double getX() {
+		return pos.x;
+	}
+	
+	public double getY() {
+		return pos.y;
+	}
 }

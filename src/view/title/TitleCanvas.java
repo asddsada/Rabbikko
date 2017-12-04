@@ -24,8 +24,8 @@ public class TitleCanvas extends Canvas {
 	public TitleCanvas() {
 		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 		gc = this.getGraphicsContext2D();
-		
-		//play theme song
+
+		// play theme song
 		RenderableHolder.titleBgm.play();
 
 		this.drawMainMenu();
@@ -53,14 +53,18 @@ public class TitleCanvas extends Canvas {
 				SceneManeger.HEIGHT / 4 * 3);
 	}
 
-	private void onButton(MouseEvent event,boolean isGoNext) {
+	private void goToDun() {
+		RenderableHolder.clickSound.play(100);
+		DungeonMain dunMain = new DungeonMain();
+		SceneManeger.gotoScene(SceneManeger.dungeonScene);
+	}
+
+	private void onButton(MouseEvent event, boolean isGoNext) {
 		if (event.getSceneX() >= SceneManeger.WIDGTH / 3 && event.getSceneX() <= SceneManeger.WIDGTH / 3 + 300
 				&& event.getSceneY() >= SceneManeger.HEIGHT / 2 && event.getSceneY() <= SceneManeger.HEIGHT / 2 + 87) {
-			if(isGoNext) {
-				RenderableHolder.clickSound.play(100);
-				DungeonMain dunMain = new DungeonMain();
-				SceneManeger.gotoScene(SceneManeger.dungeonScene);
-			}else {
+			if (isGoNext) {
+				goToDun();
+			} else {
 				gc.setStroke(Color.GHOSTWHITE);
 				gc.setLineWidth(2);
 				gc.strokeRect(SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2, 300, 87);
@@ -70,7 +74,6 @@ public class TitleCanvas extends Canvas {
 		}
 	}
 
-	// listener method
 	private void addKeyEventHandler() {
 		setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
@@ -79,16 +82,20 @@ public class TitleCanvas extends Canvas {
 					Platform.exit();
 				}
 				if (event.getCode() == KeyCode.ENTER) {
-					RenderableHolder.clickSound.play(100);
-					DungeonMain dunMain = new DungeonMain();
-					SceneManeger.gotoScene(SceneManeger.dungeonScene);
+					goToDun();
 				}
 			}
 		});
 
-		setOnMouseMoved((MouseEvent event) -> {onButton(event,false);});
-		setOnMouseClicked((MouseEvent event) -> {onButton(event,true);});		
-		setOnMouseDragEntered((MouseEvent event)->{onButton(event,true);});
+		setOnMouseMoved((MouseEvent event) -> {
+			onButton(event, false);
+		});
+		setOnMouseClicked((MouseEvent event) -> {
+			onButton(event, true);
+		});
+		setOnMouseDragEntered((MouseEvent event) -> {
+			onButton(event, true);
+		});
 	}
 
 }

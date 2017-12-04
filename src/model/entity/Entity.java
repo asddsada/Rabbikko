@@ -3,6 +3,7 @@ package model.entity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import logic.GameLogic;
 import model.gameObject;
 import utility.InputUtility;
 import utility.Pair;
@@ -24,8 +25,8 @@ public abstract class Entity extends gameObject {
 
 	public Entity(double x, double y, Image img, int row, int column, int direction, int movespeed) {
 		super(x, y, 0);
-		this.w = 32;
-		this.h = 32;
+		Entity.w = 32;
+		Entity.h = 32;
 		this.direction = direction;
 		this.movespeed = movespeed;
 		this.counter = 0;
@@ -40,8 +41,18 @@ public abstract class Entity extends gameObject {
 				(int) pos.x - w / 2, (int) pos.y, w * 2.5, h * 2.5);
 	}
 
-	public boolean isInArea(Pair d) {
-		return pos.diffX(d.x) <= (w / 2 - 5) && pos.diffY(d.y) <= h;
+	// public boolean isInArea(Pair d) {
+	// return pos.diffX(d.x) <= (w / 2 - 5) && pos.diffY(d.y) <= h;
+	// }
+
+	private void setX(double x) {
+		if (GameLogic.dungeon.isInBoarder(this,this.pos.x + x, 0))
+			this.pos.x += x;		
+	}
+	
+	private void setY(double y) {
+		if (GameLogic.dungeon.isInBoarder(this,0, this.pos.y + y))
+			this.pos.y += y;
 	}
 
 	private void addWalkTick() {
@@ -54,28 +65,35 @@ public abstract class Entity extends gameObject {
 
 	protected void move(int direction) {
 		// should ask if the change will be in the scene before change
-		System.out.println((this.direction )+" "+(direction ));
 		if (this.direction != direction && (this.direction % 3) == (direction % 3)) {
-			// if((this.direction%3)+"+"+(direction%3))
 			this.counter = 0;
 			this.walktick = 1;
 		} else if (InputUtility.isKeyTrig()) {
 			this.walktick = (this.walktick + 1) % 3;
-		} else if (this.direction == direction || ((this.direction % 3) != (direction % 3)&& (this.direction % 3)!=0 && (direction % 3)==0)) {
+		} else if (this.direction == direction
+				|| ((this.direction % 3) != (direction % 3) && (this.direction % 3) != 0 && (direction % 3) == 0)) {
 			addWalkTick();
 		}
 
 		if (direction == FRONT)
-			this.pos.y += ((movespeed / 10.0) * SceneManeger.HEIGHT / 150);
+			setY((movespeed / 10.0) * SceneManeger.HEIGHT / 150);
 		if (direction == BACK)
-			this.pos.y -= ((movespeed / 10.0) * SceneManeger.HEIGHT / 150);
+			setY((-1)*(movespeed / 10.0) * SceneManeger.HEIGHT / 150);
 		if (direction == RIGHT)
-			this.pos.x += ((movespeed / 10.0) * SceneManeger.WIDGTH / 200);
+			setX((movespeed / 10.0) * SceneManeger.WIDGTH / 200);
 		if (direction == LEFT)
-			this.pos.x -= ((movespeed / 10.0) * SceneManeger.WIDGTH / 200);
+			setX((-1) * (movespeed / 10.0) * SceneManeger.WIDGTH / 200);
 
 		this.direction = direction;
 	}
 
 	public abstract void update();
+
+	public double getWidth() {
+		return w *2.5 ;
+	}
+
+	public double getH() {
+		return h *2.5 ;
+	}
 }
