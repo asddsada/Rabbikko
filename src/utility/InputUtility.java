@@ -39,6 +39,10 @@ public class InputUtility {
 	public static boolean isPrevPressed() {
 		return prevPressed;
 	}
+	
+	public static boolean isMousePressed() {
+		return tickCount != 0;
+	}
 
 	public static void setMousePressed(boolean pressed) {
 		if (pressed) {

@@ -26,7 +26,7 @@ public class TitleCanvas extends Canvas {
 		gc = this.getGraphicsContext2D();
 
 		// play theme song
-		RenderableHolder.titleBgm.play();
+//		RenderableHolder.titleBgm.play();
 
 		this.drawMainMenu();
 		this.addKeyEventHandler();
