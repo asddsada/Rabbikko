@@ -18,8 +18,10 @@ public class Dungeon extends Field {
 	}
 	
 	public boolean isInBoarder(Entity e,double x,double y) {
-		return (0<=x && x<=this.width-e.getWidth()/2-8) && ( 0<=y && y<=this.height-e.getH());
+		return (0<=x && x<=this.width-e.getWidth()/2-8) && ( 0<=y && y<=this.height-e.getHeight());
 	}
+	
+	
 	public void update() {
 		
 		

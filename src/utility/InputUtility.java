@@ -40,13 +40,12 @@ public class InputUtility {
 		return prevMousePressed;
 	}
 	
-	
 	public static boolean isTriggered() {
 		return mouseTickCount == 1;
 	}
 	
 	public static boolean isMousePressed() {
-		return tickCount != 0;
+		return mouseTickCount != 0;
 	}
 
 	public static void setMousePressed(boolean pressed) {
@@ -60,8 +59,6 @@ public class InputUtility {
 		prevMousePressed = pressed;
 		// System.out.println(tickCount+" "+prevPressed);
 	}
-
-	
 
 	// set common Listener on scene
 	public static void bindListeners(Scene scene) {
