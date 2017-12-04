@@ -79,8 +79,9 @@ public class TitleCanvas extends Canvas {
 					Platform.exit();
 				}
 				if (event.getCode() == KeyCode.ENTER) {
-					// change scene
-					System.out.println("Enter!");
+					RenderableHolder.clickSound.play(100);
+					DungeonMain dunMain = new DungeonMain();
+					SceneManeger.gotoScene(SceneManeger.dungeonScene);
 				}
 			}
 		});

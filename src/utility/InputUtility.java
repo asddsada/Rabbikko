@@ -19,8 +19,12 @@ public class InputUtility {
 
 	// hashset key code
 	public static void addKey(KeyCode code) {
-//		System.out.println(code);
+//		System.out.println(keyPressed.size());
 		keyPressed.add(code);
+	}
+	
+	public static boolean isKeyTrig() {
+		return keyPressed.size()==0;
 	}
 
 	public static void removeKey(KeyCode code) {

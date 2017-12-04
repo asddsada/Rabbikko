@@ -78,7 +78,7 @@ public class DialogPane extends VBox {
 			dialogAction(textField);
 		});
 		
-		textField.setOnKeyPressed((KeyEvent e)->{
+		this.setOnKeyPressed((KeyEvent e)->{
 			if(e.getCode()==KeyCode.ENTER) {
 				dialogAction(textField);
 			}else if (e.getCode()==KeyCode.ESCAPE) {

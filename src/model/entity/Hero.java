@@ -33,12 +33,11 @@ public class Hero extends DungeonableEntity {
 	}
 
 	@Override
-	public void update() {
+	public void update() {		
 		if(InputUtility.isKeyPressed(KeyCode.W)) move(Entity.BACK);
-		else if(InputUtility.isKeyPressed(KeyCode.S)) move(Entity.FRONT);
-		else if(InputUtility.isKeyPressed(KeyCode.A)) move(Entity.LEFT);
-		else if(InputUtility.isKeyPressed(KeyCode.D)) move(Entity.RIGHT);
-		
+		if(InputUtility.isKeyPressed(KeyCode.S)) move(Entity.FRONT);	
+		if(InputUtility.isKeyPressed(KeyCode.A)) move(Entity.LEFT);
+		if(InputUtility.isKeyPressed(KeyCode.D)) move(Entity.RIGHT);
 	}
 
 	public int getMaxHp() {

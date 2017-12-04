@@ -3,7 +3,6 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.GameModel;
 import model.attribute.strength;
 import model.entity.Entity;
 import model.entity.Hero;
