@@ -1,7 +1,9 @@
 package Main;
 
 import javafx.animation.AnimationTimer;
+import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseEvent;
 import logic.GameLogic;
 import utility.InputUtility;
 import view.SceneManeger;
@@ -22,7 +24,6 @@ public class DungeonMain {
 			logic.logicUpdate();
 		}
 	};
-
 
 	public static void start() {
 		animation.start();

@@ -1,17 +1,25 @@
 package model.field;
 
+import java.awt.Event;
+import java.awt.GradientPaint;
+import java.awt.MouseInfo;
+
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.GameLogic;
 import model.entity.Hero;
 import sharedObj.RenderableHolder;
+import utility.InputUtility;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -99,4 +107,28 @@ public class Navigation extends Field {
 		gc.fillRect(BORDER_WIDTH+2, sceneHeight - (BAR_HEIGHT * 1.5) + 2 , BAR_WIDTH-4, BAR_HEIGHT-4);
 		gc.setGlobalAlpha(1.0);
 	}
+	
+	public void update() {
+		// TODO Auto-generated method stub
+		int xPos = MouseInfo.getPointerInfo().getLocation().x;
+		int yPos = MouseInfo.getPointerInfo().getLocation().y;
+		if (xPos >= 709 && xPos <= 772 && yPos >= 680 && yPos <= 740) {
+			System.out.println("1");
+			SceneManeger.dungeonScene.toDialog(1);
+		}
+		else if (xPos >= 804 && xPos <= 865 && yPos >= 680 && yPos <= 740 ) {
+			System.out.println("2");
+			SceneManeger.dungeonScene.toDialog(2);
+		}
+		else if (xPos >= 900 && xPos <= 963 && yPos >= 680 && yPos <= 740) {
+			System.out.println("3");
+			SceneManeger.dungeonScene.toDialog(3);
+		}
+		else if (xPos >= 995 && xPos <= 1055 && yPos >= 680 && yPos <= 740) {
+			System.out.println("4");
+			SceneManeger.dungeonScene.toDialog(4);
+		}
+	}
+	
+	
 }

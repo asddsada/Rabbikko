@@ -39,6 +39,7 @@ public class GameLogic {
 	
 	public void logicUpdate(){
 		dungeon.update();
+		navig.update();
 		for(Entity entity:localContainer) {
 			entity.update();			
 		}

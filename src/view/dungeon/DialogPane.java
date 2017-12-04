@@ -98,11 +98,20 @@ public class DialogPane extends VBox {
 			
 //		}
 	}
-	public void setting() {
+	
+	public void quest() {
 		
 	}
 	
 	public void item() {
+		
+	}
+	
+	public void weapon() {
+		
+	}
+	
+	public void setting() {
 		
 	}
 }

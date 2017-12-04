@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import logic.GameLogic;
 import model.gameObject;
+import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.Pair;
 import view.SceneManeger;
@@ -39,11 +40,18 @@ public abstract class Entity extends gameObject {
 		// TODO Auto-generated method stub
 		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w * walktick, (int) h * direction, (int) w, (int) h),
 				(int) pos.x - w / 2, (int) pos.y, w * 2.5, h * 2.5);
+		gc.strokeRect(pos.x, pos.y, getWidth()/1.5,getHeight());
 	}
 
-	// public boolean isInArea(Pair d) {
-	// return pos.diffX(d.x) <= (w / 2 - 5) && pos.diffY(d.y) <= h;
-	// }
+	public boolean isCollide(int x,int y) {
+		if ( x >= pos.x && x <= pos.x + getWidth()/1.5) {
+			if ( y >= pos.y && y <= pos.y + getHeight()) {
+//				System.out.println("Crash");
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private void setX(double x) {
 		if (GameLogic.dungeon.isInBoarder(this,this.pos.x + x, 0))
