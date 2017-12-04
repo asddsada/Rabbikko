@@ -75,18 +75,18 @@ public class DialogPane extends VBox {
 		okBtn.setOnMouseClicked((MouseEvent e)->{
 			//RenderableHolder.titleBgm.stop();
 			RenderableHolder.clickSound.play(100);
-			dialogAction(textField);
+			openAction(textField);
 		});
 		
 		this.setOnKeyPressed((KeyEvent e)->{
 			if(e.getCode()==KeyCode.ENTER) {
-				dialogAction(textField);
+				openAction(textField);
 			}else if (e.getCode()==KeyCode.ESCAPE) {
 				textField.setText("");
 			}
 		});
 	}
-	private void dialogAction(TextField textField) {
+	private void openAction(TextField textField) {
 //		check if player has entered their name
 //		if (textField.getText().trim().isEmpty()) {
 //			textField.setPromptText("Please enter your name!!!");

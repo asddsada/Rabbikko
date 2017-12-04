@@ -23,5 +23,3 @@ public class TitleScene extends Scene {
 		return canvas;
 	}
 }
-//this class as template code for more complex scene, 
-//able to skip and call the canvas only.
