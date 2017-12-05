@@ -1,5 +1,7 @@
 package model.attribute;
 
-public class strength extends Attribute {
+public class Strength extends Attribute {
+	public Strength() {
 
+	}
 }

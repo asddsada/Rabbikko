@@ -20,21 +20,22 @@ public class RenderableHolder {
 
 	private List<IRenderable> entities;
 	private Comparator<IRenderable> comparator;
-	
+
 	public static Font diaLogFont = Font.font("Castellar");
-	
+
 	public static Image mainImage;
 	public static Image mainBtnImage;
 	public static Image dialogBtnImage;
 	public static Image dialogFrame;
 	public static Image dungeonBg;
 	public static Image humanImage;
+	public static Image monsterImage02;
 	public static Image navigBar;
 	public static Image questIcn;
 	public static Image itemIcn;
 	public static Image weaponIcn;
 	public static Image settingIcn;
-	
+
 	public static AudioClip clickSound;
 	public static AudioClip titleBgm;
 
@@ -49,40 +50,40 @@ public class RenderableHolder {
 				return 1;
 			return -1;
 		};
-	}	
+	}
 
 	public static void loadResource() {
 		try {
-			//res for ui
+			// res for ui
 			mainImage = new Image(ClassLoader.getSystemResource("img/titleScene.jpg").toString());
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
-			
+
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
-			
+
 			navigBar = new Image(ClassLoader.getSystemResource("img/navig.png").toString());
 			questIcn = new Image(ClassLoader.getSystemResource("img/quest.png").toString());
 			itemIcn = new Image(ClassLoader.getSystemResource("img/item.png").toString());
 			weaponIcn = new Image(ClassLoader.getSystemResource("img/weapon.png").toString());
 			settingIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
-			
+
 			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
 			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
-			
-			//res for game
+
+			// res for game
 			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());
-			
-			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());	
-			
-					
+
+			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());
+			monsterImage02 = new Image(ClassLoader.getSystemResource("8bit/monster2.png").toString());
+
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	//add to container with sort
+
+	// add to container with sort
 	public void add(IRenderable entity) {
-		System.out.println("add");
+		// System.out.println("add");
 		entities.add(entity);
 		Collections.sort(entities, comparator);
 	}

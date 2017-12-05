@@ -1,5 +1,5 @@
 package model.attribute;
 
-public class intellegence extends Attribute{
+public class Intelligence extends Attribute{
 
 }
