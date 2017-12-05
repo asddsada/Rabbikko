@@ -14,10 +14,9 @@ public class InputUtility {
 	public static double mouseX, mouseY;
 	public static boolean mouseOnCanvas = false;
 	private static Set<KeyCode> keyPressed = new HashSet<>();
-	private static int mouseTickCount = 0;
-	private static boolean prevMousePressed = false;
+	private static boolean mousePressed = false;
 
-	// hashset key code
+	// keyboard setter
 	private static void addKey(KeyCode code) {
 		// System.out.println(keyPressed.size());
 		keyPressed.add(code);
@@ -27,6 +26,7 @@ public class InputUtility {
 		keyPressed.remove(code);
 	}
 
+	// keyboard getter
 	public static boolean isKeyPressed(KeyCode code) {
 		return keyPressed.contains(code);
 	}
@@ -35,29 +35,9 @@ public class InputUtility {
 		return keyPressed.size() == 0;
 	}
 
-	// counter mouse pressed
-	private static boolean isMousePrevPressed() {
-		return prevMousePressed;
-	}
-	
-	public static boolean isTriggered() {
-		return mouseTickCount == 1;
-	}
-	
+	// mouse getter
 	public static boolean isMousePressed() {
-		return mouseTickCount != 0;
-	}
-
-	public static void setMousePressed(boolean pressed) {
-		if (pressed) {
-			if (prevMousePressed)
-				mouseTickCount++;
-			else
-				mouseTickCount = 1;
-		} else
-			mouseTickCount = 0;
-		prevMousePressed = pressed;
-		// System.out.println(tickCount+" "+prevPressed);
+		return mousePressed;
 	}
 
 	// set common Listener on scene
@@ -66,11 +46,11 @@ public class InputUtility {
 		scene.setOnKeyReleased((KeyEvent e) -> removeKey(e.getCode()));
 		scene.setOnMousePressed((MouseEvent e) -> {
 			if (e.getButton() == MouseButton.PRIMARY)
-				InputUtility.setMousePressed(true);
+				mousePressed = true;
 		});
 		scene.setOnMouseReleased((MouseEvent e) -> {
 			if (e.getButton() == MouseButton.PRIMARY)
-				InputUtility.setMousePressed(false);
+				mousePressed = false;
 		});
 	}
 
@@ -84,14 +64,6 @@ public class InputUtility {
 				mouseY = e.getSceneY();
 				// System.out.println(mouseX+" "+mouseY);
 			}
-		});
-		canvas.setOnMouseDragged((MouseEvent e) -> {
-			if (e.getButton() == MouseButton.PRIMARY)
-				InputUtility.setMousePressed(true);
-		});
-		canvas.setOnMouseDragReleased((MouseEvent e) -> {
-			if (e.getButton() == MouseButton.PRIMARY)
-				InputUtility.setMousePressed(false);
 		});
 	}
 }
