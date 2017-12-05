@@ -99,18 +99,6 @@ public class DialogPane extends VBox {
 //		}
 	}
 	
-	public void quest() {
-		Button close = new Button("Close");
-		this.getChildren().add(close);
-		close.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				// TODO Auto-generated method stub
-				scene.toDungeon();
-			}
-		});
-	}
-	
 	public void item() {
 		Button close = new Button("Close");
 		this.getChildren().add(close);
@@ -118,6 +106,7 @@ public class DialogPane extends VBox {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
+				RenderableHolder.clickSound.play();
 				scene.toDungeon();
 			}
 		});
@@ -130,6 +119,7 @@ public class DialogPane extends VBox {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
+				RenderableHolder.clickSound.play();
 				scene.toDungeon();
 			}
 		});
@@ -142,6 +132,36 @@ public class DialogPane extends VBox {
 			@Override
 			public void handle(MouseEvent event) {
 				// TODO Auto-generated method stub
+				RenderableHolder.clickSound.play();
+				scene.toDungeon();
+			}
+		});
+	}
+	
+	public void menu() {
+		Button item = new Button("Item");
+		Button weapon = new Button("Weapons");
+		Button setting = new Button("Setting");
+		Button close = new Button("Close");
+		this.getChildren().addAll(item,weapon,setting,close);
+		
+		item.setOnMouseClicked((MouseEvent e)->{
+			scene.toDialog(1);
+		});
+		
+		weapon.setOnMouseClicked((MouseEvent e)->{
+			scene.toDialog(2);
+		});
+		
+		setting.setOnMouseClicked((MouseEvent e)->{
+			scene.toDialog(3);
+		});
+		
+		close.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				// TODO Auto-generated method stub
+				RenderableHolder.clickSound.play();
 				scene.toDungeon();
 			}
 		});

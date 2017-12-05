@@ -47,16 +47,16 @@ public class DungeonScene extends Scene{
 			dialog.opening();
 			break;
 		case 1:
-			dialog.quest();
-			break;
-		case 2:
 			dialog.item();
 			break;
-		case 3:
+		case 2:
 			dialog.weapon();
 			break;
-		case 4:
+		case 3:
 			dialog.setting();
+			break;
+		case 4:
+			dialog.menu();
 			break;
 		}
 	}
