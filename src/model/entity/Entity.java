@@ -23,16 +23,18 @@ public abstract class Entity extends gameObject {
 	protected Image img;
 	protected int direction;
 	protected int movespeed;
+	protected int mass;
 	protected int race;
 	private int counter;
 	private int walktick;
 
-	public Entity(double x, double y, Image img, int row, int column, int direction, int movespeed) {
+	public Entity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass) {
 		super(x, y, 0);
 		Entity.w = 32;
 		Entity.h = 32;
 		this.direction = direction;
 		this.movespeed = movespeed;
+		this.mass = mass;
 		this.counter = 0;
 		this.img = new WritableImage(img.getPixelReader(), (int) w * 3 * column, (int) h * 4 * row, (int) w * 3,
 				(int) h * 4);
@@ -48,7 +50,8 @@ public abstract class Entity extends gameObject {
 	}
 
 	protected boolean isCollide(Entity other, double x, double y) {
-		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+" "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
+		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+"
+		// "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
 		if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6)
 				&& ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() + getHeight()))) {
 			this.z = 1;
@@ -70,14 +73,22 @@ public abstract class Entity extends gameObject {
 
 	protected abstract boolean isBlock(double x, double y);
 
-	protected void setX(double x) {
+	private void setX(double x) {
 		if (GameLogic.dungeon.isInBoarder(this, this.pos.x + x, 0) && !this.isBlock(this.pos.x + x, this.pos.y))
 			this.pos.x += x;
 	}
 
-	protected void setY(double y) {
+	private void setY(double y) {
 		if (GameLogic.dungeon.isInBoarder(this, 0, this.pos.y + y) && !this.isBlock(this.pos.x, this.pos.y + y))
 			this.pos.y += y;
+	}
+
+	public synchronized void setPos(double dPos, int direction) {
+		System.out.println(this.getClass().getSimpleName() + " sync");
+		if (direction == BACK || direction == FRONT)
+			setY(dPos);
+		else
+			setX(dPos);
 
 	}
 
@@ -103,13 +114,13 @@ public abstract class Entity extends gameObject {
 		}
 
 		if (direction == FRONT)
-			setY((movespeed / 10.0) * SceneManeger.HEIGHT / 150);
+			setPos((movespeed / 10.0) * SceneManeger.HEIGHT / 150, FRONT);
 		if (direction == BACK)
-			setY((-1) * (movespeed / 10.0) * SceneManeger.HEIGHT / 150);
+			setPos((-1) * (movespeed / 10.0) * SceneManeger.HEIGHT / 150, BACK);
 		if (direction == RIGHT)
-			setX((movespeed / 10.0) * SceneManeger.WIDGTH / 200);
+			setPos((movespeed / 10.0) * SceneManeger.WIDGTH / 200, RIGHT);
 		if (direction == LEFT)
-			setX((-1) * (movespeed / 10.0) * SceneManeger.WIDGTH / 200);
+			setPos((-1) * (movespeed / 10.0) * SceneManeger.WIDGTH / 200, LEFT);
 
 		this.direction = direction;
 	}
@@ -123,4 +134,27 @@ public abstract class Entity extends gameObject {
 	public double getHeight() {
 		return (h * 2.5);
 	}
+
+	public int getAxis(int direction) {
+		if (direction == Entity.BACK || direction == Entity.FRONT)
+			return SceneManeger.Y_AXIS;
+		return SceneManeger.Y_AXIS;
+	}
+
+	public int getDirection() {
+		return direction;
+	}
+
+	public int getMovespeed() {
+		return movespeed;
+	}
+
+	public int getMass() {
+		return mass;
+	}
+
+	public int getRace() {
+		return race;
+	}
+
 }

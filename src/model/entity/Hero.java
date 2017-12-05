@@ -18,12 +18,12 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	public Hero(int direction, Attribute atkType) {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
-				1000, atkType);
+				50, 1000, 30, atkType);
 		this.maxMp = 1000;
 		this.currentMp = 0;
-		this.money=0;
-		this.z=-1;
-		this.race=DungeonableEntity.HUMANITY;
+		this.money = 0;
+		this.z = -1;
+		this.race = DungeonableEntity.HUMANITY;
 		// this.atkType = new Intelligence();
 	}
 
@@ -38,15 +38,17 @@ public class Hero extends DungeonableEntity<Attribute> {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	@Override
 	protected boolean isBlock(double x, double y) {
-		for (DungeonableEntity<Attribute> other : GameLogic.dungeon.getENTITIES_HOLDER()) {			
-			if (other.hashCode() != this.hashCode() && this.race!=other.race) { 
-					if(super.isCollide(other ,x, y)) {
-				
-				return true;
-			}}
+		for (DungeonableEntity<Attribute> other : GameLogic.dungeon.getENTITIES_HOLDER()) {
+			if (other.hashCode() != this.hashCode() && super.isCollide(other, x, y)) {
+				if (this.race == other.race)
+					return true;
+				else {
+					this.damage(other.baseAtk, this.direction);
+				}
+			}
 		}
 		return false;
 	}

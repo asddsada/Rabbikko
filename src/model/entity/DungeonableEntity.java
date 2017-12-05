@@ -6,20 +6,26 @@ import javafx.scene.image.WritableImage;
 import logic.GameLogic;
 import model.attribute.Attribute;
 import sharedObj.RenderableHolder;
+import utility.ForceManeger;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	public static final int HUMANITY = 1;
 	public static final int MONSTER = 0;
 	private int maxHp;
 	private int currentHp;
-	protected int baseAtk;	
+	protected int baseAtk;
 	protected T atkType;
+	protected int[] damageTake;
 
-	public  DungeonableEntity(double x,double y,Image img,int row,int column, int direction,int movespeed,int maxHp, T atkType) {
-		super(x,y, img, row, column, direction,movespeed);
-		this.atkType=atkType;
-		this.maxHp=maxHp;
-		this.currentHp=this.maxHp;
+	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
+			int maxHp, int baseAtk, T atkType) {
+		super(x, y, img, row, column, direction, movespeed, mass);
+		this.atkType = atkType;
+		this.baseAtk = baseAtk;
+		this.mass = mass;
+		this.maxHp = maxHp;
+		this.damageTake = new int[4];
+		this.currentHp = this.maxHp;
 	}
 
 	@Override
@@ -30,10 +36,10 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	public abstract void attack();
 
-	public void damage(int dmg) {
-		// decrease hp
-		// force back;
-		System.out.println("get "+dmg+" damage!");
+	public void damage(int dmg, int direaction) {
+		this.damageTake[direaction] += ForceManeger.forceCalculate(dmg, getAxis(direaction), this);
+		this.currentHp -= dmg;
+		System.out.println("get " + dmg + " damage!");
 	}
 
 	public int getMaxHp() {

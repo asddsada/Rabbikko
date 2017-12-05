@@ -11,33 +11,30 @@ import model.field.Navigation;
 import sharedObj.RenderableHolder;
 
 public class GameLogic {
-	//constructor  to initialize obj
-	//local container with add method
-	//start (+stop) loop -> update
-	private static List<Entity> localContainer;
+	// constructor to initialize obj
+	// local container with add method
+	// start (+stop) loop -> update
 	public static Dungeon dungeon;
 	public static Hero hero;
 	private Navigation navig;
-	
-	public GameLogic(){
-		this.localContainer = new ArrayList<Entity>();
+
+	public GameLogic() {
 		dungeon = new Dungeon();
-		
+
 		hero = new Hero(Entity.FRONT, new Strength());
 		RenderableHolder.getInstance().add(hero);
 		dungeon.getENTITIES_HOLDER().add(hero);
-		
+
 		RenderableHolder.getInstance().add(dungeon);
 		navig = new Navigation();
-		RenderableHolder.getInstance().add(navig);		
+		RenderableHolder.getInstance().add(navig);
 	}
-	
-	protected void addNewObject(Entity entity){
-		localContainer.add(entity);
+
+	protected void addNewObject(Entity entity) {
 		RenderableHolder.getInstance().add(entity);
 	}
-	
-	public void logicUpdate(){
+
+	public void logicUpdate() {
 		dungeon.update();
 		navig.update();
 	}

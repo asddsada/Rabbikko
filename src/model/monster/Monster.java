@@ -7,9 +7,9 @@ import model.entity.DungeonableEntity;
 
 public class Monster extends DungeonableEntity<Attribute> {
 
-	public Monster(double x, double y, Image img, int row, int column, int direction, int maxHp, int movespeed,
+	public Monster(double x, double y, Image img, int row, int column, int direction, int movespeed,int mass,int maxHp,int baseAtk,
 			Attribute atkType) {
-		super(x, y, img, row, column, direction, movespeed, movespeed, atkType);
+		super(x, y, img, row, column, direction, movespeed, mass,maxHp,baseAtk, atkType);
 		this.race=DungeonableEntity.MONSTER;
 	}
 

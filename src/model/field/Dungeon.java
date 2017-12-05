@@ -34,7 +34,7 @@ public class Dungeon extends Field {
 		return (0 <= x && x <= this.width - e.getWidth() / 2 - 8) && (0 <= y && y <= this.height - e.getHeight());
 	}
 	
-	public static void addEntities(DungeonableEntity<Attribute> e) {
+	public void addEntities(DungeonableEntity<Attribute> e) {
 		RenderableHolder.getInstance().add(e);
 		getENTITIES_HOLDER().add(e);
 	}
