@@ -3,13 +3,12 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.attribute.strength;
+import model.attribute.Strength;
 import model.entity.Entity;
 import model.entity.Hero;
 import model.field.Dungeon;
 import model.field.Navigation;
 import sharedObj.RenderableHolder;
-import view.dungeon.DialogPane;
 
 public class GameLogic {
 	//constructor  to initialize obj
@@ -24,8 +23,8 @@ public class GameLogic {
 		this.localContainer = new ArrayList<Entity>();
 		dungeon = new Dungeon();
 		
-		hero = new Hero(Entity.FRONT, new strength());
-		addNewObject(hero);
+		hero = new Hero(Entity.FRONT, new Strength());
+		RenderableHolder.getInstance().add(hero);
 		
 		RenderableHolder.getInstance().add(dungeon);
 		navig = new Navigation();
@@ -39,8 +38,6 @@ public class GameLogic {
 	
 	public void logicUpdate(){
 		dungeon.update();
-		for(Entity entity:localContainer) {
-			entity.update();			
-		}
+		hero.update();
 	}
 }
