@@ -6,6 +6,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
+import model.inventory.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import view.SceneManeger;
@@ -13,7 +14,8 @@ import view.SceneManeger;
 public class Hero extends DungeonableEntity<Attribute> {
 	private int maxMp;
 	private int currentMp;
-	private int money;
+	private static int money;
+	private Inventory inventory; 
 
 	public Hero(int direction, Attribute atkType) {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
@@ -21,6 +23,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		this.maxMp = 1000;
 		this.currentMp = 0;
 		this.money=0;
+		this.inventory = new Inventory();
 		// this.atkType = new Intelligence();
 	}
 
@@ -47,12 +50,42 @@ public class Hero extends DungeonableEntity<Attribute> {
 		if (InputUtility.isKeyPressed(KeyCode.D))
 			move(Entity.RIGHT);
 	}
-
+	
+	public void healHp(int i) {
+		if (getCurrentHp() + i > getMaxMp()) {
+			resetHp();
+		}
+		else {
+			currentHp += i;
+		}
+	}
+	
+	public void healMp(int i) {
+		if (getCurrentMp() + i > getMaxMp()) {
+			resetMp();
+		}
+		else {
+			currentMp += i;
+		}
+	}
+	
+	public void resetHp() {
+		currentHp = maxHp;
+	}
+	
+	public void resetMp() {
+		currentMp = maxMp;
+	}
+	
 	public int getMaxMp() {
 		return maxMp;
 	}
 
 	public int getCurrentMp() {
 		return currentMp;
+	}
+	
+	public static int getMoney() {
+		return money;
 	}
 }

@@ -9,8 +9,8 @@ import sharedObj.RenderableHolder;
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	public static final int HUMANITY = 0;
 	public static final int MONSTER = 1;
-	private int maxHp;
-	private int currentHp;
+	protected int maxHp;
+	protected int currentHp;
 	protected int baseAtk;
 	protected int race;
 	protected T atkType;
