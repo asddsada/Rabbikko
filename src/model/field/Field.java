@@ -11,17 +11,17 @@ import view.SceneManeger;
 public abstract class Field implements IRenderable {
 	protected boolean visible;
 	protected WritableImage bg;
-	protected Pair topRight;
+	protected Pair topLeft;
 	protected int z;
 	protected double width;
 	protected double height;
 
-	public Field(Image bgImage, double width, double height, Pair topRight) {
+	public Field(Image bgImage, double width, double height, Pair topLeft) {
 		this.visible = true;
 		this.width = width;
 		this.height = height;
 		this.bg = new WritableImage(bgImage.getPixelReader(), (int) width, (int) height);
-		this.topRight = topRight;
+		this.topLeft = topLeft;
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public abstract class Field implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(bg, topRight.x, topRight.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-RenderableHolder.navigBar.getHeight());
+		gc.drawImage(bg, topLeft.x, topLeft.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-RenderableHolder.navigBar.getHeight());
 	}
 
 	protected boolean isInBorderX(double x) {
@@ -57,7 +57,7 @@ public abstract class Field implements IRenderable {
 	}
 	
 	public Pair getTopRight() {
-		return topRight;
+		return topLeft;
 	}
 
 	public double getWidth() {

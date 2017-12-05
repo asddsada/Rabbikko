@@ -25,6 +25,7 @@ public class GameLogic {
 		
 		hero = new Hero(Entity.FRONT, new Strength());
 		RenderableHolder.getInstance().add(hero);
+		dungeon.getENTITIES_HOLDER().add(hero);
 		
 		RenderableHolder.getInstance().add(dungeon);
 		navig = new Navigation();
@@ -38,7 +39,6 @@ public class GameLogic {
 	
 	public void logicUpdate(){
 		dungeon.update();
-		hero.update();
 		navig.update();
 	}
 }

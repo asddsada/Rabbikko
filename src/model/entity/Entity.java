@@ -5,6 +5,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import logic.GameLogic;
 import model.gameObject;
+import model.attribute.Attribute;
+import model.field.Dungeon;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.Pair;
@@ -21,6 +23,7 @@ public abstract class Entity extends gameObject {
 	protected Image img;
 	protected int direction;
 	protected int movespeed;
+	protected int race;
 	private int counter;
 	private int walktick;
 
@@ -39,28 +42,43 @@ public abstract class Entity extends gameObject {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w * walktick, (int) h * direction, (int) w, (int) h),
-				(int) pos.x - w / 2, (int) pos.y, w * 2.5, h * 2.5);
-		gc.strokeRect(pos.x, pos.y, getWidth()/1.5,getHeight());
+				pos.x, pos.y, w * 2.5, h * 2.5);
+		gc.strokeRect(pos.x, pos.y, getWidth(), getHeight());
+		gc.strokeRect(pos.x + getWidth() / 6, pos.y, getWidth() / 1.5, getHeight());
 	}
 
-	public boolean isCollide(int x,int y) {
-		if ( x >= pos.x && x <= pos.x + getWidth()/1.5) {
-			if ( y >= pos.y && y <= pos.y + getHeight()) {
-//				System.out.println("Crash");
-				return true;
-			}
+	protected boolean isCollide(Entity other, double x, double y) {
+		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+" "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
+		if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6)
+				&& ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() + getHeight()))) {
+			this.z = 1;
+			RenderableHolder.getInstance().sort();
+		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+				&& ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() + getHeight()))) {
+			this.z = 1;
+			RenderableHolder.getInstance().sort();
+		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+				&& (other.getY() - getHeight() < y && y < other.getY())) {
+			this.z = -1;
+			RenderableHolder.getInstance().sort();
 		}
+		if ((other.getY() - getHeight() / 3 <= y && y <= other.getY() + getHeight() / 3)
+				&& (other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6))
+			return true;
 		return false;
 	}
 
-	private void setX(double x) {
-		if (GameLogic.dungeon.isInBoarder(this,this.pos.x + x, 0))
-			this.pos.x += x;		
+	protected abstract boolean isBlock(double x, double y);
+
+	protected void setX(double x) {
+		if (GameLogic.dungeon.isInBoarder(this, this.pos.x + x, 0) && !this.isBlock(this.pos.x + x, this.pos.y))
+			this.pos.x += x;
 	}
-	
-	private void setY(double y) {
-		if (GameLogic.dungeon.isInBoarder(this,0, this.pos.y + y))
+
+	protected void setY(double y) {
+		if (GameLogic.dungeon.isInBoarder(this, 0, this.pos.y + y) && !this.isBlock(this.pos.x, this.pos.y + y))
 			this.pos.y += y;
+
 	}
 
 	private void addWalkTick() {
@@ -73,6 +91,7 @@ public abstract class Entity extends gameObject {
 
 	protected void move(int direction) {
 		// should ask if the change will be in the scene before change
+
 		if (this.direction != direction && (this.direction % 3) == (direction % 3)) {
 			this.counter = 0;
 			this.walktick = 1;
@@ -86,7 +105,7 @@ public abstract class Entity extends gameObject {
 		if (direction == FRONT)
 			setY((movespeed / 10.0) * SceneManeger.HEIGHT / 150);
 		if (direction == BACK)
-			setY((-1)*(movespeed / 10.0) * SceneManeger.HEIGHT / 150);
+			setY((-1) * (movespeed / 10.0) * SceneManeger.HEIGHT / 150);
 		if (direction == RIGHT)
 			setX((movespeed / 10.0) * SceneManeger.WIDGTH / 200);
 		if (direction == LEFT)
@@ -98,10 +117,10 @@ public abstract class Entity extends gameObject {
 	public abstract void update();
 
 	public double getWidth() {
-		return w *2.5 ;
+		return (w * 2.5);
 	}
 
 	public double getHeight() {
-		return h *2.5 ;
+		return (h * 2.5);
 	}
 }

@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
+import logic.GameLogic;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import sharedObj.RenderableHolder;
@@ -21,6 +22,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 		this.maxMp = 1000;
 		this.currentMp = 0;
 		this.money=0;
+		this.z=-1;
+		this.race=DungeonableEntity.HUMANITY;
 		// this.atkType = new Intelligence();
 	}
 
@@ -34,6 +37,18 @@ public class Hero extends DungeonableEntity<Attribute> {
 	public void attack() {
 		// TODO Auto-generated method stub
 
+	}
+	
+	@Override
+	protected boolean isBlock(double x, double y) {
+		for (DungeonableEntity<Attribute> other : GameLogic.dungeon.getENTITIES_HOLDER()) {			
+			if (other.hashCode() != this.hashCode() && this.race!=other.race) { 
+					if(super.isCollide(other ,x, y)) {
+				
+				return true;
+			}}
+		}
+		return false;
 	}
 
 	@Override
