@@ -41,7 +41,7 @@ public abstract class Field implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(bg, topRight.x, topRight.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-150);
+		gc.drawImage(bg, topRight.x, topRight.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-RenderableHolder.navigBar.getHeight());
 	}
 
 	protected boolean isInBorderX(double x) {

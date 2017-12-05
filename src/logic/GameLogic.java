@@ -39,5 +39,6 @@ public class GameLogic {
 	public void logicUpdate(){
 		dungeon.update();
 		hero.update();
+		navig.update();
 	}
 }

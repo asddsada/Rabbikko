@@ -34,7 +34,9 @@ public class RenderableHolder {
 	public static Image questIcn;
 	public static Image itemIcn;
 	public static Image weaponIcn;
-	public static Image settingIcn;
+	public static Image atSlot;
+	public static Image slot;
+	public static Image menuIcn;
 
 	public static AudioClip clickSound;
 	public static AudioClip titleBgm;
@@ -59,12 +61,13 @@ public class RenderableHolder {
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
 
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
-
-			navigBar = new Image(ClassLoader.getSystemResource("img/navig.png").toString());
+			navigBar = new Image(ClassLoader.getSystemResource("img/newnavig.png").toString());
+			atSlot = new Image(ClassLoader.getSystemResource("img/atSlot.png").toString());
+			slot = new Image(ClassLoader.getSystemResource("img/slot.png").toString());
 			questIcn = new Image(ClassLoader.getSystemResource("img/quest.png").toString());
 			itemIcn = new Image(ClassLoader.getSystemResource("img/item.png").toString());
 			weaponIcn = new Image(ClassLoader.getSystemResource("img/weapon.png").toString());
-			settingIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
+			menuIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
 
 			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());

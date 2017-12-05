@@ -65,9 +65,10 @@ public class TitleCanvas extends Canvas {
 			if (isGoNext) {
 				goToDun();
 			} else {
-				gc.setStroke(Color.GHOSTWHITE);
-				gc.setLineWidth(2);
-				gc.strokeRect(SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2, 300, 87);
+				gc.drawImage(RenderableHolder.mainBtnImage, SceneManeger.WIDGTH / 3.05 , SceneManeger.HEIGHT / 2 ,RenderableHolder.mainBtnImage.getWidth()*1.05,RenderableHolder.mainBtnImage.getHeight()*1.05);
+//				gc.setStroke(Color.GHOSTWHITE);
+//				gc.setLineWidth(2);
+//				gc.strokeRect(SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2, 300, 87);
 			}
 		} else {
 			drawMainMenu();
