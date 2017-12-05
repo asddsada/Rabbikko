@@ -3,6 +3,7 @@ package model.monster;
 import javafx.scene.image.Image;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
+import utility.InputUtility;
 
 public class Monster extends DungeonableEntity<Attribute> {
 
