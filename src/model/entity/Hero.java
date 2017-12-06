@@ -11,7 +11,7 @@ import model.GameObject;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.field.Dungeon;
-import model.inventory.Inventory;
+import model.items.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import view.SceneManeger;
