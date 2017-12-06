@@ -3,13 +3,8 @@ package model.entity;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
-import logic.GameLogic;
-import model.GameObject;
 import model.attribute.Attribute;
-import model.attribute.Intelligence;
 import model.field.Dungeon;
 import model.field.Obstructable;
 import model.items.Inventory;
@@ -33,7 +28,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
 		this.inventory = new Inventory();
-		// this.atkType = new Intelligence();
+		setAtktype(atkType);
 	}
 
 	@Override
@@ -43,16 +38,18 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	@Override
-	public void attack() {
-		super.attack();
+	public boolean attack() {
+		boolean r = super.attack();
+		if(r) this.healMp(1);
 		atkType.getHeroWeapon().use();
+		return r;
 	}
 
 	@Override
 	protected boolean isBlock(double x, double y) {
 		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
 		for (DungeonableEntity<Attribute> other : inArea) {
-			System.out.println(other.getClass().getSimpleName());
+//			System.out.println(other.getClass().getSimpleName());
 			if (this.race != other.race)
 				this.damage(other.baseAtk, this.direction);
 			if(other instanceof Obstructable)
@@ -75,6 +72,9 @@ public class Hero extends DungeonableEntity<Attribute> {
 				move(Entity.RIGHT);
 			if (InputUtility.isKeyPressed(KeyCode.SPACE))
 				attack();
+			
+
+			this.atkType.getHeroWeapon().update(direction,pos.x,pos.y);
 		}
 		// for (int i = 0; i <= 3; i++) {
 		// System.out.println(getDamageTake()[i]);
@@ -85,7 +85,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		if (getCurrentHp() + i > getMaxMp()) {
 			resetHp();
 		} else {
-			currentHp += i;
+			currentHp += i*atkType.getHpRegen();
 		}
 	}
 
@@ -93,7 +93,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		if (getCurrentMp() + i > getMaxMp()) {
 			resetMp();
 		} else {
-			currentMp += i;
+			currentMp += i*atkType.getMpRegen();
 		}
 	}
 
@@ -108,7 +108,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	public int getMaxMp() {
-		return maxMp*atkType.getHpMultiply();
+		return (int) (maxMp*atkType.getHpMultiply());
 	}
 
 	public int getCurrentMp() {
@@ -116,7 +116,13 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	public <T extends Attribute> void setAtktype(T atkType) {
+		if(this.atkType!=null) {
+			this.atkType.getHeroWeapon().destroyed();
+			this.atkType.getAttackObj().destroyed();
+		}
 		this.atkType = atkType;
+		this.atkType.getHeroWeapon().held();
+		RenderableHolder.getInstance().add(atkType.getAttackObj());
 	}
 
 	public static int getMoney() {

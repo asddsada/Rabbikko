@@ -54,8 +54,6 @@ public class ForceManeger {
 		for (int i = 0; i <= 3; i++) {
 			entity.getDamageTake()[i] = 0;
 		}
-		System.out.println("sdal");
-		RenderableHolder.getInstance().sort();
 		return new Pair(x, y);
 	}
 
@@ -67,4 +65,10 @@ public class ForceManeger {
 			return (int) (force * SceneManeger.HEIGHT / 150);
 	}
 
+	public static <T extends Attribute> int calculateDirection(int direction) {
+//		if (direction == 0)	return 3;
+//		else return (direction * 2) % 3;
+		return direction;
+	}
+	
 }

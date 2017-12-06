@@ -27,6 +27,7 @@ public abstract class Entity extends GameObject {
 	protected int race;
 	private int counter;
 	private int walktick;
+	protected boolean isAlive;
 
 	public Entity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass) {
 		super(x, y, 0);
@@ -35,6 +36,7 @@ public abstract class Entity extends GameObject {
 		this.direction = direction;
 		this.movespeed = movespeed;
 		this.mass = mass;
+		this.isAlive=true;
 		this.counter = 0;
 		this.img = new WritableImage(img.getPixelReader(), (int) w * 3 * column, (int) h * 4 * row, (int) w * 3,
 				(int) h * 4);
@@ -104,7 +106,7 @@ public abstract class Entity extends GameObject {
 
 	protected void move(int direction) {
 		// should ask if the change will be in the scene before change
-
+		this.direction = direction;
 		if (this.direction != direction && (this.direction % 3) == (direction % 3)) {
 			this.counter = 0;
 			this.walktick = 1;
@@ -124,7 +126,7 @@ public abstract class Entity extends GameObject {
 		if (direction == LEFT)
 			setPos((-1) * (movespeed / 10.0) * SceneManeger.WIDGTH / 200, LEFT);
 
-		this.direction = direction;
+		
 	}
 
 	public abstract void update();
@@ -159,6 +161,14 @@ public abstract class Entity extends GameObject {
 
 	public int getRace() {
 		return race;
+	}
+	
+	public boolean isAlive() {
+		return isAlive;
+	}
+
+	public void setAlive(boolean isAlive) {
+		this.isAlive = isAlive;
 	}
 
 	public void setMovespeed(int movespeed) {

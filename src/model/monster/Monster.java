@@ -16,12 +16,6 @@ public class Monster<T extends Attribute> extends DungeonableEntity<Attribute> i
 	}
 
 	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 

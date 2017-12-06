@@ -13,6 +13,7 @@ import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
+import model.entity.Hero;
 import model.monster.Monster;
 import model.monster.MonsterDen;
 import sharedObj.RenderableHolder;
@@ -59,7 +60,8 @@ public class Dungeon extends Field {
 		for(DungeonableEntity<Attribute> e:ENTITIES_HOLDER) {
 			if(e.hashCode()!=object.hashCode() && object.isCollide(e, x, y)){
 				result.add(e);
-			}
+//				System.out.println(e.getClass().getSimpleName());
+			}			
 		}
 		return result;
 	}

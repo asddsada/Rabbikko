@@ -5,27 +5,37 @@ import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Hero;
 import model.items.Weapons;
+import utility.Pair;
 
 public class Strength extends Attribute {
 	public Strength() {
 		heroWeapon= (Weapons) Hero.inventory.getBag()[0];
-		attackObj = new GameObject(0, 0, 0) {
+		attackMultiply=2;
+		attackRange=new Pair(getHeroWeapon().getWidth()+20, getHeroWeapon().getHeight()+10);
+		attackSpped=0.5;
+		hpMultiply=1.2;
+		hpRegen=5;
+		mpRegen=1;
+		attackObj = new GameObject(heroWeapon.getX()+20, heroWeapon.getY(), 500) {
 			
 			@Override
 			public void draw(GraphicsContext gc) {
 //				attack effect?
+				gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+				if(heroWeapon.getAttackTime()>0)
+					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 			}
 			
 			@Override
 			public double getWidth() {
-				return 0;
+				return attackRange.x;
 			}
 			
 			@Override
 			public double getHeight() {
-				return 0;
+				return attackRange.y;
 			}
-		};
+		};		
 	}
 
 	@Override
