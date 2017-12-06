@@ -10,7 +10,7 @@ import sharedObj.IRenderable;
 import javafx.scene.control.Button;
 
 public class Inventory implements IRenderable {
-	Map<Useable, Integer> inventory; 
+	Map<Useable, Integer> inventory;
 	public int capacity;
 	
 	public Inventory() {
@@ -43,7 +43,6 @@ public class Inventory implements IRenderable {
 	}
 	
 	public void update() {
-		
 	}
 
 	@Override

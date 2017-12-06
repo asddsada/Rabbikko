@@ -45,6 +45,7 @@ public class RenderableHolder {
 	public static Image sword2;
 	public static Image bow;
 	public static Image staff;
+	public static Image staff2;
 	
 	//BGM
 	public static AudioClip clickSound;
@@ -84,6 +85,7 @@ public class RenderableHolder {
 			sword2 = new Image(ClassLoader.getSystemResource("img/sword2.png").toString());
 			bow = new Image(ClassLoader.getSystemResource("img/bow.png").toString());
 			staff = new Image(ClassLoader.getSystemResource("img/staff.png").toString());
+			staff2 = new Image(ClassLoader.getSystemResource("img/staff2.png").toString());
 			
 			// res for game
 			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());
