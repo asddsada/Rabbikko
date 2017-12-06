@@ -3,11 +3,12 @@ package model.attribute;
 import javafx.scene.canvas.GraphicsContext;
 import model.GameObject;
 import model.entity.DungeonableEntity;
-import model.items.Sword;
+import model.entity.Hero;
+import model.items.Weapons;
 
 public class Strength extends Attribute {
 	public Strength() {
-		heroWeapon= new Sword();
+		heroWeapon= (Weapons) Hero.inventory.getBag()[0];
 		attackObj = new GameObject(0, 0, 0) {
 			
 			@Override

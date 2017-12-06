@@ -11,7 +11,7 @@ public class Health extends Item{
 	
 	public Health() {
 		this.price = 600;
-		this.img = RenderableHolder.hpPotion;
+		this.imgWeapon = RenderableHolder.hpPotion;
 	}
 
 	@Override

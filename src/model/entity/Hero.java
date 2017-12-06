@@ -22,7 +22,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	private int currentMp;
 	private final int MAXMP = 500;
 	private static int money;
-	private Inventory inventory;
+	public static Inventory inventory;
 
 	public Hero(int direction, Attribute atkType) {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
@@ -45,7 +45,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	@Override
 	public void attack() {
 		super.attack();
-		atkType.getHeroWeapon().use(direction);
+		atkType.getHeroWeapon().use();
 	}
 
 	@Override
@@ -122,5 +122,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	public static int getMoney() {
 		return money;
 	}
+	
+	
 
 }

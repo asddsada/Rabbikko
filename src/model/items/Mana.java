@@ -11,7 +11,7 @@ public class Mana extends Item {
 	
 	public Mana() {
 		this.price = 500;
-		this.img = RenderableHolder.mpPotion;
+		this.imgWeapon = RenderableHolder.mpPotion;
 	}
 
 	@Override

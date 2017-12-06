@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.Entity;
+import model.entity.Hero;
 import sharedObj.IRenderable;
 
 public class Weapons extends GameObject implements Useable {
@@ -35,9 +36,13 @@ public class Weapons extends GameObject implements Useable {
 	public int getAmount() {
 		return amount;
 	}
+	
+	public void add() {
+		this.amount++;
+	}
 
 	@Override
-	public void use(int direction) {
+	public void use() {
 		attackTime=ATK_TIME_MAX;
 	}
 
@@ -57,24 +62,22 @@ public class Weapons extends GameObject implements Useable {
 
 	@Override
 	public double getWidth() {
-		return 
+		return 32;
 	}
 
 	@Override
 	public double getHeight() {
 		// TODO Auto-generated method stub
-		return 
+		return 32;
 	}
 	
 	public void update() {
-		if(direction==Entity.LEFT) this.pos.x = GameLogic.hero.getX()-(getWidth()+??) ;
-		else this.pos.x = GameLogic.hero.getX()+(getWidth()+??) ;
+		if(GameLogic.hero.getDirection()==Entity.LEFT||
+				GameLogic.hero.getDirection()==Entity.FRONT) 
+			this.pos.x = GameLogic.hero.getX()-(getWidth()) ;
+		else this.pos.x = GameLogic.hero.getX()+GameLogic.hero.getWidth()+(getWidth()) ;
 		
-		this.pos.y = GameLogic.hero.getY() +?? ;
+		this.pos.y = GameLogic.hero.getY()+30 ;
 		
-	}
-	
-	public void buy() {
-		if(this.amount>0) this.amount--;
 	}
 }

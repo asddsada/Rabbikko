@@ -11,28 +11,22 @@ import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import javafx.scene.control.Button;
 
-public class Inventory implements IRenderable {
+public class Inventory {
 	private static final Useable[] BAG = {
-			new	Weapons(500, RenderableHolder.sword2),
-			new	Weapons(500, RenderableHolder.sword2),
-			new	Weapons(500, RenderableHolder.sword2)
+			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword2),
+			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword2),
+			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword2),
 		};
 	public int bagCapacity;
 	
 	public Inventory() {
 		this.bagCapacity = 1;
+		add(1); //need 1 sword
 	}
 	
-	public void add(Useable item) {
-		if (isFull()) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setContentText("Inventory Full");
-			alert.showAndWait();
-			return;
-			//cannot buy items
-		}
-		inventory.put(item,inventory.get(item)+1);
-		bagCapacity += 1;
+	public void add(int i) {
+		bagCapacity++;
+		BAG[i].add();
 	}
 	
 	public boolean isFull() {
@@ -43,30 +37,6 @@ public class Inventory implements IRenderable {
 	}
 	
 	public void update() {
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 100;
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean isDestroyed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	public static Useable[] getBag() {
