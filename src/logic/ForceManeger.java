@@ -1,9 +1,10 @@
-package utility;
+package logic;
 
 import Main.Main;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
 import model.field.Dungeon;
+import utility.Pair;
 import view.SceneManeger;
 
 public class ForceManeger {

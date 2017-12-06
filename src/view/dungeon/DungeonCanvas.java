@@ -37,5 +37,6 @@ public class DungeonCanvas extends Canvas {
 				entity.draw(gc);
 			}
 		}
+		RenderableHolder.getInstance().sort();
 	}
 }

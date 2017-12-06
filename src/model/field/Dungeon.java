@@ -1,5 +1,6 @@
 package model.field;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -7,6 +8,7 @@ import java.util.Set;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 import logic.GameLogic;
+import model.GameObject;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.entity.DungeonableEntity;
@@ -50,5 +52,15 @@ public class Dungeon extends Field {
 
 	public static Set<DungeonableEntity<Attribute>> getENTITIES_HOLDER() {
 		return ENTITIES_HOLDER;
+	}
+	
+	public static ArrayList<DungeonableEntity<Attribute>> getEntityInArea(GameObject object,Pair topLeft,double w,double y){
+		ArrayList<DungeonableEntity<Attribute>> result = new ArrayList<>();
+		for(DungeonableEntity<Attribute> e:ENTITIES_HOLDER) {
+			if(e.isCollide(object, topLeft.x, topLeft.y)){
+				
+			}
+		}
+		return result;
 	}
 }

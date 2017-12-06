@@ -4,7 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import logic.GameLogic;
-import model.gameObject;
+import model.GameObject;
 import model.attribute.Attribute;
 import model.field.Dungeon;
 import sharedObj.RenderableHolder;
@@ -12,7 +12,7 @@ import utility.InputUtility;
 import utility.Pair;
 import view.SceneManeger;
 
-public abstract class Entity extends gameObject {
+public abstract class Entity extends GameObject {
 	public static final int FRONT = 0;
 	public static final int LEFT = 1;
 	public static final int RIGHT = 2;
@@ -49,28 +49,6 @@ public abstract class Entity extends gameObject {
 		gc.strokeRect(pos.x + getWidth() / 6, pos.y, getWidth() / 1.5, getHeight());
 	}
 
-	protected boolean isCollide(Entity other, double x, double y) {
-		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+"
-		// "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
-		if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6)
-				&& ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() + getHeight()))) {
-			this.z = 1;
-			RenderableHolder.getInstance().sort();
-		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-				&& ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() + getHeight()))) {
-			this.z = 1;
-			RenderableHolder.getInstance().sort();
-		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-				&& (other.getY() - getHeight() < y && y < other.getY())) {
-			this.z = -1;
-			RenderableHolder.getInstance().sort();
-		}
-		if ((other.getY() - getHeight() / 3 <= y && y <= other.getY() + getHeight() / 3)
-				&& (other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6))
-			return true;
-		return false;
-	}
-
 	protected abstract boolean isBlock(double x, double y);
 
 	private void setX(double x) {
@@ -99,6 +77,28 @@ public abstract class Entity extends gameObject {
 		}
 		counter++;
 	}
+	
+	@Override
+	public boolean isCollide(GameObject other, double x, double y) {
+		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+"
+		// "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
+		if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6)
+				&& ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() + getHeight()))) {
+			this.z = 1;
+		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+				&& ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() + getHeight()))) {
+			this.z = 1;
+		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+				&& (other.getY() - getHeight() < y && y < other.getY())) {
+			this.z = -1;
+		}
+		
+		if((x<=other.getX()&&other.getX()<=x+getWidth())||
+				(x<=other.getX()+other.getWidth()&&other.getX()+other.getWidth()<=x+getWidth())&&
+				(y<=other.getY()&&other.getY()<=y+getHeight())||
+				(y<=other.getY()+other.getHeight()&&other.getY()+other.getHeight()<=y+getHeight()))return true;
+		return false;
+	}
 
 	protected void move(int direction) {
 		// should ask if the change will be in the scene before change
@@ -126,11 +126,13 @@ public abstract class Entity extends gameObject {
 	}
 
 	public abstract void update();
-
+	
+	@Override
 	public double getWidth() {
 		return (w * 2.5);
 	}
-
+	
+	@Override
 	public double getHeight() {
 		return (h * 2.5);
 	}

@@ -66,6 +66,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 			move(Entity.LEFT);
 		if (InputUtility.isKeyPressed(KeyCode.D))
 			move(Entity.RIGHT);
+		if(InputUtility.isKeyPressed(KeyCode.SPACE)) attack();
 
 		// for (int i = 0; i <= 3; i++) {
 		// System.out.println(getDamageTake()[i]);
