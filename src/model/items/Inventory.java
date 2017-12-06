@@ -43,7 +43,6 @@ public class Inventory implements IRenderable {
 	}
 	
 	public void update() {
-		
 	}
 
 	@Override
