@@ -6,6 +6,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import logic.ForceManeger;
 import logic.GameLogic;
+import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import view.SceneManeger;
 import view.dungeon.DungeonCanvas;
@@ -27,6 +28,7 @@ public class DungeonMain {
 		public void handle(long now) {
 			canvas.canvasUpdate();
 			logic.logicUpdate();
+			RenderableHolder.getInstance().update();
 		}
 	};
 

@@ -103,7 +103,6 @@ public class RenderableHolder {
 
 	// add to container with sort
 	public void add(IRenderable entity) {
-		// System.out.println("add");
 		entities.add(entity);
 		Collections.sort(entities, comparator);
 	}
@@ -114,9 +113,11 @@ public class RenderableHolder {
 
 	public void update() {
 		for (int i = entities.size() - 1; i >= 0; i--) {
-			if (entities.get(i).isDestroyed())
+			if (entities.get(i).isDestroyed() && !(entities.get(i) instanceof Hero))
+				
 				entities.remove(i);
 		}
+		Collections.sort(entities, comparator);
 	}
 
 	public static RenderableHolder getInstance() {

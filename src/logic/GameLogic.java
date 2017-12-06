@@ -22,7 +22,7 @@ public class GameLogic {
 	public GameLogic() {
 		dungeon = new Dungeon();
 
-		hero = new Hero(Entity.FRONT, new Intelligence());
+		hero = new Hero(Entity.FRONT, new Strength());
 		RenderableHolder.getInstance().add(hero);
 		dungeon.getENTITIES_HOLDER().add(hero);
 		hero.setAtktype(new Strength());

@@ -1,11 +1,14 @@
 package model.entity;
 
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import logic.ForceManeger;
 import logic.GameLogic;
 import model.attribute.Attribute;
+import model.field.Dungeon;
 import sharedObj.RenderableHolder;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
@@ -16,6 +19,9 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	protected int baseAtk;
 	protected T atkType;
 	protected int[] damageTake;
+	protected boolean isAlive;
+	protected int dmgTimer;
+	protected static final int DMG_TIME_MAX=10;
 
 	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
 			int maxHp, int baseAtk, T atkType) {
@@ -26,6 +32,8 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		this.maxHp = maxHp;
 		this.damageTake = new int[4];
 		this.currentHp = this.maxHp;
+		this.isAlive=true;
+		this.dmgTimer=0;
 	}
 
 	@Override
@@ -34,12 +42,21 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		super.draw(gc);
 	}
 
-	public abstract void attack();
+	public void attack() {
+		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(atkType.getAttackObj(), 
+				atkType.getAttackObj().getX(), atkType.getAttackObj().getY());
+		if(inArea==null) return;
+		for (DungeonableEntity<Attribute> other : inArea) {
+			System.out.println(other.getClass().getSimpleName());
+			if (this.race != other.race)
+				atkType.attack(this,other);
+		}
+	}
 
 	public void damage(int dmg, int direction) {
 		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
-		System.out.println(dmg);
-		this.currentHp -= dmg;
+//		System.out.println(dmg);
+		this.currentHp = this.currentHp-dmg>=0?this.currentHp-dmg:0;
 		if (direction == 0)
 			this.direction = 3;
 		else {
@@ -58,5 +75,13 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	public int[] getDamageTake() {
 		return damageTake;
+	}
+	
+	@Override
+	public void update() {
+		if(this.currentHp==0) {
+			this.setVisible(false);
+			this.isAlive=false;
+		}
 	}
 }

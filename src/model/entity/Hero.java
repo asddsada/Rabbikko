@@ -1,12 +1,17 @@
 package model.entity;
 
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import logic.GameLogic;
+import model.GameObject;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
+import model.field.Dungeon;
+import model.field.Obstructable;
 import model.items.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
@@ -23,7 +28,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
 				50, 1000, 30, atkType);
 		this.maxMp = 1000;
-		this.currentMp = MAXMP;
+		this.currentMp = 0;
 		this.money = 0;
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
@@ -39,35 +44,38 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
-
+		super.attack();
+		atkType.getHeroWeapon().use();
 	}
 
 	@Override
 	protected boolean isBlock(double x, double y) {
-		for (DungeonableEntity<Attribute> other : GameLogic.dungeon.getENTITIES_HOLDER()) {
-			if (other.hashCode() != this.hashCode() && super.isCollide(other, x, y)) {
-				if (this.race == other.race)
-					return true;
-				else {
-					this.damage(other.baseAtk, this.direction);
-				}
-			}
+		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
+		for (DungeonableEntity<Attribute> other : inArea) {
+			System.out.println(other.getClass().getSimpleName());
+			if (this.race != other.race)
+				this.damage(other.baseAtk, this.direction);
+			if(other instanceof Obstructable)
+				return true;
 		}
 		return false;
 	}
 
 	@Override
 	public void update() {
-		if (InputUtility.isKeyPressed(KeyCode.W))
-			move(Entity.BACK);
-		if (InputUtility.isKeyPressed(KeyCode.S))
-			move(Entity.FRONT);
-		if (InputUtility.isKeyPressed(KeyCode.A))
-			move(Entity.LEFT);
-		if (InputUtility.isKeyPressed(KeyCode.D))
-			move(Entity.RIGHT);
-
+		if (isAlive) {
+			super.update();
+			if (InputUtility.isKeyPressed(KeyCode.W))
+				move(Entity.BACK);
+			if (InputUtility.isKeyPressed(KeyCode.S))
+				move(Entity.FRONT);
+			if (InputUtility.isKeyPressed(KeyCode.A))
+				move(Entity.LEFT);
+			if (InputUtility.isKeyPressed(KeyCode.D))
+				move(Entity.RIGHT);
+			if (InputUtility.isKeyPressed(KeyCode.SPACE))
+				attack();
+		}
 		// for (int i = 0; i <= 3; i++) {
 		// System.out.println(getDamageTake()[i]);
 		// }
@@ -90,7 +98,9 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	public void resetHp() {
-		currentHp = maxHp;
+		currentHp = getMaxHp();
+		setVisible(true);
+		isAlive=true;
 	}
 
 	public void resetMp() {
@@ -98,7 +108,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	public int getMaxMp() {
-		return maxMp;
+		return maxMp*atkType.getHpMultiply();
 	}
 
 	public int getCurrentMp() {
