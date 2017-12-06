@@ -33,7 +33,7 @@ public class ForceManeger {
 //				System.out.println("end");
 			}			
 		});
-		physicThread.start();
+//		physicThread.start();
 	}
 
 	public static void startForceRule() {
