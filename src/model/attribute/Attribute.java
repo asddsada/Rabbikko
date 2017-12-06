@@ -10,9 +10,9 @@ import utility.Pair;
 
 public abstract class Attribute{
 	protected GameObject attackObj;
-	protected int attackMultiply;
+	protected double attackMultiply;
 	protected Pair attackRange;
-	protected double attackSpped;
+	protected double attackSpeed;
 	protected double hpMultiply;
 	protected int hpRegen;
 	protected int mpRegen;	
@@ -51,14 +51,14 @@ public abstract class Attribute{
 	public void setAttackObj(GameObject attackObj) {
 		this.attackObj = attackObj;
 	}
-	public int getAttackMultiply() {
+	public double getAttackMultiply() {
 		return attackMultiply;
 	}
 	public Pair getAttackRange() {
 		return attackRange;
 	}
-	public double getAttackSpped() {
-		return attackSpped;
+	public double getAttackSpeed() {
+		return attackSpeed;
 	}
 	public double getHpMultiply() {
 		return hpMultiply;

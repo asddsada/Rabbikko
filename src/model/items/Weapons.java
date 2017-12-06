@@ -15,7 +15,7 @@ public class Weapons extends GameObject implements Useable {
 	private Image imgIcon;
 	private int amount;
 	private int attackTime;
-	private int ATK_TIME_MAX=50; //how many step swing should make
+	private int atkTimeMax; //how many step swing should make
 	
 	public Weapons(int price, Image img,Image imgIcon) {
 		super(0, 0, 100);
@@ -25,6 +25,7 @@ public class Weapons extends GameObject implements Useable {
 		this.amount = 0;
 		attackTime=0;
 		this.visible=false;
+		this.atkTimeMax=100;
 	}
 	
 	public void held() {
@@ -36,6 +37,10 @@ public class Weapons extends GameObject implements Useable {
 		return amount!=1;
 	}
 	
+	public int getAtkTimeMax() {
+		return (int) (atkTimeMax/GameLogic.hero.getAtkType().getAttackSpeed());
+	}
+
 	public int getPrice() {
 		return price;
 	}
@@ -50,7 +55,7 @@ public class Weapons extends GameObject implements Useable {
 
 	@Override
 	public void use() {
-		attackTime=ATK_TIME_MAX;
+		attackTime=atkTimeMax;
 //		System.out.println("use weapon");
 	}
 

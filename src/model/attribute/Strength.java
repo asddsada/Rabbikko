@@ -1,6 +1,7 @@
 package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
+import logic.ForceManeger;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Hero;
@@ -10,9 +11,9 @@ import utility.Pair;
 public class Strength extends Attribute {
 	public Strength() {
 		heroWeapon= (Weapons) Hero.inventory.getBag()[0];
-		attackMultiply=2;
+		attackMultiply=1.2;
 		attackRange=new Pair(getHeroWeapon().getWidth()+20, getHeroWeapon().getHeight()+10);
-		attackSpped=0.5;
+		attackSpeed=0.5;
 		hpMultiply=1.2;
 		hpRegen=5;
 		mpRegen=1;
@@ -39,9 +40,11 @@ public class Strength extends Attribute {
 	}
 
 	@Override
-	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> dungeonableEntity,
+	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
 			DungeonableEntity<T2> other) {
-		System.out.println("attack");
+		System.out.println(other.getCurrentHp());
+		other.damage((int) (attacker.getBaseAtk()*attackMultiply),ForceManeger.calculateDirection(attacker.getDirection()));
+//		System.out.println("Attack! "+other.getClass().getSimpleName()+" hp : "+other.getCurrentHp());
 	}
 
 }

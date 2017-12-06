@@ -76,16 +76,16 @@ public class Navigation extends Field {
 		gc.fillText(Integer.toString(Hero.getMoney()),890,sceneHeight-fontHieght-7);
 		
 		//Hp and Mp
-		int maxH = GameLogic.hero.getMaxHp();
-		int currentH = GameLogic.hero.getCurrentHp();
-		int maxM = GameLogic.hero.getMaxMp();
-		int currentM = GameLogic.hero.getCurrentMp();
+		double maxH = GameLogic.hero.getMaxHp();
+		double currentH = GameLogic.hero.getCurrentHp();
+		double maxM = GameLogic.hero.getMaxMp();
+		double currentM = GameLogic.hero.getCurrentMp();
 		
 		gc.setFill(Color.CRIMSON);
-		gc.fillRect(241,613.5,(maxH/5)-(maxH-currentH)/5,18);
+		gc.fillRect(241,613.5,(currentH/maxH)*200,18);
 		
 		gc.setFill(Color.DODGERBLUE);
-		gc.fillRect(241, 653,(maxM*0.4)-(maxM-currentM)*0.4, 18);
+		gc.fillRect(241, 653,(currentM/maxM)*200, 18);
 	}
 	
 	public void update() {

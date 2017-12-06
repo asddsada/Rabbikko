@@ -1,5 +1,7 @@
 package logic;
 
+import com.sun.javafx.scene.traversal.Direction;
+
 import Main.Main;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
@@ -11,41 +13,38 @@ import view.SceneManeger;
 public class ForceManeger {
 	private static Thread physicThread = null;
 	private static boolean threadState;
-	private static final float TIME_DIV = 100;
+	private static final float TIME_DIV = 15;
 
 	public static void initilized() {
 		threadState = true;
-		physicThread = new Thread(() -> {
-			while (Main.isGameRunning) {
-				while (threadState) {
-					// for (DungeonableEntity<Attribute> entity : Dungeon.getENTITIES_HOLDER()) {
-					// int forceCount = 0;
-					// double dx = totalForce(entity).x / entity.getMass() / 200 / TIME_DIV;
-					// double dy = totalForce(entity).y / entity.getMass() / 200 / TIME_DIV;
-					// while (!(dx == 0 && dy == 0) && forceCount < TIME_DIV) {
-					// System.out.println(entity.getClass().getSimpleName() + " " + dx + " " + dy);
-					// entity.setPos(dx, SceneManeger.X_AXIS);
-					// entity.setPos(dy, SceneManeger.Y_AXIS);
-					// forceCount++;
-					// }
-					// }
-//					System.out.println(threadState);
-				}
-//				System.out.println("end");
-			}			
-		});
-//		physicThread.start();
 	}
 
 	public static void startForceRule() {
-		threadState = true;
+		// threadState = true;
 	}
 
 	public static void pauseForceRule() {
-		threadState = false;
+		// threadState = false;
 	}
 
-	private static Pair totalForce(DungeonableEntity<Attribute> entity) {
+	public static <T extends Attribute> void reactionEffect(DungeonableEntity<T> entity, int axis) {
+		double d;
+		// bug able to push out of the field
+		if (axis % 3 == SceneManeger.Y_AXIS) {
+			d = (totalForce(entity).y / entity.getMass());
+			for (int i = 0; i < TIME_DIV; i++) {
+				entity.setY(entity.getY() + d);
+			}
+		} else {
+			d = (totalForce(entity).x / entity.getMass());
+			for (int i = 0; i < TIME_DIV; i++) {
+				entity.setX(entity.getX() + d);
+			}
+		}
+
+	}
+
+	private static <T extends Attribute> Pair totalForce(DungeonableEntity<T> entity) {
 		int x = 0, y = 0;
 		y -= entity.getDamageTake()[0];
 		y += entity.getDamageTake()[3];
@@ -66,9 +65,10 @@ public class ForceManeger {
 	}
 
 	public static <T extends Attribute> int calculateDirection(int direction) {
-//		if (direction == 0)	return 3;
-//		else return (direction * 2) % 3;
-		return direction;
+		if (direction == 0)
+			return 3;
+		else
+			return (direction * 2) % 3;
 	}
-	
+
 }

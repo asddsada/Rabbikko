@@ -19,7 +19,7 @@ public abstract class GameObject implements IRenderable {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
+
 	public void destroyed() {
 		// TODO Auto-generated method stub
 		visible = false;
@@ -62,24 +62,19 @@ public abstract class GameObject implements IRenderable {
 	public boolean isCollide(GameObject other, double x, double y) {
 		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+"
 		// "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
-//		 if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth()
-//		 * 4 / 6)
-//		 && ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() +
-//		 getHeight()))) {
-//		 this.z = 1;
-//		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-//		 && ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() +
-//		 getHeight()))) {
-//		 this.z = 1;
-//		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-//		 && (other.getY() - getHeight() < y && y < other.getY())) {
-//		 this.z = -1;
-//		 }
-//		
-//		 if ((other.getY() - getHeight() / 3 <= y && y <= other.getY() + getHeight() / 3)
-//					&& (other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6))
-//				return true;
-		 return false;
+		
+		//here, there is bug!!!!
+		if ((other.getX() - other.getWidth() * 4 / 6 <= x && x <= other.getX() + other.getWidth() * 4 / 6)
+				&& ((other.getY() - other.getHeight() / 6 + 5 <= y && y <= other.getY() + other.getHeight()))) {
+			return true;
+		} else if ((other.getX() - other.getWidth() <= x && x <= other.getX() + other.getWidth())
+				&& ((other.getY() - other.getHeight() / 8 + 5 <= y && y <= other.getY() + other.getHeight()))) {
+			return true;
+		} else if ((other.getX() - other.getWidth() / 2 <= x && x <= other.getX() + other.getWidth() / 2)
+				&& (other.getY() - other.getHeight() < y && y < other.getY())) {
+			return true;
+		}
+		return false;
 	}
 
 	public abstract double getWidth();
