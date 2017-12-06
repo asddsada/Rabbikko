@@ -8,10 +8,12 @@ import javax.swing.plaf.basic.BasicDesktopIconUI.MouseInputHandler;
 
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
+import javafx.scene.effect.DropShadow;
 
 import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.Effect;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -72,6 +74,13 @@ public class Navigation extends Field {
 		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",20));
 		gc.fillText(Integer.toString(Hero.getMoney()),890,sceneHeight-fontHieght-7);
+		
+		//Hp and Mp
+		gc.setFill(Color.CRIMSON);
+		gc.fillRect(241,613.5,GameLogic.hero.getCurrentHp()/5,18);
+		
+		gc.setFill(Color.DODGERBLUE);
+		gc.fillRect(241, 653,GameLogic.hero.getCurrentMp()*0.4, 18);
 	}
 	
 	public void update() {

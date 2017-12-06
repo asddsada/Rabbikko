@@ -15,6 +15,7 @@ import view.SceneManeger;
 public class Hero extends DungeonableEntity<Attribute> {
 	private int maxMp;
 	private int currentMp;
+	private final int MAXMP = 500;
 	private static int money;
 	private Inventory inventory;
 
@@ -22,7 +23,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
 				50, 1000, 30, atkType);
 		this.maxMp = 1000;
-		this.currentMp = 0;
+		this.currentMp = MAXMP;
 		this.money = 0;
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
