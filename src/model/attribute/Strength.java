@@ -8,7 +8,7 @@ import model.items.Weapons;
 
 public class Strength extends Attribute {
 	public Strength() {
-		heroWeapon= (Weapons) Hero.inventory.getBag()[0];
+		heroWeapon= (Weapons) Hero.inventory.getBag()[2];
 		attackObj = new GameObject(0, 0, 0) {
 			
 			@Override

@@ -1,21 +1,13 @@
 package view.dungeon;
 
-
-import java.awt.MouseInfo;
-
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -26,23 +18,26 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 import model.entity.Hero;
 import model.field.Navigation;
 import model.field.Shop;
+import model.items.Health;
+import model.items.Inventory;
+import model.items.Mana;
+import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import view.SceneManeger;
 
 public class DialogPane extends VBox {
-	ImageView potion1 = new ImageView(RenderableHolder.hpPotion);
-	ImageView potion2 = new ImageView(RenderableHolder.mpPotion);
-	ImageView sword = new ImageView(RenderableHolder.sword);
-	ImageView bow = new ImageView(RenderableHolder.bow);
-	ImageView staff = new ImageView(RenderableHolder.staff);
+	private ImageView potion1;
+	private ImageView potion2;
+	private ImageView sword;
+	private ImageView bow;
+	private ImageView staff;
 	private DungeonScene scene;
 	
 	public DialogPane(DungeonScene dunScene){
@@ -120,12 +115,16 @@ public class DialogPane extends VBox {
 	}
 	
 	public GridPane generate(Image img) {
+		potion1 = new ImageView(RenderableHolder.hpPotion);
+		potion2 = new ImageView(RenderableHolder.mpPotion);
+		sword = new ImageView(RenderableHolder.sword);
+		bow = new ImageView(RenderableHolder.bow);
+		staff = new ImageView(RenderableHolder.staff);
+		
 		GridPane gp = new GridPane();
 		gp.setPadding(new Insets(100,10,10,10));
-//		gp.setGridLinesVisible(true);
 		gp.setHgap(5);
 		gp.setVgap(20);
-		gp.setPrefSize(img.getWidth(),img.getHeight());
 		gp.setAlignment(Pos.TOP_CENTER);
 		
 		gp.add(potion1, 0, 1);
@@ -154,39 +153,67 @@ public class DialogPane extends VBox {
 		t2.setFill(Color.ALICEBLUE);
 		Text t3 = new Text();
 		t3.setFill(Color.ALICEBLUE);
+		Button use = new Button("USE");
+		use.setStyle("-fx-color: red;-fx-border: none");
 		
 		gp.add(t1, 1, 3,4,4);
 		gp.add(t2, 1, 6,4,4);
 		gp.add(t3, 1, 9,2,2);
+		gp.add(use, 3, 9,2,2);
 		
 		potion1.setOnMouseClicked((MouseEvent e) -> {
+			if (((Health)Inventory.getBag()[0]).getAmount() != 0) {
+				use.setOnMouseClicked((MouseEvent event0) -> {
+					((Health)Inventory.getBag()[0]).use();
+				});
+			}
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : 500 g");
-			t3.setText("Amount : ");
+			t3.setText("Amount : "+ ((Health)Inventory.getBag()[0]).getAmount());
 		});
 		
 		potion2.setOnMouseClicked((MouseEvent e) -> {
+			if (((Mana)Inventory.getBag()[1]).getAmount() != 0) {
+				use.setOnMouseClicked((MouseEvent event1) -> {
+					((Mana)Inventory.getBag()[1]).use();
+				});
+			}
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : 500 g");
-			t3.setText("Amount : ");
+			t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
 		});
 		
 		sword.setOnMouseClicked((MouseEvent e) -> {
+			if (((Weapons)Inventory.getBag()[2]).getAmount() == 1) {
+				use.setOnMouseClicked((MouseEvent event0) -> {
+					((Weapons)Inventory.getBag()[2]).use();
+				});
+			}
 			t1.setText("Sword\n");
 			t2.setText("Price : 5000 g");
-			t3.setText("Amount : ");
+			t3.setText("Amount : " + ((Weapons)Inventory.getBag()[2]).getAmount());
 		});
 		
 		bow.setOnMouseClicked((MouseEvent e) -> {
+			if (((Weapons)Inventory.getBag()[3]).getAmount() == 1) {
+				use.setOnMouseClicked((MouseEvent event0) -> {
+					((Weapons)Inventory.getBag()[3]).use();
+				});
+			}
 			t1.setText("Bow\n");
 			t2.setText("Price : 5000 g");
-			t3.setText("Amount : ");
+			t3.setText("Amount : " + ((Weapons)Inventory.getBag()[3]).getAmount());
 		});
 		
 		staff.setOnMouseClicked((MouseEvent e) -> {
+			if (((Weapons)Inventory.getBag()[4]).getAmount() == 1) {
+				use.setOnMouseClicked((MouseEvent event0) -> {
+					((Weapons)Inventory.getBag()[4]).use();
+				});
+			}
 			t1.setText("Staff\n");
 			t2.setText("Price : 5000 g");
-			t3.setText("Amount : ");
+			t3.setText("Amount : "  + ((Weapons)Inventory.getBag()[4]).getAmount());
 		});
 		this.getChildren().add(gp);
 	}
@@ -202,7 +229,6 @@ public class DialogPane extends VBox {
 		Text t2 = new Text();
 		t2.setFill(Color.ALICEBLUE);
 		Button buy = new Button("BUY");
-		buy.setDisable(true);
 		buy.setStyle("-fx-color: red;-fx-border: none");
 		
 		gp.add(t1, 1, 3,4,4);
@@ -210,33 +236,34 @@ public class DialogPane extends VBox {
 		gp.add(buy, 3, 9,2,2);
 		
 		potion1.setOnMouseClicked((MouseEvent e) -> {
-			buy.setDisable(false);
+			buy.setOnMouseClicked((MouseEvent event0)->{
+				shop.buy(0);
+			});
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
-			t2.setText("Price : 500 g");
+			t2.setText("Price : " + ((Health)Inventory.getBag()[0]).getPrice() + " g");
 		});
 		
 		potion2.setOnMouseClicked((MouseEvent e) -> {
-			buy.setDisable(false);
+			buy.setOnMouseClicked((MouseEvent event1)->{
+				shop.buy(1);
+			});
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
-			t2.setText("Price : 500 g");
+			t2.setText("Price : " + ((Mana)Inventory.getBag()[1]).getPrice() + " g");
 		});
 		
 		sword.setOnMouseClicked((MouseEvent e) -> {
-			buy.setDisable(false);
 			t1.setText("Sword\n");
-			t2.setText("Price : 5000 g");
+			t2.setText("Price : " + ((Weapons)Inventory.getBag()[2]).getPrice() + " g");
 		});
 		
 		bow.setOnMouseClicked((MouseEvent e) -> {
-			buy.setDisable(false);
 			t1.setText("Bow\n");
-			t2.setText("Price : 5000 g");
+			t2.setText("Price : " + ((Weapons)Inventory.getBag()[3]).getPrice() + " g");
 		});
 		
 		staff.setOnMouseClicked((MouseEvent e) -> {
-			buy.setDisable(false);
 			t1.setText("Staff\n");
-			t2.setText("Price : 5000 g");
+			t2.setText("Price : " + ((Weapons)Inventory.getBag()[4]).getPrice() + " g");
 		});
 		
 		this.getChildren().add(gp);

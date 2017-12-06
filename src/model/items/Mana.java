@@ -7,7 +7,7 @@ import model.entity.Hero;
 import sharedObj.RenderableHolder;
 
 public class Mana extends Item {
-	private final int healPoint = 100;
+	private final int POINT = 100;
 	
 	public Mana() {
 		this.price = 500;
@@ -17,7 +17,8 @@ public class Mana extends Item {
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
-		GameLogic.hero.healMp(healPoint);
+		GameLogic.hero.healMp(POINT);
+		amount--;
 	}
 
 	@Override

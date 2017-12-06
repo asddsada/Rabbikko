@@ -1,8 +1,6 @@
 package model.items;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
@@ -13,15 +11,16 @@ import javafx.scene.control.Button;
 
 public class Inventory {
 	private static final Useable[] BAG = {
-			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword2),
-			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword2),
-			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword2),
+			new Health(),new Mana(),
+			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword),
+			new	Weapons(500, RenderableHolder.bow2, RenderableHolder.bow),
+			new	Weapons(500, RenderableHolder.staff2, RenderableHolder.staff),
 		};
 	public int bagCapacity;
 	
 	public Inventory() {
 		this.bagCapacity = 1;
-		add(1); //need 1 sword
+		add(2); //need 1 sword
 	}
 	
 	public void add(int i) {
@@ -37,6 +36,7 @@ public class Inventory {
 	}
 	
 	public void update() {
+		
 	}
 
 	public static Useable[] getBag() {
