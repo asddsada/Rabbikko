@@ -20,10 +20,10 @@ public class ForceManeger {
 				while (threadState) {
 					// for (DungeonableEntity<Attribute> entity : Dungeon.getENTITIES_HOLDER()) {
 					// int forceCount = 0;
-					// double dx = totalForce(entity).x / entity.getMass() / 200 /TIME_DIV ;
-					// double dy = totalForce(entity).y / entity.getMass() / 200 /TIME_DIV;
-					// while (!(dx==0&&dy==0) &&forceCount < TIME_DIV) {
-					// System.out.println(entity.getClass().getSimpleName()+" "+dx+" "+dy);
+					// double dx = totalForce(entity).x / entity.getMass() / 200 / TIME_DIV;
+					// double dy = totalForce(entity).y / entity.getMass() / 200 / TIME_DIV;
+					// while (!(dx == 0 && dy == 0) && forceCount < TIME_DIV) {
+					// System.out.println(entity.getClass().getSimpleName() + " " + dx + " " + dy);
 					// entity.setPos(dx, SceneManeger.X_AXIS);
 					// entity.setPos(dy, SceneManeger.Y_AXIS);
 					// forceCount++;

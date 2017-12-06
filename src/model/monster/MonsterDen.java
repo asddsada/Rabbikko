@@ -1,12 +1,15 @@
 package model.monster;
 
 import java.util.Random;
+
+import javafx.scene.input.KeyCode;
 import logic.GameLogic;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
 import model.entity.Entity;
 import model.field.Dungeon;
 import sharedObj.RenderableHolder;
+import utility.InputUtility;
 
 public class MonsterDen {
 //	method to generate monster
@@ -31,7 +34,15 @@ public class MonsterDen {
 	
 
 	public void update() {
+		if(InputUtility.isKeyPressed(KeyCode.P)) {
+			addMonster();
+		}else if(InputUtility.isKeyPressed(KeyCode.O)) {
+			GameLogic.hero.resetHp();;
+		}
 		
-		
+	}
+	
+	private void addMonster() {
+		Dungeon.addEntities(new Monster<Strength>(280+150,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Strength() ));
 	}
 }

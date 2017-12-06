@@ -42,8 +42,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	public void attack() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -63,17 +62,19 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	public void update() {
-		if (InputUtility.isKeyPressed(KeyCode.W))
-			move(Entity.BACK);
-		if (InputUtility.isKeyPressed(KeyCode.S))
-			move(Entity.FRONT);
-		if (InputUtility.isKeyPressed(KeyCode.A))
-			move(Entity.LEFT);
-		if (InputUtility.isKeyPressed(KeyCode.D))
-			move(Entity.RIGHT);
-		if (InputUtility.isKeyPressed(KeyCode.SPACE))
-			attack();
-
+		if (isAlive) {
+			super.update();
+			if (InputUtility.isKeyPressed(KeyCode.W))
+				move(Entity.BACK);
+			if (InputUtility.isKeyPressed(KeyCode.S))
+				move(Entity.FRONT);
+			if (InputUtility.isKeyPressed(KeyCode.A))
+				move(Entity.LEFT);
+			if (InputUtility.isKeyPressed(KeyCode.D))
+				move(Entity.RIGHT);
+			if (InputUtility.isKeyPressed(KeyCode.SPACE))
+				attack();
+		}
 		// for (int i = 0; i <= 3; i++) {
 		// System.out.println(getDamageTake()[i]);
 		// }
@@ -97,6 +98,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	public void resetHp() {
 		currentHp = maxHp;
+		setVisible(true);
+		isAlive=true;
 	}
 
 	public void resetMp() {

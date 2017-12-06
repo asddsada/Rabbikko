@@ -16,6 +16,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	protected int baseAtk;
 	protected T atkType;
 	protected int[] damageTake;
+	protected boolean isAlive;
 
 	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
 			int maxHp, int baseAtk, T atkType) {
@@ -26,6 +27,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		this.maxHp = maxHp;
 		this.damageTake = new int[4];
 		this.currentHp = this.maxHp;
+		this.isAlive=true;
 	}
 
 	@Override
@@ -39,13 +41,13 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	public void damage(int dmg, int direction) {
 		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
 //		System.out.println(dmg);
-		this.currentHp -= dmg;
+		this.currentHp = this.currentHp-dmg>=0?this.currentHp-dmg:0;
 		if (direction == 0)
 			this.direction = 3;
 		else {
 			this.direction = (direction * 2) % 3;
 		}
-//		System.out.println("HP " + currentHp);
+		System.out.println("HP " + currentHp);
 	}
 
 	public int getMaxHp() {
@@ -58,5 +60,13 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	public int[] getDamageTake() {
 		return damageTake;
+	}
+	
+	@Override
+	public void update() {
+		if(this.currentHp==0) {
+			this.setVisible(false);
+			this.isAlive=false;
+		}
 	}
 }
