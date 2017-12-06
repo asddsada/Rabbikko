@@ -28,11 +28,8 @@ import view.SceneManeger;
 public class Navigation extends Field {
 	public static final double NAVIG_WIDTH = RenderableHolder.navigBar.getWidth();
 	public static final double NAVIG_HEIGHT = RenderableHolder.navigBar.getHeight();
-	public static final int BAR_WIDTH = 400;
 	public static final int BAR_HEIGHT = 30;
 	public static final int BORDER_WIDTH = 200;
-	public static final int ICON_SIZE = 100;
-	public static final int SETTING = 70;
 	public static final double sceneWidth = SceneManeger.WIDGTH;
 	public static final double sceneHeight = SceneManeger.HEIGHT;
 	
@@ -61,78 +58,38 @@ public class Navigation extends Field {
 	
 	@Override
 	public void draw(GraphicsContext gc) {
-		super.draw(gc);
+		gc.drawImage(RenderableHolder.navigBar,0,sceneHeight-NAVIG_HEIGHT,NAVIG_WIDTH,NAVIG_HEIGHT);
 		
-		//font width and height
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
-		double hpWidth = fontLoader.computeStringWidth("HP", gc.getFont());
-		double mpWidth = fontLoader.computeStringWidth("MP", gc.getFont()); 
 		double fontHieght = fontLoader.getFontMetrics(gc.getFont()).getLineHeight();
-		
-		//set color
-		gc.setFill(Color.BLACK);
-		gc.setStroke(Color.BLACK);
-		
-		//draw icons
-		gc.drawImage(RenderableHolder.atSlot, 25, sceneHeight - ICON_SIZE - 25);
-//		gc.fillRect(25, sceneHeight - ICON_SIZE - 25 , ICON_SIZE, ICON_SIZE);
-		
-		
-		gc.drawImage(RenderableHolder.menuIcn, sceneWidth - SETTING - 25, sceneHeight - SETTING - 40);
-//		gc.fillRect(sceneWidth - SETTING - 25  , sceneHeight - SETTING - 40, SETTING, SETTING);
-		
-		gc.drawImage(RenderableHolder.slot, sceneWidth - 25 - SETTING*2 - 25, sceneHeight - SETTING - 40);
-//		gc.fillRect(sceneWidth - 25 - SETTING*2 - 25, sceneHeight - SETTING - 40, SETTING, SETTING);
-		
-		gc.drawImage(RenderableHolder.slot, sceneWidth - 25 - SETTING*3 - 25 - 25, sceneHeight - SETTING - 40);
-//		gc.fillRect(sceneWidth - 25 - SETTING*3 - 25 - 25, sceneHeight - SETTING - 40, SETTING, SETTING);
-		
-		gc.drawImage(RenderableHolder.slot, sceneWidth - 25 - SETTING*4 - 25 - 25 - 25, sceneHeight - SETTING - 40);
-//		gc.fillRect(sceneWidth - 25 - SETTING*4 - 25 - 25 - 25, sceneHeight - SETTING - 40, SETTING, SETTING);
 		
 		//name 
 		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",25));
-		gc.fillText(name, BORDER_WIDTH + 2, sceneHeight - BAR_HEIGHT * 3.5);
+		gc.fillText(name, BORDER_WIDTH, sceneHeight - BAR_HEIGHT * 3.5);
 		
+		//money
+		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",20));
-		
-		//Hp Mp
-		gc.fillText("HP", BORDER_WIDTH - hpWidth - 10, sceneHeight - BAR_HEIGHT * 3 + fontHieght);
-		gc.fillText("MP", BORDER_WIDTH - mpWidth - 10, sceneHeight - BAR_HEIGHT * 1.5 + fontHieght);
-		
-		gc.setFill(Color.BLACK);
-		gc.fillRect(BORDER_WIDTH, sceneHeight - BAR_HEIGHT * 3, BAR_WIDTH, BAR_HEIGHT);
-		gc.fillRect(BORDER_WIDTH, sceneHeight - BAR_HEIGHT * 1.5, BAR_WIDTH, BAR_HEIGHT);
-		
-		//Hp and Mp gauge
-		gc.setFill(Color.RED);
-		gc.setGlobalAlpha(0.7);
-		gc.fillRect(BORDER_WIDTH+2, sceneHeight - (BAR_HEIGHT * 3) + 2 , BAR_WIDTH-4, BAR_HEIGHT-4);
-		gc.setFill(Color.DODGERBLUE);
-		gc.fillRect(BORDER_WIDTH+2, sceneHeight - (BAR_HEIGHT * 1.5) + 2 , BAR_WIDTH-4, BAR_HEIGHT-4);
-		gc.setGlobalAlpha(1.0);
+		gc.fillText(Integer.toString(Hero.getMoney()),890,sceneHeight-fontHieght-7);
 	}
 	
 	public void update() {
 		// TODO Auto-generated method stub
 		double xPos = InputUtility.mouseX;
 		double yPos = InputUtility.mouseY;
-//		if (xPos >= 623 && xPos <= 685 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
-//			RenderableHolder.clickSound.play(100);
-//			SceneManeger.dungeonScene.toDialog(1);
-//		}
-//		else if (xPos >= 715 && xPos <= 780 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
-//			RenderableHolder.clickSound.play(100);
-//			SceneManeger.dungeonScene.toDialog(2);
-//		}
-//		else if (xPos >= 810 && xPos <= 878 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
-//			RenderableHolder.clickSound.play(100);
-//			SceneManeger.dungeonScene.toDialog(3);
-//		}
-		if (xPos >= 905 && xPos <= 973 && yPos >= 590 && yPos <= 660 && InputUtility.isMousePressed()) {
+
+		if (xPos >= 704 && xPos <= 741 && yPos >= 575 && yPos <= 615 && InputUtility.isMousePressed() ) {
 			RenderableHolder.clickSound.play(100);
-			SceneManeger.dungeonScene.toDialog(4);
+			SceneManeger.dungeonScene.toDialog(1);
+		}
+		else if (xPos >= 762 && xPos <= 800 && yPos >=575 && yPos <= 615 && InputUtility.isMousePressed()) {
+			RenderableHolder.clickSound.play(100);
+			SceneManeger.dungeonScene.toDialog(2);
+		}	
+		else if (xPos >= 823 && xPos <= 861 && yPos >= 575 && yPos <= 615 && InputUtility.isMousePressed()) {
+			RenderableHolder.clickSound.play(100);
+			SceneManeger.dungeonScene.toDialog(3);
 		}
 	}
 	

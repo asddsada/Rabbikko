@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import logic.GameLogic;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
+import utility.InputUtility;
 
 public class Monster<T extends Attribute> extends DungeonableEntity<Attribute> {
 

@@ -32,11 +32,11 @@ public class RenderableHolder {
 	public static Image monsterImage02;
 	public static Image navigBar;
 	public static Image questIcn;
-	public static Image itemIcn;
-	public static Image weaponIcn;
-	public static Image atSlot;
-	public static Image slot;
+	public static Image invenIcn;
+	public static Image shopIcn;
 	public static Image menuIcn;
+	
+	public static Image hpDes;
 
 	public static AudioClip clickSound;
 	public static AudioClip titleBgm;
@@ -61,12 +61,9 @@ public class RenderableHolder {
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
 
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
-			navigBar = new Image(ClassLoader.getSystemResource("img/newnavig.png").toString());
-			atSlot = new Image(ClassLoader.getSystemResource("img/atSlot.png").toString());
-			slot = new Image(ClassLoader.getSystemResource("img/slot.png").toString());
-			questIcn = new Image(ClassLoader.getSystemResource("img/quest.png").toString());
-			itemIcn = new Image(ClassLoader.getSystemResource("img/item.png").toString());
-			weaponIcn = new Image(ClassLoader.getSystemResource("img/weapon.png").toString());
+			navigBar = new Image(ClassLoader.getSystemResource("img/navig.png").toString());
+			invenIcn = new Image(ClassLoader.getSystemResource("img/inventory.png").toString());
+			shopIcn = new Image(ClassLoader.getSystemResource("img/shop.png").toString());
 			menuIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
 
 			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
@@ -78,6 +75,8 @@ public class RenderableHolder {
 
 			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());
 			monsterImage02 = new Image(ClassLoader.getSystemResource("8bit/monster2.png").toString());
+			
+			hpDes = new Image(ClassLoader.getSystemResource("img/hpDes.png").toString());
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();

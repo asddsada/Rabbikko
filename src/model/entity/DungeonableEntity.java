@@ -11,8 +11,8 @@ import utility.ForceManeger;
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	public static final int HUMANITY = 1;
 	public static final int MONSTER = 0;
-	private int maxHp;
-	private int currentHp;
+	protected int maxHp;
+	protected int currentHp;
 	protected int baseAtk;
 	protected T atkType;
 	protected int[] damageTake;
@@ -40,9 +40,12 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
 		System.out.println(dmg);
 		this.currentHp -= dmg;
-		if(direction==0) this.direction=3;
-		else {this.direction= (direction*2)%3;}
-		System.out.println("HP "+currentHp);
+		if (direction == 0)
+			this.direction = 3;
+		else {
+			this.direction = (direction * 2) % 3;
+		}
+		System.out.println("HP " + currentHp);
 	}
 
 	public int getMaxHp() {
