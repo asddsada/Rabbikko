@@ -51,12 +51,12 @@ public abstract class Entity extends GameObject {
 
 	protected abstract boolean isBlock(double x, double y);
 
-	private void setX(double x) {
+	private void setEntityX(double x) {
 		if (GameLogic.dungeon.isInBoarder(this, this.pos.x + x, 0) && !this.isBlock(this.pos.x + x, this.pos.y))
 			this.pos.x += x;
 	}
 
-	private void setY(double y) {
+	private void setEntityY(double y) {
 		if (GameLogic.dungeon.isInBoarder(this, 0, this.pos.y + y) && !this.isBlock(this.pos.x, this.pos.y + y))
 			this.pos.y += y;
 	}
@@ -64,9 +64,9 @@ public abstract class Entity extends GameObject {
 	public synchronized void setPos(double dPos, int direction) {
 //		System.out.println(this.getClass().getSimpleName() + " sync");
 		if (direction == BACK || direction == FRONT)
-			setY(dPos);
+			setEntityY(dPos);
 		else
-			setX(dPos);
+			setEntityX(dPos);
 
 	}
 
@@ -82,18 +82,24 @@ public abstract class Entity extends GameObject {
 	public boolean isCollide(GameObject other, double x, double y) {
 		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+"
 		// "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
-		if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6)
-				&& ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() + getHeight()))) {
-			this.z = 1;
-		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-				&& ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() + getHeight()))) {
-			this.z = 1;
-		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-				&& (other.getY() - getHeight() < y && y < other.getY())) {
-			this.z = -1;
-		}
+		 if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth()
+		 * 4 / 6)
+		 && ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() +
+		 getHeight()))) {
+		 this.z = 1;
+		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+		 && ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() +
+		 getHeight()))) {
+		 this.z = 1;
+		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+		 && (other.getY() - getHeight() < y && y < other.getY())) {
+		 this.z = -1;
+		 }
 		
-		return super.isCollide(other, x, y);
+		 if ((other.getY() - getHeight() / 3 <= y && y <= other.getY() + getHeight() / 3)
+					&& (other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6))
+				return true;
+		 return false;
 	}
 
 	protected void move(int direction) {
@@ -155,4 +161,7 @@ public abstract class Entity extends GameObject {
 		return race;
 	}
 
+	public void setMovespeed(int movespeed) {
+		this.movespeed = movespeed;
+	}
 }

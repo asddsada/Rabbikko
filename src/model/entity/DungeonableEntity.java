@@ -1,11 +1,14 @@
 package model.entity;
 
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import logic.ForceManeger;
 import logic.GameLogic;
 import model.attribute.Attribute;
+import model.field.Dungeon;
 import sharedObj.RenderableHolder;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
@@ -36,7 +39,16 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		super.draw(gc);
 	}
 
-	public abstract void attack();
+	public void attack() {
+		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(atkType.getAttackObj(), 
+				atkType.getAttackObj().getX(), atkType.getAttackObj().getY());
+		if(inArea==null) return;
+		for (DungeonableEntity<Attribute> other : inArea) {
+			System.out.println(other.getClass().getSimpleName());
+			if (this.race != other.race)
+				atkType.attack(other);
+		}
+	}
 
 	public void damage(int dmg, int direction) {
 		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);

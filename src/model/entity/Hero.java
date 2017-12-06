@@ -11,6 +11,7 @@ import model.GameObject;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.field.Dungeon;
+import model.field.Obstructable;
 import model.items.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
@@ -42,7 +43,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	public void attack() {
-		
+		super.attack();
+		atkType.getHeroWeapon().use();
 	}
 
 	@Override
@@ -50,12 +52,10 @@ public class Hero extends DungeonableEntity<Attribute> {
 		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
 		for (DungeonableEntity<Attribute> other : inArea) {
 			System.out.println(other.getClass().getSimpleName());
-			if (this.race == other.race)
-				return true;
-			else {
+			if (this.race != other.race)
 				this.damage(other.baseAtk, this.direction);
+			if(other instanceof Obstructable)
 				return true;
-			}
 		}
 		return false;
 	}

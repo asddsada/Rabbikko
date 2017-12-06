@@ -4,9 +4,10 @@ import javafx.scene.image.Image;
 import logic.GameLogic;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
+import model.field.Obstructable;
 import utility.InputUtility;
 
-public class Monster<T extends Attribute> extends DungeonableEntity<Attribute> {
+public class Monster<T extends Attribute> extends DungeonableEntity<Attribute> implements Obstructable{
 
 	public Monster(double x, double y, Image img, int row, int column, int direction, int movespeed,int mass,int maxHp,int baseAtk,
 			T atkType) {
