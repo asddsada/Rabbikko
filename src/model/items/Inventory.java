@@ -1,5 +1,6 @@
 package model.items;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,15 +8,19 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import sharedObj.IRenderable;
+import sharedObj.RenderableHolder;
 import javafx.scene.control.Button;
 
 public class Inventory implements IRenderable {
-	Map<Useable, Integer> inventory; 
-	public int capacity;
+	private static final Useable[] BAG = {
+			new	Weapons(500, RenderableHolder.sword2),
+			new	Weapons(500, RenderableHolder.sword2),
+			new	Weapons(500, RenderableHolder.sword2)
+		};
+	public int bagCapacity;
 	
 	public Inventory() {
-		this.inventory = new HashMap<Useable, Integer>();
-		this.capacity = 1;
+		this.bagCapacity = 1;
 	}
 	
 	public void add(Useable item) {
@@ -27,11 +32,11 @@ public class Inventory implements IRenderable {
 			//cannot buy items
 		}
 		inventory.put(item,inventory.get(item)+1);
-		capacity += 1;
+		bagCapacity += 1;
 	}
 	
 	public boolean isFull() {
-		if (this.capacity == 50) {
+		if (this.bagCapacity == 50) {
 			return true;
 		}
 		return false;
@@ -63,5 +68,9 @@ public class Inventory implements IRenderable {
 	public boolean isVisible() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public static Useable[] getBag() {
+		return BAG;
 	}
 }

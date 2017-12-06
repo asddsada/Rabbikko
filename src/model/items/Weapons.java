@@ -2,21 +2,24 @@ package model.items;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import logic.GameLogic;
 import model.GameObject;
+import model.entity.Entity;
 import sharedObj.IRenderable;
 
 public class Weapons extends GameObject implements Useable {
-	protected int price;
-	protected Image img;
-	protected int amount;
+	private int price;
+	private Image img;
+	private int amount;
+	private int attackTime;
+	private int ATK_TIME_MAX=30; //how many step swing should make
 	
-	
-	
-	public Weapons(double x,double y,int price, Image img) {
-		super(x, y, 100);
+	public Weapons(int price, Image img) {
+		super(0, 0, 100);
 		this.price = price;
 		this.img = img;
 		this.amount = 0;
+		attackTime=0;
 	}
 
 	public boolean isBuyable() {
@@ -32,14 +35,21 @@ public class Weapons extends GameObject implements Useable {
 	}
 
 	@Override
-	public void use() {
-		// TODO Auto-generated method stub
-		
+	public void use(int direction) {
+		attackTime=ATK_TIME_MAX;
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.
+		if(attackTime==0) {
+			//nomal draw
+		}else {
+			//swing rotate
+			//attack time == max/2 ,should go down
+			//then go up and such
+			
+			attackTime--;
+		}
 		
 	}
 
@@ -55,6 +65,14 @@ public class Weapons extends GameObject implements Useable {
 	}
 	
 	public void update() {
+		if(direction==Entity.LEFT) this.pos.x = GameLogic.hero.getX()-(getWidth()+??) ;
+		else this.pos.x = GameLogic.hero.getX()+(getWidth()+??) ;
 		
+		this.pos.y = GameLogic.hero.getY() +?? ;
+		
+	}
+	
+	public void buy() {
+		if(this.amount>0) this.amount--;
 	}
 }

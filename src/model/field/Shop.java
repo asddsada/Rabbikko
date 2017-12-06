@@ -15,68 +15,21 @@ import model.items.Sword;
 import model.items.Useable;
 import model.items.Weapons;
 import sharedObj.IRenderable;
+import sharedObj.RenderableHolder;
 
-public class Shop implements IRenderable{
-	public Inventory inventory;
-	public Health potion1;
-	public Mana potion2;
-	public Sword sword;
-	public Bow bow;
-	public Staff staff;
-	
+public class Shop {
+	private final static int SHELF_SIZE = 3; //change to match with the shelf
 	public void shop() {
-		this.inventory = new Inventory();
-		this.potion1 = new Health();
-		this.potion2 = new Mana();
-		this.sword = new Sword();
-		this.bow = new Bow();
-		this.staff = new Staff();
-	}
-	
-	//Not completed
-	public void buy(Useable item) {
-		if (item instanceof Item) {
-			canBuy(item);
-		}
-		else if (item instanceof Weapons) {
-			
-		}
-		Alert alert = new Alert(AlertType.ERROR);
-		alert.setContentText("Cannot buy item. Not enough money");
-		alert.showAndWait();
-	}
-	
-	//Not completed
-	public boolean canBuy(Useable item) {
 		
+	}
+	
+	//Not completed
+	public void buy(int index) {
+		Inventory.getBag()[index].buy();
+	}
+	
+	//Not completed
+	public boolean canBuy(Useable item) {		
 		return true;
-	}
-	
-	public void update() {
-		
-	}
-
-	@Override
-	public int getZ() {
-		// TODO Auto-generated method stub
-		return 100;
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public boolean isDestroyed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isVisible() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 }

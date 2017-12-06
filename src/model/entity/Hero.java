@@ -45,7 +45,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	@Override
 	public void attack() {
 		super.attack();
-		atkType.getHeroWeapon().use();
+		atkType.getHeroWeapon().use(direction);
 	}
 
 	@Override
