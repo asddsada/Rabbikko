@@ -14,8 +14,10 @@ public class DungeonMain {
 	private static DungeonCanvas canvas;
 	private static GameLogic logic;
 	private static ForceManeger forceManager;
+	
 
 	public DungeonMain() {
+		
 		logic = new GameLogic();
 		canvas = (DungeonCanvas) SceneManeger.dungeonScene.getCanvas();
 		ForceManeger.initilized();
@@ -35,7 +37,7 @@ public class DungeonMain {
 
 	public static void stop() {
 		animation.stop();
-		ForceManeger.stopForceRule();
+		ForceManeger.pauseForceRule();
 	}
 
 	

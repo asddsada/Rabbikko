@@ -1,5 +1,6 @@
 package utility;
 
+import Main.Main;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
 import model.field.Dungeon;
@@ -8,53 +9,37 @@ import view.SceneManeger;
 public class ForceManeger {
 	private static Thread physicThread = null;
 	private static boolean threadState;
-	private static final float TIME_DIV =100;
+	private static final float TIME_DIV = 100;
 
 	public static void initilized() {
-		threadState=false;
+		threadState = true;
 		physicThread = new Thread(() -> {
-			while (threadState) {
-				for (DungeonableEntity<Attribute> entity : Dungeon.getENTITIES_HOLDER()) {
-					int forceCount = 0;
-					double dx = totalForce(entity).x / entity.getMass() / 200 /TIME_DIV ;
-					double dy = totalForce(entity).y / entity.getMass() / 200 /TIME_DIV;
-					while (!(dx==0&&dy==0) &&forceCount < TIME_DIV) {
-						System.out.println(entity.getClass().getSimpleName()+" "+dx+" "+dy);
-						entity.setPos(dx, SceneManeger.X_AXIS);
-						entity.setPos(dy, SceneManeger.Y_AXIS);
-						forceCount++;
-//						try {
-//							physicThread.sleep(100);
-//						} catch (InterruptedException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}catch(IllegalMonitorStateException e) {
-//							e.printStackTrace();
-//						}
-					}
+			while (Main.isGameRunning) {
+				while (threadState) {
+					// for (DungeonableEntity<Attribute> entity : Dungeon.getENTITIES_HOLDER()) {
+					// int forceCount = 0;
+					// double dx = totalForce(entity).x / entity.getMass() / 200 /TIME_DIV ;
+					// double dy = totalForce(entity).y / entity.getMass() / 200 /TIME_DIV;
+					// while (!(dx==0&&dy==0) &&forceCount < TIME_DIV) {
+					// System.out.println(entity.getClass().getSimpleName()+" "+dx+" "+dy);
+					// entity.setPos(dx, SceneManeger.X_AXIS);
+					// entity.setPos(dy, SceneManeger.Y_AXIS);
+					// forceCount++;
+					// }
+					// }
+					System.out.println(threadState);
 				}
-			}
+				System.out.println("end");
+			}			
 		});
+		physicThread.start();
 	}
-	// int totalCalForce;
-	// int forceCount=0;
-	// int displacement;
 
-	// displacement = (totalCalForce/entity.getMass())/2;
-	// while(forceCount!=totalCalForce) {
-	// forceCount+=(totalCalForce/entity.getMass());
-	// entity.setPos(displacement, axis);
 	public static void startForceRule() {
 		threadState = true;
-		try {
-			physicThread.start();
-		} catch (IllegalThreadStateException e) {
-			e.printStackTrace();
-		}
 	}
 
-	public static void stopForceRule() {
-		System.out.println("outtttttttttttttttttt");
+	public static void pauseForceRule() {
 		threadState = false;
 	}
 
