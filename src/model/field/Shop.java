@@ -48,6 +48,7 @@ public class Shop implements IRenderable{
 	
 	//Not completed
 	public boolean canBuy(Useable item) {
+		
 		return true;
 	}
 	
