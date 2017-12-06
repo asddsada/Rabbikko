@@ -27,9 +27,9 @@ public class ForceManeger {
 					// forceCount++;
 					// }
 					// }
-					System.out.println(threadState);
+//					System.out.println(threadState);
 				}
-				System.out.println("end");
+//				System.out.println("end");
 			}			
 		});
 		physicThread.start();
