@@ -8,6 +8,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.WritableImage;
 import logic.GameLogic;
 import model.attribute.Attribute;
+import model.attribute.Intelligence;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.monster.Monster;
@@ -27,14 +28,15 @@ public class Dungeon extends Field {
 				new Pair(0, 0));
 		this.lvl = 1;
 		this.z = -99999;
-		monsterDen = new MonsterDen();		
+		monsterDen = new MonsterDen();	
+		addEntities(new Monster<Intelligence>(200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Intelligence() ));
 	}
 
 	public boolean isInBoarder(Entity e, double x, double y) {
 		return (0 <= x && x <= this.width - e.getWidth() / 2 - 8) && (0 <= y && y <= this.height - e.getHeight());
 	}
 	
-	public void addEntities(DungeonableEntity<Attribute> e) {
+	public static void addEntities(DungeonableEntity<Attribute> e) {
 		RenderableHolder.getInstance().add(e);
 		getENTITIES_HOLDER().add(e);
 	}

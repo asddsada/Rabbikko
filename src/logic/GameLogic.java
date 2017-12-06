@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.attribute.Intelligence;
 import model.attribute.Strength;
 import model.entity.Entity;
 import model.entity.Hero;
@@ -21,9 +22,10 @@ public class GameLogic {
 	public GameLogic() {
 		dungeon = new Dungeon();
 
-		hero = new Hero(Entity.FRONT, new Strength());
+		hero = new Hero(Entity.FRONT, new Intelligence());
 		RenderableHolder.getInstance().add(hero);
 		dungeon.getENTITIES_HOLDER().add(hero);
+		hero.setAtktype(new Strength());
 
 		RenderableHolder.getInstance().add(dungeon);
 		navig = new Navigation();

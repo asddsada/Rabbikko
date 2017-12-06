@@ -12,8 +12,8 @@ import view.title.TitleScene;
 public class SceneManeger {
 	public static final double WIDGTH = 1000;
 	public static final double HEIGHT = 700;
-	public static final int X_AXIS = 0;
-	public static final int Y_AXIS = 1;
+	public static final int X_AXIS = 1;
+	public static final int Y_AXIS = 0;
 	private static Stage stage;
 	// field for constantly use scene
 	public static TitleScene mainScene = new TitleScene();

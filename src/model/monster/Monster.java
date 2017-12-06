@@ -5,10 +5,10 @@ import logic.GameLogic;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
 
-public class Monster extends DungeonableEntity<Attribute> {
+public class Monster<T extends Attribute> extends DungeonableEntity<Attribute> {
 
 	public Monster(double x, double y, Image img, int row, int column, int direction, int movespeed,int mass,int maxHp,int baseAtk,
-			Attribute atkType) {
+			T atkType) {
 		super(x, y, img, row, column, direction, movespeed, mass,maxHp,baseAtk, atkType);
 		this.race=DungeonableEntity.MONSTER;
 	}

@@ -84,7 +84,7 @@ public abstract class Entity extends gameObject {
 	}
 
 	public synchronized void setPos(double dPos, int direction) {
-		System.out.println(this.getClass().getSimpleName() + " sync");
+//		System.out.println(this.getClass().getSimpleName() + " sync");
 		if (direction == BACK || direction == FRONT)
 			setY(dPos);
 		else

@@ -63,6 +63,10 @@ public class Hero extends DungeonableEntity<Attribute> {
 			move(Entity.LEFT);
 		if (InputUtility.isKeyPressed(KeyCode.D))
 			move(Entity.RIGHT);
+		
+//		for (int i = 0; i <= 3; i++) {
+//			System.out.println(getDamageTake()[i]);
+//		}
 	}
 
 	public int getMaxMp() {
@@ -71,5 +75,9 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	public int getCurrentMp() {
 		return currentMp;
+	}
+	
+	public <T extends Attribute>void setAtktype(T atkType){
+		this.atkType=atkType;
 	}
 }

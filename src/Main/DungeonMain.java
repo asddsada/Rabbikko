@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import logic.GameLogic;
+import utility.ForceManeger;
 import utility.InputUtility;
 import view.SceneManeger;
 import view.dungeon.DungeonCanvas;
@@ -12,10 +13,12 @@ import view.dungeon.DungeonCanvas;
 public class DungeonMain {
 	private static DungeonCanvas canvas;
 	private static GameLogic logic;
+	private static ForceManeger forceManager;
 
 	public DungeonMain() {
 		logic = new GameLogic();
 		canvas = (DungeonCanvas) SceneManeger.dungeonScene.getCanvas();
+		ForceManeger.initilized();
 	}
 	
 	private static AnimationTimer animation = new AnimationTimer() {
@@ -27,10 +30,12 @@ public class DungeonMain {
 
 	public static void start() {
 		animation.start();
+		ForceManeger.startForceRule();
 	}
 
 	public static void stop() {
 		animation.stop();
+		ForceManeger.stopForceRule();
 	}
 
 	

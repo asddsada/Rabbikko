@@ -36,10 +36,13 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	public abstract void attack();
 
-	public void damage(int dmg, int direaction) {
-		this.damageTake[direaction] += ForceManeger.forceCalculate(dmg, getAxis(direaction), this);
+	public void damage(int dmg, int direction) {
+		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
+		System.out.println(dmg);
 		this.currentHp -= dmg;
-		System.out.println("get " + dmg + " damage!");
+		if(direction==0) this.direction=3;
+		else {this.direction= (direction*2)%3;}
+		System.out.println("HP "+currentHp);
 	}
 
 	public int getMaxHp() {
@@ -48,5 +51,9 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	public int getCurrentHp() {
 		return currentHp;
+	}
+
+	public int[] getDamageTake() {
+		return damageTake;
 	}
 }

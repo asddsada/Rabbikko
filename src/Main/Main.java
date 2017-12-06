@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import logic.GameLogic;
 import view.SceneManeger;
 
 public class Main extends Application {
@@ -24,7 +25,7 @@ public class Main extends Application {
 	
 	@Override
 	public void stop() throws Exception {
-		// TODO Auto-generated method stub
+		DungeonMain.stop();
 		
 	}
 
