@@ -54,11 +54,11 @@ public class Dungeon extends Field {
 		return ENTITIES_HOLDER;
 	}
 	
-	public static ArrayList<DungeonableEntity<Attribute>> getEntityInArea(GameObject object,Pair topLeft,double w,double y){
+	public static ArrayList<DungeonableEntity<Attribute>> getEntityInArea(GameObject object,double x,double y){
 		ArrayList<DungeonableEntity<Attribute>> result = new ArrayList<>();
 		for(DungeonableEntity<Attribute> e:ENTITIES_HOLDER) {
-			if(e.isCollide(object, topLeft.x, topLeft.y)){
-				
+			if(e.hashCode()!=object.hashCode() && object.isCollide(e, x, y)){
+				result.add(e);
 			}
 		}
 		return result;

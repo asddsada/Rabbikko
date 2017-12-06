@@ -1,12 +1,16 @@
 package model.entity;
 
+import java.util.ArrayList;
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import logic.GameLogic;
+import model.GameObject;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
+import model.field.Dungeon;
 import model.inventory.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
@@ -44,13 +48,14 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	protected boolean isBlock(double x, double y) {
-		for (DungeonableEntity<Attribute> other : GameLogic.dungeon.getENTITIES_HOLDER()) {
-			if (other.hashCode() != this.hashCode() && super.isCollide(other, x, y)) {
-				if (this.race == other.race)
-					return true;
-				else {
-					this.damage(other.baseAtk, this.direction);
-				}
+		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
+		for (DungeonableEntity<Attribute> other : inArea) {
+			System.out.println(other.getClass().getSimpleName());
+			if (this.race == other.race)
+				return true;
+			else {
+				this.damage(other.baseAtk, this.direction);
+				return true;
 			}
 		}
 		return false;
@@ -66,7 +71,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 			move(Entity.LEFT);
 		if (InputUtility.isKeyPressed(KeyCode.D))
 			move(Entity.RIGHT);
-		if(InputUtility.isKeyPressed(KeyCode.SPACE)) attack();
+		if (InputUtility.isKeyPressed(KeyCode.SPACE))
+			attack();
 
 		// for (int i = 0; i <= 3; i++) {
 		// System.out.println(getDamageTake()[i]);

@@ -93,11 +93,7 @@ public abstract class Entity extends GameObject {
 			this.z = -1;
 		}
 		
-		if((x<=other.getX()&&other.getX()<=x+getWidth())||
-				(x<=other.getX()+other.getWidth()&&other.getX()+other.getWidth()<=x+getWidth())&&
-				(y<=other.getY()&&other.getY()<=y+getHeight())||
-				(y<=other.getY()+other.getHeight()&&other.getY()+other.getHeight()<=y+getHeight()))return true;
-		return false;
+		return super.isCollide(other, x, y);
 	}
 
 	protected void move(int direction) {
