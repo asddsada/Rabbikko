@@ -6,8 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import logic.ForceManeger;
 import logic.GameLogic;
-import utility.ForceManeger;
 import view.SceneManeger;
 
 public class Main extends Application {

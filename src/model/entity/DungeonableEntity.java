@@ -3,10 +3,10 @@ package model.entity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import logic.ForceManeger;
 import logic.GameLogic;
 import model.attribute.Attribute;
 import sharedObj.RenderableHolder;
-import utility.ForceManeger;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	public static final int HUMANITY = 1;
