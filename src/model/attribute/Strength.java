@@ -8,30 +8,29 @@ import model.items.Sword;
 public class Strength extends Attribute {
 	public Strength() {
 		heroWeapon= new Sword();
-		attackObj = new GameObject(attackRange, attackRange, attackSpped) {
+		attackObj = new GameObject(0, 0, 0) {
 			
 			@Override
 			public void draw(GraphicsContext gc) {
-				// TODO Auto-generated method stub
-				
+//				attack effect?
 			}
 			
 			@Override
 			public double getWidth() {
-				// TODO Auto-generated method stub
 				return 0;
 			}
 			
 			@Override
 			public double getHeight() {
-				// TODO Auto-generated method stub
 				return 0;
 			}
 		};
 	}
 
 	@Override
-	public void attack(DungeonableEntity<Attribute> other) {
-		System.out.println("atack!");
+	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> dungeonableEntity,
+			DungeonableEntity<T2> other) {
+		System.out.println("attack");
 	}
+
 }

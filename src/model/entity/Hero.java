@@ -28,7 +28,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
 				50, 1000, 30, atkType);
 		this.maxMp = 1000;
-		this.currentMp = MAXMP;
+		this.currentMp = 0;
 		this.money = 0;
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
@@ -98,7 +98,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	public void resetHp() {
-		currentHp = maxHp;
+		currentHp = getMaxHp();
 		setVisible(true);
 		isAlive=true;
 	}
@@ -108,7 +108,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	public int getMaxMp() {
-		return maxMp;
+		return maxMp*atkType.getHpMultiply();
 	}
 
 	public int getCurrentMp() {

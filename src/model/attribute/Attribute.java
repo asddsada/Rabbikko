@@ -5,11 +5,12 @@ import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.items.Weapons;
+import utility.Pair;
 
 public abstract class Attribute{
 	protected GameObject attackObj;
 	protected int damageMultiply;
-	protected double attackRange;
+	protected Pair attackRange;
 	protected int attackSpped;
 	protected int moveSpeedMultiply;
 	protected int hpMultiply;
@@ -20,7 +21,7 @@ public abstract class Attribute{
 	public Attribute() {
 		
 	}
-	public abstract void attack(DungeonableEntity<Attribute> other);
+	public abstract <T1 extends Attribute,T2 extends Attribute> void attack(DungeonableEntity<T1> dungeonableEntity,DungeonableEntity<T2> other);
 	public void useAttribute(DungeonableEntity<Attribute> entity) {
 		
 	}
@@ -36,7 +37,7 @@ public abstract class Attribute{
 	public int getDamageMultiply() {
 		return damageMultiply;
 	}
-	public double getAttackRange() {
+	public Pair getAttackRange() {
 		return attackRange;
 	}
 	public int getAttackSpped() {

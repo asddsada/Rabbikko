@@ -20,6 +20,8 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	protected T atkType;
 	protected int[] damageTake;
 	protected boolean isAlive;
+	protected int dmgTimer;
+	protected static final int DMG_TIME_MAX=10;
 
 	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
 			int maxHp, int baseAtk, T atkType) {
@@ -31,6 +33,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		this.damageTake = new int[4];
 		this.currentHp = this.maxHp;
 		this.isAlive=true;
+		this.dmgTimer=0;
 	}
 
 	@Override
@@ -46,7 +49,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		for (DungeonableEntity<Attribute> other : inArea) {
 			System.out.println(other.getClass().getSimpleName());
 			if (this.race != other.race)
-				atkType.attack(other);
+				atkType.attack(this,other);
 		}
 	}
 
