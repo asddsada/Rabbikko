@@ -15,11 +15,6 @@ public class Inventory implements IRenderable {
 	
 	public Inventory() {
 		this.inventory = new HashMap<Useable, Integer>();
-		inventory.put(new Health(), 0);
-		inventory.put(new Mana(), 0);
-		inventory.put(new Sword(), 1);
-		inventory.put(new Bow(), 0);
-		inventory.put(new Staff(), 0);
 		this.capacity = 1;
 	}
 	
