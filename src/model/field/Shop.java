@@ -15,18 +15,19 @@ import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 
 public class Shop {
-	public final static int SHELF_SIZE = 3; //change to match with the shelf
+	private final static int SHELF_SIZE = 5; // change to match with the shelf
+
 	public void shop() {
-		
+
 	}
-	
-	//Not completed
+
+	// Not completed
 	public void buy(int index) {
 		Hero.inventory.add(index);
 	}
-	
-	//Not completed
-	public boolean canBuy(Useable item) {		
+
+	// Not completed
+	public boolean canBuy(Useable item) {
 		return true;
 	}
 }

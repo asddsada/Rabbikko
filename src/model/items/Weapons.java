@@ -34,7 +34,7 @@ public class Weapons extends GameObject implements Useable {
 	}
 
 	public boolean isBuyable() {
-		return amount!=1;
+		return amount==0;
 	}
 	
 	public int getAtkTimeMax() {
@@ -70,7 +70,6 @@ public class Weapons extends GameObject implements Useable {
 			
 			attackTime--;
 		}
-		
 	}
 
 	@Override

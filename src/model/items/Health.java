@@ -7,9 +7,10 @@ import logic.GameLogic;
 import sharedObj.RenderableHolder;
 
 public class Health extends Item{
-	private final int healPoint = 100;
+	private final int POINT = 100;
 	
 	public Health() {
+		this.amount = 0;
 		this.price = 600;
 		this.imgWeapon = RenderableHolder.hpPotion;
 	}
@@ -17,7 +18,8 @@ public class Health extends Item{
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
-		GameLogic.hero.healHp(healPoint);
+		GameLogic.hero.healHp(POINT);
+		amount--;
 	}
 
 	@Override
