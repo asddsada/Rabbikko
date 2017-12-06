@@ -42,6 +42,7 @@ public class RenderableHolder {
 	public static Image hpPotion;
 	public static Image mpPotion;
 	public static Image sword;
+	public static Image sword2;
 	public static Image bow;
 	public static Image staff;
 	
@@ -80,6 +81,7 @@ public class RenderableHolder {
 			hpPotion = new Image(ClassLoader.getSystemResource("img/hpPotion.png").toString());
 			mpPotion = new Image(ClassLoader.getSystemResource("img/mpPotion.png").toString());
 			sword = new Image(ClassLoader.getSystemResource("img/sword.png").toString());
+			sword2 = new Image(ClassLoader.getSystemResource("img/sword2.png").toString());
 			bow = new Image(ClassLoader.getSystemResource("img/bow.png").toString());
 			staff = new Image(ClassLoader.getSystemResource("img/staff.png").toString());
 			
