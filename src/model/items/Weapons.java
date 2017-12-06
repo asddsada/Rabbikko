@@ -9,15 +9,17 @@ import sharedObj.IRenderable;
 
 public class Weapons extends GameObject implements Useable {
 	private int price;
-	private Image img;
+	private Image imgWeapon;
+	private Image imgIcon;
 	private int amount;
 	private int attackTime;
 	private int ATK_TIME_MAX=30; //how many step swing should make
 	
-	public Weapons(int price, Image img) {
+	public Weapons(int price, Image img,Image imgIcon) {
 		super(0, 0, 100);
 		this.price = price;
-		this.img = img;
+		this.imgWeapon = img;
+		this.imgIcon=imgIcon;
 		this.amount = 0;
 		attackTime=0;
 	}
