@@ -3,23 +3,29 @@ package model.entity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import logic.ForceManeger;
+import logic.GameLogic;
 import model.attribute.Attribute;
 import sharedObj.RenderableHolder;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
-	public static final int HUMANITY = 0;
-	public static final int MONSTER = 1;
+	public static final int HUMANITY = 1;
+	public static final int MONSTER = 0;
 	protected int maxHp;
 	protected int currentHp;
 	protected int baseAtk;
-	protected int race;
 	protected T atkType;
+	protected int[] damageTake;
 
-	public  DungeonableEntity(double x,double y,Image img,int row,int column, int direction,int movespeed,int maxHp, T atkType) {
-		super(x,y, img, row, column, direction,movespeed);
-		this.atkType=atkType;
-		this.maxHp=maxHp;
-		this.currentHp=this.maxHp;
+	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
+			int maxHp, int baseAtk, T atkType) {
+		super(x, y, img, row, column, direction, movespeed, mass);
+		this.atkType = atkType;
+		this.baseAtk = baseAtk;
+		this.mass = mass;
+		this.maxHp = maxHp;
+		this.damageTake = new int[4];
+		this.currentHp = this.maxHp;
 	}
 
 	@Override
@@ -30,9 +36,16 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	public abstract void attack();
 
-	public void damage(int dmg) {
-		// decrease hp
-		// force back;
+	public void damage(int dmg, int direction) {
+		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
+		System.out.println(dmg);
+		this.currentHp -= dmg;
+		if (direction == 0)
+			this.direction = 3;
+		else {
+			this.direction = (direction * 2) % 3;
+		}
+		System.out.println("HP " + currentHp);
 	}
 
 	public int getMaxHp() {
@@ -43,7 +56,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		return currentHp;
 	}
 
-	public void collide(DungeonableEntity enemy) {
-
+	public int[] getDamageTake() {
+		return damageTake;
 	}
 }

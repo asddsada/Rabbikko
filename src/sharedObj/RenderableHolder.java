@@ -105,6 +105,10 @@ public class RenderableHolder {
 		entities.add(entity);
 		Collections.sort(entities, comparator);
 	}
+	
+	public void sort() {
+		Collections.sort(entities, comparator);
+	}
 
 	public void update() {
 		for (int i = entities.size() - 1; i >= 0; i--) {
