@@ -1,9 +1,10 @@
-package utility;
+package logic;
 
 import Main.Main;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
 import model.field.Dungeon;
+import utility.Pair;
 import view.SceneManeger;
 
 public class ForceManeger {
@@ -32,7 +33,7 @@ public class ForceManeger {
 //				System.out.println("end");
 			}			
 		});
-		physicThread.start();
+//		physicThread.start();
 	}
 
 	public static void startForceRule() {
