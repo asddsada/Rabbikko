@@ -6,7 +6,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
-import model.inventory.Inventory;
+import model.items.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import view.SceneManeger;

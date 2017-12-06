@@ -30,14 +30,22 @@ public class RenderableHolder {
 	public static Image dungeonBg;
 	public static Image humanImage;
 	public static Image monsterImage02;
+	
+	//Navigation
 	public static Image navigBar;
-	public static Image questIcn;
-	public static Image invenIcn;
-	public static Image shopIcn;
+	public static Image inven;
+	public static Image shop;
+	public static Image setting;
 	public static Image menuIcn;
 	
-	public static Image hpDes;
-
+	//Item
+	public static Image hpPotion;
+	public static Image mpPotion;
+	public static Image sword;
+	public static Image bow;
+	public static Image staff;
+	
+	//BGM
 	public static AudioClip clickSound;
 	public static AudioClip titleBgm;
 
@@ -59,24 +67,32 @@ public class RenderableHolder {
 			// res for ui
 			mainImage = new Image(ClassLoader.getSystemResource("img/titleScene.jpg").toString());
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
-
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
+			
+			//Navigation
 			navigBar = new Image(ClassLoader.getSystemResource("img/navig.png").toString());
-			invenIcn = new Image(ClassLoader.getSystemResource("img/inventory.png").toString());
-			shopIcn = new Image(ClassLoader.getSystemResource("img/shop.png").toString());
+			inven = new Image(ClassLoader.getSystemResource("img/inventory.png").toString());
+			shop = new Image(ClassLoader.getSystemResource("img/shop.png").toString());
+			setting = new Image(ClassLoader.getSystemResource("img/setting2.png").toString());
 			menuIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
-
-			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
-			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
-			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
-
+			
+			//Item
+			hpPotion = new Image(ClassLoader.getSystemResource("img/hpPotion.png").toString());
+			mpPotion = new Image(ClassLoader.getSystemResource("img/mpPotion.png").toString());
+			sword = new Image(ClassLoader.getSystemResource("img/sword.png").toString());
+			bow = new Image(ClassLoader.getSystemResource("img/bow.png").toString());
+			staff = new Image(ClassLoader.getSystemResource("img/staff.png").toString());
+			
 			// res for game
 			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());
-
+			
 			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());
 			monsterImage02 = new Image(ClassLoader.getSystemResource("8bit/monster2.png").toString());
 			
-			hpDes = new Image(ClassLoader.getSystemResource("img/hpDes.png").toString());
+			//BGM
+			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
+			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
+			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();

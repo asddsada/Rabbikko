@@ -31,7 +31,7 @@ public class DungeonScene extends Scene{
 	}
 	
 	public void toDungeon() {
-		//dialog.getChildren().clear();
+//		dialog.getChildren().clear();
 		dialog.setVisible(false);
 		DungeonMain.start();
 		canvas.requestFocus();
