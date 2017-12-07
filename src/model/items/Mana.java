@@ -28,7 +28,7 @@ public class Mana extends Item {
 	@Override
 	public boolean isBuyable() {
 		// TODO Auto-generated method stub
-		if (!Hero.inventory.isFull() && Hero.getMoney()>=this.price)  return true;
+		if (!Hero.inventory.isFull() && GameLogic.hero.getMoney()>=this.price)  return true;
 		return false;
 	}
 

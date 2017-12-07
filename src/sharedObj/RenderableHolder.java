@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
+import model.GameObject;
 import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
@@ -30,15 +31,15 @@ public class RenderableHolder {
 	public static Image dungeonBg;
 	public static Image humanImage;
 	public static Image monsterImage02;
-	
-	//Navigation
+
+	// Navigation
 	public static Image navigBar;
 	public static Image inven;
 	public static Image shop;
 	public static Image setting;
 	public static Image menuIcn;
-	
-	//Item
+
+	// Item
 	public static Image hpPotion;
 	public static Image mpPotion;
 	public static Image sword;
@@ -47,8 +48,8 @@ public class RenderableHolder {
 	public static Image bow2;
 	public static Image staff;
 	public static Image staff2;
-	
-	//BGM
+
+	// BGM
 	public static AudioClip clickSound;
 	public static AudioClip titleBgm;
 
@@ -71,15 +72,15 @@ public class RenderableHolder {
 			mainImage = new Image(ClassLoader.getSystemResource("img/titleScene.jpg").toString());
 			mainBtnImage = new Image(ClassLoader.getSystemResource("img/newButton.png").toString());
 			dialogFrame = new Image(ClassLoader.getSystemResource("img/dialogFrame.png").toString());
-			
-			//Navigation
+
+			// Navigation
 			navigBar = new Image(ClassLoader.getSystemResource("img/navig.png").toString());
 			inven = new Image(ClassLoader.getSystemResource("img/inventory.png").toString());
 			shop = new Image(ClassLoader.getSystemResource("img/shop.png").toString());
 			setting = new Image(ClassLoader.getSystemResource("img/setting2.png").toString());
 			menuIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
-			
-			//Item
+
+			// Item
 			hpPotion = new Image(ClassLoader.getSystemResource("img/hpPotion.png").toString());
 			mpPotion = new Image(ClassLoader.getSystemResource("img/mpPotion.png").toString());
 			sword = new Image(ClassLoader.getSystemResource("img/sword.png").toString());
@@ -88,14 +89,14 @@ public class RenderableHolder {
 			bow2 = new Image(ClassLoader.getSystemResource("img/bow2.png").toString());
 			staff = new Image(ClassLoader.getSystemResource("img/staff.png").toString());
 			staff2 = new Image(ClassLoader.getSystemResource("img/staff2.png").toString());
-			
+
 			// res for game
 			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());
-			
+
 			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());
 			monsterImage02 = new Image(ClassLoader.getSystemResource("8bit/monster2.png").toString());
-			
-			//BGM
+
+			// BGM
 			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
 			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
@@ -107,18 +108,25 @@ public class RenderableHolder {
 
 	// add to container with sort
 	public void add(IRenderable entity) {
+		// System.out.println("add "+entity.getClass().getSimpleName());
 		entities.add(entity);
 		Collections.sort(entities, comparator);
 	}
-	
+
 	public void sort() {
 		Collections.sort(entities, comparator);
 	}
+	
+	public void clear() {
+		for (int i = entities.size() - 1; i >= 0; i--) {			
+			if (entities.get(i) instanceof GameObject)
+				entities.remove(i);
+		}
+	}
 
 	public void update() {
-		for (int i = entities.size() - 1; i >= 0; i--) {
-			if (entities.get(i).isDestroyed() && !(entities.get(i) instanceof Hero))
-				
+		for (int i = entities.size() - 1; i >= 0; i--) {			
+			if (entities.get(i).isDestroyed())
 				entities.remove(i);
 		}
 		Collections.sort(entities, comparator);

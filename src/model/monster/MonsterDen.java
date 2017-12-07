@@ -43,10 +43,13 @@ public class MonsterDen {
 		if(InputUtility.isKeyPressed(KeyCode.P)) {
 			addMonster();
 		}else if(InputUtility.isKeyPressed(KeyCode.O)) {
-			GameLogic.hero.resetHp();;
+			GameLogic.hero.restoreHp();
 		}else if(InputUtility.isKeyPressed(KeyCode.I)) {
 			for(DungeonableEntity<Attribute> e: GameLogic.dungeon.getEntitiesHolder())
 				if(!(e instanceof Hero) )Dungeon.destroyEntities(e);
+		}else if(InputUtility.isKeyPressed(KeyCode.U)) {
+			GameLogic.hero.healHp(-1000);
+			GameLogic.hero.setAlive(false);
 		}
 		//
 		

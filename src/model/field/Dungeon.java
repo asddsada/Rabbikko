@@ -41,38 +41,41 @@ public class Dungeon extends Field {
 		return (0 - e.getWidth() / 6 <= x && x <= this.width - e.getWidth() * 5 / 6)
 				&& (0 <= y && y <= this.height - e.getHeight());
 	}
-	
+
 	@Override
 	public void draw(GraphicsContext gc) {
 		super.draw(gc);
-		if(lvlChangetimer!=0) {
+		if (lvlChangetimer != 0) {
 			gc.setFill(Color.BLACK);
-			gc.fillRect(0, height/2-50, width, 100);
+			gc.fillRect(0, height / 2 - 50, width, 100);
 			gc.setFill(Color.WHITE);
-			gc.fillText(Double.toString(lvlChangetimer/100), width/2, height/2);
+			gc.fillText(Double.toString(lvlChangetimer / 100), width / 2, height / 2);
 		}
 	}
 
 	public static void addEntities(DungeonableEntity<Attribute> e) {
 		RenderableHolder.getInstance().add(e);
 		getEntitiesHolder().add(e);
-		if(lvlChangetimer!=0) lvlChangetimer=0;
+		if (lvlChangetimer != 0)
+			lvlChangetimer = 0;
 	}
-	
-	public static <T extends Attribute>void destroyEntities(DungeonableEntity<T> e) {
-		e.setVisible(false);
+
+	public static <T extends Attribute> void destroyEntities(DungeonableEntity<T> e) {
+			e.setVisible(false);
 		graveyard.add((DungeonableEntity<Attribute>) e);
 	}
 
 	public void update() {
+		graveyard.clear();
 		monsterDen.update();
 		for (DungeonableEntity<Attribute> e : entities_holder) {
 			e.update();
 		}
-		for(DungeonableEntity<Attribute> e: graveyard ) {
-			entities_holder.remove(e);
+		for (DungeonableEntity<Attribute> e : graveyard) {
+			if (e instanceof Hero) {
+				SceneManeger.dungeonScene.toDialog(4); // dead
+			}else entities_holder.remove(e);
 		}
-		System.out.println(entities_holder.size());
 		if (entities_holder.size() == 1 && entities_holder.contains(GameLogic.hero))
 			upLevel(1);
 	}
@@ -83,6 +86,14 @@ public class Dungeon extends Field {
 			lvlChangetimer = CHANGE_TIME_MAX;
 		}
 		lvlChangetimer--;
+	}
+
+	public void restart() {
+		lvl = 0;
+		lvlChangetimer=0;
+		RenderableHolder.getInstance().clear();
+		entities_holder.clear();
+		graveyard.clear();
 	}
 
 	public static Set<DungeonableEntity<Attribute>> getEntitiesHolder() {
@@ -107,7 +118,5 @@ public class Dungeon extends Field {
 	public static int getLvlChangetimer() {
 		return lvlChangetimer;
 	}
-	
-	
 
 }

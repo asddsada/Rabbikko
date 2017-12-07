@@ -1,5 +1,6 @@
 package model.field;
 
+import Main.DungeonMain;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -24,7 +25,7 @@ public class Shop {
 	public void buy(int index) {
 		if (Inventory.getBag()[index] instanceof Item) {
 			if (((Item)Inventory.getBag()[index]).isBuyable()) {
-				Hero.useMoney(((Item)Inventory.getBag()[index]).getPrice());
+				GameLogic.hero.useMoney(((Item)Inventory.getBag()[index]).getPrice());
 				Hero.inventory.add(index);
 			}
 			else {
@@ -36,7 +37,7 @@ public class Shop {
 		}
 		else if (Inventory.getBag()[index] instanceof Weapons) {
 			if (((Weapons)Inventory.getBag()[index]).isBuyable()) {
-				Hero.useMoney(((Weapons)Inventory.getBag()[index]).getPrice());
+				GameLogic.hero.useMoney(((Weapons)Inventory.getBag()[index]).getPrice());
 				Hero.inventory.add(index);
 			}
 			else {
@@ -45,5 +46,6 @@ public class Shop {
 				alert.showAndWait();
 			}
 		}
+		DungeonMain.getCanvas().canvasUpdate();
 	}
 }

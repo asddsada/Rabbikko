@@ -22,14 +22,17 @@ public class GameLogic {
 	public GameLogic() {
 		dungeon = new Dungeon();
 
-		hero = new Hero(Entity.FRONT, new Strength());
-		RenderableHolder.getInstance().add(hero);
-		dungeon.getEntitiesHolder().add(hero);
-		hero.setAtktype(new Strength());
+		newHero();
 
 		RenderableHolder.getInstance().add(dungeon);
 		navig = new Navigation();
 		RenderableHolder.getInstance().add(navig);
+	}
+	
+	public void newHero() {
+		hero = new Hero(Entity.FRONT, new Strength());
+		dungeon.addEntities(hero);
+		hero.setAtktype(new Strength());
 	}
 
 	protected void addNewObject(Entity entity) {

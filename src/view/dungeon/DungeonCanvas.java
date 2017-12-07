@@ -33,7 +33,7 @@ public class DungeonCanvas extends Canvas {
 		// if(InputUtility.isPrevPressed()&& mousex in &&mouseyin) scene.toDialog(1); <-
 		// how to open menu dialog
 		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
-			if (entity.isVisible() && !entity.isDestroyed()) {
+			if (entity.isVisible()) {
 				entity.draw(gc);
 			}
 		}

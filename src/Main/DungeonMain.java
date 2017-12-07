@@ -41,5 +41,15 @@ public class DungeonMain {
 		ForceManeger.pauseForceRule();
 	}
 
-	
+	public static DungeonCanvas getCanvas() {
+		return canvas;
+	}
+
+	public static GameLogic getLogic() {
+		return logic;
+	}
+
+	public static ForceManeger getForceManager() {
+		return forceManager;
+	}
 }

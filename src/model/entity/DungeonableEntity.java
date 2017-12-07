@@ -44,12 +44,10 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		if (atkType.getHeroWeapon().getAttackTime() == 0) {
 			ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(atkType.getAttackObj(),
 					atkType.getAttackObj().getX(), atkType.getAttackObj().getY());
-			// System.out.println(inArea.size());
 			if (inArea == null || inArea.size() <= 1)
 				return false;
 			for (DungeonableEntity<Attribute> other : inArea) {
 				if (other.hashCode() != this.hashCode() && this.race != other.race) {
-					// System.out.println(other.getClass().getSimpleName());
 					atkType.attack(this, other);
 					other.direction = ForceManeger.calculateDirection(this.direction);
 				}
@@ -94,7 +92,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	@Override
 	public void update() {
-		if (!(this instanceof Hero) && (!isAlive|| this.currentHp==0)) 
+		if (!isAlive || this.currentHp==0) 
 			Dungeon.destroyEntities(this);		
 		this.atkType.update(this.direction, this.pos.x, this.pos.y);
 	}

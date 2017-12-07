@@ -34,7 +34,7 @@ public class Weapons extends GameObject implements Useable {
 	}
 
 	public boolean isBuyable() {
-		if (amount == 0 && Hero.getMoney()>=this.price) return true;
+		if (amount == 0 && GameLogic.hero.getMoney()>=this.price) return true;
 		return false;
 	}
 	

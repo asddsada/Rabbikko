@@ -105,7 +105,6 @@ public abstract class Entity extends GameObject {
 	}
 
 	protected void move(int direction) {
-		// should ask if the change will be in the scene before change
 		this.direction = direction;
 		if (this.direction != direction && (this.direction % 3) == (direction % 3)) {
 			this.counter = 0;
@@ -125,8 +124,6 @@ public abstract class Entity extends GameObject {
 			setPos((movespeed / 10.0) * SceneManeger.WIDGTH / 200, RIGHT);
 		if (direction == LEFT)
 			setPos((-1) * (movespeed / 10.0) * SceneManeger.WIDGTH / 200, LEFT);
-
-		
 	}
 
 	public abstract void update();
