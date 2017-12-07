@@ -107,7 +107,6 @@ public class Weapons extends GameObject implements Useable {
 				// swing rotate
 				// attack time == max/2 ,should go down
 				// then go up and such
-				
 				attackTime--;
 			}
 		}

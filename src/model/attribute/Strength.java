@@ -5,8 +5,10 @@ import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
+import model.entity.Entity;
 import model.entity.Hero;
 import model.items.Weapons;
+import sharedObj.RenderableHolder;
 import utility.Pair;
 
 public class Strength extends Attribute {
@@ -23,8 +25,16 @@ public class Strength extends Attribute {
 			@Override
 			public void draw(GraphicsContext gc) {
 				// attack effect?
-//				if (heroWeapon.getAttackTime() > 0)
-//				gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+				if (heroWeapon.getAttackTime() > 0)
+					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
+						gc.drawImage(RenderableHolder.sEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
+						gc.drawImage(RenderableHolder.sEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
+						gc.drawImage(RenderableHolder.sEffect,pos.x-getWidth()/2,pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
+						gc.drawImage(RenderableHolder.sEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+					}
 			}
 
 			@Override
