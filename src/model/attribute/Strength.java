@@ -24,7 +24,7 @@ public class Strength extends Attribute {
 			public void draw(GraphicsContext gc) {
 				// attack effect?
 //				if (heroWeapon.getAttackTime() > 0)
-//				gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+				gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 			}
 
 			@Override

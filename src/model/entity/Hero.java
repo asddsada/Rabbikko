@@ -49,6 +49,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	protected boolean isBlock(double x, double y) {
+		if(dmgTimer!=0) return false;
 		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
 		for (DungeonableEntity<Attribute> other : inArea) {
 			// System.out.println(other.getClass().getSimpleName());
