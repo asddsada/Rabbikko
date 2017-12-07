@@ -94,9 +94,8 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	@Override
 	public void update() {
-		if (!(this instanceof Hero) && (!isAlive|| this.currentHp==0)) {
-			this.setVisible(false);
-		}
+		if (!(this instanceof Hero) && (!isAlive|| this.currentHp==0)) 
+			Dungeon.destroyEntities(this);		
 		this.atkType.update(this.direction, this.pos.x, this.pos.y);
 	}
 }

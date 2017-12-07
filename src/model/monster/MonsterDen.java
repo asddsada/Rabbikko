@@ -4,9 +4,12 @@ import java.util.Random;
 
 import javafx.scene.input.KeyCode;
 import logic.GameLogic;
+import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
+import model.entity.DungeonableEntity;
 import model.entity.Entity;
+import model.entity.Hero;
 import model.field.Dungeon;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
@@ -20,12 +23,12 @@ public class MonsterDen {
 	public MonsterDen() {
 		rand = new Random();
 		
-		Dungeon.addEntities(new Monster(360,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 210,20,new Strength() ));
-		Dungeon.addEntities(new Monster(440,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  150,25,new Strength() ));
-		Dungeon.addEntities(new Monster(280,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 240,20,new Strength() ));
-		Dungeon.addEntities(new Monster(200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  240,28,new Strength() ));
-		Dungeon.addEntities(new Monster(920/2+200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 250,12,new Strength() ));
-		Dungeon.addEntities(new Monster(200,100+470/2, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  250,12,new Strength() ));
+		Dungeon.addEntities(new Monster(360,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 20,20,new Strength() ));
+		Dungeon.addEntities(new Monster(440,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  50,25,new Strength() ));
+		Dungeon.addEntities(new Monster(280,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 40,20,new Strength() ));
+		Dungeon.addEntities(new Monster(200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 40,28,new Strength() ));
+		Dungeon.addEntities(new Monster(920/2+200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,200, 50,12,new Strength() ));
+		Dungeon.addEntities(new Monster(200,100+470/2, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  50,12,new Strength() ));
 		//Dungeon.addEntities(new Monster<Strength>(920/2+100,100+470/2, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Strength() ));
 //		
 		monsterThread = new Thread(() ->  {
@@ -36,11 +39,21 @@ public class MonsterDen {
 	
 
 	public void update() {
+		//admin key
 		if(InputUtility.isKeyPressed(KeyCode.P)) {
 			addMonster();
 		}else if(InputUtility.isKeyPressed(KeyCode.O)) {
 			GameLogic.hero.resetHp();;
+		}else if(InputUtility.isKeyPressed(KeyCode.I)) {
+			for(DungeonableEntity<Attribute> e: GameLogic.dungeon.getEntitiesHolder())
+				if(!(e instanceof Hero) )Dungeon.destroyEntities(e);
 		}
+		//
+		
+		if(Dungeon.getLvlChangetimer()==0) {
+			
+		}
+		
 		
 	}
 	

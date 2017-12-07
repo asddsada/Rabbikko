@@ -42,7 +42,6 @@ public class Strength extends Attribute {
 	@Override
 	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
 			DungeonableEntity<T2> other) {
-		System.out.println(other.getCurrentHp());
 		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
 				ForceManeger.calculateDirection(attacker.getDirection()));
 		// System.out.println("Attack! "+other.getClass().getSimpleName()+" hp :

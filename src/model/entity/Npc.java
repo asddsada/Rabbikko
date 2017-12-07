@@ -22,7 +22,7 @@ public class Npc extends Entity implements Obstructable {
 
 	@Override
 	protected boolean isBlock(double x, double y) {
-		for (DungeonableEntity<Attribute> other : GameLogic.dungeon.getENTITIES_HOLDER()) {
+		for (DungeonableEntity<Attribute> other : GameLogic.dungeon.getEntitiesHolder()) {
 			if (other.hashCode() != this.hashCode() && this.race == other.race && super.isCollide(other, x, y))
 				return true;
 		}

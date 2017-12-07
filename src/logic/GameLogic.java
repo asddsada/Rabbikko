@@ -24,7 +24,7 @@ public class GameLogic {
 
 		hero = new Hero(Entity.FRONT, new Strength());
 		RenderableHolder.getInstance().add(hero);
-		dungeon.getENTITIES_HOLDER().add(hero);
+		dungeon.getEntitiesHolder().add(hero);
 		hero.setAtktype(new Strength());
 
 		RenderableHolder.getInstance().add(dungeon);
