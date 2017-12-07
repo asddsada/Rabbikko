@@ -5,15 +5,17 @@ import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
+import model.entity.Entity;
 import model.entity.Hero;
 import model.items.Weapons;
 import utility.Pair;
+import view.SceneManeger;
 
 public class Strength extends Attribute {
 	public Strength() {
 		heroWeapon = (Weapons) Hero.inventory.getBag()[2];
 		attackMultiply = 1.2;
-		attackRange = new Pair(getHeroWeapon().getWidth() + 20, getHeroWeapon().getHeight() + 10);
+		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
 		attackSpeed = 0.5;
 		hpMultiply = 1.2;
 		hpRegen = 5;
@@ -23,20 +25,38 @@ public class Strength extends Attribute {
 			@Override
 			public void draw(GraphicsContext gc) {
 				// attack effect?
-//				if (heroWeapon.getAttackTime() > 0)
-				gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+				if (heroWeapon.getAttackTime() > 0)
+					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 			}
 
 			@Override
 			public double getWidth() {
-				return attackRange.x;
+				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y * 0.7
+						: attackRange.x;
 			}
 
 			@Override
 			public double getHeight() {
-				return attackRange.y;
+				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5
+						: attackRange.y * 0.6;
 			}
 		};
+	}
+
+	public void update(int direction, double x, double y) {
+		if (direction == Entity.RIGHT) {
+			this.attackObj.setX(x + GameLogic.hero.getWidth() * 2 / 3);
+			this.attackObj.setY(y + GameLogic.hero.getHeight() / 3);
+		} else if (direction == Entity.LEFT) {
+			this.attackObj.setX(x + GameLogic.hero.getWidth() / 3 - attackRange.x);
+			this.attackObj.setY(y + GameLogic.hero.getHeight() / 3);
+		} else if (direction == Entity.BACK) {
+			this.attackObj.setX(x + GameLogic.hero.getWidth() / 6);
+			this.attackObj.setY(y - attackRange.y + GameLogic.hero.getHeight() * 5 / 6);
+		} else if (direction == Entity.FRONT) {
+			this.attackObj.setX(x + GameLogic.hero.getWidth() / 6);
+			this.attackObj.setY(y + GameLogic.hero.getHeight() * 2 / 3);
+		}
 	}
 
 	@Override

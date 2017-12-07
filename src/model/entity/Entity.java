@@ -82,24 +82,24 @@ public abstract class Entity extends GameObject {
 	
 	@Override
 	public boolean isCollide(GameObject other, double x, double y) {
-		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+"
-		// "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
-		 if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth()
-		 * 4 / 6)
-		 && ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() +
-		 getHeight()))) {
-		 this.z = 1;
-		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-		 && ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() +
-		 getHeight()))) {
-		 this.z = 1;
-		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
-		 && (other.getY() - getHeight() < y && y < other.getY())) {
-		 this.z = -1;
-		 }
-		
-		 if ((other.getY() - getHeight() / 3 <= y && y <= other.getY() + getHeight() / 3)
-					&& (other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6))
+		if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth() * 4 / 6)
+				&& ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() + getHeight()))) {
+			this.z = 20;
+		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+				&& ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() + getHeight()))) {
+			this.z = 1;
+		} else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+				&& (other.getY() - getHeight() < y && y < other.getY())) {
+			this.z = -1;
+		}
+		 
+		 if ((((x+getWidth()/3 - other.getWidth()) <= other.getX()) && (other.getX() <= (x + getWidth()*2/3 + other.getWidth())))
+					&& (((y+getHeight()*5/6 - other.getHeight()) <= other.getY())
+							&& (other.getY() <= (y + other.getHeight()/4 + getHeight())))
+					&& (((x +getWidth()/3 - other.getWidth()) <= (other.getX() + other.getWidth()))
+							&& ((other.getX() + other.getWidth()) <= (x + getWidth() + other.getWidth()*2/3)))
+					&& (((y+getHeight()*5/6 - other.getHeight()) <= (other.getY()+other.getHeight()))
+							&& ((other.getY()+other.getHeight()) <= (y + other.getHeight()/4 + getHeight()))))
 				return true;
 		 return false;
 	}

@@ -60,20 +60,28 @@ public abstract class GameObject implements IRenderable {
 	}
 
 	public boolean isCollide(GameObject other, double x, double y) {
-		// System.out.println(other.pos.x+" "+ other.pos.y +" "+ x+" "+ y+"
-		// "+(other.pos.y+getHeight()/3)+" "+y+" "+(other.pos.y+getHeight()/3));
+		 if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth()
+		 * 4 / 6)
+		 && ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() +
+		 getHeight()))) {
+		 this.z = 20;
+		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+		 && ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() +
+		 getHeight()))) {
+		 this.z = 1;
+		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
+		 && (other.getY() - getHeight() < y && y < other.getY())) {
+		 this.z = -1;
+		 }
 		
-		//here, there is bug!!!!
-		if ((other.getX() - other.getWidth() * 4 / 6 <= x && x <= other.getX() + other.getWidth() * 4 / 6)
-				&& ((other.getY() - other.getHeight() / 6 + 5 <= y && y <= other.getY() + other.getHeight()))) {
+		if ((((x - other.getWidth()) <= other.getX()) && (other.getX() <= (x + getWidth() + other.getWidth())))
+				&& (((y - other.getHeight()) <= other.getY())
+						&& (other.getY() <= (y + other.getHeight()/2 + getHeight())))
+				&& (((x - other.getWidth()) <= (other.getX() + other.getWidth()))
+						&& ((other.getX() + other.getWidth()) <= (x + getWidth() + other.getWidth())))
+				&& (((y - other.getHeight()) <= (other.getY()+other.getHeight()))
+						&& ((other.getY()+other.getHeight()) <= (y + other.getHeight()/2 + getHeight()))))
 			return true;
-		} else if ((other.getX() - other.getWidth() <= x && x <= other.getX() + other.getWidth())
-				&& ((other.getY() - other.getHeight() / 8 + 5 <= y && y <= other.getY() + other.getHeight()))) {
-			return true;
-		} else if ((other.getX() - other.getWidth() / 2 <= x && x <= other.getX() + other.getWidth() / 2)
-				&& (other.getY() - other.getHeight() < y && y < other.getY())) {
-			return true;
-		}
 		return false;
 	}
 

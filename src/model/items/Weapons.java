@@ -26,7 +26,7 @@ public class Weapons extends GameObject implements Useable {
 		this.amount = 0;
 		attackTime = 0;
 		this.visible = false;
-		this.atkTimeMax = 100;
+		this.atkTimeMax = 2;
 	}
 
 	public void held() {
