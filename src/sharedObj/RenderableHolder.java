@@ -132,7 +132,7 @@ public class RenderableHolder {
 		}
 	}
 
-	public void update() {
+	public void update() throws IllegalArgumentException {
 		for (int i = entities.size() - 1; i >= 0; i--) {			
 			if (entities.get(i).isDestroyed())
 				entities.remove(i);

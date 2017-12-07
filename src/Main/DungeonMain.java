@@ -25,9 +25,13 @@ public class DungeonMain {
 	
 	private static AnimationTimer animation = new AnimationTimer() {
 		public void handle(long now) {
-			canvas.canvasUpdate();
-			logic.logicUpdate();
-			RenderableHolder.getInstance().update();
+			try {
+				canvas.canvasUpdate();
+				logic.logicUpdate();
+				RenderableHolder.getInstance().update();
+			} catch (IllegalArgumentException e) {
+				System.out.println("cannot update");
+			}
 		}
 	};
 

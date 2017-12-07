@@ -7,6 +7,7 @@ import Main.DungeonMain;
 import Main.Main;
 import javafx.scene.input.KeyCode;
 import logic.GameLogic;
+import model.GameObject;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
@@ -34,31 +35,22 @@ public class MonsterDen {
 				while (true) {
 					try {
 						Thread.sleep(RandomUtility.randomTime(RenderableHolder.getInstance().size()));
-
-						System.out.println(maxMonster);
 					} catch (InterruptedException e) {
 						System.out.println("monsterThread has been interrupted.");
 						break;
 					}
-					if (Main.isGameRunning && GameLogic.hero.isAlive() && RenderableHolder.getInstance().size() < 40) {
-						if (monsterCount < maxMonster && (Dungeon.getLvlChangetimer() ==0 ) ) {
+					if (Main.isGameRunning && GameLogic.hero.isAlive() && RenderableHolder.getInstance().size() < 30) {
+						if (monsterCount < maxMonster && (Dungeon.getLvlChangetimer() == 0)) {
 							try {
 								addMonster();
 							} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 									| InvocationTargetException | SecurityException e) {
-								e.printStackTrace();
+								System.out.println("cannot add monster");
 							}
-						} else if (GameLogic.dungeon.isLevelClear() && monsterCount == maxMonster) {
+						} else if (GameLogic.dungeon.isLevelClear() && monsterCount >= maxMonster) {
 							maxMonster = RandomUtility.randomByLevel(GameLogic.dungeon.getLvl());
-							maxMonster = maxMonster>30?30:maxMonster;
+							maxMonster = maxMonster > 50 ? 50 : maxMonster;
 							monsterCount = 1;
-							try {
-								addMonster();
-							} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-									| InvocationTargetException | SecurityException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
 						}
 					}
 
@@ -71,9 +63,14 @@ public class MonsterDen {
 	public static void stop() {
 		monsterThread.interrupt();
 	}
-	
+
 	public boolean isGenerate() {
-		return monsterCount!= maxMonster;
+		return monsterCount < maxMonster;
+	}
+	
+	public void restart() {
+		maxMonster = 0;
+		monsterCount=0;
 	}
 
 	public void update() {
@@ -83,19 +80,31 @@ public class MonsterDen {
 				addMonster();
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else if (InputUtility.isKeyPressed(KeyCode.O)) {
 			GameLogic.hero.restoreHp();
 		} else if (InputUtility.isKeyPressed(KeyCode.I)) {
-			for (DungeonableEntity<Attribute> e : GameLogic.dungeon.getEntitiesHolder())
+			for (DungeonableEntity<Attribute> e : Dungeon.getEntitiesHolder())
 				if (!(e instanceof Hero))
 					Dungeon.destroyEntities(e);
 		} else if (InputUtility.isKeyPressed(KeyCode.U)) {
 			GameLogic.hero.healHp(-1000);
 			GameLogic.hero.setAlive(false);
+		} else if (InputUtility.isKeyPressed(KeyCode.L)) {
+			try {
+				addMonster();
+			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+					| InvocationTargetException | SecurityException e) {
+				e.printStackTrace();
+			}
+			this.monsterCount = maxMonster;
+			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
+					.forEach(GameObject::destroyed);
+			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
+					.forEach(Dungeon::destroyEntities);
 		}
+		System.out.println(maxMonster);
 	}
 
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,

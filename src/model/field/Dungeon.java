@@ -97,6 +97,7 @@ public class Dungeon extends Field {
 	public void restart() {
 		lvl = 0;
 		lvlChangetimer=0;
+		monsterDen.restart();
 		RenderableHolder.getInstance().clear();
 		entities_holder.clear();
 		graveyard.clear();
