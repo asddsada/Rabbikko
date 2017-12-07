@@ -8,7 +8,9 @@ import javafx.scene.control.Alert.AlertType;
 import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
+import view.SceneManeger;
 import javafx.scene.control.Button;
+import logic.GameLogic;
 import model.field.Shop;
 
 public class Inventory {

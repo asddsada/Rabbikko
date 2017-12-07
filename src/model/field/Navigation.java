@@ -22,10 +22,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.GameLogic;
 import model.entity.Hero;
+import model.items.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.Pair;
 import view.SceneManeger;
+import view.dungeon.DungeonCanvas;
 
 public class Navigation extends Field {
 	public static final double NAVIG_WIDTH = RenderableHolder.navigBar.getWidth();
@@ -61,6 +63,9 @@ public class Navigation extends Field {
 	@Override
 	public void draw(GraphicsContext gc) {
 		gc.drawImage(RenderableHolder.navigBar,0,sceneHeight-NAVIG_HEIGHT,NAVIG_WIDTH,NAVIG_HEIGHT);
+		
+		gc.drawImage(RenderableHolder.hpPotion,481, 571);
+		gc.drawImage(RenderableHolder.mpPotion, 541, 571);
 		
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		double fontHieght = fontLoader.getFontMetrics(gc.getFont()).getLineHeight();
@@ -104,6 +109,12 @@ public class Navigation extends Field {
 		else if (xPos >= 823 && xPos <= 861 && yPos >= 575 && yPos <= 615 && InputUtility.isMousePressed()) {
 			RenderableHolder.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(3);
+		}
+		else if (xPos >= 484 && xPos <= 527 && yPos >= 576 && yPos <= 615 && InputUtility.isMousePressed()) {
+			Inventory.getBag()[0].use();
+		}
+		else if (xPos >= 545 && xPos <= 585 && yPos >= 576 && yPos <= 615 && InputUtility.isMousePressed()) {
+			Inventory.getBag()[1].use();
 		}
 	}
 	

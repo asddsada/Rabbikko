@@ -2,8 +2,10 @@ package view.dungeon;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -148,6 +150,7 @@ public class DialogPane extends VBox {
 		Text t3 = new Text();
 		t3.setFill(Color.ALICEBLUE);
 		Button use = new Button("USE");
+		use.setDisable(true);
 		use.setStyle("-fx-color: red;-fx-border: none");
 
 		gp.add(t1, 1, 3,4,4);
@@ -156,19 +159,33 @@ public class DialogPane extends VBox {
 		gp.add(use, 3, 9,2,2);
 		
 		potion1.setOnMouseClicked((MouseEvent e) -> {
-			if (((Health)Inventory.getBag()[0]).getAmount() != 0) {
+			if (((Item)Inventory.getBag()[0]).getAmount() >= 1) {
+				use.setDisable(false);
 				use.setId("0");
 			}
+			else {
+				use.setId("");
+				use.setDisable(true);
+			}
+			t3.setText("Amount : "+ ((Health)Inventory.getBag()[0]).getAmount());
+//			if (((Health)Inventory.getBag()[0]).getAmount() != 0) {
+//				use.setId("0");
+//			}
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : 500 g");
-			t3.setText("Amount : "+ ((Health)Inventory.getBag()[0]).getAmount());
+//			t3.setText("Amount : "+ ((Health)Inventory.getBag()[0]).getAmount());
 		});
 		
 		potion2.setOnMouseClicked((MouseEvent e) -> {
-			if (((Mana)Inventory.getBag()[1]).getAmount() != 0) {
+			if (((Item)Inventory.getBag()[1]).getAmount() >= 1) {
+				use.setDisable(false);
 				use.setId("1");
-				t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
 			}
+			else {
+				use.setId("");
+				use.setDisable(true);
+			}
+			t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : 500 g");
 			t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
@@ -176,8 +193,14 @@ public class DialogPane extends VBox {
 		
 		sword.setOnMouseClicked((MouseEvent e) -> {
 			if (((Weapons)Inventory.getBag()[2]).getAmount() == 1) {
+				use.setDisable(false);
 				use.setId("2");
 			}
+			else {
+				use.setId("");
+				use.setDisable(true);
+			}
+			t3.setText("Amount : " + ((Weapons)Inventory.getBag()[2]).getAmount());
 			t1.setText("Sword\n");
 			t2.setText("Price : 5000 g");
 			t3.setText("Amount : " + ((Weapons)Inventory.getBag()[2]).getAmount());
@@ -185,7 +208,12 @@ public class DialogPane extends VBox {
 		
 		bow.setOnMouseClicked((MouseEvent e) -> {
 			if (((Weapons)Inventory.getBag()[3]).getAmount() == 1) {
+				use.setDisable(false);
 				use.setId("3");
+			}
+			else {
+				use.setId("");
+				use.setDisable(true);
 			}
 			t1.setText("Bow\n");
 			t2.setText("Price : 5000 g");
@@ -194,7 +222,12 @@ public class DialogPane extends VBox {
 		
 		staff.setOnMouseClicked((MouseEvent e) -> {
 			if (((Weapons)Inventory.getBag()[4]).getAmount() == 1) {
+				use.setDisable(false);
 				use.setId("4");
+			}
+			else {
+				use.setId("");
+				use.setDisable(true);
 			}
 			t1.setText("Staff\n");
 			t2.setText("Price : 5000 g");
@@ -210,8 +243,13 @@ public class DialogPane extends VBox {
 				((Weapons)(Inventory.getBag()[Integer.valueOf(use.getId())])).use();
 				t3.setText("Amount : " + ((Weapons)Inventory.getBag()[Integer.valueOf(use.getId())]).getAmount());
 			}
+//			else if (use.getId() == "") {
+//				Alert alert = new Alert(AlertType.ERROR);
+//				alert.setContentText("Cannot Use Item");
+//				alert.setHeaderText("Inventory Error");
+//				alert.showAndWait();
+//			}
 		});
-		
 		this.getChildren().add(gp);
 	}
 
