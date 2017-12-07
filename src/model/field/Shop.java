@@ -15,10 +15,10 @@ import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 
 public class Shop {
-	private final static int SHELF_SIZE = 5; //change to match with the shelf
+	private final static int SHELF_SIZE = 5; // change to match with the shelf
 
 	public void shop() {
-		
+
 	}
 	
 	public void buy(int index) {

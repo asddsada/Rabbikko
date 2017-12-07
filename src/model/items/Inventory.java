@@ -9,6 +9,7 @@ import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import javafx.scene.control.Button;
+import model.field.Shop;
 
 public class Inventory {
 	private static final Useable[] BAG = {

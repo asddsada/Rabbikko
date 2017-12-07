@@ -3,13 +3,9 @@ package model.entity;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
-import logic.GameLogic;
-import model.GameObject;
+import logic.ForceManeger;
 import model.attribute.Attribute;
-import model.attribute.Intelligence;
 import model.field.Dungeon;
 import model.field.Obstructable;
 import model.items.Inventory;
@@ -18,9 +14,8 @@ import utility.InputUtility;
 import view.SceneManeger;
 
 public class Hero extends DungeonableEntity<Attribute> {
-	private int maxMp;
-	private int currentMp;
-	private final int MAXMP = 500;
+	private double maxMp;
+	private double currentMp;
 	private static int money;
 	public static Inventory inventory;
 
@@ -33,7 +28,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
 		this.inventory = new Inventory();
-		// this.atkType = new Intelligence();
+		setAtktype(atkType);
 	}
 
 	@Override
@@ -43,19 +38,22 @@ public class Hero extends DungeonableEntity<Attribute> {
 	}
 
 	@Override
-	public void attack() {
-		super.attack();
+	public boolean attack() {
+		boolean r = super.attack();
+		if (r)
+			this.healMp(15);
 		atkType.getHeroWeapon().use();
+		return r;
 	}
 
 	@Override
 	protected boolean isBlock(double x, double y) {
 		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
 		for (DungeonableEntity<Attribute> other : inArea) {
-			System.out.println(other.getClass().getSimpleName());
+			// System.out.println(other.getClass().getSimpleName());
 			if (this.race != other.race)
 				this.damage(other.baseAtk, this.direction);
-			if(other instanceof Obstructable)
+			if (other instanceof Obstructable)
 				return true;
 		}
 		return false;
@@ -63,7 +61,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	public void update() {
-		if (isAlive) {
+		if (isAlive && dmgTimer == 0) {
 			super.update();
 			if (InputUtility.isKeyPressed(KeyCode.W))
 				move(Entity.BACK);
@@ -75,48 +73,63 @@ public class Hero extends DungeonableEntity<Attribute> {
 				move(Entity.RIGHT);
 			if (InputUtility.isKeyPressed(KeyCode.SPACE))
 				attack();
+
+			if (currentHp != getMaxHp())
+				healHp(0.15);
+			if (currentMp != getMaxMp())
+				healMp(0.3);
+			this.atkType.getHeroWeapon().update(direction, pos.x, pos.y);
+		} else if (isAlive) {
+			dmgTimer = dmgTimer == 0 ? dmgTimer - 1 : 0;
 		}
-		// for (int i = 0; i <= 3; i++) {
-		// System.out.println(getDamageTake()[i]);
-		// }
+
+		// System.out.println(getDamageTake()[0]+" "+getDamageTake()[1]+"
+		// "+getDamageTake()[2]+" "+getDamageTake()[3]+" ");
+
 	}
 
-	public void healHp(int i) {
-		if (getCurrentHp() + i > getMaxMp()) {
+	public void healHp(double i) {
+		if (getCurrentHp() + i >= getMaxHp()) {
 			resetHp();
 		} else {
-			currentHp += i;
+			currentHp += i * atkType.getHpRegen();
 		}
 	}
 
-	public void healMp(int i) {
-		if (getCurrentMp() + i > getMaxMp()) {
+	public void healMp(double i) {
+		if (getCurrentMp() + i >= getMaxMp()) {
 			resetMp();
 		} else {
-			currentMp += i;
+			currentMp += i * atkType.getMpRegen();
 		}
 	}
 
 	public void resetHp() {
 		currentHp = getMaxHp();
 		setVisible(true);
-		isAlive=true;
+		isAlive = true;
 	}
 
 	public void resetMp() {
 		currentMp = maxMp;
 	}
 
-	public int getMaxMp() {
-		return maxMp*atkType.getHpMultiply();
+	public double getMaxMp() {
+		return maxMp;
 	}
 
-	public int getCurrentMp() {
+	public double getCurrentMp() {
 		return currentMp;
 	}
 
 	public <T extends Attribute> void setAtktype(T atkType) {
+		if (this.atkType != null) {
+			this.atkType.getHeroWeapon().destroyed();
+			this.atkType.getAttackObj().destroyed();
+		}
 		this.atkType = atkType;
+		this.atkType.getHeroWeapon().held();
+		RenderableHolder.getInstance().add(atkType.getAttackObj());
 	}
 
 	public static int getMoney() {
@@ -126,6 +139,4 @@ public class Hero extends DungeonableEntity<Attribute> {
 	public static void useMoney(int i) {
 		money -= i;
 	}
-	
-
 }

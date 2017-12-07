@@ -20,10 +20,12 @@ public class MonsterDen {
 	public MonsterDen() {
 		rand = new Random();
 		
-		Dungeon.addEntities(new Monster<Strength>(280,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Strength() ));
-		Dungeon.addEntities(new Monster<Intelligence>(200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Intelligence() ));
-		Dungeon.addEntities(new Monster<Strength>(920/2+200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,1000,20,new Strength() ));
-		Dungeon.addEntities(new Monster<Strength>(200,100+470/2, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Strength() ));
+		Dungeon.addEntities(new Monster(360,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 210,20,new Strength() ));
+		Dungeon.addEntities(new Monster(440,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  150,25,new Strength() ));
+		Dungeon.addEntities(new Monster(280,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 240,20,new Strength() ));
+		Dungeon.addEntities(new Monster(200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  240,28,new Strength() ));
+		Dungeon.addEntities(new Monster(920/2+200,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 250,12,new Strength() ));
+		Dungeon.addEntities(new Monster(200,100+470/2, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100,  250,12,new Strength() ));
 		//Dungeon.addEntities(new Monster<Strength>(920/2+100,100+470/2, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Strength() ));
 //		
 		monsterThread = new Thread(() ->  {
@@ -43,6 +45,6 @@ public class MonsterDen {
 	}
 	
 	private void addMonster() {
-		Dungeon.addEntities(new Monster<Strength>(280+150,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Strength() ));
+		Dungeon.addEntities(new Monster(280+150,100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5,100, 1000,20,new Strength() ));
 	}
 }

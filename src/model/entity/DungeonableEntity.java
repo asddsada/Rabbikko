@@ -14,14 +14,13 @@ import sharedObj.RenderableHolder;
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	public static final int HUMANITY = 1;
 	public static final int MONSTER = 0;
-	protected int maxHp;
-	protected int currentHp;
+	protected double maxHp;
+	protected double currentHp;
 	protected int baseAtk;
 	protected T atkType;
 	protected int[] damageTake;
-	protected boolean isAlive;
 	protected int dmgTimer;
-	protected static final int DMG_TIME_MAX=10;
+	public static final int DMG_TIME_MAX = 3000;
 
 	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
 			int maxHp, int baseAtk, T atkType) {
@@ -31,9 +30,8 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		this.mass = mass;
 		this.maxHp = maxHp;
 		this.damageTake = new int[4];
-		this.currentHp = this.maxHp;
-		this.isAlive=true;
-		this.dmgTimer=0;
+		this.currentHp = getMaxHp();
+		this.dmgTimer = 0;
 	}
 
 	@Override
@@ -42,46 +40,63 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		super.draw(gc);
 	}
 
-	public void attack() {
-		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(atkType.getAttackObj(), 
-				atkType.getAttackObj().getX(), atkType.getAttackObj().getY());
-		if(inArea==null) return;
-		for (DungeonableEntity<Attribute> other : inArea) {
-			System.out.println(other.getClass().getSimpleName());
-			if (this.race != other.race)
-				atkType.attack(this,other);
+	public boolean attack() {
+		if (atkType.getHeroWeapon().getAttackTime() == 0) {
+			ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(atkType.getAttackObj(),
+					atkType.getAttackObj().getX(), atkType.getAttackObj().getY());
+			// System.out.println(inArea.size());
+			if (inArea == null || inArea.size() <= 1)
+				return false;
+			for (DungeonableEntity<Attribute> other : inArea) {
+				if (other.hashCode() != this.hashCode() && this.race != other.race) {
+					// System.out.println(other.getClass().getSimpleName());
+					atkType.attack(this, other);
+					other.direction = ForceManeger.calculateDirection(this.direction);
+				}
+			}
+			return true;
 		}
+		return false;
 	}
 
 	public void damage(int dmg, int direction) {
+		dmgTimer = DMG_TIME_MAX;
 		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
-//		System.out.println(dmg);
-		this.currentHp = this.currentHp-dmg>=0?this.currentHp-dmg:0;
-		if (direction == 0)
-			this.direction = 3;
-		else {
-			this.direction = (direction * 2) % 3;
-		}
-		System.out.println("HP " + currentHp);
+		this.currentHp = this.currentHp - dmg >= 0 ? this.currentHp - dmg : 0;
+		if (this.currentHp == 0)
+			isAlive = false;
+		ForceManeger.reactionEffect(this, direction);
 	}
 
-	public int getMaxHp() {
-		return maxHp;
+	public double getMaxHp() {
+		return maxHp * atkType.getHpMultiply();
 	}
 
-	public int getCurrentHp() {
+	public double getCurrentHp() {
 		return currentHp;
 	}
 
 	public int[] getDamageTake() {
 		return damageTake;
 	}
-	
+
+	public int getDmgTimer() {
+		return dmgTimer;
+	}
+
+	public int getBaseAtk() {
+		return baseAtk ;
+	}
+
+	public T getAtkType() {
+		return atkType;
+	}
+
 	@Override
 	public void update() {
-		if(this.currentHp==0) {
+		if (!(this instanceof Hero) && (!isAlive|| this.currentHp==0)) {
 			this.setVisible(false);
-			this.isAlive=false;
 		}
+		this.atkType.update(this.direction, this.pos.x, this.pos.y);
 	}
 }
