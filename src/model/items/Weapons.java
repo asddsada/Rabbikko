@@ -66,12 +66,21 @@ public class Weapons extends GameObject implements Useable {
 	public void draw(GraphicsContext gc) {
 		if (GameLogic.hero.isAlive()) {
 			if (attackTime == 0) {
-				// gc.fillRect(pos.x, pos.y, getWidth(), getHeight());
-			} else {
+				if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
+					gc.drawImage(imgWeapon,pos.x-getWidth()*2.5,pos.y-getHeight()/2);
+				}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
+					gc.drawImage(imgWeapon,pos.x+getWidth()*2,pos.y-getHeight()/2);
+				}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
+					gc.drawImage(imgWeapon,pos.x-getWidth()*1.5,pos.y-getHeight()/2);
+				}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
+					gc.drawImage(imgWeapon,pos.x+getWidth(),pos.y-getHeight()/2);
+				}
+			}
+			else {
 				// swing rotate
 				// attack time == max/2 ,should go down
 				// then go up and such
-
+				
 				attackTime--;
 			}
 		}

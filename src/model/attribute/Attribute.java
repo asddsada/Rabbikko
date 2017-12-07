@@ -69,6 +69,4 @@ public abstract class Attribute{
 	public int getMpRegen() {
 		return mpRegen;
 	}
-	
-	
 }

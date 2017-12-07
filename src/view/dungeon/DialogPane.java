@@ -323,6 +323,10 @@ gp.add(t1, 1, 3,4,4);
 			money.setText(Integer.toString(GameLogic.hero.getMoney()) + " g");
 		});
 		
+		buy.setOnMouseReleased((MouseEvent e) -> {
+			
+		});
+		
 		this.getChildren().add(gp);
 	}
 
@@ -334,7 +338,6 @@ gp.add(t1, 1, 3,4,4);
 		close.setOnMouseClicked((MouseEvent e) -> {
 			scene.toDungeon();
 		});
-
 		this.getChildren().add(close);
 	}
 
@@ -357,7 +360,6 @@ gp.add(t1, 1, 3,4,4);
 			GameLogic.dungeon.addEntities(GameLogic.hero);
 			scene.toDungeon();
 		});
-
 		this.getChildren().addAll(buyBack, close);
 	}
 }
