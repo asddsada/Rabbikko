@@ -2,6 +2,7 @@ package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
 import logic.ForceManeger;
+import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Hero;
@@ -22,9 +23,8 @@ public class Strength extends Attribute {
 			@Override
 			public void draw(GraphicsContext gc) {
 				// attack effect?
+//				if (heroWeapon.getAttackTime() > 0)
 				gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-				if (heroWeapon.getAttackTime() > 0)
-					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 			}
 
 			@Override
