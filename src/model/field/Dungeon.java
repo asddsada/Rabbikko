@@ -27,7 +27,7 @@ public class Dungeon extends Field {
 	public static MonsterDen monsterDen;
 	private int lvl;
 	private static int lvlChangetimer;
-	private static final int CHANGE_TIME_MAX = 500;
+	private static final int CHANGE_TIME_MAX = 400;
 
 	public Dungeon() {
 		super(RenderableHolder.dungeonBg, SceneManeger.WIDGTH, SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT,
@@ -35,6 +35,7 @@ public class Dungeon extends Field {
 		this.lvl = 1;
 		this.z = -99999;
 		monsterDen = new MonsterDen();
+		lvlChangetimer=CHANGE_TIME_MAX;
 	}
 
 	public boolean isInBoarder(Entity e, double x, double y) {
@@ -49,7 +50,7 @@ public class Dungeon extends Field {
 			gc.setFill(Color.BLACK);
 			gc.fillRect(0, height / 2 - 50, width, 100);
 			gc.setFill(Color.WHITE);
-			gc.fillText(Double.toString(lvlChangetimer / 100), width / 2, height / 2);
+			gc.fillText("Level "+lvl+" "+Double.toString(lvlChangetimer / 100), width / 2, height / 2);
 		}
 	}
 
@@ -76,16 +77,21 @@ public class Dungeon extends Field {
 				SceneManeger.dungeonScene.toDialog(4); // dead
 			}else entities_holder.remove(e);
 		}
-		if (entities_holder.size() == 1 && entities_holder.contains(GameLogic.hero))
-			upLevel(1);
+		if (isLevelClear())
+			upLevel();
+		if(lvlChangetimer>0) lvlChangetimer--;
+	}
+	
+	public boolean isLevelClear() {
+		return (entities_holder.size() == 1 && entities_holder.contains(GameLogic.hero) && !monsterDen.isGenerate());
 	}
 
-	private void upLevel(int i) {
+	private void upLevel() {
 		if (lvlChangetimer == 0) {
 			lvl++;
 			lvlChangetimer = CHANGE_TIME_MAX;
 		}
-		lvlChangetimer--;
+		
 	}
 
 	public void restart() {

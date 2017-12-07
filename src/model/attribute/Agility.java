@@ -11,5 +11,11 @@ public class Agility extends Attribute{
 		
 	}
 
+	@Override
+	public void update(int direction, double x, double y) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

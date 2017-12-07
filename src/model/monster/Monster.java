@@ -18,6 +18,7 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 	private int timidParaneter;
 	private int persistentParameter;
 	private int eyesight;
+	private int bounty;
 	private int rand;
 	private boolean struct;
 
@@ -29,10 +30,12 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 
 	@Override
 	public void update() {
-		super.update();
-		if (isAlive && dmgTimer == 0) {
+		super.update();	
+		if (!isAlive) GameLogic.hero.earnMoney(bounty);
+		else if (isAlive && dmgTimer == 0) {
+			rand = RandomUtility.randomInt(0, 100);
 			
-			move(RandomUtility.dirctionRand(this.direction));
+			move(RandomUtility.dirctionRand(rand,this.direction));
 			if(isBlock(pos.x,pos.y)) struct=true;
 			else struct =false;
 			this.atkType.update(this.direction, this.pos.x, this.pos.y);

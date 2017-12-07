@@ -118,10 +118,10 @@ public class RenderableHolder {
 	public void add(IRenderable entity) {
 		// System.out.println("add "+entity.getClass().getSimpleName());
 		entities.add(entity);
-		Collections.sort(entities, comparator);
 	}
 
 	public void sort() {
+		
 		Collections.sort(entities, comparator);
 	}
 	
@@ -146,5 +146,9 @@ public class RenderableHolder {
 
 	public List<IRenderable> getEntities() {
 		return entities;
+	}
+
+	public int size() {
+		return entities.size();
 	}
 }

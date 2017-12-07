@@ -31,7 +31,7 @@ public class Main extends Application {
 		isGameRunning=false;
 		System.out.println("called");
 		DungeonMain.stop();
-		ForceManeger.pauseForceRule();
+		GameLogic.dungeon.monsterDen.stop();
 		Platform.exit();
 	}
 

@@ -140,5 +140,10 @@ public class Hero extends DungeonableEntity<Attribute> {
 	
 	public void useMoney(int i) {
 		money -= i;
+		if(money<0) money=0;
+	}
+	
+	public void earnMoney(int i) {
+		money += i;
 	}
 }
