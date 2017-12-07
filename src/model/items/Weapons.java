@@ -4,6 +4,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import logic.GameLogic;
 import model.GameObject;
+import model.attribute.Agility;
+import model.attribute.Intelligence;
+import model.attribute.Strength;
 import model.entity.Entity;
 import model.entity.Hero;
 import model.field.Dungeon;
@@ -26,7 +29,7 @@ public class Weapons extends GameObject implements Useable {
 		this.amount = 0;
 		attackTime = 0;
 		this.visible = false;
-		this.atkTimeMax = 2;
+		this.atkTimeMax = 10;
 	}
 
 	public void held() {
@@ -58,7 +61,7 @@ public class Weapons extends GameObject implements Useable {
 
 	@Override
 	public void use() {
-		attackTime = atkTimeMax;
+		if(attackTime==0)attackTime = atkTimeMax;
 		// System.out.println("use weapon");
 	}
 
@@ -66,22 +69,44 @@ public class Weapons extends GameObject implements Useable {
 	public void draw(GraphicsContext gc) {
 		if (GameLogic.hero.isAlive()) {
 			if (attackTime == 0) {
-				if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
-					gc.drawImage(imgWeapon,pos.x-getWidth()*2.5,pos.y-getHeight()/2);
-				}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
-					gc.drawImage(imgWeapon,pos.x+getWidth()*2,pos.y-getHeight()/2);
-				}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
-					gc.drawImage(imgWeapon,pos.x-getWidth()*1.5,pos.y-getHeight()/2);
-				}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
-					gc.drawImage(imgWeapon,pos.x+getWidth(),pos.y-getHeight()/2);
+				if (GameLogic.hero.getAtkType() instanceof Strength) {
+					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
+						gc.drawImage(imgWeapon,pos.x-getWidth()*2.5,pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
+						gc.drawImage(imgWeapon,pos.x+getWidth()*1.75,pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
+						gc.drawImage(imgWeapon,pos.x-getWidth()*1.5,pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
+						gc.drawImage(imgWeapon,pos.x+getWidth(),pos.y-getHeight()/2);
+					}
+				}
+				else if (GameLogic.hero.getAtkType() instanceof Agility) {
+					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
+						gc.drawImage(imgWeapon,pos.x-getWidth()*2.5,pos.y-getHeight()/4);
+					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
+						gc.drawImage(RenderableHolder.bow3,pos.x+getWidth()*1.2,pos.y-getHeight()/4);
+					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
+						gc.drawImage(imgWeapon,pos.x-getWidth()*1.5,pos.y-getHeight()/4);
+					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
+						gc.drawImage(RenderableHolder.bow3,pos.x+getWidth()/1.5,pos.y-getHeight()/4);
+					}
+				}
+				else if (GameLogic.hero.getAtkType() instanceof Intelligence) {
+					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
+						gc.drawImage(imgWeapon,pos.x-getWidth()*2.5,pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
+						gc.drawImage(imgWeapon,pos.x+getWidth()*1.75,pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
+						gc.drawImage(imgWeapon,pos.x-getWidth()*1.5,pos.y-getHeight()/2);
+					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
+						gc.drawImage(imgWeapon,pos.x+getWidth(),pos.y-getHeight()/2);
+					}
 				}
 			}
 			else {
 				// swing rotate
 				// attack time == max/2 ,should go down
 				// then go up and such
-				
-				attackTime--;
 			}
 		}
 	}
@@ -121,5 +146,8 @@ public class Weapons extends GameObject implements Useable {
 			this.pos.x = GameLogic.hero.getX() + GameLogic.hero.getWidth() + (getWidth());
 
 		this.pos.y = GameLogic.hero.getY() + 30;
+		if(attackTime>0) attackTime--;
+		if(GameLogic.hero.getDirection()==Entity.LEFT) this.z=GameLogic.hero.getZ()-1;
+		else this.z=GameLogic.hero.getZ()+1;
 	}
 }
