@@ -10,7 +10,7 @@ public abstract class Item implements Useable{
 	protected int amount;
 	
 	public abstract boolean isBuyable();
-//	public abstract boolean isUsed();
+	public abstract boolean isUsable();
 	
 	public int getAmount() {
 		return amount;

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import javafx.scene.control.Button;
@@ -24,8 +25,8 @@ public class Inventory {
 	}
 	
 	public void add(int i) {
-		bagCapacity++;
 		BAG[i].add();
+		bagCapacity++;
 	}
 	
 	public boolean isFull() {

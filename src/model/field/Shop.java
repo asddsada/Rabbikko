@@ -21,13 +21,29 @@ public class Shop {
 		
 	}
 	
-	//Not completed
 	public void buy(int index) {
-		Hero.inventory.add(index);
-	}
-	
-	//Not completed
-	public boolean canBuy(Useable item) {		
-		return true;
+		if (Inventory.getBag()[index] instanceof Item) {
+			if (((Item)Inventory.getBag()[index]).isBuyable()) {
+				Hero.useMoney(((Item)Inventory.getBag()[index]).getPrice());
+				Hero.inventory.add(index);
+			}
+			else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setContentText("Cannot Buy item , Check your inventory or money");
+				alert.setHeaderText("Shop Error");
+				alert.showAndWait();
+			}
+		}
+		else if (Inventory.getBag()[index] instanceof Weapons) {
+			if (((Weapons)Inventory.getBag()[index]).isBuyable()) {
+				Hero.useMoney(((Weapons)Inventory.getBag()[index]).getPrice());
+				Hero.inventory.add(index);
+			}
+			else {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setContentText("Cannot Buy item , Check your inventory or money");
+				alert.showAndWait();
+			}
+		}
 	}
 }

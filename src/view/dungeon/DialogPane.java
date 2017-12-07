@@ -21,11 +21,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
+import model.GameObject;
 import model.entity.Hero;
 import model.field.Navigation;
 import model.field.Shop;
 import model.items.Health;
 import model.items.Inventory;
+import model.items.Item;
 import model.items.Mana;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
@@ -67,9 +69,6 @@ public class DialogPane extends VBox {
 		textField.setMaxWidth(SceneManeger.WIDGTH/3);
 		textField.setPrefHeight(SceneManeger.HEIGHT/10);
 		textField.setFont(Font.font("Castellar",20));
-		
-		//set textfiled style
-		textField.setStyle("-fx-border-color: transparent;");
 		textField.setStyle("-fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1");
 		
 		//press esc to clear textfiled
@@ -78,12 +77,8 @@ public class DialogPane extends VBox {
 				textField.clear();
 			}
 		});
-		
-        ImageView okButton = new ImageView(RenderableHolder.dialogBtnImage);
-       
         Button okBtn = new Button("OK");
         okBtn.setFont(Font.font("Castellar",25));
-        
         
 		this.getChildren().addAll(head,sub,textField,okBtn);
 		
@@ -108,7 +103,6 @@ public class DialogPane extends VBox {
 //			textField.setPromptText("Please enter your name!!!");
 //		}
 //		else {
-			
 			Navigation.setName(textField.getText().trim());
 			scene.toDungeon();
 //		}
@@ -141,7 +135,7 @@ public class DialogPane extends VBox {
 		gp.add(close,2,13);
 		return gp;
 	}
-
+	
 	public void inventory() {
 		// TODO Auto-generated method stub
 		defaultDraw(scene, RenderableHolder.inven);
@@ -155,7 +149,7 @@ public class DialogPane extends VBox {
 		t3.setFill(Color.ALICEBLUE);
 		Button use = new Button("USE");
 		use.setStyle("-fx-color: red;-fx-border: none");
-		
+
 		gp.add(t1, 1, 3,4,4);
 		gp.add(t2, 1, 6,4,4);
 		gp.add(t3, 1, 9,2,2);
@@ -163,9 +157,7 @@ public class DialogPane extends VBox {
 		
 		potion1.setOnMouseClicked((MouseEvent e) -> {
 			if (((Health)Inventory.getBag()[0]).getAmount() != 0) {
-				use.setOnMouseClicked((MouseEvent event0) -> {
-					((Health)Inventory.getBag()[0]).use();
-				});
+				use.setId("0");
 			}
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : 500 g");
@@ -174,9 +166,8 @@ public class DialogPane extends VBox {
 		
 		potion2.setOnMouseClicked((MouseEvent e) -> {
 			if (((Mana)Inventory.getBag()[1]).getAmount() != 0) {
-				use.setOnMouseClicked((MouseEvent event1) -> {
-					((Mana)Inventory.getBag()[1]).use();
-				});
+				use.setId("1");
+				t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
 			}
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : 500 g");
@@ -185,9 +176,7 @@ public class DialogPane extends VBox {
 		
 		sword.setOnMouseClicked((MouseEvent e) -> {
 			if (((Weapons)Inventory.getBag()[2]).getAmount() == 1) {
-				use.setOnMouseClicked((MouseEvent event0) -> {
-					((Weapons)Inventory.getBag()[2]).use();
-				});
+				use.setId("2");
 			}
 			t1.setText("Sword\n");
 			t2.setText("Price : 5000 g");
@@ -196,9 +185,7 @@ public class DialogPane extends VBox {
 		
 		bow.setOnMouseClicked((MouseEvent e) -> {
 			if (((Weapons)Inventory.getBag()[3]).getAmount() == 1) {
-				use.setOnMouseClicked((MouseEvent event0) -> {
-					((Weapons)Inventory.getBag()[3]).use();
-				});
+				use.setId("3");
 			}
 			t1.setText("Bow\n");
 			t2.setText("Price : 5000 g");
@@ -207,14 +194,24 @@ public class DialogPane extends VBox {
 		
 		staff.setOnMouseClicked((MouseEvent e) -> {
 			if (((Weapons)Inventory.getBag()[4]).getAmount() == 1) {
-				use.setOnMouseClicked((MouseEvent event0) -> {
-					((Weapons)Inventory.getBag()[4]).use();
-				});
+				use.setId("4");
 			}
 			t1.setText("Staff\n");
 			t2.setText("Price : 5000 g");
 			t3.setText("Amount : "  + ((Weapons)Inventory.getBag()[4]).getAmount());
 		});
+		
+		use.setOnMouseClicked((MouseEvent event0)->{
+			if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Item && ((Item)Inventory.getBag()[Integer.valueOf(use.getId())]).isUsable()) {
+				((Item)Inventory.getBag()[Integer.valueOf(use.getId())]).use();
+				t3.setText("Amount : " + ((Item)Inventory.getBag()[Integer.valueOf(use.getId())]).getAmount());
+			}
+			else if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Weapons) {
+				((Weapons)(Inventory.getBag()[Integer.valueOf(use.getId())])).use();
+				t3.setText("Amount : " + ((Weapons)Inventory.getBag()[Integer.valueOf(use.getId())]).getAmount());
+			}
+		});
+		
 		this.getChildren().add(gp);
 	}
 
@@ -228,6 +225,7 @@ public class DialogPane extends VBox {
 		t1.setFill(Color.ALICEBLUE);
 		Text t2 = new Text();
 		t2.setFill(Color.ALICEBLUE);
+		
 		Button buy = new Button("BUY");
 		buy.setStyle("-fx-color: red;-fx-border: none");
 		
@@ -236,34 +234,37 @@ public class DialogPane extends VBox {
 		gp.add(buy, 3, 9,2,2);
 		
 		potion1.setOnMouseClicked((MouseEvent e) -> {
-			buy.setOnMouseClicked((MouseEvent event0)->{
-				shop.buy(0);
-			});
+			buy.setId("0");
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : " + ((Health)Inventory.getBag()[0]).getPrice() + " g");
 		});
 		
 		potion2.setOnMouseClicked((MouseEvent e) -> {
-			buy.setOnMouseClicked((MouseEvent event1)->{
-				shop.buy(1);
-			});
+			buy.setId("1");
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : " + ((Mana)Inventory.getBag()[1]).getPrice() + " g");
 		});
 		
 		sword.setOnMouseClicked((MouseEvent e) -> {
+			buy.setId("2");
 			t1.setText("Sword\n");
 			t2.setText("Price : " + ((Weapons)Inventory.getBag()[2]).getPrice() + " g");
 		});
-		
+	
 		bow.setOnMouseClicked((MouseEvent e) -> {
+			buy.setId("3");
 			t1.setText("Bow\n");
 			t2.setText("Price : " + ((Weapons)Inventory.getBag()[3]).getPrice() + " g");
 		});
 		
 		staff.setOnMouseClicked((MouseEvent e) -> {
+			buy.setId("4");
 			t1.setText("Staff\n");
 			t2.setText("Price : " + ((Weapons)Inventory.getBag()[4]).getPrice() + " g");
+		});
+		
+		buy.setOnMouseClicked((MouseEvent event0)->{
+			shop.buy(Integer.valueOf(buy.getId()));
 		});
 		
 		this.getChildren().add(gp);

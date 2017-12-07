@@ -4,6 +4,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import logic.GameLogic;
+import model.entity.Hero;
 import sharedObj.RenderableHolder;
 
 public class Health extends Item{
@@ -18,13 +19,22 @@ public class Health extends Item{
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
-		GameLogic.hero.healHp(POINT);
-		amount--;
+		if (isUsable()) {
+			GameLogic.hero.healHp(POINT);
+			amount--;
+		}
 	}
 
 	@Override
 	public boolean isBuyable() {
 		// TODO Auto-generated method stub
-		return true;
+		if (!Hero.inventory.isFull() && Hero.getMoney()>=this.price)  return true;
+		return false;
+	}
+
+	@Override
+	public boolean isUsable() {
+		// TODO Auto-generated method stub
+		return this.amount > 0;
 	}
 }

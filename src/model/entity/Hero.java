@@ -29,7 +29,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 				50, 1000, 30, atkType);
 		this.maxMp = 1000;
 		this.currentMp = 0;
-		this.money = 0;
+		this.money = 10000;
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
 		this.inventory = new Inventory();
@@ -123,6 +123,9 @@ public class Hero extends DungeonableEntity<Attribute> {
 		return money;
 	}
 	
+	public static void useMoney(int i) {
+		money -= i;
+	}
 	
 
 }

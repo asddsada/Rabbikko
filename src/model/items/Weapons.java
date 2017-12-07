@@ -20,13 +20,14 @@ public class Weapons extends GameObject implements Useable {
 		super(0, 0, 100);
 		this.price = price;
 		this.imgWeapon = img;
-		this.imgIcon=imgIcon;
+		this.imgIcon = imgIcon;
 		this.amount = 0;
 		attackTime=0;
 	}
 
 	public boolean isBuyable() {
-		return amount==0;
+		if (amount == 0 && Hero.getMoney()>=this.price) return true;
+		return false;
 	}
 	
 	public int getPrice() {
@@ -77,6 +78,5 @@ public class Weapons extends GameObject implements Useable {
 		else this.pos.x = GameLogic.hero.getX()+GameLogic.hero.getWidth()+(getWidth()) ;
 		
 		this.pos.y = GameLogic.hero.getY()+30 ;
-		
 	}
 }

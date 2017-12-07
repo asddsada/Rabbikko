@@ -73,7 +73,7 @@ public class Navigation extends Field {
 		//money
 		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",20));
-		gc.fillText(Integer.toString(Hero.getMoney()),890,sceneHeight-fontHieght-7);
+		gc.fillText(Integer.toString(Hero.getMoney()),880,sceneHeight-fontHieght-7);
 		
 		//Hp and Mp
 		int maxH = GameLogic.hero.getMaxHp();

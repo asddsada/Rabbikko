@@ -15,7 +15,6 @@ public class DungeonMain {
 	private static DungeonCanvas canvas;
 	private static GameLogic logic;
 	private static ForceManeger forceManager;
-	
 
 	public DungeonMain() {
 		
