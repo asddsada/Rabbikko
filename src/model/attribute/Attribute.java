@@ -7,6 +7,7 @@ import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
+import model.entity.Hero;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.Pair;
@@ -31,6 +32,7 @@ public abstract class Attribute {
 	}
 	public void update(int direction, double x, double y) {		
 		if(attackTime>0) attackTime--;
+		if(this.owner.isDestroyed()) this.attackObj.setVisible(false);
 	};
 
 	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,

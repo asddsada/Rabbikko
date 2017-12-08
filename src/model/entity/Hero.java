@@ -38,6 +38,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
+		if(dmgTimer%5==0)
 		super.draw(gc);
 	}
 
@@ -52,6 +53,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	protected boolean isBlock(double x, double y) {
+		if(struct) return false;
 		if(dmgTimer!=0) return false;
 		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
 		for (DungeonableEntity<Attribute> other : inArea) {
@@ -79,14 +81,15 @@ public class Hero extends DungeonableEntity<Attribute> {
 			if (InputUtility.isKeyPressed(KeyCode.SPACE))
 				attack();
 			
-			if (currentHp != getMaxHp())
-				healHp(0.15);
-			if (currentMp != getMaxMp())
-				healMp(0.3);
+			if(isBlock(pos.x,pos.y)) struct=true;
+			else struct =false;			
+			if (currentHp != getMaxHp())healHp(0.15);
+			if (currentMp != getMaxMp())healMp(0.3);
+			
+		}
+		if(isAlive) {
 			this.atkType.getHeroWeapon().update(direction, pos.x, pos.y);
 			this.atkType.update(this.direction, this.pos.x, this.pos.y);
-		} else if (isAlive) {
-			dmgTimer = dmgTimer == 0 ? dmgTimer - 1 : 0;
 		}
 //		System.out.println(atkType.getClass().getSimpleName());
 	}
