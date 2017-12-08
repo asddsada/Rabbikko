@@ -8,6 +8,7 @@ import Main.Main;
 import javafx.scene.input.KeyCode;
 import logic.GameLogic;
 import model.GameObject;
+import model.attribute.Agility;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
@@ -15,6 +16,8 @@ import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.entity.Hero;
 import model.field.Dungeon;
+import model.items.Inventory;
+import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.RandomUtility;
@@ -103,13 +106,18 @@ public class MonsterDen {
 					.forEach(GameObject::destroyed);
 			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
 					.forEach(Dungeon::destroyEntities);
+		}else if(InputUtility.isKeyPressed(KeyCode.K)) { //instance buy staff
+			((Weapons) (Inventory.getBag()[4])).setWeapon(); 
+		}else if(InputUtility.isKeyPressed(KeyCode.J)) { //instance buy bow
+			((Weapons) (Inventory.getBag()[3])).setWeapon(); 
+		}else if(InputUtility.isKeyPressed(KeyCode.M)) { //money hag
+			GameLogic.hero.earnMoney(999999);
 		}
-		// System.out.println(maxMonster);
 	}
 
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, SecurityException {
-		Dungeon.addEntities(new Monster(280 + 150, 100, RenderableHolder.monsterImage02, 0, 1, Entity.FRONT, 5, 100, 10,
+		Dungeon.addEntities(new Monster(280 + 150, 100, RenderableHolder.monsterImage02, 0, 1, 50, 5, 100, 10,
 				20, new Strength()));
 		monsterCount++;
 	}

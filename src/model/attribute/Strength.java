@@ -6,7 +6,7 @@ import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
-import model.entity.Hero;
+import model.items.Inventory;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.Pair;
@@ -14,7 +14,7 @@ import view.SceneManeger;
 
 public class Strength extends Attribute {
 	public Strength() {
-		heroWeapon = (Weapons) Hero.inventory.getBag()[2];
+		heroWeapon = (Weapons) Inventory.getBag()[2];
 		attackMultiply = 1.2;
 		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
 		attackSpeed = 0.5;

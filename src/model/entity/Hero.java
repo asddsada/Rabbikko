@@ -25,7 +25,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 				50, 1000, 30, atkType);
 		this.maxMp = 1000;
 		this.currentMp = 0;
-		this.money = 10000;
+		this.money = 0;
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
 		Hero.inventory = new Inventory();
@@ -85,9 +85,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		} else if (isAlive) {
 			dmgTimer = dmgTimer == 0 ? dmgTimer - 1 : 0;
 		}
-
-		// System.out.println(getDamageTake()[0]+" "+getDamageTake()[1]+"
-		// "+getDamageTake()[2]+" "+getDamageTake()[3]+" ");
+//		System.out.println(atkType.getClass().getSimpleName());
 	}
 
 	public void healHp(double i) {

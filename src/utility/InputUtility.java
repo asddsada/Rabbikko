@@ -15,6 +15,7 @@ public class InputUtility {
 	public static boolean mouseOnCanvas = false;
 	private static Set<KeyCode> keyPressed = new HashSet<>();
 	private static boolean mousePressed = false;
+	private static int mouseClick = 0;
 
 	// keyboard setter
 	private static void addKey(KeyCode code) {
@@ -40,17 +41,25 @@ public class InputUtility {
 		return mousePressed;
 	}
 
+	public static boolean isMouseClick() {
+		if(mousePressed) mouseClick++;
+		else mouseClick=0;
+		return mouseClick == 1;
+	}
+
 	// set common Listener on scene
 	public static void bindListeners(Scene scene) {
 		scene.setOnKeyPressed((KeyEvent e) -> addKey(e.getCode()));
 		scene.setOnKeyReleased((KeyEvent e) -> removeKey(e.getCode()));
 		scene.setOnMousePressed((MouseEvent e) -> {
-			if (e.getButton() == MouseButton.PRIMARY)
+			if (e.getButton() == MouseButton.PRIMARY) {
 				mousePressed = true;
+			}
 		});
 		scene.setOnMouseReleased((MouseEvent e) -> {
-			if (e.getButton() == MouseButton.PRIMARY)
+			if (e.getButton() == MouseButton.PRIMARY) {
 				mousePressed = false;
+			}
 		});
 	}
 

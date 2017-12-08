@@ -2,11 +2,10 @@ package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
 import logic.ForceManeger;
-import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
-import model.entity.Hero;
+import model.items.Inventory;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.Pair;
@@ -14,7 +13,7 @@ import view.SceneManeger;
 
 public class Intelligence extends Attribute{
 	public Intelligence() {
-		heroWeapon = (Weapons) Hero.inventory.getBag()[4];
+		heroWeapon = (Weapons) Inventory.getBag()[4];
 		attackMultiply = 1.2;
 		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
 		attackSpeed = 0.5;
@@ -25,15 +24,15 @@ public class Intelligence extends Attribute{
 
 			@Override
 			public void draw(GraphicsContext gc) {
-				if (heroWeapon.getAttackTime() > 0) {
+				if (owner.getAtkType().getAttackTime()  > 0) {
 					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
+					if(owner.getDirection()==Entity.RIGHT) {	
 						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()/4,pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
-					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
+					}else if(owner.getDirection()==Entity.LEFT) {	
 						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()*4,pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
-					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
+					}else if(owner.getDirection()==Entity.BACK) {	
 						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth(),pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
-					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
+					}else if(owner.getDirection()==Entity.FRONT) {	
 						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()*1.5,pos.y-getHeight()/2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}
 				}
@@ -41,13 +40,13 @@ public class Intelligence extends Attribute{
 
 			@Override
 			public double getWidth() {
-				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y * 0.7
+				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y * 0.7
 						: attackRange.x;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5
+				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5
 						: attackRange.y * 0.6;
 			}
 		};
@@ -65,17 +64,17 @@ public class Intelligence extends Attribute{
 	public void update(int direction, double x, double y) {
 		// TODO Auto-generated method stub
 		if (direction == Entity.RIGHT) {
-			this.attackObj.setX(x + GameLogic.hero.getWidth() * 2 / 3);
-			this.attackObj.setY(y + GameLogic.hero.getHeight() / 3);
+			this.attackObj.setX(x + owner.getWidth() * 2 / 3);
+			this.attackObj.setY(y + owner.getHeight() / 3);
 		} else if (direction == Entity.LEFT) {
-			this.attackObj.setX(x + GameLogic.hero.getWidth() / 3 - attackRange.x);
-			this.attackObj.setY(y + GameLogic.hero.getHeight() / 3);
+			this.attackObj.setX(x + owner.getWidth() / 3 - attackRange.x);
+			this.attackObj.setY(y + owner.getHeight() / 3);
 		} else if (direction == Entity.BACK) {
-			this.attackObj.setX(x + GameLogic.hero.getWidth() / 6);
-			this.attackObj.setY(y - attackRange.y + GameLogic.hero.getHeight() * 5 / 6);
+			this.attackObj.setX(x + owner.getWidth() / 6);
+			this.attackObj.setY(y - attackRange.y + owner.getHeight() * 5 / 6);
 		} else if (direction == Entity.FRONT) {
-			this.attackObj.setX(x + GameLogic.hero.getWidth() / 6);
-			this.attackObj.setY(y + GameLogic.hero.getHeight() * 2 / 3);
+			this.attackObj.setX(x + owner.getWidth() / 6);
+			this.attackObj.setY(y + owner.getHeight() * 2 / 3);
 		}
 	}
 

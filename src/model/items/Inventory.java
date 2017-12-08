@@ -1,24 +1,13 @@
 package model.items;
 
-import java.util.ArrayList;
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import model.entity.Hero;
-import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
-import view.SceneManeger;
-import javafx.scene.control.Button;
-import logic.GameLogic;
-import model.field.Shop;
 
 public class Inventory {
 	private static final Useable[] BAG = {
 			new Health(),new Mana(),
-			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword),
-			new	Weapons(500, RenderableHolder.bow2, RenderableHolder.bow),
-			new	Weapons(500, RenderableHolder.staff2, RenderableHolder.staff),
+			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword,1),
+			new	Weapons(500, RenderableHolder.bow2, RenderableHolder.bow,2),
+			new	Weapons(500, RenderableHolder.staff2, RenderableHolder.staff,3),
 		};
 	public int bagCapacity;
 	
@@ -37,10 +26,6 @@ public class Inventory {
 			return true;
 		}
 		return false;
-	}
-	
-	public void update() {
-		
 	}
 
 	public static Useable[] getBag() {

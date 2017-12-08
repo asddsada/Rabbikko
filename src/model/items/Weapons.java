@@ -1,5 +1,6 @@
 package model.items;
 
+import Main.DungeonMain;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import logic.GameLogic;
@@ -15,21 +16,34 @@ import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 
 public class Weapons extends GameObject implements Useable {
+	public static final int SWORD = 1;
+	public static final int BOW = 2;
+	public static final int STAFF = 3;
 	private int price;
 	private Image imgWeapon;
 	private int amount;
+	private int type;
 
-	public Weapons(int price, Image img, Image imgIcon) {
+	public Weapons(int price, Image img, Image imgIcon,int type) {
 		super(0, 0, 100);
 		this.price = price;
 		this.imgWeapon = img;
 		this.amount = 0;
 		this.visible = false;
+		this.type=type;
 	}
 
 	public void held() {
 		this.visible = true;
-		RenderableHolder.getInstance().add(this);
+		RenderableHolder.getInstance().add(this);		
+	}
+	
+	public void setWeapon() {
+		if(type==SWORD) GameLogic.hero.setAtktype(new Strength());
+		else if(type==BOW) GameLogic.hero.setAtktype(new Agility());
+		else if(type==STAFF) GameLogic.hero.setAtktype(new Intelligence());
+		this.update(GameLogic.hero.getDirection(), GameLogic.hero.getX(), GameLogic.hero.getY());
+		DungeonMain.getCanvas().canvasUpdate();
 	}
 
 	public boolean isBuyable() {

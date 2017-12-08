@@ -156,29 +156,29 @@ public class DialogPane extends VBox {
 		money.setEditable(false);
 		money.setPrefSize(80, 20);
 
-gp.add(t1, 1, 3,4,4);
-		gp.add(t2, 1, 6,4,4);
-		gp.add(t3, 1, 9,2,2);
-		gp.add(use, 3, 9,2,2);
-		gp.add(money,3,12,2,2);
+		gp.add(t1, 1, 3, 4, 4);
+		gp.add(t2, 1, 6, 4, 4);
+		gp.add(t3, 1, 9, 2, 2);
+		gp.add(use, 3, 9, 2, 2);
+		gp.add(money, 3, 12, 2, 2);
 
 		potion1.setOnMouseClicked((MouseEvent e) -> {
 			use.setVisible(false);
-			t3.setText("Amount : "+ ((Health)Inventory.getBag()[0]).getAmount());
+			t3.setText("Amount : " + ((Health) Inventory.getBag()[0]).getAmount());
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : 500 g");
 		});
 
 		potion2.setOnMouseClicked((MouseEvent e) -> {
 			use.setVisible(false);
-			t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
+			t3.setText("Amount : " + ((Mana) Inventory.getBag()[1]).getAmount());
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : 500 g");
 		});
 
 		sword.setOnMouseClicked((MouseEvent e) -> {
 			use.setVisible(true);
-			if (((Weapons)Inventory.getBag()[2]).getAmount() == 1) {
+			if (((Weapons) Inventory.getBag()[2]).getAmount() == 1) {
 				use.setDisable(false);
 				use.setId("2");
 			} else {
@@ -188,12 +188,12 @@ gp.add(t1, 1, 3,4,4);
 			t3.setText("Amount : " + ((Weapons) Inventory.getBag()[2]).getAmount());
 			t1.setText("Sword\n");
 			t2.setText("Price : 5000 g");
-//			t3.setText("Amount : " + ((Weapons)Inventory.getBag()[2]).getAmount());
+			// t3.setText("Amount : " + ((Weapons)Inventory.getBag()[2]).getAmount());
 		});
 
 		bow.setOnMouseClicked((MouseEvent e) -> {
 			use.setVisible(true);
-			if (((Weapons)Inventory.getBag()[3]).getAmount() == 1) {
+			if (((Weapons) Inventory.getBag()[3]).getAmount() == 1) {
 				use.setDisable(false);
 				use.setId("3");
 			} else {
@@ -207,7 +207,7 @@ gp.add(t1, 1, 3,4,4);
 
 		staff.setOnMouseClicked((MouseEvent e) -> {
 			use.setVisible(true);
-			if (((Weapons)Inventory.getBag()[4]).getAmount() == 1) {
+			if (((Weapons) Inventory.getBag()[4]).getAmount() == 1) {
 				use.setDisable(false);
 				use.setId("4");
 			} else {
@@ -225,7 +225,8 @@ gp.add(t1, 1, 3,4,4);
 				((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).use();
 				t3.setText("Amount : " + ((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).getAmount());
 			} else if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Weapons) {
-				((Weapons) (Inventory.getBag()[Integer.valueOf(use.getId())])).use();
+				((Weapons) (Inventory.getBag()[Integer.valueOf(use.getId())])).setWeapon();
+				;
 				t3.setText("Amount : " + ((Weapons) Inventory.getBag()[Integer.valueOf(use.getId())]).getAmount());
 			}
 			// else if (use.getId() == "") {
@@ -254,14 +255,14 @@ gp.add(t1, 1, 3,4,4);
 		money.setText(Integer.toString(GameLogic.hero.getMoney()) + " g");
 		money.setEditable(false);
 		money.setPrefSize(80, 20);
-		
+
 		Button buy = new Button("BUY");
 		buy.setStyle("-fx-color: red;-fx-border: none");
-		
-		gp.add(t1, 1, 3,4,4);
-		gp.add(t2, 1, 5,4,4);
-		gp.add(buy, 3, 9,2,2);
-		gp.add(money,3,12,2,2);
+
+		gp.add(t1, 1, 3, 4, 4);
+		gp.add(t2, 1, 5, 4, 4);
+		gp.add(buy, 3, 9, 2, 2);
+		gp.add(money, 3, 12, 2, 2);
 
 		potion1.setOnMouseClicked((MouseEvent e) -> {
 			buy.setId("0");
@@ -299,7 +300,7 @@ gp.add(t1, 1, 3,4,4);
 			buy.setOnMouseReleased((MouseEvent e) -> {
 			});
 		});
-			
+
 		this.getChildren().add(gp);
 	}
 

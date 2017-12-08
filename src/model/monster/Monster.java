@@ -22,9 +22,10 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 	private int rand;
 	private boolean struct;
 
-	public Monster(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
+	public Monster(double x, double y, Image img, int row, int column, int bounty, int movespeed, int mass,
 			int maxHp, int baseAtk, Attribute atkType) {
 		super(x, y, img, row, column, Entity.FRONT, movespeed, mass, maxHp, baseAtk, atkType);
+		this.bounty=bounty;
 		this.race = DungeonableEntity.MONSTER;
 	}
 
