@@ -20,6 +20,7 @@ public class Mana extends Item {
 	public void use() {
 		// TODO Auto-generated method stub
 		if (isUsable()) {
+			RenderableHolder.heal.play();
 			GameLogic.hero.healMp(POINT);
 			amount--;
 		}

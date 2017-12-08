@@ -66,6 +66,8 @@ public class RenderableHolder {
 	// BGM
 	public static AudioClip clickSound;
 	public static AudioClip titleBgm;
+	public static AudioClip coin;
+	public static AudioClip heal;
 
 	static {
 		loadResource();
@@ -128,6 +130,8 @@ public class RenderableHolder {
 			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
 			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
+			coin = new AudioClip(ClassLoader.getSystemResource("snd/coin.mp3").toString());
+			heal = new AudioClip(ClassLoader.getSystemResource("snd/heal.wav").toString());
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();

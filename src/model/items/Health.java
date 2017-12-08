@@ -20,6 +20,7 @@ public class Health extends Item{
 	public void use() {
 		// TODO Auto-generated method stub
 		if (isUsable()) {
+			RenderableHolder.heal.play();
 			GameLogic.hero.healHp(POINT);
 			amount--;
 		}

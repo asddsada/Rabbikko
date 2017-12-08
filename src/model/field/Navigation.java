@@ -73,6 +73,7 @@ public class Navigation extends Field {
 		gc.drawImage(RenderableHolder.hpPotion,481, 571);
 		gc.drawImage(RenderableHolder.mpPotion, 541, 571);
 		
+		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",15));
 		gc.fillText(Integer.toString(((Item)Inventory.getBag()[0]).getAmount()), 481, 571);
 		gc.fillText(Integer.toString(((Item)Inventory.getBag()[1]).getAmount()), 541, 571);
@@ -81,12 +82,10 @@ public class Navigation extends Field {
 		double fontHieght = fontLoader.getFontMetrics(gc.getFont()).getLineHeight();
 		
 		//name 
-		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",25));
 		gc.fillText(name, BORDER_WIDTH, sceneHeight - BAR_HEIGHT * 3.5);
 		
 		//money
-		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",20));
 		gc.fillText(Integer.toString(GameLogic.hero.getMoney()),870,sceneHeight-fontHieght-10);
 		
@@ -123,11 +122,11 @@ public class Navigation extends Field {
 			SceneManeger.dungeonScene.toDialog(3);
 		}
 		else if (xPos >= 484 && xPos <= 527 && yPos >= 576 && yPos <= 615 && InputUtility.isMouseClick()) {
-			RenderableHolder.clickSound.play(100);
+//			RenderableHolder.clickSound.play(100);
 			Inventory.getBag()[0].use();
 		}
 		else if (xPos >= 545 && xPos <= 585 && yPos >= 576 && yPos <= 615 && InputUtility.isMouseClick()) {
-			RenderableHolder.clickSound.play(100);
+//			RenderableHolder.clickSound.play(100);
 			Inventory.getBag()[1].use();
 		}
 	}
