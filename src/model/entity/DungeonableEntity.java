@@ -26,6 +26,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 			int maxHp, int baseAtk, T atkType) {
 		super(x, y, img, row, column, direction, movespeed, mass);
 		this.atkType = atkType;
+		this.atkType.setOwner((DungeonableEntity<Attribute>) this);
 		this.baseAtk = baseAtk;
 		this.mass = mass;
 		this.maxHp = maxHp;
@@ -41,13 +42,14 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	}
 
 	public boolean attack() {
-		if (atkType.getHeroWeapon().getAttackTime() == 0) {
+		if (atkType.getAttackTime() == 0) {
 			ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(atkType.getAttackObj(),
 					atkType.getAttackObj().getX(), atkType.getAttackObj().getY());
 			if (inArea == null || inArea.size() <= 1)
 				return false;
 			for (DungeonableEntity<Attribute> other : inArea) {
 				if (other.hashCode() != this.hashCode() && this.race != other.race) {
+					atkType.use();
 					atkType.attack(this, other);
 					other.direction = ForceManeger.calculateDirection(this.direction);
 				}
@@ -92,8 +94,10 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
 	@Override
 	public void update() {
-		if (!isAlive || this.currentHp==0) 
-			Dungeon.destroyEntities(this);		
+		if (!isAlive || this.currentHp==0) {
+			Dungeon.destroyEntities(this);	
+			this.atkType.getAttackObj().setVisible(false);
+		}
 		this.atkType.update(this.direction, this.pos.x, this.pos.y);
 	}
 }

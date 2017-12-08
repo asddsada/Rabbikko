@@ -17,9 +17,7 @@ public class Weapons extends GameObject implements Useable {
 	private int price;
 	private Image imgWeapon;
 	private Image imgIcon;
-	private int amount;
-	private int attackTime;
-	private int atkTimeMax; // how many step swing should make
+	private int amount; // how many step swing should make
 
 	public Weapons(int price, Image img, Image imgIcon) {
 		super(0, 0, 100);
@@ -27,9 +25,7 @@ public class Weapons extends GameObject implements Useable {
 		this.imgWeapon = img;
 		this.imgIcon = imgIcon;
 		this.amount = 0;
-		attackTime = 0;
 		this.visible = false;
-		this.atkTimeMax = 10;
 	}
 
 	public void held() {
@@ -41,10 +37,6 @@ public class Weapons extends GameObject implements Useable {
 		if (amount == 0 && GameLogic.hero.getMoney() >= this.price)
 			return true;
 		return false;
-	}
-
-	public int getAtkTimeMax() {
-		return (int) (atkTimeMax / GameLogic.hero.getAtkType().getAttackSpeed());
 	}
 
 	public int getPrice() {
@@ -61,14 +53,13 @@ public class Weapons extends GameObject implements Useable {
 
 	@Override
 	public void use() {
-		if(attackTime==0)attackTime = atkTimeMax;
-		// System.out.println("use weapon");
+		GameLogic.hero.getAtkType().use();
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
 		if (GameLogic.hero.isAlive()) {
-			if (attackTime == 0) {
+			if (GameLogic.hero.getAtkType().getAttackTime() == 0) {
 				if (GameLogic.hero.getAtkType() instanceof Strength) {
 					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
 						gc.drawImage(imgWeapon,pos.x-getWidth()*2.5,pos.y-getHeight()/2);
@@ -122,10 +113,6 @@ public class Weapons extends GameObject implements Useable {
 		return 80;
 	}
 
-	public int getAttackTime() {
-		return attackTime;
-	}
-
 	public void update(int direction, double x, double y) {
 		if (direction == Entity.RIGHT) {
 			this.pos.x = x + GameLogic.hero.getWidth() + getWidth();
@@ -146,7 +133,6 @@ public class Weapons extends GameObject implements Useable {
 			this.pos.x = GameLogic.hero.getX() + GameLogic.hero.getWidth() + (getWidth());
 
 		this.pos.y = GameLogic.hero.getY() + 30;
-		if(attackTime>0) attackTime--;
 		if(GameLogic.hero.getDirection()==Entity.LEFT) this.z=GameLogic.hero.getZ()-1;
 		else this.z=GameLogic.hero.getZ()+1;
 	}

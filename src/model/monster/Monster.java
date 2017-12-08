@@ -34,7 +34,7 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		if (!isAlive) GameLogic.hero.earnMoney(bounty);
 		else if (isAlive && dmgTimer == 0) {
 			rand = RandomUtility.randomInt(0, 100);
-			
+			attack();
 			move(RandomUtility.randomByPercent(rand,this.direction,95));
 			if(isBlock(pos.x,pos.y)) struct=true;
 			else struct =false;

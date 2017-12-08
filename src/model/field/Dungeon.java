@@ -32,7 +32,7 @@ public class Dungeon extends Field {
 	public Dungeon() {
 		super(RenderableHolder.dungeonBg, SceneManeger.WIDGTH, SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT,
 				new Pair(0, 0));
-		this.lvl = 1;
+		this.lvl = 0;
 		this.z = -99999;
 		monsterDen = new MonsterDen();
 		lvlChangetimer=CHANGE_TIME_MAX;

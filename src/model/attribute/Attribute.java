@@ -6,6 +6,7 @@ import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.items.Weapons;
+import sharedObj.RenderableHolder;
 import utility.Pair;
 
 public abstract class Attribute {
@@ -17,12 +18,17 @@ public abstract class Attribute {
 	protected int hpRegen;
 	protected int mpRegen;
 	protected Weapons heroWeapon;
+	protected int attackTime;
+	protected int atkTimeMax;
+	protected DungeonableEntity<Attribute> owner;
 
 	public Attribute() {
-
+		attackTime = 0;
+		this.atkTimeMax = 10;
 	}
-
-	public abstract void update(int direction, double x, double y);
+	public void update(int direction, double x, double y) {
+		if(attackTime>0) attackTime--;
+	};
 
 	public abstract <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> dungeonableEntity,
 			DungeonableEntity<T2> other);
@@ -37,6 +43,10 @@ public abstract class Attribute {
 
 	public void setAttackObj(GameObject attackObj) {
 		this.attackObj = attackObj;
+	}
+	
+	public int getAtkTimeMax() {
+		return (int) (atkTimeMax / getAttackSpeed());
 	}
 
 	public double getAttackMultiply() {
@@ -61,5 +71,18 @@ public abstract class Attribute {
 
 	public int getMpRegen() {
 		return mpRegen;
+	}
+	
+	public int getAttackTime() {
+		return attackTime;
+	}
+	
+	public void setOwner(DungeonableEntity<Attribute> owner) {
+		this.owner = owner;
+		RenderableHolder.getInstance().add(getAttackObj());
+	}
+
+	public void use() {
+		if(attackTime==0)attackTime = getAtkTimeMax();
 	}
 }

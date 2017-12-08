@@ -130,8 +130,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 			this.atkType.getAttackObj().destroyed();
 		}
 		this.atkType = atkType;
+		this.atkType.setOwner(this);
 		this.atkType.getHeroWeapon().held();
-		RenderableHolder.getInstance().add(atkType.getAttackObj());
 	}
 
 	public int getMoney() {
