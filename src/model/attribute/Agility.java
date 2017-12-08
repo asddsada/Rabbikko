@@ -17,7 +17,7 @@ public class Agility extends Attribute {
 		heroWeapon = (Weapons) Inventory.getBag()[3];
 		attackMultiply = 1.2;
 		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
-		attackSpeed = 0.5;
+		attackSpeed = 2;
 		hpMultiply = 1.2;
 		hpRegen = 5;
 		mpRegen = 1;
@@ -55,7 +55,7 @@ public class Agility extends Attribute {
 	
 	@Override
 	public void update(int direction, double x, double y) {
-		// TODO Auto-generated method stub
+		super.update(direction, x, y);
 		if (direction == Entity.RIGHT) {
 			this.attackObj.setX(x + owner.getWidth() * 2 / 3);
 			this.attackObj.setY(y + owner.getHeight() / 3);

@@ -37,4 +37,9 @@ public class Health extends Item{
 		// TODO Auto-generated method stub
 		return this.amount > 0;
 	}
+
+	@Override
+	public void reset() {
+		this.amount=0;
+	}
 }

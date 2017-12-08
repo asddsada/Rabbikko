@@ -1,5 +1,6 @@
 package model.items;
 
+import logic.GameLogic;
 import sharedObj.RenderableHolder;
 
 public class Inventory {
@@ -13,7 +14,13 @@ public class Inventory {
 	
 	public Inventory() {
 		this.bagCapacity = 1;
-		add(2); //need 1 sword
+	}
+	
+	public void reset() {
+		this.bagCapacity = 1;
+		for(Useable i:BAG) {
+			if(GameLogic.hero.getAtkType().getHeroWeapon().hashCode()!=i.hashCode()) i.reset();
+		}
 	}
 	
 	public void add(int i) {
