@@ -326,7 +326,7 @@ gp.add(t1, 1, 3,4,4);
 			scene.toDungeon();
 		});
 
-		Button buyBack = new Button("buyback");
+		Button buyBack = new Button("Revive");
 		buyBack.setStyle("-fx-color: red;-fx-border: none ");
 		buyBack.setOnMouseClicked((MouseEvent e) -> {
 			GameLogic.hero.restoreHp();
