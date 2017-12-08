@@ -23,6 +23,7 @@ import javafx.scene.text.Font;
 import logic.GameLogic;
 import model.entity.Hero;
 import model.items.Inventory;
+import model.items.Item;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.Pair;
@@ -66,6 +67,10 @@ public class Navigation extends Field {
 		
 		gc.drawImage(RenderableHolder.hpPotion,481, 571);
 		gc.drawImage(RenderableHolder.mpPotion, 541, 571);
+		
+		gc.setFont(Font.font("Castellar",15));
+		gc.fillText(Integer.toString(((Item)Inventory.getBag()[0]).getAmount()), 481, 571);
+		gc.fillText(Integer.toString(((Item)Inventory.getBag()[1]).getAmount()), 541, 571);
 		
 		FontLoader fontLoader = Toolkit.getToolkit().getFontLoader();
 		double fontHieght = fontLoader.getFontMetrics(gc.getFont()).getLineHeight();

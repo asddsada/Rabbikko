@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import logic.GameLogic;
 import model.GameObject;
 import model.attribute.Agility;
+import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
 import model.entity.Entity;
@@ -16,14 +17,12 @@ import sharedObj.RenderableHolder;
 public class Weapons extends GameObject implements Useable {
 	private int price;
 	private Image imgWeapon;
-	private Image imgIcon;
-	private int amount; // how many step swing should make
+	private int amount;
 
 	public Weapons(int price, Image img, Image imgIcon) {
 		super(0, 0, 100);
 		this.price = price;
 		this.imgWeapon = img;
-		this.imgIcon = imgIcon;
 		this.amount = 0;
 		this.visible = false;
 	}

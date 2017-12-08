@@ -79,6 +79,7 @@ public abstract class Attribute {
 	
 	public void setOwner(DungeonableEntity<Attribute> owner) {
 		this.owner = owner;
+		attackObj.setVisible(true);
 		RenderableHolder.getInstance().add(getAttackObj());
 	}
 

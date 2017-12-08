@@ -3,6 +3,7 @@ package logic;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.attribute.Agility;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
 import model.entity.Entity;

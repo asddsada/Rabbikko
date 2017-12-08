@@ -27,12 +27,11 @@ public class Strength extends Attribute {
 			public void draw(GraphicsContext gc) {
 				try {
 					if (owner.getAtkType().getAttackTime() > 0) {
-						System.out.println(owner.getClass().getSimpleName());
-						gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+//						gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 						if (owner.getDirection() == Entity.RIGHT) {
-							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth(), pos.y - getHeight() / 2);
+							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth(), pos.y - getHeight());
 						} else if (owner.getDirection() == Entity.LEFT) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth(), pos.y - getHeight() / 2);
+							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.5, pos.y - getHeight());
 						} else if (owner.getDirection() == Entity.BACK) {
 							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight() / 2);
 						} else if (owner.getDirection() == Entity.FRONT) {
@@ -47,7 +46,7 @@ public class Strength extends Attribute {
 			@Override
 			public double getWidth() {
 				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y * 0.7
-						: attackRange.x;
+						: attackRange.x*1.2;
 			}
 
 			@Override
@@ -74,6 +73,10 @@ public class Strength extends Attribute {
 				this.attackObj.setX(x + (owner.getWidth() - this.attackObj.getWidth()) / 2);
 				this.attackObj.setY(y +owner.getHeight() * 2 / 3);
 			}
+			
+			else if (direction == Entity.BACK) {
+				this.attackObj.setZ(owner.getZ()-10);
+			}else this.attackObj.setZ(owner.getZ()+10);
 		} catch (NullPointerException e) {
 			System.out.println("cannot update attack effect");
 		}

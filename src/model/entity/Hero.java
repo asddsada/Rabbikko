@@ -28,7 +28,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		this.money = 10000;
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
-		this.inventory = new Inventory();
+		Hero.inventory = new Inventory();
 		setAtktype(atkType);
 	}
 
@@ -104,6 +104,12 @@ public class Hero extends DungeonableEntity<Attribute> {
 		} else {
 			currentMp += i * atkType.getMpRegen();
 		}
+	}
+	
+	public void revive() {
+		this.restoreHp();
+		Dungeon.addEntities(this);
+		setAtktype(atkType);
 	}
 
 	public void restoreHp() {

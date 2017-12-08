@@ -58,6 +58,10 @@ public abstract class GameObject implements IRenderable {
 	public void setY(double y) {
 		pos.y = y;
 	}
+	
+	public void setZ(int z) {
+		this.z = z;
+	}
 
 	public boolean isCollide(GameObject other, double x, double y) {
 		 if ((other.getX() - getWidth() * 4 / 6 <= x && x <= other.getX() + getWidth()
