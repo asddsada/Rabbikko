@@ -65,6 +65,7 @@ public class TitleCanvas extends Canvas {
 		if (event.getSceneX() >= SceneManeger.WIDGTH / 3 && event.getSceneX() <= SceneManeger.WIDGTH / 3 + 300
 				&& event.getSceneY() >= SceneManeger.HEIGHT / 2 && event.getSceneY() <= SceneManeger.HEIGHT / 2 + 87) {
 			if (isGoNext) {
+				ResourceLoader.secondLoad();
 				goToDun();
 			} else {
 				gc.drawImage(ResourceLoader.mainBtnImage, SceneManeger.WIDGTH / 3.05 , SceneManeger.HEIGHT / 2 ,ResourceLoader.mainBtnImage.getWidth()*1.05,ResourceLoader.mainBtnImage.getHeight()*1.05);

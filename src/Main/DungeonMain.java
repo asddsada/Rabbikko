@@ -10,6 +10,7 @@ import logic.ForceManeger;
 import logic.GameLogic;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
+import utility.ResourceLoader;
 import view.SceneManeger;
 import view.dungeon.DungeonCanvas;
 
@@ -19,22 +20,25 @@ public class DungeonMain {
 	private static ForceManeger forceManager;
 
 	public DungeonMain() {
-		
 		logic = new GameLogic();
 		canvas = (DungeonCanvas) SceneManeger.dungeonScene.getCanvas();
 		ForceManeger.initilized();
 	}
-	
+
 	private static AnimationTimer animation = new AnimationTimer() {
 		public void handle(long now) {
-			try {
+			if (ResourceLoader.isLoadFinish()) {
+				try {
+					canvas.canvasUpdate();
+					logic.logicUpdate();
+					RenderableHolder.getInstance().update();
+				} catch (IllegalArgumentException | ConcurrentModificationException e) {
+					System.out.println("cannot update");
+					e.printStackTrace();
+				}
+			}else {
 				canvas.canvasUpdate();
-				logic.logicUpdate();
-				RenderableHolder.getInstance().update();
-			} catch (IllegalArgumentException|ConcurrentModificationException e) {
-				System.out.println("cannot update");
-				e.printStackTrace();
-			} 
+			}
 		}
 	};
 

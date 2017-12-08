@@ -18,6 +18,7 @@ public class RandomUtility {
 	}
 	
 	public static int randomByLevel(int lvl) {
+		if(lvl==0) return 0;
 		if(lvl==1) return (int) (Math.PI/2+randomInt(0,3));
 		if((lvl>15)&&(lvl<25)) return 30 +randomInt(0, lvl-14);
 		if(lvl>30) return 40+randomInt(0, 5);
