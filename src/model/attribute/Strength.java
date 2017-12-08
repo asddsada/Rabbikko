@@ -6,6 +6,7 @@ import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
+import model.entity.Hero;
 import model.items.Inventory;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
@@ -28,16 +29,32 @@ public class Strength extends Attribute {
 			@Override
 			public void draw(GraphicsContext gc) {
 				try {
-					if (owner.getAtkType().getAttackTime() > 0) {
-//						gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-						if (owner.getDirection() == Entity.RIGHT) {
-							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth()*5/6, pos.y - getHeight());
-						} else if (owner.getDirection() == Entity.LEFT) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.3, pos.y - getHeight());
-						} else if (owner.getDirection() == Entity.BACK) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight()*5/6);
-						} else if (owner.getDirection() == Entity.FRONT) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()/2, pos.y - getHeight()*5/6);
+					if (owner instanceof Hero) {	
+						if (owner.getAtkType().getAttackTime() > 0) {
+	//						gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+							if (owner.getDirection() == Entity.RIGHT) {
+								gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth()*5/6, pos.y - getHeight());
+							} else if (owner.getDirection() == Entity.LEFT) {
+								gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.3, pos.y - getHeight());
+							} else if (owner.getDirection() == Entity.BACK) {
+								gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight()*5/6);
+							} else if (owner.getDirection() == Entity.FRONT) {
+								gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()/2, pos.y - getHeight()*5/6);
+							}
+						}
+					}
+					else {
+						if (owner.getAtkType().getAttackTime() > 0) {
+//							gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+							if (owner.getDirection() == Entity.RIGHT) {
+								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth()*5/6, pos.y - getHeight());
+							} else if (owner.getDirection() == Entity.LEFT) {
+								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth()*1.3, pos.y - getHeight());
+							} else if (owner.getDirection() == Entity.BACK) {
+								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth() / 2, pos.y - getHeight()*5/6);
+							} else if (owner.getDirection() == Entity.FRONT) {
+								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth()/2, pos.y - getHeight()*5/6);
+							}
 						}
 					}
 				} catch (NullPointerException e) {

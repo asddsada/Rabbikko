@@ -59,6 +59,7 @@ public class RenderableHolder {
 	public static Image aEffect3;
 	public static Image aEffect4;
 	public static Image mEffect;
+	public static Image monsterEffect;
 	
 	public static Image strength;
 	public static Image agility;
@@ -116,6 +117,7 @@ public class RenderableHolder {
 			aEffect3 = new Image(ClassLoader.getSystemResource("img/aEffect3.gif").toString());
 			aEffect4 = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
 			mEffect = new Image(ClassLoader.getSystemResource("img/mEffect.gif").toString());
+			monsterEffect = new Image(ClassLoader.getSystemResource("img/monsterAttack.gif").toString());
 			
 			strength = new Image(ClassLoader.getSystemResource("img/strength.png").toString());
 			agility = new Image(ClassLoader.getSystemResource("img/agility.png").toString());
