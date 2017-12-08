@@ -5,6 +5,7 @@ import java.util.Random;
 
 import Main.DungeonMain;
 import Main.Main;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import logic.GameLogic;
 import model.GameObject;
@@ -21,6 +22,7 @@ import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.RandomUtility;
+import utility.ResourceLoader;
 
 public class MonsterDen {
 	// method to generate monster
@@ -117,11 +119,17 @@ public class MonsterDen {
 			GameLogic.hero.earnMoney(999999);
 		}
 	}
+	
+	private Image getMonsterImage(int i) {
+		if(i<1) i=1;
+		if(i>5) i=5;
+		return ResourceLoader.monsterImage[i-1];
+	}
 
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, SecurityException {
-//		Dungeon.addEntities(new Monster(280 + 150, 100, RenderableHolder.monsterImage02, 0, 1, 50, 5, 50, 100,
-//				20, new Strength()));
+		Dungeon.addEntities(new Monster(getMonsterImage(2), 0, 1, 4, 70
+				, 100, 20, new Strength(), 50, 5, 100, 30, 15, 1));
 		monsterCount++;
 	}
 }

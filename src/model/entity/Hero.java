@@ -20,6 +20,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	private double maxMp;
 	private double currentMp;
 	private int money;
+	private int moneyDelay;
 	public static Inventory inventory;
 	private String name;
 
@@ -99,11 +100,12 @@ public class Hero extends DungeonableEntity<Attribute> {
 				healHp(0.1);
 			if (currentMp != getMaxMp())
 				healMp(0.2);
-
 		}
 		if (isAlive) {
 			this.atkType.getHeroWeapon().update(direction, pos.x, pos.y);
 			this.atkType.update(this.direction, this.pos.x, this.pos.y);
+			moneyDelay=moneyDelay<=1?moneyDelay=120:moneyDelay-1;
+			if(moneyDelay==5) money++;
 		}
 		// System.out.println(atkType.getClass().getSimpleName());
 	}
