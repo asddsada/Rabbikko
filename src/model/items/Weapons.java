@@ -16,9 +16,9 @@ import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 
 public class Weapons extends GameObject implements Useable {
-	public static final int SWORD = 1;
-	public static final int BOW = 2;
-	public static final int STAFF = 3;
+	public static final int SWORD = 2;
+	public static final int BOW = 3;
+	public static final int STAFF = 4;
 	private int price;
 	private Image imgWeapon;
 	private int amount;
@@ -148,5 +148,10 @@ public class Weapons extends GameObject implements Useable {
 		this.pos.y = GameLogic.hero.getY() + 30;
 		if(GameLogic.hero.getDirection()==Entity.LEFT) this.z=GameLogic.hero.getZ()-1;
 		else this.z=GameLogic.hero.getZ()+1;
+	}
+
+	@Override
+	public void reset() {
+		this.amount=0;
 	}
 }

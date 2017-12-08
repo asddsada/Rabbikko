@@ -116,7 +116,7 @@ public class DialogPane extends VBox {
 		sword.setOnMouseClicked((MouseEvent e) -> {
 			// RenderableHolder.titleBgm.stop();
 			RenderableHolder.clickSound.play(100);
-			nextAction(new Strength());
+			nextAction(new Strength(),Weapons.SWORD);
 		});
 		
 		Button staff = new Button("int");
@@ -125,7 +125,7 @@ public class DialogPane extends VBox {
 		staff.setOnMouseClicked((MouseEvent e) -> {
 			// RenderableHolder.titleBgm.stop();
 			RenderableHolder.clickSound.play(100);
-			nextAction(new Intelligence());
+			nextAction(new Intelligence(),Weapons.STAFF);
 		});
 		
 		Button bow = new Button("agi");
@@ -134,14 +134,15 @@ public class DialogPane extends VBox {
 		bow.setOnMouseClicked((MouseEvent e) -> {
 			// RenderableHolder.titleBgm.stop();
 			RenderableHolder.clickSound.play(100);
-			nextAction(new Agility());
+			nextAction(new Agility(),Weapons.BOW);
 		});
 		
 		this.getChildren().addAll(head, sub, staff,bow,sword);
 	}
 	
-	private <T extends Attribute>void nextAction(T atkType){
+	private <T extends Attribute>void nextAction(T atkType,int i){
 		DungeonMain.getLogic().newHero(atkType);
+		GameLogic.hero.inventory.add(i);
 		scene.toDungeon();
 	}
 
@@ -371,6 +372,7 @@ public class DialogPane extends VBox {
 		close.setOnMouseClicked((MouseEvent e) -> {
 			GameLogic.dungeon.restart();
 			DungeonMain.getLogic().newHero(GameLogic.hero.getAtkType());
+			GameLogic.hero.inventory.reset();
 			scene.toDungeon();
 		});
 

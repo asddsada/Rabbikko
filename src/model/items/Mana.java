@@ -37,4 +37,8 @@ public class Mana extends Item {
 		// TODO Auto-generated method stub
 		return this.amount > 0;
 	}
+	
+	public void reset() {
+		this.amount=0;
+	}
 }
