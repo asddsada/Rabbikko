@@ -2,10 +2,11 @@ package utility;
 
 import java.util.Random;
 
-public class RandomUtility {
+public abstract class RandomUtility {
 	private static final Random random = new Random();
 
 	public static int randomInt(int from, int to) {
+		if(from>=to) return 0;
 		return from + random.nextInt(to - from);
 	}
 

@@ -2,20 +2,16 @@ package model.field;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import logic.GameLogic;
 import model.GameObject;
 import model.attribute.Attribute;
-import model.attribute.Intelligence;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.entity.Hero;
-import model.monster.Monster;
 import model.monster.MonsterDen;
 import sharedObj.RenderableHolder;
 import utility.ResourceLoader;
@@ -68,8 +64,10 @@ public class Dungeon extends Field {
 	}
 
 	public void update() {
+
+		monsterDen.update(); //for admin key only
+		
 		graveyard.clear();
-		monsterDen.update();
 		for (DungeonableEntity<Attribute> e : entities_holder) {
 			e.update();
 		}

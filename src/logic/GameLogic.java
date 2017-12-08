@@ -1,12 +1,6 @@
 package logic;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import model.attribute.Agility;
 import model.attribute.Attribute;
-import model.attribute.Intelligence;
-import model.attribute.Strength;
 import model.entity.Entity;
 import model.entity.Hero;
 import model.field.Dungeon;
@@ -14,12 +8,9 @@ import model.field.Navigation;
 import sharedObj.RenderableHolder;
 
 public class GameLogic {
-	// constructor to initialize obj
-	// local container with add method
-	// start (+stop) loop -> update
 	public static Dungeon dungeon;
 	public static Hero hero;
-	private Navigation navig;
+	public static Navigation navig;
 
 	public GameLogic() {
 		dungeon = new Dungeon();

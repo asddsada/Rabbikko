@@ -8,7 +8,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 
-public class ResourceLoader {
+public abstract class ResourceLoader {
 
 	public static Font diaLogFont = Font.font("Castellar");
 	public static FontLoader fontLoader;
@@ -152,7 +152,6 @@ public class ResourceLoader {
 	}
 	
 	public static boolean isLoadFinish() {
-		System.out.println(loadThread.isAlive());
 		return !(loadThread.isAlive());
 	}
 }

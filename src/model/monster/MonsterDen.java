@@ -87,7 +87,7 @@ public class MonsterDen {
 			}
 		} else if (InputUtility.isKeyPressed(KeyCode.O)) { // restore hero hp
 			GameLogic.hero.restoreHp();
-		} else if (InputUtility.isKeyPressed(KeyCode.I)) { // clear dungeon floor
+		} else if (InputUtility.isKeyPressed(KeyCode.Y)) { // clear dungeon floor
 			for (DungeonableEntity<Attribute> e : Dungeon.getEntitiesHolder())
 				if (!(e instanceof Hero))
 					Dungeon.destroyEntities(e);

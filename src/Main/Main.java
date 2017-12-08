@@ -32,7 +32,6 @@ public class Main extends Application {
 	@Override
 	public void stop() throws Exception {
 		isGameRunning=false;
-		System.out.println("called");
 		DungeonMain.stop();
 		MonsterDen.stop();
 		Platform.exit();

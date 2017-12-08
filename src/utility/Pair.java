@@ -31,4 +31,8 @@ public class Pair {
 	public double diffY(double dy) {
 		return Math.abs(y - dy);
 	}
+	
+	public double diffD(double dx,double dy) {
+		return Math.pow((diffX(dx)*diffX(dx))+(diffY(dy)*diffY(dy)), 0.5);
+	}
 }

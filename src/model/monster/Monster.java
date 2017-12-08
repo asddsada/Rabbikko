@@ -3,7 +3,6 @@ package model.monster;
 import java.util.ArrayList;
 
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import logic.GameLogic;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
@@ -11,7 +10,6 @@ import model.entity.Entity;
 import model.field.Dungeon;
 import model.field.Navigation;
 import model.field.Obstructable;
-import utility.InputUtility;
 import utility.RandomUtility;
 import view.SceneManeger;
 
@@ -22,10 +20,11 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 	private int eyesight;
 	private int bounty;
 	private int rand;	
+	private double size;
 
 	public Monster(Image img, int row, int column, int movespeed, int mass,
 			int maxHp, int baseAtk, Attribute atkType, int idleParameter, int timidParaneter, int persistentParameter,
-			int eyesight, int bounty, int rand) {
+			int eyesight, int bounty,double size) {
 		super(RandomUtility.randomInt((int) (SceneManeger.WIDGTH*0.1), (int) (SceneManeger.WIDGTH*0.9)),
 				RandomUtility.randomInt((int) (SceneManeger.HEIGHT*0.1), (int) (SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT)),
 				img, row, column, Entity.FRONT, 
@@ -35,7 +34,7 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		this.persistentParameter = persistentParameter;
 		this.eyesight = eyesight;
 		this.bounty = bounty;
-		this.rand = rand;
+		this.size = size;
 	}
 
 	@Override
