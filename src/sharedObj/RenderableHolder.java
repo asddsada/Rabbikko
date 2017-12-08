@@ -15,6 +15,7 @@ import model.GameObject;
 import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
+import sun.awt.SunToolkit.InfiniteLoop;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();

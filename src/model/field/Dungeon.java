@@ -50,7 +50,7 @@ public class Dungeon extends Field {
 			gc.setFill(Color.BLACK);
 			gc.fillRect(0, height / 2 - 50, width, 100);
 			gc.setFill(Color.WHITE);
-			gc.fillText("Level "+lvl+" "+Double.toString(lvlChangetimer / 100), width / 2, height / 2);
+			gc.fillText("Level "+lvl+" "+Double.toString(lvlChangetimer / 100), width /2.25, height / 2);
 		}
 	}
 
