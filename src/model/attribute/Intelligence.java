@@ -13,6 +13,7 @@ import view.SceneManeger;
 
 public class Intelligence extends Attribute{
 	public Intelligence() {
+		super();
 		heroWeapon = (Weapons) Inventory.getBag()[4];
 		attackMultiply = 1.2;
 		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());

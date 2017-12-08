@@ -42,7 +42,7 @@ public class MonsterDen {
 						System.out.println("monsterThread has been interrupted.");
 						break;
 					}
-					if (Main.isGameRunning && GameLogic.hero.isAlive() && RenderableHolder.getInstance().size() < 30) {
+					if (Main.isGameRunning && RenderableHolder.getInstance().size() < 30 && GameLogic.hero.isAlive()) {
 						if (monsterCount < maxMonster && (Dungeon.getLvlChangetimer() == 0)) {
 							try {
 								addMonster();

@@ -14,6 +14,7 @@ import view.SceneManeger;
 
 public class Strength extends Attribute {
 	public Strength() {
+		super();
 		heroWeapon = (Weapons) Inventory.getBag()[2];
 		attackMultiply = 1.2;
 		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());

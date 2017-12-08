@@ -8,6 +8,7 @@ import logic.ForceManeger;
 import logic.GameLogic;
 import model.attribute.Attribute;
 import model.field.Dungeon;
+import model.field.Navigation;
 import model.field.Obstructable;
 import model.items.Inventory;
 import sharedObj.RenderableHolder;
@@ -19,6 +20,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	private double currentMp;
 	private int money;
 	public static Inventory inventory;
+	private String name;
 
 	public Hero(int direction, Attribute atkType) {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
@@ -30,6 +32,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 		this.race = DungeonableEntity.HUMANITY;
 		Hero.inventory = new Inventory();
 		setAtktype(atkType);
+		name=Navigation.getName();
 	}
 
 	@Override
@@ -136,6 +139,14 @@ public class Hero extends DungeonableEntity<Attribute> {
 		this.atkType = atkType;
 		this.atkType.setOwner(this);
 		this.atkType.getHeroWeapon().held();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getMoney() {

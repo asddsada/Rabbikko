@@ -1,6 +1,7 @@
 package view.dungeon;
 
 import Main.DungeonMain;
+import Main.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -25,6 +26,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 import model.GameObject;
+import model.attribute.Agility;
+import model.attribute.Attribute;
+import model.attribute.Intelligence;
+import model.attribute.Strength;
 import model.entity.Hero;
 import model.field.Navigation;
 import model.field.Shop;
@@ -59,9 +64,9 @@ public class DialogPane extends VBox {
 	}
 
 	public void opening() {
-		Text head = new Text("Welcome!");
-		head.setFont(Font.font("Castellar", 40));
-
+//		Text head = new Text("Welcome!");
+//		head.setFont(Font.font("Castellar", 40));
+//
 		Text sub = new Text("Please enter your name");
 		sub.setFont(Font.font("Castellar", 20));
 
@@ -81,7 +86,7 @@ public class DialogPane extends VBox {
 		Button okBtn = new Button("OK");
 		okBtn.setFont(Font.font("Castellar", 25));
 
-		this.getChildren().addAll(head, sub, textField, okBtn);
+		this.getChildren().addAll( sub, textField, okBtn);
 
 		okBtn.setOnMouseClicked((MouseEvent e) -> {
 			// RenderableHolder.titleBgm.stop();
@@ -97,6 +102,48 @@ public class DialogPane extends VBox {
 			}
 		});
 	}
+	
+	public void openingNext() {
+		Text head = new Text("Welcome! "+Navigation.getName());
+		head.setFont(Font.font("Castellar", 40));
+
+		Text sub = new Text("Please enter your name");
+		sub.setFont(Font.font("Castellar", 20));
+
+		Button sword = new Button("strength");
+		sword.setFont(Font.font("Castellar", 25));
+
+		sword.setOnMouseClicked((MouseEvent e) -> {
+			// RenderableHolder.titleBgm.stop();
+			RenderableHolder.clickSound.play(100);
+			nextAction(new Strength());
+		});
+		
+		Button staff = new Button("int");
+		staff.setFont(Font.font("Castellar", 25));		
+
+		staff.setOnMouseClicked((MouseEvent e) -> {
+			// RenderableHolder.titleBgm.stop();
+			RenderableHolder.clickSound.play(100);
+			nextAction(new Intelligence());
+		});
+		
+		Button bow = new Button("agi");
+		bow.setFont(Font.font("Castellar", 25));
+
+		bow.setOnMouseClicked((MouseEvent e) -> {
+			// RenderableHolder.titleBgm.stop();
+			RenderableHolder.clickSound.play(100);
+			nextAction(new Agility());
+		});
+		
+		this.getChildren().addAll(head, sub, staff,bow,sword);
+	}
+	
+	private <T extends Attribute>void nextAction(T atkType){
+		DungeonMain.getLogic().newHero(atkType);
+		scene.toDungeon();
+	}
 
 	private void openAction(TextField textField) {
 		// check if player has entered their name
@@ -105,7 +152,7 @@ public class DialogPane extends VBox {
 		// }
 		// else {
 		Navigation.setName(textField.getText().trim());
-		scene.toDungeon();
+		scene.toDialog(5);
 		// }
 	}
 
@@ -336,7 +383,7 @@ public class DialogPane extends VBox {
 		close.setOnMouseClicked((MouseEvent e) -> {
 			RenderableHolder.clickSound.play(100);
 			GameLogic.dungeon.restart();
-			DungeonMain.getLogic().newHero();
+			DungeonMain.getLogic().newHero(GameLogic.hero.getAtkType());
 			scene.toDungeon();
 		});
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.attribute.Agility;
+import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
 import model.entity.Entity;
@@ -23,17 +24,14 @@ public class GameLogic {
 	public GameLogic() {
 		dungeon = new Dungeon();
 
-		newHero();
-
 		RenderableHolder.getInstance().add(dungeon);
 		navig = new Navigation();
 		RenderableHolder.getInstance().add(navig);
 	}
 	
-	public void newHero() {
-		hero = new Hero(Entity.FRONT, new Strength());
-		dungeon.addEntities(hero);
-		hero.setAtktype(new Strength());
+	public <T extends Attribute>void newHero(T atkType) {
+		hero = new Hero(Entity.FRONT, atkType);
+		Dungeon.addEntities(hero);
 	}
 
 	protected void addNewObject(Entity entity) {

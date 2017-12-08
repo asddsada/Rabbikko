@@ -27,6 +27,7 @@ public abstract class Attribute {
 		this.atkTimeMax = 10;
 	}
 	public void update(int direction, double x, double y) {
+		System.out.println(attackTime+" "+ getAtkTimeMax());
 		if(attackTime>0) attackTime--;
 	};
 
@@ -74,6 +75,10 @@ public abstract class Attribute {
 	}
 	
 	public int getAttackTime() {
+		return attackTime;
+	}
+	
+	public int resetAttackTime() {
 		return attackTime;
 	}
 	
