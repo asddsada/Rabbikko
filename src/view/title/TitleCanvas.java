@@ -34,7 +34,7 @@ public class TitleCanvas extends Canvas {
 
 	private void drawMainMenu() {
 		// draw bg
-		gc.drawImage(RenderableHolder.mainImage, 0, 0, SceneManeger.WIDGTH, SceneManeger.HEIGHT);
+		gc.drawImage(RenderableHolder.mainImage,0, 0,SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 
 		// draw title
 		gc.setFill(Color.WHITE);

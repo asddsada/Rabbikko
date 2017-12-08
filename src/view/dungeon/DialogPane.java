@@ -68,7 +68,7 @@ public class DialogPane extends VBox {
 //		head.setFont(Font.font("Castellar", 40));
 //
 		Text sub = new Text("Please enter your name");
-		sub.setFont(Font.font("Castellar", 20));
+		sub.setFont(Font.font("Castellar", 25));
 
 		TextField textField = new TextField("");
 		textField.setFont(RenderableHolder.diaLogFont);
@@ -105,13 +105,13 @@ public class DialogPane extends VBox {
 	
 	public void openingNext() {
 		Text head = new Text("Welcome! "+Navigation.getName());
-		head.setFont(Font.font("Castellar", 40));
+		head.setFont(Font.font("Castellar", 30));
 
-		Text sub = new Text("Please enter your name");
+		Text sub = new Text("Please select your initial stat");
 		sub.setFont(Font.font("Castellar", 20));
 
 		Button sword = new Button("strength");
-		sword.setFont(Font.font("Castellar", 25));
+		sword.setFont(Font.font("Castellar", 20));
 
 		sword.setOnMouseClicked((MouseEvent e) -> {
 			// RenderableHolder.titleBgm.stop();
@@ -120,7 +120,7 @@ public class DialogPane extends VBox {
 		});
 		
 		Button staff = new Button("int");
-		staff.setFont(Font.font("Castellar", 25));		
+		staff.setFont(Font.font("Castellar", 20));		
 
 		staff.setOnMouseClicked((MouseEvent e) -> {
 			// RenderableHolder.titleBgm.stop();
@@ -129,7 +129,7 @@ public class DialogPane extends VBox {
 		});
 		
 		Button bow = new Button("agi");
-		bow.setFont(Font.font("Castellar", 25));
+		bow.setFont(Font.font("Castellar", 20));
 
 		bow.setOnMouseClicked((MouseEvent e) -> {
 			// RenderableHolder.titleBgm.stop();
@@ -137,7 +137,7 @@ public class DialogPane extends VBox {
 			nextAction(new Agility());
 		});
 		
-		this.getChildren().addAll(head, sub, staff,bow,sword);
+		this.getChildren().addAll(head, sub, sword,bow,staff);
 	}
 	
 	private <T extends Attribute>void nextAction(T atkType){
