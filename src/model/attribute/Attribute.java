@@ -1,6 +1,7 @@
 package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
@@ -22,6 +23,7 @@ public abstract class Attribute {
 	protected int attackTime;
 	protected int atkTimeMax;
 	protected DungeonableEntity<Attribute> owner;
+	protected Image img;
 
 	public Attribute() {
 		attackTime = 0;
@@ -94,5 +96,9 @@ public abstract class Attribute {
 
 	public void use() {
 		if(getAttackTime()==0)attackTime = getAtkTimeMax();
+	}
+	
+	public Image getImage() {
+		return img;
 	}
 }

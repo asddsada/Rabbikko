@@ -22,6 +22,7 @@ public class Strength extends Attribute {
 		hpMultiply = 1.2;
 		hpRegen = 5;
 		mpRegen = 1;
+		img = RenderableHolder.strength;
 		attackObj = new GameObject(0, 0, 500) {
 
 			@Override

@@ -1,6 +1,7 @@
 package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
@@ -24,6 +25,7 @@ public class Intelligence extends Attribute{
 		hpMultiply = 1;
 		hpRegen = 1;
 		mpRegen = 5;
+		img = RenderableHolder.intelligence;
 		attackObj = new GameObject(heroWeapon.getX() + 20, heroWeapon.getY(), 500) {
 
 			@Override
@@ -33,7 +35,7 @@ public class Intelligence extends Attribute{
 					if(owner.getDirection()==Entity.RIGHT) {	
 						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()/4,pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}else if(owner.getDirection()==Entity.LEFT) {	
-						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()*4,pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
+						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()*3,pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}else if(owner.getDirection()==Entity.BACK) {	
 						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth(),pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}else if(owner.getDirection()==Entity.FRONT) {	

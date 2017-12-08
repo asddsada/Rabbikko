@@ -29,7 +29,7 @@ public class Inventory {
 	}
 	
 	public boolean isFull() {
-		if (this.bagCapacity == 50) {
+		if (this.bagCapacity > 50) {
 			return true;
 		}
 		return false;

@@ -21,6 +21,7 @@ public class Agility extends Attribute {
 		hpMultiply = 0.9;
 		hpRegen = 2;
 		mpRegen = 3;
+		img = RenderableHolder.agility;
 		attackObj = new GameObject(heroWeapon.getX() + 20, heroWeapon.getY(), 500) {
 
 			@Override

@@ -102,7 +102,7 @@ public class Navigation extends Field {
 		gc.setFill(Color.DODGERBLUE);
 		gc.fillRect(241, 653,(currentM/maxM)*200, 18);
 		
-//		gc.drawImage(((Weapons)GameLogic.hero.getAtkType().getAttackObj()).getImage(),51,583,78,80);
+		gc.drawImage(GameLogic.hero.getAtkType().getImage(),51,583,78,80);
 	}
 	
 	public void update() {
