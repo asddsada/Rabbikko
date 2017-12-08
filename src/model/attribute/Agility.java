@@ -15,26 +15,26 @@ public class Agility extends Attribute {
 	public Agility() {
 		super();
 		heroWeapon = (Weapons) Inventory.getBag()[3];
-		attackMultiply = 1.2;
-		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
+		attackMultiply = 0.8;
+		attackRange = new Pair(getHeroWeapon().getWidth()*3, getHeroWeapon().getHeight());
 		attackSpeed = 2;
-		hpMultiply = 1.2;
-		hpRegen = 5;
-		mpRegen = 1;
+		hpMultiply = 0.9;
+		hpRegen = 2;
+		mpRegen = 3;
 		attackObj = new GameObject(heroWeapon.getX() + 20, heroWeapon.getY(), 500) {
 
 			@Override
 			public void draw(GraphicsContext gc) {
 				if (owner.getAtkType().getAttackTime()  > 0) {
-					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+//					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 					if(owner.getDirection()==Entity.RIGHT) {	
 						gc.drawImage(RenderableHolder.aEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
 					}else if(owner.getDirection()==Entity.LEFT) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth()*7,pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
 					}else if(owner.getDirection()==Entity.BACK) {	
-						gc.drawImage(RenderableHolder.aEffect4,pos.x-getWidth()/2,pos.y-getHeight()*5);
+						gc.drawImage(RenderableHolder.aEffect4,pos.x-getWidth()/2,pos.y-getHeight()*1.5);
 					}else if(owner.getDirection()==Entity.FRONT) {	
-						gc.drawImage(RenderableHolder.aEffect3,pos.x-getWidth(),pos.y-getHeight());
+						gc.drawImage(RenderableHolder.aEffect3,pos.x-getWidth()/2,pos.y-getHeight());
 					}
 				}
 			}
@@ -47,9 +47,9 @@ public class Agility extends Attribute {
 
 			@Override
 			public double getHeight() {
-				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5
+				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x
 						: attackRange.y * 0.6;
-			}
+			}			
 		};
 	}
 	
@@ -64,19 +64,13 @@ public class Agility extends Attribute {
 			this.attackObj.setY(y + owner.getHeight() / 3);
 		} else if (direction == Entity.BACK) {
 			this.attackObj.setX(x + owner.getWidth() / 6);
-			this.attackObj.setY(y - attackRange.y + owner.getHeight() * 5 / 6);
+			this.attackObj.setY(y - attackObj.getHeight() + owner.getHeight() * 5 / 6);
 		} else if (direction == Entity.FRONT) {
 			this.attackObj.setX(x + owner.getWidth() / 6);
 			this.attackObj.setY(y + owner.getHeight() * 2 / 3);
 		}
-	}
-
-	@Override
-	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
-			DungeonableEntity<T2> other) {
-		// TODO Auto-generated method stub
-		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
-				ForceManeger.calculateDirection(attacker.getDirection()));
-		
+		else if (direction == Entity.BACK) {
+			this.attackObj.setZ(owner.getZ()-10);
+		}else this.attackObj.setZ(owner.getZ()+10);
 	}
 }

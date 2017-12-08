@@ -107,6 +107,10 @@ public class Hero extends DungeonableEntity<Attribute> {
 		}
 	}
 	
+	public void useMp() {
+			currentMp = currentMp<5?0:currentMp-5;
+	}
+	
 	public void revive() {
 		this.restoreHp();
 		Dungeon.addEntities(this);
