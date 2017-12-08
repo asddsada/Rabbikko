@@ -45,21 +45,21 @@ public class Intelligence extends Attribute {
 
 			@Override
 			public void draw(GraphicsContext gc) {
-				if (owner.getAtkType().getAttackTime() > 0) {
-					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-					if (owner.getDirection() == Entity.RIGHT) {
-						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() / 4, pos.y - getHeight() * 2,
-								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
-					} else if (owner.getDirection() == Entity.LEFT) {
-						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() * 3, pos.y - getHeight() * 2,
-								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
-					} else if (owner.getDirection() == Entity.BACK) {
-						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth(), pos.y - getHeight() * 2,
-								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
-					} else if (owner.getDirection() == Entity.FRONT) {
-						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2,
-								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
-					}
+				if (owner.getAtkType().getAttackTime() > 0 ) {
+//					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+//					if (owner.getDirection() == Entity.RIGHT) {
+//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() / 4, pos.y - getHeight() * 2,
+//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//					} else if (owner.getDirection() == Entity.LEFT) {
+//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() * 3, pos.y - getHeight() * 2,
+//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//					} else if (owner.getDirection() == Entity.BACK) {
+//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth(), pos.y - getHeight() * 2,
+//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//					} else if (owner.getDirection() == Entity.FRONT) {
+//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2,
+//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//					}
 				}
 				for (Entry<Pair, Pair> e : magicTime.entrySet()) {
 					double a = 0, b = 0;
@@ -76,7 +76,7 @@ public class Intelligence extends Attribute {
 						a = e.getKey().x + e.getValue().y;
 						b = e.getKey().y ;
 					}
-					gc.fillRect(a, b, magicW, magicH);
+//					gc.fillRect(a, b, magicW, magicH);
 					gc.drawImage(RenderableHolder.mEffect, a- getWidth() *5/6, b - getHeight()/2 -owner.getHeight(),
 							RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
 				}

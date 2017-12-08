@@ -31,7 +31,6 @@ public abstract class Attribute {
 		this.atkTimeMax = 30;
 	}
 	public void update(int direction, double x, double y) {		
-		if(owner instanceof Hero)System.out.println(attackTime);
 		if(attackTime>0) attackTime--;
 		if(this.owner.isDestroyed()) this.attackObj.setVisible(false);
 	};

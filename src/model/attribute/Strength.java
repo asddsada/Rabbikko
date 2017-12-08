@@ -17,27 +17,31 @@ public class Strength extends Attribute {
 		super();
 		heroWeapon = (Weapons) Inventory.getBag()[2];
 		attackMultiply = 1;
-		attackRange = new Pair(getHeroWeapon().getWidth()*1.5, getHeroWeapon().getHeight()*0.9);
+		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
 		attackSpeed = 1;
-		hpMultiply = 1.2;
-		hpRegen = 7;
-		mpRegen = 2;
+		hpMultiply = 1.4;
+		hpRegen = 5;
+		mpRegen = 1;
 		img = RenderableHolder.strength;
 		attackObj = new GameObject(0, 0, 500) {
 
 			@Override
 			public void draw(GraphicsContext gc) {
 				try {
-					if (owner.getAtkType().getAttackTime() > 0) {
+					if (owner.getAtkType().getAttackTime() > 3) {
 //						gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 						if (owner.getDirection() == Entity.RIGHT) {
-							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth()*5/6, pos.y - getHeight());
+							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth()/2, pos.y - getHeight()/2,
+									RenderableHolder.sEffect2.getWidth()*0.8,RenderableHolder.sEffect2.getHeight()*0.8);
 						} else if (owner.getDirection() == Entity.LEFT) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.3, pos.y - getHeight());
+							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.2, pos.y - getHeight()/2,
+									RenderableHolder.sEffect2.getWidth()*0.8,RenderableHolder.sEffect2.getHeight()*0.8);
 						} else if (owner.getDirection() == Entity.BACK) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight()*5/6);
+							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 6, pos.y - getHeight()*0.6,
+									RenderableHolder.sEffect2.getWidth()*0.8,RenderableHolder.sEffect2.getHeight()*0.8);
 						} else if (owner.getDirection() == Entity.FRONT) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()/2, pos.y - getHeight()*5/6);
+							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth()*0.4, pos.y - getHeight()*0.4,
+									RenderableHolder.sEffect2.getWidth()*0.8,RenderableHolder.sEffect2.getHeight()*0.8);
 						}
 					}
 				} catch (NullPointerException e) {
