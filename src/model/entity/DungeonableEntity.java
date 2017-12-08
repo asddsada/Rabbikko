@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
+import javafx.scene.paint.Color;
 import logic.ForceManeger;
 import logic.GameLogic;
 import model.attribute.Attribute;
@@ -19,8 +20,12 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	protected int baseAtk;
 	protected T atkType;
 	protected int[] damageTake;
+	protected boolean struct;
 	protected int dmgTimer;
-	public static final int DMG_TIME_MAX = 3000;
+	private int hpBarTimer;
+	private int dmgTimerDelay;
+	private int dmg;
+	public static final int DMG_TIME_MAX = 10;
 
 	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
 			int maxHp, int baseAtk, T atkType) {
@@ -33,11 +38,24 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		this.damageTake = new int[4];
 		this.currentHp = getMaxHp();
 		this.dmgTimer = 0;
+		this.hpBarTimer=0;
 	}
 
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
+		if(!(this instanceof Hero)&&(dmgTimer!=0 ||hpBarTimer!=0)) {
+			gc.setFill(Color.BLACK);
+			gc.fillRect(pos.x+this.getWidth()/6, pos.y-this.getHeight()/6, this.getWidth()*5/6,8);
+			gc.setFill(Color.DARKRED);
+			gc.fillRect(pos.x+this.getWidth()/6, pos.y-this.getHeight()/6, (getCurrentHp()/getMaxHp())*this.getWidth()*5/6,8);
+			hpBarTimer--;
+		}
+		if(dmgTimerDelay!=0) {
+			gc.setFill(Color.RED);
+			gc.fillText("-"+Integer.toString(dmg), pos.x+getWidth()/3, pos.y+getHeight()/3-(50-dmgTimerDelay));
+			dmgTimerDelay--;
+		}
 		super.draw(gc);
 	}
 
@@ -51,7 +69,6 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 				if (other.hashCode() != this.hashCode() && this.race != other.race) {
 					atkType.use();
 					atkType.attack(this, other);
-					other.direction = ForceManeger.calculateDirection(this.direction);
 				}
 			}
 			return true;
@@ -60,12 +77,15 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	}
 
 	public void damage(int dmg, int direction) {
+		this.dmg=dmg;
+		dmgTimerDelay=50;
 		dmgTimer = DMG_TIME_MAX;
 		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
 		this.currentHp = this.currentHp - dmg >= 0 ? this.currentHp - dmg : 0;
 		if (this.currentHp == 0)
 			isAlive = false;
 		ForceManeger.reactionEffect(this, direction);
+		this.hpBarTimer=180;
 	}
 
 	public double getMaxHp() {
@@ -97,6 +117,8 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		if (!isAlive || this.currentHp==0) {
 			Dungeon.destroyEntities(this);	
 			this.atkType.getAttackObj().setVisible(false);
+		} else if (isAlive) {
+			dmgTimer = dmgTimer == 0 ? 0:dmgTimer - 1;
 		}
 		this.atkType.update(this.direction, this.pos.x, this.pos.y);
 	}

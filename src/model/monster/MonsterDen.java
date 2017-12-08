@@ -120,7 +120,7 @@ public class MonsterDen {
 
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, SecurityException {
-		Dungeon.addEntities(new Monster(280 + 150, 100, RenderableHolder.monsterImage02, 0, 1, 50, 5, 100, 10,
+		Dungeon.addEntities(new Monster(280 + 150, 100, RenderableHolder.monsterImage02, 0, 1, 50, 5, 50, 100,
 				20, new Strength()));
 		monsterCount++;
 	}
