@@ -17,11 +17,11 @@ public class Strength extends Attribute {
 		super();
 		heroWeapon = (Weapons) Inventory.getBag()[2];
 		attackMultiply = 1;
-		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
+		attackRange = new Pair(getHeroWeapon().getWidth()*1.5, getHeroWeapon().getHeight()*0.9);
 		attackSpeed = 1;
 		hpMultiply = 1.2;
-		hpRegen = 5;
-		mpRegen = 1;
+		hpRegen = 7;
+		mpRegen = 2;
 		img = RenderableHolder.strength;
 		attackObj = new GameObject(0, 0, 500) {
 
@@ -48,13 +48,13 @@ public class Strength extends Attribute {
 			@Override
 			public double getWidth() {
 				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y 
-						: attackRange.x*1.4;
+						: attackRange.x*1.5;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5
-						: attackRange.y * 0.8;
+				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 2
+						: attackRange.y ;
 			}
 		};
 	}

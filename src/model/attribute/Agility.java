@@ -49,7 +49,7 @@ public class Agility extends Attribute {
 			@Override
 			public double getHeight() {
 				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x
-						: attackRange.y * 0.6;
+						: attackRange.y * 0.7;
 			}			
 		};
 	}

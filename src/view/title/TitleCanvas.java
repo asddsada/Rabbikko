@@ -3,6 +3,7 @@ package view.title;
 import javax.swing.GroupLayout.Alignment;
 
 import Main.DungeonMain;
+import Main.Main;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -14,6 +15,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.WindowEvent;
 import sharedObj.RenderableHolder;
 import view.SceneManeger;
 
@@ -80,7 +82,8 @@ public class TitleCanvas extends Canvas {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode() == KeyCode.ESCAPE) {
-					Platform.exit();
+					DungeonMain.stop();
+					Runtime.getRuntime().exit(0);
 				}
 				if (event.getCode() == KeyCode.ENTER) {
 					goToDun();

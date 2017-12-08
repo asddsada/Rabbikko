@@ -31,13 +31,13 @@ public abstract class Attribute {
 		this.atkTimeMax = 30;
 	}
 	public void update(int direction, double x, double y) {		
+		if(owner instanceof Hero)System.out.println(attackTime);
 		if(attackTime>0) attackTime--;
 		if(this.owner.isDestroyed()) this.attackObj.setVisible(false);
 	};
 
 	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
 			DungeonableEntity<T2> other) {
-		// TODO Auto-generated method stub
 		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
 				ForceManeger.calculateDirection(attacker.getDirection()));
 		

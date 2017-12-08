@@ -1,5 +1,7 @@
 package view.dungeon;
 
+import java.util.ConcurrentModificationException;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
@@ -29,7 +31,7 @@ public class DungeonCanvas extends Canvas {
 		InputUtility.bindMouseOnListeners(this);
 	}
 
-	public void canvasUpdate() {
+	public void canvasUpdate() throws ConcurrentModificationException {
 		// if(InputUtility.isPrevPressed()&& mousex in &&mouseyin) scene.toDialog(1); <-
 		// how to open menu dialog
 		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {

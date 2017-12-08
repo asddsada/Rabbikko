@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.ForceManeger;
 import logic.GameLogic;
+import model.field.Dungeon;
+import model.monster.MonsterDen;
 import view.SceneManeger;
 
 public class Main extends Application {
@@ -32,7 +34,7 @@ public class Main extends Application {
 		isGameRunning=false;
 		System.out.println("called");
 		DungeonMain.stop();
-		GameLogic.dungeon.monsterDen.stop();
+		MonsterDen.stop();
 		Platform.exit();
 	}
 

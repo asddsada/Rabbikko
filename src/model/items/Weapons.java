@@ -97,16 +97,16 @@ public class Weapons extends GameObject implements Useable {
 						gc.drawImage(RenderableHolder.bow3, pos.x + getWidth() / 1.5, pos.y - getHeight() / 4);
 					}
 				}
-			}
-			if (GameLogic.hero.getAtkType() instanceof Intelligence) {
-				if (GameLogic.hero.getDirection() == Entity.RIGHT) {
-					gc.drawImage(imgWeapon, pos.x - getWidth() * 2.5, pos.y - getHeight() / 2);
-				} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
-					gc.drawImage(imgWeapon, pos.x + getWidth() * 1.75, pos.y - getHeight() / 2);
-				} else if (GameLogic.hero.getDirection() == Entity.BACK) {
-					gc.drawImage(imgWeapon, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2);
-				} else if (GameLogic.hero.getDirection() == Entity.FRONT) {
-					gc.drawImage(imgWeapon, pos.x + getWidth(), pos.y - getHeight() / 2);
+				if (GameLogic.hero.getAtkType() instanceof Intelligence) {
+					if (GameLogic.hero.getDirection() == Entity.RIGHT) {
+						gc.drawImage(imgWeapon, pos.x - getWidth() * 2.5, pos.y - getHeight() / 2);
+					} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
+						gc.drawImage(imgWeapon, pos.x + getWidth() * 1.75, pos.y - getHeight() / 2);
+					} else if (GameLogic.hero.getDirection() == Entity.BACK) {
+						gc.drawImage(imgWeapon, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2);
+					} else if (GameLogic.hero.getDirection() == Entity.FRONT) {
+						gc.drawImage(imgWeapon, pos.x + getWidth(), pos.y - getHeight() / 2);
+					}
 				}
 			}
 		}

@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.ConcurrentModificationException;
+
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.canvas.Canvas;
@@ -29,9 +31,10 @@ public class DungeonMain {
 				canvas.canvasUpdate();
 				logic.logicUpdate();
 				RenderableHolder.getInstance().update();
-			} catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException|ConcurrentModificationException e) {
 				System.out.println("cannot update");
-			}
+				e.printStackTrace();
+			} 
 		}
 	};
 
