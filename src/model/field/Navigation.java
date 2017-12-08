@@ -24,6 +24,7 @@ import logic.GameLogic;
 import model.entity.Hero;
 import model.items.Inventory;
 import model.items.Item;
+import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.Pair;
@@ -83,7 +84,7 @@ public class Navigation extends Field {
 		//money
 		gc.setFill(Color.ALICEBLUE);
 		gc.setFont(Font.font("Castellar",20));
-		gc.fillText(Integer.toString(GameLogic.hero.getMoney()),880,sceneHeight-fontHieght-7);
+		gc.fillText(Integer.toString(GameLogic.hero.getMoney()),870,sceneHeight-fontHieght-10);
 		
 		//Hp and Mp
 		double maxH = GameLogic.hero.getMaxHp();
@@ -96,6 +97,8 @@ public class Navigation extends Field {
 		
 		gc.setFill(Color.DODGERBLUE);
 		gc.fillRect(241, 653,(currentM/maxM)*200, 18);
+		
+//		gc.drawImage(((Weapons)GameLogic.hero.getAtkType().getAttackObj()).getImage(),51,583,78,80);
 	}
 	
 	public void update() {
@@ -116,9 +119,11 @@ public class Navigation extends Field {
 			SceneManeger.dungeonScene.toDialog(3);
 		}
 		else if (xPos >= 484 && xPos <= 527 && yPos >= 576 && yPos <= 615 && InputUtility.isMouseClick()) {
+			RenderableHolder.clickSound.play(100);
 			Inventory.getBag()[0].use();
 		}
 		else if (xPos >= 545 && xPos <= 585 && yPos >= 576 && yPos <= 615 && InputUtility.isMouseClick()) {
+			RenderableHolder.clickSound.play(100);
 			Inventory.getBag()[1].use();
 		}
 	}

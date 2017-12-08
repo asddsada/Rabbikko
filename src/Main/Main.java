@@ -21,6 +21,7 @@ public class Main extends Application {
 			
 			primaryStage.setTitle("RabbikoRPG");
 			primaryStage.centerOnScreen();
+			primaryStage.setResizable(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		

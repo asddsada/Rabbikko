@@ -38,6 +38,7 @@ public class RenderableHolder {
 	public static Image shop;
 	public static Image setting;
 	public static Image menuIcn;
+	public static Image dead;
 
 	// Item
 	public static Image hpPotion;
@@ -88,6 +89,7 @@ public class RenderableHolder {
 			shop = new Image(ClassLoader.getSystemResource("img/shop.png").toString());
 			setting = new Image(ClassLoader.getSystemResource("img/setting2.png").toString());
 			menuIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
+			dead = new Image(ClassLoader.getSystemResource("img/dead.png").toString());
 
 			// Item
 			hpPotion = new Image(ClassLoader.getSystemResource("img/hpPotion.png").toString());

@@ -131,6 +131,7 @@ public class DialogPane extends VBox {
 		Button close = new Button("X");
 		close.setStyle("-fx-color: red;-fx-border: none ");
 		close.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			scene.toDungeon();
 		});
 		gp.add(close, 2, 13);
@@ -163,6 +164,7 @@ public class DialogPane extends VBox {
 		gp.add(money, 3, 12, 2, 2);
 
 		potion1.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			use.setVisible(false);
 			t3.setText("Amount : " + ((Health) Inventory.getBag()[0]).getAmount());
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
@@ -170,6 +172,7 @@ public class DialogPane extends VBox {
 		});
 
 		potion2.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			use.setVisible(false);
 			t3.setText("Amount : " + ((Mana) Inventory.getBag()[1]).getAmount());
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
@@ -177,6 +180,7 @@ public class DialogPane extends VBox {
 		});
 
 		sword.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			use.setVisible(true);
 			if (((Weapons) Inventory.getBag()[2]).getAmount() == 1) {
 				use.setDisable(false);
@@ -192,6 +196,7 @@ public class DialogPane extends VBox {
 		});
 
 		bow.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			use.setVisible(true);
 			if (((Weapons) Inventory.getBag()[3]).getAmount() == 1) {
 				use.setDisable(false);
@@ -206,6 +211,7 @@ public class DialogPane extends VBox {
 		});
 
 		staff.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			use.setVisible(true);
 			if (((Weapons) Inventory.getBag()[4]).getAmount() == 1) {
 				use.setDisable(false);
@@ -220,6 +226,7 @@ public class DialogPane extends VBox {
 		});
 
 		use.setOnMouseClicked((MouseEvent event0) -> {
+			RenderableHolder.clickSound.play(100);
 			if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Item
 					&& ((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).isUsable()) {
 				((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).use();
@@ -265,40 +272,44 @@ public class DialogPane extends VBox {
 		gp.add(money, 3, 12, 2, 2);
 
 		potion1.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			buy.setId("0");
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : " + ((Health) Inventory.getBag()[0]).getPrice() + " g");
 		});
 
 		potion2.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			buy.setId("1");
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : " + ((Mana) Inventory.getBag()[1]).getPrice() + " g");
 		});
 
 		sword.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			buy.setId("2");
 			t1.setText("Sword\n");
 			t2.setText("Price : " + ((Weapons) Inventory.getBag()[2]).getPrice() + " g");
 		});
 
 		bow.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			buy.setId("3");
 			t1.setText("Bow\n");
 			t2.setText("Price : " + ((Weapons) Inventory.getBag()[3]).getPrice() + " g");
 		});
 
 		staff.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			buy.setId("4");
 			t1.setText("Staff\n");
 			t2.setText("Price : " + ((Weapons) Inventory.getBag()[4]).getPrice() + " g");
 		});
 
 		buy.setOnMouseClicked((MouseEvent event0) -> {
+			RenderableHolder.clickSound.play(100);
 			shop.buy(Integer.valueOf(buy.getId()));
 			money.setText(Integer.toString(GameLogic.hero.getMoney()) + " g");
-			buy.setOnMouseReleased((MouseEvent e) -> {
-			});
 		});
 
 		this.getChildren().add(gp);
@@ -307,21 +318,23 @@ public class DialogPane extends VBox {
 	public void setting() {
 		// TODO Auto-generated method stub
 		defaultDraw(scene, RenderableHolder.setting);
-		Button close = new Button("X");
-		close.setStyle("-fx-color: red;-fx-border: none ");
-		close.setOnMouseClicked((MouseEvent e) -> {
+		Button resume = new Button("RESUME");
+		resume.setStyle("-fx-color: red;-fx-border: none ");
+		resume.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			scene.toDungeon();
 		});
-		this.getChildren().add(close);
+		this.getChildren().add(resume);
 	}
 
 	public void dead() {
 		// TODO Auto-generated method stub
 		DungeonMain.getCanvas().canvasUpdate();
-		defaultDraw(scene, RenderableHolder.setting);
+		defaultDraw(scene, RenderableHolder.dead);
 		Button close = new Button("restart");
 		close.setStyle("-fx-color: red;-fx-border: none ");
 		close.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			GameLogic.dungeon.restart();
 			DungeonMain.getLogic().newHero();
 			scene.toDungeon();
@@ -330,6 +343,7 @@ public class DialogPane extends VBox {
 		Button buyBack = new Button("Revive");
 		buyBack.setStyle("-fx-color: red;-fx-border: none ");
 		buyBack.setOnMouseClicked((MouseEvent e) -> {
+			RenderableHolder.clickSound.play(100);
 			GameLogic.hero.revive();
 			scene.toDungeon();
 		});

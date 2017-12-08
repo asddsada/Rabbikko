@@ -114,6 +114,10 @@ public class Weapons extends GameObject implements Useable {
 			}
 		}
 	}
+	
+	public Image getImage() {
+		return imgWeapon;
+	}
 
 	@Override
 	public double getWidth() {

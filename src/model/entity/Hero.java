@@ -25,7 +25,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 				50, 1000, 30, atkType);
 		this.maxMp = 1000;
 		this.currentMp = 0;
-		this.money = 0;
+		this.money = 100000;
 		this.z = -1;
 		this.race = DungeonableEntity.HUMANITY;
 		Hero.inventory = new Inventory();
