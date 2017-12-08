@@ -30,11 +30,11 @@ public class Agility extends Attribute {
 					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
 						gc.drawImage(RenderableHolder.aEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
 					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth()*7,pos.y-getHeight()/2);
 					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth()/2,pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.aEffect4,pos.x-getWidth()/2,pos.y-getHeight()*5);
 					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.aEffect3,pos.x-getWidth(),pos.y-getHeight());
 					}
 				}
 			}

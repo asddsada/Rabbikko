@@ -30,7 +30,7 @@ public class Strength extends Attribute {
 					if (GameLogic.hero.getDirection() == Entity.RIGHT) {
 						gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth(), pos.y - getHeight() / 2);
 					} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
-						gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth(), pos.y - getHeight() / 2);
+						gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.5, pos.y - getHeight() / 2);
 					} else if (GameLogic.hero.getDirection() == Entity.BACK) {
 						gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight() / 2);
 					} else if (GameLogic.hero.getDirection() == Entity.FRONT) {

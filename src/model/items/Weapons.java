@@ -61,7 +61,7 @@ public class Weapons extends GameObject implements Useable {
 	@Override
 	public void use() {
 		if(attackTime==0)attackTime = atkTimeMax;
-		GameLogic.hero.setAtktype(GameLogic.hero.getAtkType());
+//		GameLogic.hero.setAtktype(GameLogic.hero.getAtkType());
 		// System.out.println("use weapon");
 	}
 

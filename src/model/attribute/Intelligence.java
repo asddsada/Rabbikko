@@ -28,13 +28,13 @@ public class Intelligence extends Attribute{
 				if (heroWeapon.getAttackTime() > 0) {
 					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
-						gc.drawImage(RenderableHolder.aEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()/4,pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()*4,pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth()/2,pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth(),pos.y-getHeight()*2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()*1.5,pos.y-getHeight()/2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}
 				}
 			}
