@@ -21,8 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
@@ -36,7 +34,6 @@ import model.items.Item;
 import model.items.Mana;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
-import utility.InputUtility;
 import view.SceneManeger;
 
 public class DialogPane extends VBox {
@@ -166,39 +163,17 @@ gp.add(t1, 1, 3,4,4);
 		gp.add(money,3,12,2,2);
 
 		potion1.setOnMouseClicked((MouseEvent e) -> {
-
-//			if (((Item)Inventory.getBag()[0]).getAmount() >= 1) {
-//				use.setDisable(false);
-//				use.setId("0");
-//			}
-//			else {
-//				use.setId("");
-//				use.setDisable(true);
-//			}
 			use.setVisible(false);
 			t3.setText("Amount : "+ ((Health)Inventory.getBag()[0]).getAmount());
-//			if (((Health)Inventory.getBag()[0]).getAmount() != 0) {
-//				use.setId("0");
-//			}
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : 500 g");
-			// t3.setText("Amount : "+ ((Health)Inventory.getBag()[0]).getAmount());
 		});
 
 		potion2.setOnMouseClicked((MouseEvent e) -> {
-//			if (((Item)Inventory.getBag()[1]).getAmount() >= 1) {
-//				use.setDisable(false);
-//				use.setId("1");
-//			}
-//			else {
-//				use.setId("");
-//				use.setDisable(true);
-//			}
 			use.setVisible(false);
 			t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : 500 g");
-//			t3.setText("Amount : " + ((Mana)Inventory.getBag()[1]).getAmount());
 		});
 
 		sword.setOnMouseClicked((MouseEvent e) -> {
@@ -321,12 +296,10 @@ gp.add(t1, 1, 3,4,4);
 		buy.setOnMouseClicked((MouseEvent event0) -> {
 			shop.buy(Integer.valueOf(buy.getId()));
 			money.setText(Integer.toString(GameLogic.hero.getMoney()) + " g");
+			buy.setOnMouseReleased((MouseEvent e) -> {
+			});
 		});
-		
-		buy.setOnMouseReleased((MouseEvent e) -> {
 			
-		});
-		
 		this.getChildren().add(gp);
 	}
 

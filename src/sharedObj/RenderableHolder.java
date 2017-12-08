@@ -52,6 +52,15 @@ public class RenderableHolder {
 	
 	public static Image sEffect;
 	public static Image sEffect2;
+	public static Image aEffect;
+	public static Image aEffect2;
+	public static Image aEffect3;
+	public static Image aEffect4;
+	public static Image mEffect;
+	public static Image mEffect2;
+	public static Image mEffect3;
+	public static Image mEffect4;
+
 
 	// BGM
 	public static AudioClip clickSound;
@@ -97,7 +106,15 @@ public class RenderableHolder {
 			
 			sEffect = new Image(ClassLoader.getSystemResource("img/sEffect.gif").toString());
 			sEffect2 = new Image(ClassLoader.getSystemResource("img/sEffect2.gif").toString());
-
+			aEffect = new Image(ClassLoader.getSystemResource("img/aEffect.gif").toString());
+			aEffect2 = new Image(ClassLoader.getSystemResource("img/aEffect2.gif").toString());
+			aEffect3 = new Image(ClassLoader.getSystemResource("img/aEffect3.gif").toString());
+			aEffect4 = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
+//			mEffect = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
+//			mEffect2 = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
+//			mEffect3 = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
+//			mEffect4 = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
+		
 			// res for game
 			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());
 

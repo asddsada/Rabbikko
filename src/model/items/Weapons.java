@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import logic.GameLogic;
 import model.GameObject;
 import model.attribute.Agility;
+import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
 import model.entity.Entity;
@@ -16,7 +17,6 @@ import sharedObj.RenderableHolder;
 public class Weapons extends GameObject implements Useable {
 	private int price;
 	private Image imgWeapon;
-	private Image imgIcon;
 	private int amount;
 	private int attackTime;
 	private int atkTimeMax; // how many step swing should make
@@ -25,7 +25,6 @@ public class Weapons extends GameObject implements Useable {
 		super(0, 0, 100);
 		this.price = price;
 		this.imgWeapon = img;
-		this.imgIcon = imgIcon;
 		this.amount = 0;
 		attackTime = 0;
 		this.visible = false;
@@ -62,6 +61,7 @@ public class Weapons extends GameObject implements Useable {
 	@Override
 	public void use() {
 		if(attackTime==0)attackTime = atkTimeMax;
+		GameLogic.hero.setAtktype(GameLogic.hero.getAtkType());
 		// System.out.println("use weapon");
 	}
 
