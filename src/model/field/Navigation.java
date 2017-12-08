@@ -3,6 +3,7 @@ package model.field;
 import com.sun.javafx.tk.FontLoader;
 import com.sun.javafx.tk.Toolkit;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import logic.GameLogic;
@@ -36,16 +37,8 @@ public class Navigation extends Field {
 		return name;
 	}
 
-	@Override
-	public boolean isInBorderX(double x) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isInBorderY(double y) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isInBorder(double x,double y) {
+		return isInBorderX(x)&&isInBorderY(y);
 	}
 	
 	@Override
@@ -91,15 +84,18 @@ public class Navigation extends Field {
 		double xPos = InputUtility.mouseX;
 		double yPos = InputUtility.mouseY;
 
-		if (xPos >= 704 && xPos <= 741 && yPos >= 575 && yPos <= 615 && InputUtility.isMouseClick() ) {
+		if ((xPos >= 704 && xPos <= 741 && yPos >= 575 && yPos <= 615 && InputUtility.isMouseClick() )
+				||(InputUtility.isKeyPressed(KeyCode.I))) {
 			ResourceLoader.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(1);
 		}
-		else if (xPos >= 762 && xPos <= 800 && yPos >=575 && yPos <= 615 && InputUtility.isMouseClick()) {
+		else if ((xPos >= 762 && xPos <= 800 && yPos >=575 && yPos <= 615 && InputUtility.isMouseClick())
+			||(InputUtility.isKeyPressed(KeyCode.B))) {
 			ResourceLoader.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(2);
 		}	
-		else if (xPos >= 823 && xPos <= 861 && yPos >= 575 && yPos <= 615 && InputUtility.isMouseClick()) {
+		else if ((xPos >= 823 && xPos <= 861 && yPos >= 575 && yPos <= 615 && InputUtility.isMouseClick()) 
+				||(InputUtility.isKeyPressed(KeyCode.ESCAPE))) {
 			ResourceLoader.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(3);
 		}

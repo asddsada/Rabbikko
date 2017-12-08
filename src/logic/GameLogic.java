@@ -19,7 +19,7 @@ public class GameLogic {
 	// start (+stop) loop -> update
 	public static Dungeon dungeon;
 	public static Hero hero;
-	private Navigation navig;
+	public static Navigation navig;
 
 	public GameLogic() {
 		dungeon = new Dungeon();
