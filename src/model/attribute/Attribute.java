@@ -1,6 +1,7 @@
 package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
+import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
@@ -24,15 +25,19 @@ public abstract class Attribute {
 
 	public Attribute() {
 		attackTime = 0;
-		this.atkTimeMax = 10;
+		this.atkTimeMax = 30;
 	}
 	public void update(int direction, double x, double y) {		
 		if(attackTime>0) attackTime--;
 	};
 
-	public abstract <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> dungeonableEntity,
-			DungeonableEntity<T2> other);
-
+	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
+			DungeonableEntity<T2> other) {
+		// TODO Auto-generated method stub
+		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
+				ForceManeger.calculateDirection(attacker.getDirection()));
+		
+	}
 	public Weapons getHeroWeapon() {
 		return heroWeapon;
 	}

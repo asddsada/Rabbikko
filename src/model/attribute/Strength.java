@@ -16,9 +16,9 @@ public class Strength extends Attribute {
 	public Strength() {
 		super();
 		heroWeapon = (Weapons) Inventory.getBag()[2];
-		attackMultiply = 1.2;
+		attackMultiply = 1;
 		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
-		attackSpeed = 0.5;
+		attackSpeed = 1;
 		hpMultiply = 1.2;
 		hpRegen = 5;
 		mpRegen = 1;
@@ -30,13 +30,13 @@ public class Strength extends Attribute {
 					if (owner.getAtkType().getAttackTime() > 0) {
 //						gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 						if (owner.getDirection() == Entity.RIGHT) {
-							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth(), pos.y - getHeight());
+							gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth()*5/6, pos.y - getHeight());
 						} else if (owner.getDirection() == Entity.LEFT) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.5, pos.y - getHeight());
+							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()*1.3, pos.y - getHeight());
 						} else if (owner.getDirection() == Entity.BACK) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight() / 2);
+							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight()*5/6);
 						} else if (owner.getDirection() == Entity.FRONT) {
-							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth(), pos.y - getHeight() / 2);
+							gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth()/2, pos.y - getHeight()*5/6);
 						}
 					}
 				} catch (NullPointerException e) {
@@ -46,14 +46,14 @@ public class Strength extends Attribute {
 
 			@Override
 			public double getWidth() {
-				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y * 0.7
-						: attackRange.x*1.2;
+				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y 
+						: attackRange.x*1.4;
 			}
 
 			@Override
 			public double getHeight() {
 				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5
-						: attackRange.y * 0.6;
+						: attackRange.y * 0.8;
 			}
 		};
 	}
@@ -82,12 +82,4 @@ public class Strength extends Attribute {
 			System.out.println("cannot update attack effect");
 		}
 	}
-
-	@Override
-	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
-			DungeonableEntity<T2> other) {
-		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
-				ForceManeger.calculateDirection(attacker.getDirection()));
-	}
-
 }

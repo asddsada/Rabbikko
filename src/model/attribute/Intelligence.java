@@ -2,6 +2,7 @@ package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
 import logic.ForceManeger;
+import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
@@ -12,15 +13,17 @@ import utility.Pair;
 import view.SceneManeger;
 
 public class Intelligence extends Attribute{
+	protected int magicTime;
+	protected int magicTimeMax;
 	public Intelligence() {
 		super();
 		heroWeapon = (Weapons) Inventory.getBag()[4];
-		attackMultiply = 1.2;
-		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
-		attackSpeed = 1;
-		hpMultiply = 1.2;
-		hpRegen = 5;
-		mpRegen = 1;
+		attackMultiply = 1.5;
+		attackRange = new Pair(getHeroWeapon().getWidth()*1.2, getHeroWeapon().getHeight());
+		attackSpeed = 0.8;
+		hpMultiply = 1;
+		hpRegen = 1;
+		mpRegen = 5;
 		attackObj = new GameObject(heroWeapon.getX() + 20, heroWeapon.getY(), 500) {
 
 			@Override
@@ -36,6 +39,7 @@ public class Intelligence extends Attribute{
 					}else if(owner.getDirection()==Entity.FRONT) {	
 						gc.drawImage(RenderableHolder.mEffect,pos.x-getWidth()*1.5,pos.y-getHeight()/2,RenderableHolder.mEffect.getWidth()/2,RenderableHolder.mEffect.getHeight()/2);
 					}
+					
 				}
 			}
 
@@ -50,15 +54,17 @@ public class Intelligence extends Attribute{
 				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5
 						: attackRange.y * 0.6;
 			}
+			
+			@Override
+			public boolean isCollide(GameObject other, double x, double y) {
+				boolean isMagicHit=false;
+				if(GameLogic.hero.getCurrentMp()>5) {
+										
+					GameLogic.hero.useMp();
+				}
+				return super.isCollide(other, x, y)||isMagicHit;
+			}
 		};
-	}
-
-	@Override
-	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
-			DungeonableEntity<T2> other) {
-		// TODO Auto-generated method stub
-		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
-				ForceManeger.calculateDirection(attacker.getDirection()));
 	}
 
 	@Override

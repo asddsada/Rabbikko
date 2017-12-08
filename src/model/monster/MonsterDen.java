@@ -110,6 +110,9 @@ public class MonsterDen {
 			((Weapons) (Inventory.getBag()[4])).setWeapon(); 
 		}else if(InputUtility.isKeyPressed(KeyCode.J)) { //instance buy bow
 			((Weapons) (Inventory.getBag()[3])).setWeapon(); 
+		}else if(InputUtility.isKeyPressed(KeyCode.H)) { //instance buy sword
+			((Weapons) (Inventory.getBag()[2])).setWeapon(); 
+		
 		}else if(InputUtility.isKeyPressed(KeyCode.M)) { //money hag
 			GameLogic.hero.earnMoney(999999);
 		}
