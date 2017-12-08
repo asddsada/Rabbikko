@@ -9,8 +9,8 @@ public class RandomUtility {
 		return from + random.nextInt(to - from);
 	}
 
-	public static int dirctionRand(int rand,int direction) {
-		return (direction + (rand > 95 ? rand % 4 : 0)) % 4;
+	public static int randomByPercent(int rand,int base,int percent) { 
+		return (base + (rand > percent ? rand % 4 : 0)) % 4;
 	}
 
 	public static int charateristicRand(Object o) {

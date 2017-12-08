@@ -27,14 +27,14 @@ public class Strength extends Attribute {
 			public void draw(GraphicsContext gc) {
 				if (heroWeapon.getAttackTime() > 0) {
 					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-					if(GameLogic.hero.getDirection()==Entity.RIGHT) {	
-						gc.drawImage(RenderableHolder.sEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
-					}else if(GameLogic.hero.getDirection()==Entity.LEFT) {	
-						gc.drawImage(RenderableHolder.sEffect,pos.x-getWidth(),pos.y-getHeight()/2);
-					}else if(GameLogic.hero.getDirection()==Entity.BACK) {	
-						gc.drawImage(RenderableHolder.sEffect,pos.x-getWidth()/2,pos.y-getHeight()/2);
-					}else if(GameLogic.hero.getDirection()==Entity.FRONT) {	
-						gc.drawImage(RenderableHolder.sEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+					if (GameLogic.hero.getDirection() == Entity.RIGHT) {
+						gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth(), pos.y - getHeight() / 2);
+					} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
+						gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth(), pos.y - getHeight() / 2);
+					} else if (GameLogic.hero.getDirection() == Entity.BACK) {
+						gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 2, pos.y - getHeight() / 2);
+					} else if (GameLogic.hero.getDirection() == Entity.FRONT) {
+						gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth(), pos.y - getHeight() / 2);
 					}
 				}
 			}
@@ -61,10 +61,10 @@ public class Strength extends Attribute {
 			this.attackObj.setX(x + GameLogic.hero.getWidth() / 3 - attackRange.x);
 			this.attackObj.setY(y + GameLogic.hero.getHeight() / 3);
 		} else if (direction == Entity.BACK) {
-			this.attackObj.setX(x + GameLogic.hero.getWidth() / 6);
+			this.attackObj.setX(x + (GameLogic.hero.getWidth() - this.attackObj.getWidth()) / 2);
 			this.attackObj.setY(y - attackRange.y + GameLogic.hero.getHeight() * 5 / 6);
 		} else if (direction == Entity.FRONT) {
-			this.attackObj.setX(x + GameLogic.hero.getWidth() / 6);
+			this.attackObj.setX(x + (GameLogic.hero.getWidth() - this.attackObj.getWidth()) / 2);
 			this.attackObj.setY(y + GameLogic.hero.getHeight() * 2 / 3);
 		}
 	}
@@ -74,8 +74,6 @@ public class Strength extends Attribute {
 			DungeonableEntity<T2> other) {
 		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
 				ForceManeger.calculateDirection(attacker.getDirection()));
-		// System.out.println("Attack! "+other.getClass().getSimpleName()+" hp :
-		// "+other.getCurrentHp());
 	}
 
 }

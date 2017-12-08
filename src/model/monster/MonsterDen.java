@@ -67,31 +67,31 @@ public class MonsterDen {
 	public boolean isGenerate() {
 		return monsterCount < maxMonster;
 	}
-	
+
 	public void restart() {
 		maxMonster = 0;
-		monsterCount=0;
+		monsterCount = 0;
 	}
 
 	public void update() {
 		// admin key
-		if (InputUtility.isKeyPressed(KeyCode.P)) {
+		if (InputUtility.isKeyPressed(KeyCode.P)) { // add monster
 			try {
 				addMonster();
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException | SecurityException e) {
 				e.printStackTrace();
 			}
-		} else if (InputUtility.isKeyPressed(KeyCode.O)) {
+		} else if (InputUtility.isKeyPressed(KeyCode.O)) { // restore hero hp
 			GameLogic.hero.restoreHp();
-		} else if (InputUtility.isKeyPressed(KeyCode.I)) {
+		} else if (InputUtility.isKeyPressed(KeyCode.I)) { // clear dungeon floor
 			for (DungeonableEntity<Attribute> e : Dungeon.getEntitiesHolder())
 				if (!(e instanceof Hero))
 					Dungeon.destroyEntities(e);
-		} else if (InputUtility.isKeyPressed(KeyCode.U)) {
+		} else if (InputUtility.isKeyPressed(KeyCode.U)) { // hero assassinate
 			GameLogic.hero.healHp(-1000);
 			GameLogic.hero.setAlive(false);
-		} else if (InputUtility.isKeyPressed(KeyCode.L)) {
+		} else if (InputUtility.isKeyPressed(KeyCode.L)) { // skip level
 			try {
 				addMonster();
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
@@ -104,7 +104,7 @@ public class MonsterDen {
 			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
 					.forEach(Dungeon::destroyEntities);
 		}
-		System.out.println(maxMonster);
+		// System.out.println(maxMonster);
 	}
 
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,

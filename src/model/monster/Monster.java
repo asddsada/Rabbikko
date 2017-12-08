@@ -35,7 +35,7 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		else if (isAlive && dmgTimer == 0) {
 			rand = RandomUtility.randomInt(0, 100);
 			
-			move(RandomUtility.dirctionRand(rand,this.direction));
+			move(RandomUtility.randomByPercent(rand,this.direction,95));
 			if(isBlock(pos.x,pos.y)) struct=true;
 			else struct =false;
 			this.atkType.update(this.direction, this.pos.x, this.pos.y);
