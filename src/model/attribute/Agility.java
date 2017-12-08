@@ -7,7 +7,7 @@ import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.items.Inventory;
 import model.items.Weapons;
-import sharedObj.RenderableHolder;
+import utility.ResourceLoader;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -21,7 +21,7 @@ public class Agility extends Attribute {
 		hpMultiply = 0.9;
 		hpRegen = 2;
 		mpRegen = 3;
-		img = RenderableHolder.agility;
+		img = ResourceLoader.agility;
 		attackObj = new GameObject(heroWeapon.getX() + 20, heroWeapon.getY(), 500) {
 
 			@Override
@@ -29,13 +29,13 @@ public class Agility extends Attribute {
 				if (owner.getAtkType().getAttackTime()  > 0) {
 //					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 					if(owner.getDirection()==Entity.RIGHT) {	
-						gc.drawImage(RenderableHolder.aEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
+						gc.drawImage(ResourceLoader.aEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
 					}else if(owner.getDirection()==Entity.LEFT) {	
-						gc.drawImage(RenderableHolder.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
+						gc.drawImage(ResourceLoader.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
 					}else if(owner.getDirection()==Entity.BACK) {	
-						gc.drawImage(RenderableHolder.aEffect4,pos.x-getWidth()/2,pos.y-getHeight()*1.5);
+						gc.drawImage(ResourceLoader.aEffect4,pos.x-getWidth()/2,pos.y-getHeight()*1.5);
 					}else if(owner.getDirection()==Entity.FRONT) {	
-						gc.drawImage(RenderableHolder.aEffect3,pos.x-getWidth()/2,pos.y-getHeight());
+						gc.drawImage(ResourceLoader.aEffect3,pos.x-getWidth()/2,pos.y-getHeight());
 					}
 				}
 			}

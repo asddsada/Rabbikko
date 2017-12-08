@@ -16,7 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.WindowEvent;
-import sharedObj.RenderableHolder;
+import utility.ResourceLoader;
 import view.SceneManeger;
 
 public class TitleCanvas extends Canvas {
@@ -28,7 +28,7 @@ public class TitleCanvas extends Canvas {
 		gc = this.getGraphicsContext2D();
 
 		// play theme song
-//		RenderableHolder.titleBgm.play();
+//		Loader.titleBgm.play();
 
 		this.drawMainMenu();
 		this.addKeyEventHandler();
@@ -36,7 +36,7 @@ public class TitleCanvas extends Canvas {
 
 	private void drawMainMenu() {
 		// draw bg
-		gc.drawImage(RenderableHolder.mainImage,0, 0,SceneManeger.WIDGTH, SceneManeger.HEIGHT);
+		gc.drawImage(ResourceLoader.mainImage,0, 0,SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 
 		// draw title
 		gc.setFill(Color.WHITE);
@@ -46,7 +46,7 @@ public class TitleCanvas extends Canvas {
 		gc.fillText("RABBIKKO RPG", SceneManeger.WIDGTH / 2, SceneManeger.HEIGHT / 3);
 
 		// draw btn
-		gc.drawImage(RenderableHolder.mainBtnImage, SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2);
+		gc.drawImage(ResourceLoader.mainBtnImage, SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2);
 
 		// draw credit text
 		f = Font.font("Century Schoolbook", 20);
@@ -56,7 +56,7 @@ public class TitleCanvas extends Canvas {
 	}
 
 	private void goToDun() {
-		RenderableHolder.clickSound.play(100);
+		ResourceLoader.clickSound.play(100);
 		DungeonMain dunMain = new DungeonMain();
 		SceneManeger.gotoScene(SceneManeger.dungeonScene);
 	}
@@ -67,7 +67,7 @@ public class TitleCanvas extends Canvas {
 			if (isGoNext) {
 				goToDun();
 			} else {
-				gc.drawImage(RenderableHolder.mainBtnImage, SceneManeger.WIDGTH / 3.05 , SceneManeger.HEIGHT / 2 ,RenderableHolder.mainBtnImage.getWidth()*1.05,RenderableHolder.mainBtnImage.getHeight()*1.05);
+				gc.drawImage(ResourceLoader.mainBtnImage, SceneManeger.WIDGTH / 3.05 , SceneManeger.HEIGHT / 2 ,ResourceLoader.mainBtnImage.getWidth()*1.05,ResourceLoader.mainBtnImage.getHeight()*1.05);
 //				gc.setStroke(Color.GHOSTWHITE);
 //				gc.setLineWidth(2);
 //				gc.strokeRect(SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2, 300, 87);

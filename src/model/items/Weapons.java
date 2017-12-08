@@ -14,6 +14,7 @@ import model.entity.Hero;
 import model.field.Dungeon;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
+import utility.ResourceLoader;
 
 public class Weapons extends GameObject implements Useable {
 	public static final int SWORD = 2;
@@ -90,11 +91,11 @@ public class Weapons extends GameObject implements Useable {
 					if (GameLogic.hero.getDirection() == Entity.RIGHT) {
 						gc.drawImage(imgWeapon, pos.x - getWidth() * 2.7, pos.y - getHeight() / 3);
 					} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
-						gc.drawImage(RenderableHolder.bow3, pos.x + getWidth() * 1.2, pos.y - getHeight() / 2);
+						gc.drawImage(ResourceLoader.bow3, pos.x + getWidth() * 1.2, pos.y - getHeight() / 2);
 					} else if (GameLogic.hero.getDirection() == Entity.BACK) {
 						gc.drawImage(imgWeapon, pos.x - getWidth() * 1.5, pos.y - getHeight() / 4);
 					} else if (GameLogic.hero.getDirection() == Entity.FRONT) {
-						gc.drawImage(RenderableHolder.bow3, pos.x + getWidth() / 1.5, pos.y - getHeight() / 4);
+						gc.drawImage(ResourceLoader.bow3, pos.x + getWidth() / 1.5, pos.y - getHeight() / 4);
 					}
 				}
 			}

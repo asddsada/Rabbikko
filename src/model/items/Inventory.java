@@ -1,14 +1,14 @@
 package model.items;
 
 import logic.GameLogic;
-import sharedObj.RenderableHolder;
+import utility.ResourceLoader;
 
 public class Inventory {
 	private static final Useable[] BAG = {
 			new Health(),new Mana(),
-			new	Weapons(500, RenderableHolder.sword2, RenderableHolder.sword,2),
-			new	Weapons(500, RenderableHolder.bow2, RenderableHolder.bow,3),
-			new	Weapons(500, RenderableHolder.staff2, RenderableHolder.staff,4),
+			new	Weapons(500, ResourceLoader.sword2, ResourceLoader.sword,2),
+			new	Weapons(500, ResourceLoader.bow2, ResourceLoader.bow,3),
+			new	Weapons(500, ResourceLoader.staff2, ResourceLoader.staff,4),
 		};
 	public int bagCapacity;
 	

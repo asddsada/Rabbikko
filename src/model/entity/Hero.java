@@ -13,6 +13,7 @@ import model.field.Obstructable;
 import model.items.Inventory;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
+import utility.ResourceLoader;
 import view.SceneManeger;
 
 public class Hero extends DungeonableEntity<Attribute> {
@@ -23,7 +24,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	private String name;
 
 	public Hero(int direction, Attribute atkType) {
-		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, RenderableHolder.humanImage, 0, 3, direction, 7,
+		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction, 7,
 				50, 1000, 45, atkType);
 		this.maxMp = 1000;
 		this.currentMp = 0;

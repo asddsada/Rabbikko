@@ -15,7 +15,7 @@ import model.entity.Entity;
 import model.field.Dungeon;
 import model.items.Inventory;
 import model.items.Weapons;
-import sharedObj.RenderableHolder;
+import utility.ResourceLoader;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -40,7 +40,7 @@ public class Intelligence extends Attribute {
 		delTemp = new LinkedList<>();
 		magicW = attackRange.x*2;
 		magicH = attackRange.y*0.7;
-		img = RenderableHolder.intelligence;
+		img = ResourceLoader.intelligence;
 		attackObj = new GameObject(heroWeapon.getX() + 20, heroWeapon.getY(), 500) {
 
 			@Override
@@ -48,17 +48,17 @@ public class Intelligence extends Attribute {
 				if (owner.getAtkType().getAttackTime() > 0 ) {
 //					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 //					if (owner.getDirection() == Entity.RIGHT) {
-//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() / 4, pos.y - getHeight() * 2,
-//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//						gc.drawImage(Loader.mEffect, pos.x - getWidth() / 4, pos.y - getHeight() * 2,
+//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
 //					} else if (owner.getDirection() == Entity.LEFT) {
-//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() * 3, pos.y - getHeight() * 2,
-//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//						gc.drawImage(Loader.mEffect, pos.x - getWidth() * 3, pos.y - getHeight() * 2,
+//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
 //					} else if (owner.getDirection() == Entity.BACK) {
-//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth(), pos.y - getHeight() * 2,
-//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//						gc.drawImage(Loader.mEffect, pos.x - getWidth(), pos.y - getHeight() * 2,
+//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
 //					} else if (owner.getDirection() == Entity.FRONT) {
-//						gc.drawImage(RenderableHolder.mEffect, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2,
-//								RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+//						gc.drawImage(Loader.mEffect, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2,
+//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
 //					}
 				}
 				for (Entry<Pair, Pair> e : magicTime.entrySet()) {
@@ -77,8 +77,8 @@ public class Intelligence extends Attribute {
 						b = e.getKey().y ;
 					}
 //					gc.fillRect(a, b, magicW, magicH);
-					gc.drawImage(RenderableHolder.mEffect, a- getWidth() *5/6, b - getHeight()/2 -owner.getHeight(),
-							RenderableHolder.mEffect.getWidth() / 2, RenderableHolder.mEffect.getHeight() / 2);
+					gc.drawImage(ResourceLoader.mEffect, a- getWidth() *5/6, b - getHeight()/2 -owner.getHeight(),
+							ResourceLoader.mEffect.getWidth() / 2, ResourceLoader.mEffect.getHeight() / 2);
 				}
 			}
 

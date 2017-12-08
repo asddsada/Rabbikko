@@ -5,22 +5,21 @@ import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 import model.entity.Hero;
-import sharedObj.RenderableHolder;
-
+import utility.ResourceLoader;
 public class Health extends Item{
 	private final int POINT = 100;
 	
 	public Health() {
 		this.amount = 0;
 		this.price = 600;
-		this.imgWeapon = RenderableHolder.hpPotion;
+		this.imgWeapon = ResourceLoader.hpPotion;
 	}
 
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
 		if (isUsable()) {
-			RenderableHolder.heal.play();
+			ResourceLoader.heal.play();
 			GameLogic.hero.healHp(POINT);
 			amount--;
 		}

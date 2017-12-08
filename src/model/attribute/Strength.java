@@ -9,7 +9,7 @@ import model.entity.Entity;
 import model.entity.Hero;
 import model.items.Inventory;
 import model.items.Weapons;
-import sharedObj.RenderableHolder;
+import utility.ResourceLoader;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -23,7 +23,7 @@ public class Strength extends Attribute {
 		hpMultiply = 1.4;
 		hpRegen = 5;
 		mpRegen = 1;
-		img = RenderableHolder.strength;
+		img = ResourceLoader.strength;
 		attackObj = new GameObject(0, 0, 500) {
 
 			@Override
@@ -33,37 +33,37 @@ public class Strength extends Attribute {
 						if (owner.getAtkType().getAttackTime() > 3) {
 							// gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 							if (owner.getDirection() == Entity.RIGHT) {
-								gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth() / 2, pos.y - getHeight() / 2,
-										RenderableHolder.sEffect2.getWidth() * 0.8,
-										RenderableHolder.sEffect2.getHeight() * 0.8);
+								gc.drawImage(ResourceLoader.sEffect2, pos.x - getWidth() / 2, pos.y - getHeight() / 2,
+										ResourceLoader.sEffect2.getWidth() * 0.8,
+										ResourceLoader.sEffect2.getHeight() * 0.8);
 							} else if (owner.getDirection() == Entity.LEFT) {
-								gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() * 1.2,
-										pos.y - getHeight() / 2, RenderableHolder.sEffect2.getWidth() * 0.8,
-										RenderableHolder.sEffect2.getHeight() * 0.8);
+								gc.drawImage(ResourceLoader.sEffect, pos.x - getWidth() * 1.2,
+										pos.y - getHeight() / 2, ResourceLoader.sEffect2.getWidth() * 0.8,
+										ResourceLoader.sEffect2.getHeight() * 0.8);
 							} else if (owner.getDirection() == Entity.BACK) {
-								gc.drawImage(RenderableHolder.sEffect, pos.x - getWidth() / 6,
-										pos.y - getHeight() * 0.6, RenderableHolder.sEffect2.getWidth() * 0.8,
-										RenderableHolder.sEffect2.getHeight() * 0.8);
+								gc.drawImage(ResourceLoader.sEffect, pos.x - getWidth() / 6,
+										pos.y - getHeight() * 0.6, ResourceLoader.sEffect2.getWidth() * 0.8,
+										ResourceLoader.sEffect2.getHeight() * 0.8);
 							} else if (owner.getDirection() == Entity.FRONT) {
-								gc.drawImage(RenderableHolder.sEffect2, pos.x - getWidth() * 0.4,
-										pos.y - getHeight() * 0.4, RenderableHolder.sEffect2.getWidth() * 0.8,
-										RenderableHolder.sEffect2.getHeight() * 0.8);
+								gc.drawImage(ResourceLoader.sEffect2, pos.x - getWidth() * 0.4,
+										pos.y - getHeight() * 0.4, ResourceLoader.sEffect2.getWidth() * 0.8,
+										ResourceLoader.sEffect2.getHeight() * 0.8);
 							}
 						}
 					} else {
 						if (owner.getAtkType().getAttackTime() > 0) {
 							// gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
 							if (owner.getDirection() == Entity.RIGHT) {
-								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth() * 5 / 6,
+								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() * 5 / 6,
 										pos.y - getHeight());
 							} else if (owner.getDirection() == Entity.LEFT) {
-								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth() * 1.3,
+								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() * 1.3,
 										pos.y - getHeight());
 							} else if (owner.getDirection() == Entity.BACK) {
-								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth() / 2,
+								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() / 2,
 										pos.y - getHeight() * 5 / 6);
 							} else if (owner.getDirection() == Entity.FRONT) {
-								gc.drawImage(RenderableHolder.monsterEffect, pos.x - getWidth() / 2,
+								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() / 2,
 										pos.y - getHeight() * 5 / 6);
 							}
 						}

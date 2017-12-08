@@ -9,9 +9,11 @@ import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.field.Dungeon;
+import model.field.Navigation;
 import model.field.Obstructable;
 import utility.InputUtility;
 import utility.RandomUtility;
+import view.SceneManeger;
 
 public class Monster extends DungeonableEntity<Attribute> implements Obstructable {
 	private int idleParameter;
@@ -19,14 +21,21 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 	private int persistentParameter;
 	private int eyesight;
 	private int bounty;
-	private int rand;
-	
+	private int rand;	
 
-	public Monster(double x, double y, Image img, int row, int column, int bounty, int movespeed, int mass,
-			int maxHp, int baseAtk, Attribute atkType) {
-		super(x, y, img, row, column, Entity.FRONT, movespeed, mass, maxHp, baseAtk, atkType);
-		this.bounty=bounty;
-		this.race = DungeonableEntity.MONSTER;
+	public Monster(Image img, int row, int column, int movespeed, int mass,
+			int maxHp, int baseAtk, Attribute atkType, int idleParameter, int timidParaneter, int persistentParameter,
+			int eyesight, int bounty, int rand) {
+		super(RandomUtility.randomInt((int) (SceneManeger.WIDGTH*0.1), (int) (SceneManeger.WIDGTH*0.9)),
+				RandomUtility.randomInt((int) (SceneManeger.HEIGHT*0.1), (int) (SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT)),
+				img, row, column, Entity.FRONT, 
+				movespeed, mass, maxHp, baseAtk, atkType);
+		this.idleParameter = idleParameter;
+		this.timidParaneter = timidParaneter;
+		this.persistentParameter = persistentParameter;
+		this.eyesight = eyesight;
+		this.bounty = bounty;
+		this.rand = rand;
 	}
 
 	@Override

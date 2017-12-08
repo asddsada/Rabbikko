@@ -6,21 +6,21 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import logic.GameLogic;
 import model.entity.Hero;
-import sharedObj.RenderableHolder;
+import utility.ResourceLoader;
 
 public class Mana extends Item {
 	private final int POINT = 100;
 	
 	public Mana() {
 		this.price = 500;
-		this.imgWeapon = RenderableHolder.mpPotion;
+		this.imgWeapon = ResourceLoader.mpPotion;
 	}
 
 	@Override
 	public void use() {
 		// TODO Auto-generated method stub
 		if (isUsable()) {
-			RenderableHolder.heal.play();
+			ResourceLoader.heal.play();
 			GameLogic.hero.healMp(POINT);
 			amount--;
 		}
