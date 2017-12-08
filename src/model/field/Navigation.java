@@ -49,6 +49,10 @@ public class Navigation extends Field {
 		Navigation.name = name;
 	}
 
+	public static String getName() {
+		return name;
+	}
+
 	@Override
 	public boolean isInBorderX(double x) {
 		// TODO Auto-generated method stub

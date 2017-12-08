@@ -36,11 +36,13 @@ public class DungeonMain {
 	};
 
 	public static void start() {
+		Main.isGameRunning = true;
 		animation.start();
 		ForceManeger.startForceRule();
 	}
 
 	public static void stop() {
+		Main.isGameRunning = false;
 		animation.stop();
 		ForceManeger.pauseForceRule();
 	}

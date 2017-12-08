@@ -28,19 +28,17 @@ public class ForceManeger {
 	}
 
 	public static <T extends Attribute> void reactionEffect(DungeonableEntity<T> entity, int axis) {
-		double d = entity.getMovespeed()*entity.getMovespeed()/2/TIME_DIV;
+		double d = entity.getMovespeed()*entity.getMovespeed()/2;
 		Pair Ft =totalForce(entity);
 		// bug able to push out of the field
 		if (axis % 3 == SceneManeger.Y_AXIS)
 			d /= (Ft.y / entity.getMass());
 		else
 			d /= (Ft.x / entity.getMass());
-		for (int i = 0; i < TIME_DIV; i++) {
-			try {
-				if(entity.isAlive())entity.setPos(d, axis);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		try {
+			if(entity.isAlive())entity.setPos(d, axis);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}

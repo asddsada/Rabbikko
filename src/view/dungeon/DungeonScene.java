@@ -58,6 +58,8 @@ public class DungeonScene extends Scene{
 		case 4:
 			dialog.dead();
 			break;
+		case 5 :
+			dialog.openingNext();
 		}
 	}
 
