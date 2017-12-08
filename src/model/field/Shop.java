@@ -25,6 +25,7 @@ public class Shop {
 	public void buy(int index) {
 		if (Inventory.getBag()[index] instanceof Item) {
 			if (((Item)Inventory.getBag()[index]).isBuyable()) {
+				RenderableHolder.coin.play(100);
 				GameLogic.hero.useMoney(((Item)Inventory.getBag()[index]).getPrice());
 				Hero.inventory.add(index);
 			}
@@ -37,6 +38,7 @@ public class Shop {
 		}
 		else if (Inventory.getBag()[index] instanceof Weapons) {
 			if (((Weapons)Inventory.getBag()[index]).isBuyable()) {
+				RenderableHolder.coin.play(100);
 				GameLogic.hero.useMoney(((Weapons)Inventory.getBag()[index]).getPrice());
 				Hero.inventory.add(index);
 			}

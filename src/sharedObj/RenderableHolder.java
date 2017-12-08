@@ -15,6 +15,7 @@ import model.GameObject;
 import model.entity.Hero;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
+import sun.awt.SunToolkit.InfiniteLoop;
 
 public class RenderableHolder {
 	private static final RenderableHolder instance = new RenderableHolder();
@@ -37,7 +38,7 @@ public class RenderableHolder {
 	public static Image inven;
 	public static Image shop;
 	public static Image setting;
-	public static Image menuIcn;
+//	public static Image menuIcn;
 	public static Image dead;
 
 	// Item
@@ -58,6 +59,7 @@ public class RenderableHolder {
 	public static Image aEffect3;
 	public static Image aEffect4;
 	public static Image mEffect;
+	public static Image monsterEffect;
 	
 	public static Image strength;
 	public static Image agility;
@@ -66,6 +68,8 @@ public class RenderableHolder {
 	// BGM
 	public static AudioClip clickSound;
 	public static AudioClip titleBgm;
+	public static AudioClip coin;
+	public static AudioClip heal;
 
 	static {
 		loadResource();
@@ -92,7 +96,7 @@ public class RenderableHolder {
 			inven = new Image(ClassLoader.getSystemResource("img/inventory.png").toString());
 			shop = new Image(ClassLoader.getSystemResource("img/shop.png").toString());
 			setting = new Image(ClassLoader.getSystemResource("img/setting2.png").toString());
-			menuIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
+//			menuIcn = new Image(ClassLoader.getSystemResource("img/setting.png").toString());
 			dead = new Image(ClassLoader.getSystemResource("img/dead.png").toString());
 
 			// Item
@@ -113,6 +117,7 @@ public class RenderableHolder {
 			aEffect3 = new Image(ClassLoader.getSystemResource("img/aEffect3.gif").toString());
 			aEffect4 = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
 			mEffect = new Image(ClassLoader.getSystemResource("img/mEffect.gif").toString());
+			monsterEffect = new Image(ClassLoader.getSystemResource("img/monsterAttack.gif").toString());
 			
 			strength = new Image(ClassLoader.getSystemResource("img/strength.png").toString());
 			agility = new Image(ClassLoader.getSystemResource("img/agility.png").toString());
@@ -128,6 +133,8 @@ public class RenderableHolder {
 			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
 			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
 			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
+			coin = new AudioClip(ClassLoader.getSystemResource("snd/coin.mp3").toString());
+			heal = new AudioClip(ClassLoader.getSystemResource("snd/heal.wav").toString());
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();

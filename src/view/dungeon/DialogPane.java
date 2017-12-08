@@ -355,7 +355,6 @@ public class DialogPane extends VBox {
 		});
 
 		buy.setOnMouseClicked((MouseEvent event0) -> {
-			RenderableHolder.clickSound.play(100);
 			shop.buy(Integer.valueOf(buy.getId()));
 			money.setText(Integer.toString(GameLogic.hero.getMoney()) + " g");
 		});
