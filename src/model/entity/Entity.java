@@ -106,12 +106,12 @@ public abstract class Entity extends GameObject {
 
 	protected void move(int direction) {
 		this.direction = direction;
-		if (this.direction != direction && (this.direction % 3) == (direction % 3)) {
+		if ((this.direction != direction) && (this.direction % 3) == (direction % 3)) {
 			this.counter = 0;
 			this.walktick = 1;
 		} else if (InputUtility.isKeyTrig()) {
 			this.walktick = (this.walktick + 1) % 3;
-		} else if (this.direction == direction
+		} else if ((this.direction == direction)
 				|| ((this.direction % 3) != (direction % 3) && (this.direction % 3) != 0 && (direction % 3) == 0)) {
 			addWalkTick();
 		}

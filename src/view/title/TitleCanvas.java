@@ -57,15 +57,15 @@ public class TitleCanvas extends Canvas {
 
 	private void goToDun() {
 		ResourceLoader.clickSound.play(100);
-		DungeonMain dunMain = new DungeonMain();
+		ResourceLoader.startSecondLoad();
+		DungeonMain dunMain = new DungeonMain();		
 		SceneManeger.gotoScene(SceneManeger.dungeonScene);
 	}
 
 	private void onButton(MouseEvent event, boolean isGoNext) {
 		if (event.getSceneX() >= SceneManeger.WIDGTH / 3 && event.getSceneX() <= SceneManeger.WIDGTH / 3 + 300
 				&& event.getSceneY() >= SceneManeger.HEIGHT / 2 && event.getSceneY() <= SceneManeger.HEIGHT / 2 + 87) {
-			if (isGoNext) {
-				ResourceLoader.secondLoad();
+			if (isGoNext) {				
 				goToDun();
 			} else {
 				gc.drawImage(ResourceLoader.mainBtnImage, SceneManeger.WIDGTH / 3.05 , SceneManeger.HEIGHT / 2 ,ResourceLoader.mainBtnImage.getWidth()*1.05,ResourceLoader.mainBtnImage.getHeight()*1.05);

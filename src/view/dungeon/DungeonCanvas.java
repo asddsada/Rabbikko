@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import model.entity.Hero;
+import model.items.Weapons;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
@@ -35,16 +36,18 @@ public class DungeonCanvas extends Canvas {
 	}
 
 	public void canvasUpdate() throws ConcurrentModificationException {
-		if(!ResourceLoader.isLoadFinish()) {
+		if (!ResourceLoader.isLoadFinish()) {
 			gc.setFill(Color.WHITE);
-			gc.fillText("NOWLOADING", 
-					SceneManeger.WIDGTH /2 - ResourceLoader.fontLoader.computeStringWidth("NOWLOADING",gc.getFont() )/2,
-					SceneManeger.HEIGHT / 2 -ResourceLoader.fontLoader.getFontMetrics(gc.getFont()).getLineHeight()/2);
-		}
-		else
-		for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
-			if (entity.isVisible()) {
-				entity.draw(gc);
+			gc.fillText("NOWLOADING",
+					SceneManeger.WIDGTH / 2
+							- ResourceLoader.fontLoader.computeStringWidth("NOWLOADING", gc.getFont()) / 2,
+					SceneManeger.HEIGHT / 2
+							- ResourceLoader.fontLoader.getFontMetrics(gc.getFont()).getLineHeight() / 2);
+		} else {
+			for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {
+				if (entity.isVisible()) {
+					entity.draw(gc);
+				}
 			}
 		}
 	}

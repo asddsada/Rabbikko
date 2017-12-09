@@ -19,6 +19,7 @@ import model.entity.Hero;
 import model.field.Dungeon;
 import model.items.Inventory;
 import model.items.Weapons;
+import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
 import utility.RandomUtility;
@@ -44,7 +45,7 @@ public class MonsterDen {
 						System.out.println("monsterThread has been interrupted.");
 						break;
 					}
-					if (Main.isGameRunning && RenderableHolder.getInstance().size() < 30 && GameLogic.hero.isAlive()) {
+					if (Main.isGameRunning && RenderableHolder.getInstance().size() < 35 && GameLogic.hero.isAlive()) {
 						if (monsterCount < maxMonster && (Dungeon.getLvlChangetimer() == 0)) {
 							try {
 								addMonster();
@@ -120,16 +121,18 @@ public class MonsterDen {
 		}
 	}
 	
-	private Image getMonsterImage(int i) {
+	private Image monsterImg(int i) {
 		if(i<1) i=1;
-		if(i>5) i=5;
+		else if(i>5) i=5;
 		return ResourceLoader.monsterImage[i-1];
 	}
 
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, SecurityException {
-		Dungeon.addEntities(new Monster(getMonsterImage(2), 0, 1, 4, 70
-				, 100, 20, new Strength(), 50, 5, 100, 30, 15, 1));
+		if(RenderableHolder.getInstance().size()>=35) return;
+		Dungeon.addEntities(new Monster(monsterImg(2), 0, 1,
+				4, 70, 100, 30, new Strength(),
+				70, 2, 50, 30, 15, 1));
 		monsterCount++;
 	}
 }

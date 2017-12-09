@@ -84,7 +84,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 			if (InputUtility.isKeyPressed(KeyCode.D) || InputUtility.isKeyPressed(KeyCode.RIGHT))
 				move(Entity.RIGHT);
 			if ((InputUtility.isKeyPressed(KeyCode.SPACE) ||
-					((!(GameLogic.navig.isInBoarder(InputUtility.mouseX, InputUtility.mouseY)) && InputUtility.isMousePressed())))
+					((!(GameLogic.navig.isInBorder(InputUtility.mouseX, InputUtility.mouseY)) && InputUtility.isMousePressed())))
 					&& atkType.getAttackTime()==0)
 				attack();
 //			if ((InputUtility.isKeyPressed(KeyCode.ENTER) ||

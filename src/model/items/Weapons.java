@@ -1,5 +1,7 @@
 package model.items;
 
+import java.util.ConcurrentModificationException;
+
 import Main.DungeonMain;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -40,14 +42,20 @@ public class Weapons extends GameObject implements Useable {
 	}
 
 	public void setWeapon() {
-		if (type == SWORD)
-			GameLogic.hero.setAtktype(new Strength());
-		else if (type == BOW)
-			GameLogic.hero.setAtktype(new Agility());
-		else if (type == STAFF)
-			GameLogic.hero.setAtktype(new Intelligence());
-		this.update(GameLogic.hero.getDirection(), GameLogic.hero.getX(), GameLogic.hero.getY());
-		DungeonMain.getCanvas().canvasUpdate();
+		try {
+			if (GameLogic.hero.getAtkType().getHeroWeapon().type != this.type)
+				takeWeaponOff();
+			if (type == SWORD && GameLogic.hero.getAtkType().getHeroWeapon().type != SWORD)
+				GameLogic.hero.setAtktype(new Strength());
+			else if (type == BOW && GameLogic.hero.getAtkType().getHeroWeapon().type != BOW)
+				GameLogic.hero.setAtktype(new Agility());
+			else if (type == STAFF && GameLogic.hero.getAtkType().getHeroWeapon().type != STAFF)
+				GameLogic.hero.setAtktype(new Intelligence());
+			this.update(GameLogic.hero.getDirection(), GameLogic.hero.getX(), GameLogic.hero.getY());
+			DungeonMain.getCanvas().canvasUpdate();
+		} catch (ConcurrentModificationException | NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public boolean isBuyable() {
@@ -112,7 +120,7 @@ public class Weapons extends GameObject implements Useable {
 			}
 		}
 	}
-	
+
 	public Image getImage() {
 		return imgWeapon;
 	}
@@ -157,5 +165,10 @@ public class Weapons extends GameObject implements Useable {
 	@Override
 	public void reset() {
 		this.amount = 0;
+	}
+
+	public void takeWeaponOff() {
+		GameLogic.hero.getAtkType().getAttackObj().destroyed();
+		GameLogic.hero.getAtkType().getHeroWeapon().destroyed();
 	}
 }

@@ -34,7 +34,6 @@ public class DungeonMain {
 					RenderableHolder.getInstance().update();
 				} catch (IllegalArgumentException | ConcurrentModificationException e) {
 					System.out.println("cannot update");
-					e.printStackTrace();
 				}
 			}else {
 				canvas.canvasUpdate();

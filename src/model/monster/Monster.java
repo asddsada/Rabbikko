@@ -25,9 +25,9 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 
 	public Monster(Image img, int row, int column, int movespeed, int mass, int maxHp, int baseAtk, Attribute atkType,
 			int idleParameter, int timidParaneter, int persistentParameter, int eyesight, int bounty, double size) {
-		super(RandomUtility.randomInt((int) (SceneManeger.WIDGTH * 0.1), (int) (SceneManeger.WIDGTH * 0.9)),
-				RandomUtility.randomInt((int) (SceneManeger.HEIGHT * 0.1),
-						(int)( (SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT)*0.8)),
+		super(RandomUtility.randomInt((int) (SceneManeger.WIDGTH * 0.01), (int) (SceneManeger.WIDGTH * 0.9)),
+				RandomUtility.randomInt((int) (SceneManeger.HEIGHT * 0.01),
+						(int) ((SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT) * 0.8)),
 				img, row, column, Entity.FRONT, movespeed, mass, maxHp, baseAtk, atkType);
 		this.idleParameter = idleParameter;
 		this.timidParameter = timidParaneter;
@@ -35,19 +35,18 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		this.eyesight = eyesight;
 		this.bounty = bounty;
 		this.size = size;
-		this.count=idleParameter;
+		this.count = idleParameter;
 	}
 
-	private int heroDirection() {
-		double dx = GameLogic.hero.getX();
-		double dy = GameLogic.hero.getY();
-		System.out.println(pos.diffX(dx) +" "+pos.diffY(dy));
-		if (pos.diffX(dx) <= pos.diffY(dy)) {
-			return (pos.x - dx) >= 0 ? Entity.LEFT : Entity.RIGHT;
-		}else {
-			return (pos.y - dy) >= 0 ? Entity.BACK : Entity.FRONT;
-		}
-	}
+//	private int heroDirection() {
+//		double dx = GameLogic.hero.getX();
+//		double dy = GameLogic.hero.getY();
+//		if (pos.diffX(dx) <= pos.diffY(dy)) {
+//			return (pos.x - dx) >= 0 ? Entity.LEFT : Entity.RIGHT;
+//		} else {
+//			return (pos.y - dy) >= 0 ? Entity.BACK : Entity.FRONT;
+//		}
+//	}
 
 	@Override
 	public void update() {
@@ -55,21 +54,22 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 			Dungeon.destroyEntities(this);
 			this.atkType.getAttackObj().setVisible(false);
 			GameLogic.hero.earnMoney(bounty);
-		} else if ((isAlive) &&( dmgTimer == 0) && (count < idleParameter/2)) {
+		} else if ((isAlive) && (dmgTimer == 0) && (count < idleParameter / 2)) {
 			rand = RandomUtility.randomInt(0, 100);
-			if ((rand*timidParameter)%100 < persistentParameter)
-				move(heroDirection());
-			else move(RandomUtility.randomByPercent(rand, this.direction, 95));
+//			if ((rand * timidParameter) % 100 < persistentParameter)
+//				move(heroDirection());
+//			else
+				move(RandomUtility.randomByPercent(rand, this.direction, 95));
 
 			if (isBlock(pos.x, pos.y))
 				struct = true;
 			else
-				struct = false;			
+				struct = false;
 		}
 		if (isAlive) {
 			this.atkType.update(this.direction, this.pos.x, this.pos.y);
 			dmgTimer = dmgTimer == 0 ? 0 : dmgTimer - 1;
-			count = count <= 1 ? idleParameter : count - 10/timidParameter;
+			count = count <= 1 ? idleParameter : count - 10 / timidParameter;
 		}
 	}
 

@@ -63,7 +63,7 @@ public abstract class ResourceLoader {
 
 	static {
 		ResourceLoader.loadResource();
-		secondLoad();
+		initializeSecondLoad();
 	}
 
 	public static void loadResource() {
@@ -103,11 +103,12 @@ public abstract class ResourceLoader {
 			heal = new AudioClip(ClassLoader.getSystemResource("snd/heal.wav").toString());
 
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			System.out.println("resource not found");
 		}
 	}
+	
+	public static void initializeSecondLoad() {
 
-	public static void secondLoad() {
 		loadThread = new Thread(new Runnable() {
 
 			@Override
@@ -131,18 +132,24 @@ public abstract class ResourceLoader {
 					aEffect4 = new Image(ClassLoader.getSystemResource("img/aEffect4.gif").toString());
 					mEffect = new Image(ClassLoader.getSystemResource("img/mEffect.gif").toString());
 					monsterEffect = new Image(ClassLoader.getSystemResource("img/monsterAttack.gif").toString());
-
-					for (int i = 0; i <= 5; i++)
-						monsterImage[i] = new Image(ClassLoader
-								.getSystemResource("8bit/monster" + Integer.toString(i + 1) + ".png").toString());
-
-				} catch (NullPointerException e) {
-					System.out.println("cannot load in thread");
+					
+					for(int i=0;i<5;i++) {
+					monsterImage[i] = new Image(ClassLoader.getSystemResource("8bit/monster"+Integer.toString(i+1)+".png").toString());
+					}
+				}catch (NullPointerException e) {
+					System.out.println("resource not found");
 				}
 			}
 		});
-		loadThread.setPriority(Thread.MAX_PRIORITY);
-		loadThread.start();
+		loadThread.setPriority(Thread.MAX_PRIORITY);		
+	}
+	
+	public static void startSecondLoad() {
+		try {
+			loadThread.start();
+		} catch (NullPointerException e) {
+			System.out.println("not initialize");
+		}
 	}
 
 	public static boolean isLoadFinish() {
