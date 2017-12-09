@@ -91,14 +91,20 @@ public class Navigation extends Field {
 
 		if ((xPos >= 704 && xPos <= 741 && yPos >= 575 && yPos <= 615 && InputUtility.isMouseClick())
 				|| (InputUtility.isKeyPressed(KeyCode.I))) {
+			InputUtility.mouseX = 0;
+			InputUtility.mouseY = 0;
 			ResourceLoader.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(1);
 		} else if ((xPos >= 762 && xPos <= 800 && yPos >= 575 && yPos <= 615 && InputUtility.isMouseClick())
 				|| (InputUtility.isKeyPressed(KeyCode.B))) {
+			InputUtility.mouseX = 0;
+			InputUtility.mouseY = 0;
 			ResourceLoader.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(2);
 		} else if ((xPos >= 823 && xPos <= 861 && yPos >= 575 && yPos <= 615 && InputUtility.isMouseClick())
 				|| (InputUtility.isKeyPressed(KeyCode.ESCAPE))) {
+			InputUtility.mouseX = 0;
+			InputUtility.mouseY = 0;
 			ResourceLoader.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(3);
 		} else if (xPos >= 484 && xPos <= 527 && yPos >= 576 && yPos <= 615 && InputUtility.isMouseClick()) {

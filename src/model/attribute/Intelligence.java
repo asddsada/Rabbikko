@@ -175,7 +175,7 @@ public class Intelligence extends Attribute {
 		if (magicTime.size() <= 12 )
 			magicTime.put(new Pair(attackObj.getX(), attackObj.getY()), new Pair(owner.getDirection(), 0));
 
-		GameLogic.hero.useMp(5);
+		GameLogic.hero.useMp(50);
 	}
 
 }
