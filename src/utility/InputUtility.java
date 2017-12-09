@@ -34,7 +34,7 @@ public abstract class InputUtility {
 	}
 
 	public static boolean isKeyTrig() {
-		return keyPressed.size() == 1;
+		return keyPressed.size() == 0;
 	}
 
 	// mouse getter
