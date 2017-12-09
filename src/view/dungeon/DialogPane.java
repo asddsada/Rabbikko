@@ -38,6 +38,7 @@ import model.items.Inventory;
 import model.items.Item;
 import model.items.Mana;
 import model.items.Weapons;
+import utility.InputUtility;
 import utility.ResourceLoader;
 import view.SceneManeger;
 
@@ -179,6 +180,7 @@ public class DialogPane extends VBox {
 		Button close = new Button("X");
 		close.setStyle("-fx-color: red;-fx-border: none ");
 		close.setOnMouseClicked((MouseEvent e) -> {
+			this.getChildren().clear();
 			ResourceLoader.clickSound.play(100);
 			scene.toDungeon();
 		});
@@ -376,6 +378,7 @@ public class DialogPane extends VBox {
 
 	public void dead() {
 		// TODO Auto-generated method stub
+		
 		DungeonMain.getCanvas().canvasUpdate();
 		defaultDraw(scene, ResourceLoader.dead);
 		Button close = new Button("restart");

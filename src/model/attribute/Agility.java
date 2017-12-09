@@ -2,6 +2,7 @@ package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
 import logic.ForceManeger;
+import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
@@ -73,5 +74,11 @@ public class Agility extends Attribute {
 		else if (direction == Entity.BACK) {
 			this.attackObj.setZ(owner.getZ()-10);
 		}else this.attackObj.setZ(owner.getZ()+10);
+	}
+	
+	@Override
+	public void use() {
+		super.use();
+		GameLogic.hero.useMp(5);
 	}
 }
