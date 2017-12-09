@@ -59,8 +59,8 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 //			if ((rand * timidParameter) % 100 < persistentParameter)
 //				move(heroDirection());
 //			else
-//				move(RandomUtility.randomByPercent(rand, this.direction, 95));
-//				attack();
+				move(RandomUtility.randomByPercent(rand, this.direction, 98));
+				attack();
 			if (isBlock(pos.x, pos.y))
 				struct = true;
 			else

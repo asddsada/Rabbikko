@@ -31,4 +31,8 @@ public abstract class RandomUtility {
 		else if(sizeFactor>20) return 7000;
 		return randomInt(3, 7)*1000;
 	}
+	
+	public static int random() {
+		return (int) System.currentTimeMillis()%13;
+	}
 }

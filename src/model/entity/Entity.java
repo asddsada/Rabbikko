@@ -47,8 +47,8 @@ public abstract class Entity extends GameObject {
 		// TODO Auto-generated method stub
 		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w * walktick, (int) h * direction, (int) w, (int) h),
 				pos.x, pos.y, w * 2.5, h * 2.5);
-		gc.strokeRect(pos.x, pos.y, getWidth(), getHeight());
-		gc.strokeRect(pos.x + getWidth() / 6, pos.y, getWidth() / 1.5, getHeight());
+//		gc.strokeRect(pos.x, pos.y, getWidth(), getHeight());
+//		gc.strokeRect(pos.x + getWidth() / 6, pos.y, getWidth() / 1.5, getHeight());
 	}
 
 	protected abstract boolean isBlock(double x, double y);
