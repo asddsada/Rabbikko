@@ -2,6 +2,7 @@ package model.attribute;
 
 import javafx.scene.image.Image;
 import logic.ForceManeger;
+import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Hero;
@@ -34,8 +35,8 @@ public abstract class Attribute {
 
 	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
 			DungeonableEntity<T2> other) {
-		other.damage((int) (attacker.getBaseAtk() * attackMultiply),
-				ForceManeger.calculateDirection(attacker.getDirection()));
+		other.damage((int) (attacker.getBaseAtk() * attackMultiply*((GameLogic.dungeon.getLvl()/20)+1)),
+		ForceManeger.calculateDirection(attacker.getDirection()));
 		
 	}
 	public Weapons getHeroWeapon() {

@@ -133,23 +133,31 @@ public class MonsterDen {
 		this.dunLvl = dunLvl;
 	}
 	
-//	public void genMonster(int img,int row,int col,int mass,int size) {
-//		int hp = (int) (Math.pow(15.0,(3-img%3))+((4-col)*100)/(row+1));
-//		new Monster(monsterImg(img), row, col, 
-//				(mass/10 /(row+1)*(4-col)), mass, 
-//				hp, hp*(3-img%3)/20, atkType, 
-//				idleParameter, timidParaneter, persistentParameter, 
-//				eyesight, bounty, size);
-//	}
+	public void genMonster(int img,int row,int col,int mass,int size) {
+		int hp = (int) (Math.pow(15.0,(3-img%3))+((4-col)*100)/(row+1));
+		int idle = (int) Math.max( ((img%3+1)*(30-(dunLvl/100.0)))+(mass/100.0) ,70);
+		int speed = (int) (9-((4-col)/(row+1))-(mass/2000.0));
+		Attribute atr;
+		if(row==0) {
+			atr=col%2==0?new Agility():new Strength();
+		}else {
+			atr=col>1?new Intelligence():new Strength();
+		}
+		Dungeon.addEntities(new Monster(monsterImg(img), row, col, 
+				speed, mass, 
+				hp*3, (int) (((2-img%3)/3.0*400.0)+20*(col*img)+6*(row)+hp/3775.0*350), atr, 
+				idle, (1+img%3), (3-img%3)*300, 
+				speed*(3-img%3)*40, (int)(hp/50*dunLvl+speed), size));
+	}
 
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, SecurityException {
 		if(RenderableHolder.getInstance().size()>=35) return;
 		
-		
-		Dungeon.addEntities(new Monster(monsterImg(2), 0, 1,
-				4, 70, 100, 30, new Strength(),
-				70, 2, 50, 30, 15, 1));
+		genMonster(3, 0, 0, 600	, 1);
+//		Dungeon.addEntities(new Monster(monsterImg(2), 0, 1,
+//				4, 70, 100, 30, new Strength(),
+//				70, 2, 50, 30, 15, 1));
 		monsterCount++;
 	}
 }
