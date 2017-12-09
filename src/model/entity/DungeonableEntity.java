@@ -97,7 +97,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	}
 
 	public double getMaxHp() {
-		return maxHp * atkType.getHpMultiply();
+		return maxHp * atkType.getHpMultiply() ;
 	}
 
 	public double getCurrentHp() {

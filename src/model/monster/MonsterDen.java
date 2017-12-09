@@ -22,6 +22,7 @@ import model.items.Weapons;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import utility.InputUtility;
+import utility.Pair;
 import utility.RandomUtility;
 import utility.ResourceLoader;
 
@@ -31,6 +32,7 @@ public class MonsterDen {
 	private static Thread monsterThread;
 	private int monsterCount;
 	private int maxMonster;
+	private int dunLvl;
 
 	public MonsterDen() {
 		monsterCount = 0;
@@ -106,7 +108,7 @@ public class MonsterDen {
 			}
 			this.monsterCount = maxMonster;
 			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
-					.forEach(GameObject::destroyed);
+					.forEach(m->m.setAlive(false));
 			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
 					.forEach(Dungeon::destroyEntities);
 		}else if(InputUtility.isKeyPressed(KeyCode.K)) { //instance buy staff
@@ -118,7 +120,7 @@ public class MonsterDen {
 		
 		}else if(InputUtility.isKeyPressed(KeyCode.M)) { //money hag
 			GameLogic.hero.earnMoney(999999);
-		}
+		}		
 	}
 	
 	private Image monsterImg(int i) {
@@ -127,9 +129,24 @@ public class MonsterDen {
 		return ResourceLoader.monsterImage[i-1];
 	}
 
+	public void setDunLvl(int dunLvl) {
+		this.dunLvl = dunLvl;
+	}
+	
+//	public void genMonster(int img,int row,int col,int mass,int size) {
+//		int hp = (int) (Math.pow(15.0,(3-img%3))+((4-col)*100)/(row+1));
+//		new Monster(monsterImg(img), row, col, 
+//				(mass/10 /(row+1)*(4-col)), mass, 
+//				hp, hp*(3-img%3)/20, atkType, 
+//				idleParameter, timidParaneter, persistentParameter, 
+//				eyesight, bounty, size);
+//	}
+
 	private void addMonster() throws InstantiationException, IllegalAccessException, IllegalArgumentException,
 			InvocationTargetException, SecurityException {
 		if(RenderableHolder.getInstance().size()>=35) return;
+		
+		
 		Dungeon.addEntities(new Monster(monsterImg(2), 0, 1,
 				4, 70, 100, 30, new Strength(),
 				70, 2, 50, 30, 15, 1));

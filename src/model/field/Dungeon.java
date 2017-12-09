@@ -89,6 +89,7 @@ public class Dungeon extends Field {
 		if (lvlChangetimer == 0) {
 			lvl++;
 			lvlChangetimer = CHANGE_TIME_MAX;
+			monsterDen.setDunLvl(this.lvl);
 		}
 		
 	}

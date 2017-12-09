@@ -75,6 +75,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	public void update() {
 		super.update();
 		if (isAlive && dmgTimer == 0) {
+			if(GameLogic.dungeon.getLvl()%10==0) restoreHp();
 			if (InputUtility.isKeyPressed(KeyCode.W) || InputUtility.isKeyPressed(KeyCode.UP))
 				move(Entity.BACK);
 			if (InputUtility.isKeyPressed(KeyCode.S) || InputUtility.isKeyPressed(KeyCode.DOWN))
@@ -148,6 +149,11 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	public double getMaxMp() {
 		return maxMp;
+	}
+	
+	public  double getMaxHp() {
+		if(GameLogic.dungeon.getLvl()<6) return super.getMaxHp();
+		return super.getMaxHp() * (GameLogic.dungeon.getLvl()/5);
 	}
 
 	public double getCurrentMp() {

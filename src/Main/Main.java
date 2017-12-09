@@ -14,27 +14,32 @@ import view.SceneManeger;
 
 public class Main extends Application {
 	public static boolean isGameRunning;
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			isGameRunning=true;
+			isGameRunning = true;
 			SceneManeger.initialize(primaryStage);
 			SceneManeger.gotoScene(SceneManeger.mainScene);
-			
+
 			primaryStage.setTitle("RabbikoRPG");
 			primaryStage.centerOnScreen();
 			primaryStage.setResizable(false);
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
 	}
-	
+
 	@Override
 	public void stop() throws Exception {
-		isGameRunning=false;
-		DungeonMain.stop();
-		MonsterDen.stop();
-		Platform.exit();
+		try {
+			DungeonMain.stop();
+			MonsterDen.stop();
+		} catch (NullPointerException e) {
+		} finally {
+			isGameRunning = false;
+			Platform.exit();
+		}
 	}
 
 	public static void main(String[] args) {
