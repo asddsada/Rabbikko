@@ -12,6 +12,7 @@ import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
+import model.entity.Hero;
 import model.field.Dungeon;
 import model.items.Inventory;
 import model.items.Weapons;
@@ -31,7 +32,7 @@ public class Intelligence extends Attribute {
 		heroWeapon = (Weapons) Inventory.getBag()[4];
 		attackMultiply = 1.5;
 		attackRange = new Pair(getHeroWeapon().getWidth() * 1.2, getHeroWeapon().getHeight());
-		attackSpeed = 0.4;
+		attackSpeed = 0.5;
 		hpMultiply = 1;
 		hpRegen = 1;
 		mpRegen = 5;
@@ -77,8 +78,8 @@ public class Intelligence extends Attribute {
 						b = e.getKey().y ;
 					}
 //					gc.fillRect(a, b, magicW, magicH);
-					gc.drawImage(ResourceLoader.mEffect, a- getWidth() *5/6, b - getHeight()/2 -owner.getHeight(),
-							ResourceLoader.mEffect.getWidth() / 2, ResourceLoader.mEffect.getHeight() / 2);
+					gc.drawImage(ResourceLoader.mEffect, a- getWidth() *0.5, b - getHeight()/2 -owner.getHeight()*0.5,
+							ResourceLoader.mEffect.getWidth() / 2.5, ResourceLoader.mEffect.getHeight() / 2.5);
 				}
 			}
 
@@ -114,15 +115,15 @@ public class Intelligence extends Attribute {
 						if ((((a - other.getWidth()) <= other.getX())
 								&& (other.getX() <= (a + magicW + other.getWidth())))
 								&& (((b - other.getHeight()) <= other.getY())
-										&& (other.getY() <= (b + other.getHeight() / 2 + magicH)))
-								&& (((a - other.getWidth()) <= (other.getX() + other.getWidth()))
+										&& (other.getY() <= (b + other.getHeight() + magicH)))
+								&& ((((a - other.getWidth()) <= (other.getX() + other.getWidth()))
 										&& ((other.getX() + other.getWidth()) <= (a + magicW + other.getWidth())))
 								&& (((b - other.getHeight()) <= (other.getY() + other.getHeight())) && ((other.getY()
-										+ other.getHeight()) <= (b + other.getHeight() / 2 + magicH))))
+										+ other.getHeight()) <= (b + other.getHeight()  + magicH)))))
 							isMagicHit = true;						
 					}
 				}
-				if(owner.getAtkType().getAttackTime() ==0) return (super.isCollide(other, x, y)|| isMagicHit);
+//				if(owner.getAtkType().getAttackTime() ==0) return (super.isCollide(other, x, y)|| isMagicHit);
 				return isMagicHit;
 			}
 
@@ -145,18 +146,18 @@ public class Intelligence extends Attribute {
 			this.attackObj.setX(x + owner.getWidth() / 6);
 			this.attackObj.setY(y + owner.getHeight() * 2 / 3);
 		}
-		if (owner.getAtkType().getAttackTime() != 0) {
+//		if (owner.getAtkType().getAttackTime() != 0) {
 			ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(owner.getAtkType().getAttackObj(),
 					owner.getAtkType().getAttackObj().getX(), owner.getAtkType().getAttackObj().getY());
 			if (!(inArea == null || inArea.size() <= 1))
 				for (DungeonableEntity<Attribute> other : inArea) {
-					if (other.hashCode() != owner.getAtkType().hashCode() && owner.getRace() != other.getRace()) {
-						owner.getAtkType().use();
+					if (other.getAtkType().getAttackObj().hashCode() != owner.getAtkType().getAttackObj().hashCode() 
+							&& owner.getRace() != other.getRace()) {
 						owner.getAtkType().attack(owner, other);
 					}
 				}
-		}
-		if (GameLogic.hero.getCurrentMp() > 5) {
+//		}
+		if (!(owner instanceof Hero)||GameLogic.hero.getCurrentMp() >= 30) {
 			for (Entry<Pair, Pair> e : magicTime.entrySet()) {
 				e.getValue().y += 2;
 				if (e.getValue().y >= maxMagicTime)
@@ -172,10 +173,10 @@ public class Intelligence extends Attribute {
 	@Override
 	public void use() {
 		super.use();
-		if (magicTime.size() <= 12 )
+		if (magicTime.size() <= 6 )
 			magicTime.put(new Pair(attackObj.getX(), attackObj.getY()), new Pair(owner.getDirection(), 0));
 
-		GameLogic.hero.useMp(50);
+		if(owner instanceof Hero) GameLogic.hero.useMp(30);
 	}
 
 }

@@ -26,8 +26,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	public Hero(int direction, Attribute atkType) {
 		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction, 7,
-				50, 1000, 45, atkType);
-		this.maxMp = 1000;
+				50, 1000, 60, atkType);
+		this.maxMp = 400;
 		this.currentMp = 0;
 		this.money = 0;
 		this.z = -1;
@@ -40,7 +40,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	@Override
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		if (dmgTimer % 5 == 0)
+		
 			super.draw(gc);
 	}
 
@@ -98,7 +98,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 			else
 				struct = false;
 			if (currentHp != getMaxHp())
-				healHp(0.1);
+				healHp(0.3 *(((GameLogic.dungeon.getLvl()/20)+1)));
 			if (currentMp != getMaxMp())
 				healMp(0.2);
 		}

@@ -63,6 +63,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 				else if(dmgTimerDelay.size()>=10&&dmgTimerDelay.get(i)<20) dmgTimerDelay.remove(i);
 			}
 		}
+		if (dmgTimer % 5 == 0)
 		super.draw(gc);
 	}
 

@@ -134,7 +134,7 @@ public class MonsterDen {
 	}
 	
 	public void genMonster(int img,int row,int col,int mass,int size) {
-		int hp = (int) (Math.pow(15.0,(3-img%3))+((4-col)*100)/(row+1));
+		int hp = (int) (Math.pow(11.0,(3-img%3))+((col%2+1)*23)/(row+1));
 		int idle = (int) Math.max( ((img%3+1)*(30-(dunLvl/100.0)))+(mass/100.0) ,70);
 		int speed = (int) (9-((4-col)/(row+1))-(mass/2000.0));
 		Attribute atr;
@@ -145,7 +145,7 @@ public class MonsterDen {
 		}
 		Dungeon.addEntities(new Monster(monsterImg(img), row, col, 
 				speed, mass, 
-				hp*3, (int) (((2-img%3)/3.0*400.0)+20*(col*img)+6*(row)+hp/3775.0*350), atr, 
+				hp*((dunLvl/20)+1), (int) ((((2-img%3)/3.0*300.0)+13*(col*img)+6*(row)+hp/3775.0*350)/2), atr, 
 				idle, (1+img%3), (3-img%3)*300, 
 				speed*(3-img%3)*40, (int)(hp/50*dunLvl+speed), size));
 	}
@@ -154,7 +154,7 @@ public class MonsterDen {
 			InvocationTargetException, SecurityException {
 		if(RenderableHolder.getInstance().size()>=35) return;
 		
-		genMonster(3, 0, 0, 600	, 1);
+		genMonster(1, 0, 2, 600	, 1);
 //		Dungeon.addEntities(new Monster(monsterImg(2), 0, 1,
 //				4, 70, 100, 30, new Strength(),
 //				70, 2, 50, 30, 15, 1));

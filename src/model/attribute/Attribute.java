@@ -35,9 +35,10 @@ public abstract class Attribute {
 
 	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
 			DungeonableEntity<T2> other) {
+		if(other.getDmgTimer() < DungeonableEntity.DMG_TIME_MAX/2) {
 		other.damage((int) (attacker.getBaseAtk() * attackMultiply*((GameLogic.dungeon.getLvl()/20)+1)),
 		ForceManeger.calculateDirection(attacker.getDirection()));
-		
+		}
 	}
 	public Weapons getHeroWeapon() {
 		return heroWeapon;
