@@ -21,7 +21,6 @@ public abstract class GameObject implements IRenderable {
 	}
 
 	public void destroyed() {
-		// TODO Auto-generated method stub
 		visible = false;
 	}
 
@@ -69,6 +68,7 @@ public abstract class GameObject implements IRenderable {
 		 && ((other.getY() - getHeight() / 6 + 5 <= y && y <= other.getY() +
 		 getHeight()))) {
 		 this.z = 20;
+		 
 		 } else if ((other.getX() - getWidth() <= x && x <= other.getX() + getWidth())
 		 && ((other.getY() - getHeight() / 8 + 5 <= y && y <= other.getY() +
 		 getHeight()))) {

@@ -1,12 +1,9 @@
 package model.attribute;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import logic.ForceManeger;
-import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
-import model.entity.Entity;
 import model.entity.Hero;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;

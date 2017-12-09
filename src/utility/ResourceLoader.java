@@ -19,11 +19,7 @@ public class ResourceLoader {
 	public static Image dialogFrame;
 	public static Image dungeonBg;
 	public static Image humanImage;
-	public static Image monsterImage01;
-	public static Image monsterImage02;
-	public static Image monsterImage03;
-	public static Image monsterImage04;
-	public static Image monsterImage05;
+	public static Image[] monsterImage = new Image[5];
 
 	// Navigation
 	public static Image navigBar;
@@ -67,7 +63,7 @@ public class ResourceLoader {
 	
 	static {
 		ResourceLoader.loadResource();
-		secondLoad();
+		initializeSecondLoad();
 	}
 	
 	public static void loadResource() {
@@ -108,11 +104,11 @@ public class ResourceLoader {
 			heal = new AudioClip(ClassLoader.getSystemResource("snd/heal.wav").toString());
 
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			System.out.println("resource not found");
 		}
 	}
 	
-	public static void secondLoad() {
+	public static void initializeSecondLoad() {
 		loadThread = new Thread(new Runnable() {
 			
 			@Override
@@ -137,22 +133,26 @@ public class ResourceLoader {
 					mEffect = new Image(ClassLoader.getSystemResource("img/mEffect.gif").toString());
 					monsterEffect = new Image(ClassLoader.getSystemResource("img/monsterAttack.gif").toString());
 					
-					monsterImage01 = new Image(ClassLoader.getSystemResource("8bit/monster1.png").toString());
-					monsterImage02= new Image(ClassLoader.getSystemResource("8bit/monster2.png").toString());
-					monsterImage03 = new Image(ClassLoader.getSystemResource("8bit/monster3.png").toString());
-					monsterImage04 = new Image(ClassLoader.getSystemResource("8bit/monster4.png").toString());
-					monsterImage05 = new Image(ClassLoader.getSystemResource("8bit/monster5.png").toString());
+					for(int i=0;i<5;i++) {
+					monsterImage[i] = new Image(ClassLoader.getSystemResource("8bit/monster"+Integer.toString(i+1)+".png").toString());
+					}
 				}catch (NullPointerException e) {
-					System.out.println("cannot load in thread");
+					System.out.println("resource not found");
 				}
 			}
 		});
-		loadThread.setPriority(Thread.MAX_PRIORITY);
-		loadThread.start();
+		loadThread.setPriority(Thread.MAX_PRIORITY);		
+	}
+	
+	public static void startSecondLoad() {
+		try {
+			loadThread.start();
+		} catch (NullPointerException e) {
+			System.out.println("not initialize");
+		}
 	}
 	
 	public static boolean isLoadFinish() {
-		System.out.println(loadThread.isAlive());
 		return !(loadThread.isAlive());
 	}
 }

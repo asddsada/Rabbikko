@@ -21,13 +21,14 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 	private int persistentParameter;
 	private int eyesight;
 	private int bounty;
-	private int rand;	
+	private int rand;
+	private int size;
 
 	public Monster(Image img, int row, int column, int movespeed, int mass,
 			int maxHp, int baseAtk, Attribute atkType, int idleParameter, int timidParaneter, int persistentParameter,
-			int eyesight, int bounty, int rand) {
-		super(RandomUtility.randomInt((int) (SceneManeger.WIDGTH*0.1), (int) (SceneManeger.WIDGTH*0.9)),
-				RandomUtility.randomInt((int) (SceneManeger.HEIGHT*0.1), (int) (SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT)),
+			int eyesight, int bounty, int size) {
+		super(RandomUtility.randomInt((int) (SceneManeger.WIDGTH*0.01), (int) (SceneManeger.WIDGTH*0.9)),
+				RandomUtility.randomInt((int) (SceneManeger.HEIGHT*0.01), (int) ((SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT)*0.7)),
 				img, row, column, Entity.FRONT, 
 				movespeed, mass, maxHp, baseAtk, atkType);
 		this.idleParameter = idleParameter;
@@ -35,7 +36,7 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		this.persistentParameter = persistentParameter;
 		this.eyesight = eyesight;
 		this.bounty = bounty;
-		this.rand = rand;
+		this.size=size;
 	}
 
 	@Override
@@ -46,7 +47,10 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 			rand = RandomUtility.randomInt(0, 100);
 			attack();
 			move(RandomUtility.randomByPercent(rand,this.direction,95));
-			if(isBlock(pos.x,pos.y)) struct=true;
+			if(isBlock(pos.x,pos.y)) {
+				struct=true;
+				setPos(5, this.direction);
+			}
 			else struct =false;
 			this.atkType.update(this.direction, this.pos.x, this.pos.y);
 		} else if (isAlive) {
