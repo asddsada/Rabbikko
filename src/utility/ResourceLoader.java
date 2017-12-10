@@ -5,6 +5,7 @@ import com.sun.javafx.tk.Toolkit;
 
 import javafx.scene.image.Image;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 
@@ -26,7 +27,6 @@ public abstract class ResourceLoader {
 	public static Image inven;
 	public static Image shop;
 	public static Image setting;
-	// public static Image menuIcn;
 	public static Image dead;
 
 	// Item
@@ -55,7 +55,7 @@ public abstract class ResourceLoader {
 
 	// BGM
 	public static AudioClip clickSound;
-	public static AudioClip titleBgm;
+	public static Media titleBgm;
 	public static AudioClip coin;
 	public static AudioClip heal;
 
@@ -80,25 +80,20 @@ public abstract class ResourceLoader {
 			inven = new Image(ClassLoader.getSystemResource("img/inventory.png").toString());
 			shop = new Image(ClassLoader.getSystemResource("img/shop.png").toString());
 			setting = new Image(ClassLoader.getSystemResource("img/setting2.png").toString());
-			// menuIcn = new
-			// Image(ClassLoader.getSystemResource("img/setting.png").toString());
 			dead = new Image(ClassLoader.getSystemResource("img/dead.png").toString());
 
 			// Item
-
 			strength = new Image(ClassLoader.getSystemResource("img/strength.png").toString());
 			agility = new Image(ClassLoader.getSystemResource("img/agility.png").toString());
 			intelligence = new Image(ClassLoader.getSystemResource("img/intelligence.png").toString());
 
 			// res for game
 			dungeonBg = new Image(ClassLoader.getSystemResource("img/dunBg2.png").toString());
-
 			humanImage = new Image(ClassLoader.getSystemResource("8bit/human1.png").toString());
 
 			// BGM
 			clickSound = new AudioClip(ClassLoader.getSystemResource("snd/click.mp3").toString());
-			titleBgm = new AudioClip(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
-			titleBgm.setCycleCount(MediaPlayer.INDEFINITE);
+			titleBgm = new Media(ClassLoader.getSystemResource("snd/titlebgm.mp3").toString());
 			coin = new AudioClip(ClassLoader.getSystemResource("snd/coin.mp3").toString());
 			heal = new AudioClip(ClassLoader.getSystemResource("snd/heal.wav").toString());
 

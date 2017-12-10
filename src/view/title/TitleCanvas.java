@@ -11,11 +11,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.WindowEvent;
 import utility.ResourceLoader;
 import view.SceneManeger;
 
@@ -26,10 +24,7 @@ public class TitleCanvas extends Canvas {
 	public TitleCanvas() {
 		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
 		gc = this.getGraphicsContext2D();
-
-		// play theme song
-//		Loader.titleBgm.play();
-
+		
 		this.drawMainMenu();
 		this.addKeyEventHandler();
 	}
@@ -69,11 +64,9 @@ public class TitleCanvas extends Canvas {
 				goToDun();
 			} else {
 				gc.drawImage(ResourceLoader.mainBtnImage, SceneManeger.WIDGTH / 3.05 , SceneManeger.HEIGHT / 2 ,ResourceLoader.mainBtnImage.getWidth()*1.05,ResourceLoader.mainBtnImage.getHeight()*1.05);
-//				gc.setStroke(Color.GHOSTWHITE);
-//				gc.setLineWidth(2);
-//				gc.strokeRect(SceneManeger.WIDGTH / 3, SceneManeger.HEIGHT / 2, 300, 87);
 			}
-		} else {
+		} 
+		else {
 			drawMainMenu();
 		}
 	}
