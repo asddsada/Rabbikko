@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 import logic.GameLogic;
+import model.Obstructable;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.field.Dungeon;
 import model.field.Navigation;
-import model.field.Obstructable;
 import utility.RandomUtility;
 import view.SceneManeger;
 
