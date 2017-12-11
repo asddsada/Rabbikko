@@ -1,4 +1,4 @@
-package view.dungeon;
+package view;
 
 import Main.DungeonMain;
 import Main.Main;
@@ -40,7 +40,7 @@ import model.items.Shop;
 import model.items.Weapons;
 import utility.InputUtility;
 import utility.ResourceLoader;
-import view.SceneManeger;
+import view.dungeon.DungeonScene;
 
 public class DialogPane extends VBox {
 	private ImageView potion1;
