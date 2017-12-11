@@ -1,4 +1,4 @@
-package model.field;
+package model;
 
 public interface Obstructable {
 

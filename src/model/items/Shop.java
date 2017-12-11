@@ -1,13 +1,10 @@
-package model.field;
+package model.items;
 
 import Main.DungeonMain;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import logic.GameLogic;
 import model.entity.Hero;
-import model.items.Inventory;
-import model.items.Item;
-import model.items.Weapons;
 import utility.ResourceLoader;
 
 public class Shop {

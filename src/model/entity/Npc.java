@@ -3,8 +3,8 @@ package model.entity;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import logic.GameLogic;
+import model.Obstructable;
 import model.attribute.Attribute;
-import model.field.Obstructable;
 import utility.Pair;
 
 public class Npc extends Entity implements Obstructable {
