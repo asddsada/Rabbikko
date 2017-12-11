@@ -8,6 +8,7 @@ import model.GameObject;
 import model.attribute.Attribute;
 import model.field.Dungeon;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 import utility.InputUtility;
 import utility.Pair;
 import view.SceneManeger;
@@ -117,13 +118,13 @@ public abstract class Entity extends GameObject {
 		}
 
 		if (direction == FRONT)
-			setPos((movespeed / 10.0) * SceneManeger.HEIGHT / 150, FRONT);
+			setPos((movespeed / 10.0) * Constant.HEIGHT / 150, FRONT);
 		if (direction == BACK)
-			setPos((-1) * (movespeed / 10.0) * SceneManeger.HEIGHT / 150, BACK);
+			setPos((-1) * (movespeed / 10.0) * Constant.HEIGHT / 150, BACK);
 		if (direction == RIGHT)
-			setPos((movespeed / 10.0) * SceneManeger.WIDGTH / 200, RIGHT);
+			setPos((movespeed / 10.0) * Constant.WIDTH / 200, RIGHT);
 		if (direction == LEFT)
-			setPos((-1) * (movespeed / 10.0) * SceneManeger.WIDGTH / 200, LEFT);
+			setPos((-1) * (movespeed / 10.0) * Constant.WIDTH / 200, LEFT);
 	}
 
 	public abstract void update();
@@ -140,8 +141,8 @@ public abstract class Entity extends GameObject {
 
 	public int getAxis(int direction) {
 		if (direction == Entity.BACK || direction == Entity.FRONT)
-			return SceneManeger.Y_AXIS;
-		return SceneManeger.Y_AXIS;
+			return Constant.Y_AXIS;
+		return Constant.Y_AXIS;
 	}
 
 	public int getDirection() {

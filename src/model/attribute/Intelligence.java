@@ -17,6 +17,7 @@ import model.field.Dungeon;
 import model.items.Inventory;
 import model.items.Weapons;
 import utility.ResourceLoader;
+import utility.Constant;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -85,12 +86,12 @@ public class Intelligence extends Attribute {
 
 			@Override
 			public double getWidth() {
-				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y * 0.7 : attackRange.x;
+				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.y * 0.7 : attackRange.x;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 1.5 : attackRange.y * 0.6;
+				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.x * 1.5 : attackRange.y * 0.6;
 			}
 
 			@Override

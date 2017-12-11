@@ -12,6 +12,7 @@ import model.field.Dungeon;
 import model.field.Navigation;
 import model.items.Inventory;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 import utility.InputUtility;
 import utility.ResourceLoader;
 import view.SceneManeger;
@@ -25,7 +26,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 	private String name;
 
 	public Hero(int direction, Attribute atkType) {
-		super(SceneManeger.WIDGTH / 2, (SceneManeger.HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction, 7,
+		super(Constant.WIDTH / 2, (Constant.HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction, 7,
 				50, 1000, 60, atkType);
 		this.maxMp = 400;
 		this.currentMp = 0;

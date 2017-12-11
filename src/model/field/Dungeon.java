@@ -15,6 +15,7 @@ import model.entity.Hero;
 import model.monster.MonsterDen;
 import sharedObj.RenderableHolder;
 import utility.ResourceLoader;
+import utility.Constant;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -27,7 +28,7 @@ public class Dungeon extends Field {
 	private static final int CHANGE_TIME_MAX = 400;
 
 	public Dungeon() {
-		super(ResourceLoader.dungeonBg, SceneManeger.WIDGTH, SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT,
+		super(ResourceLoader.dungeonBg, Constant.WIDTH, Constant.HEIGHT - Navigation.NAVIG_HEIGHT,
 				new Pair(0, 0));
 		this.lvl = 0;
 		this.z = -99999;

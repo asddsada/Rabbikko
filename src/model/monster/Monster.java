@@ -10,6 +10,7 @@ import model.entity.DungeonableEntity;
 import model.entity.Entity;
 import model.field.Dungeon;
 import model.field.Navigation;
+import utility.Constant;
 import utility.RandomUtility;
 import view.SceneManeger;
 
@@ -25,9 +26,9 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 
 	public Monster(Image img, int row, int column, int movespeed, int mass, int maxHp, int baseAtk, Attribute atkType,
 			int idleParameter, int timidParaneter, int persistentParameter, int eyesight, int bounty, double size) {
-		super(RandomUtility.randomInt((int) (SceneManeger.WIDGTH * 0.01), (int) (SceneManeger.WIDGTH * 0.9)),
-				RandomUtility.randomInt((int) (SceneManeger.HEIGHT * 0.01),
-						(int) ((SceneManeger.HEIGHT - Navigation.NAVIG_HEIGHT) * 0.8)),
+		super(RandomUtility.randomInt((int) (Constant.WIDTH * 0.01), (int) (Constant.WIDTH * 0.9)),
+				RandomUtility.randomInt((int) (Constant.HEIGHT * 0.01),
+						(int) ((Constant.HEIGHT - Navigation.NAVIG_HEIGHT) * 0.8)),
 				img, row, column, Entity.FRONT, movespeed, mass, maxHp, baseAtk, atkType);
 		this.idleParameter = idleParameter;
 		this.timidParameter = timidParaneter;

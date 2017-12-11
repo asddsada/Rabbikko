@@ -38,6 +38,7 @@ import model.items.Item;
 import model.items.Mana;
 import model.items.Shop;
 import model.items.Weapons;
+import utility.Constant;
 import utility.InputUtility;
 import utility.ResourceLoader;
 import view.dungeon.DungeonScene;
@@ -57,7 +58,7 @@ public class DialogPane extends VBox {
 	}
 
 	public void defaultDraw(DungeonScene dunScene, Image image) {
-		this.setMaxSize(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
+		this.setMaxSize(Constant.WIDTH, Constant.HEIGHT);
 		this.setAlignment(Pos.CENTER);
 
 		this.setBackground(new Background(new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
@@ -73,8 +74,8 @@ public class DialogPane extends VBox {
 
 		TextField textField = new TextField("");
 		textField.setFont(ResourceLoader.diaLogFont);
-		textField.setMaxWidth(SceneManeger.WIDGTH / 3);
-		textField.setPrefHeight(SceneManeger.HEIGHT / 10);
+		textField.setMaxWidth(Constant.WIDTH / 3);
+		textField.setPrefHeight(Constant.HEIGHT / 10);
 		textField.setFont(Font.font("Castellar", 20));
 		textField.setStyle("-fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1");
 

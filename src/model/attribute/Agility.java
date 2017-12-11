@@ -9,6 +9,7 @@ import model.entity.Entity;
 import model.items.Inventory;
 import model.items.Weapons;
 import utility.ResourceLoader;
+import utility.Constant;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -43,13 +44,13 @@ public class Agility extends Attribute {
 
 			@Override
 			public double getWidth() {
-				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y * 0.7
+				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.y * 0.7
 						: attackRange.x;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((owner.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x
+				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.x
 						: attackRange.y * 0.7;
 			}			
 		};

@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import sharedObj.IRenderable;
 import utility.ResourceLoader;
+import utility.Constant;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -41,7 +42,7 @@ public abstract class Field implements IRenderable {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(bg, topLeft.x, topLeft.y,SceneManeger.WIDGTH,SceneManeger.HEIGHT-ResourceLoader.navigBar.getHeight());
+		gc.drawImage(bg, topLeft.x, topLeft.y,Constant.WIDTH,Constant.HEIGHT-ResourceLoader.navigBar.getHeight());
 	}
 
 	protected boolean isInBorderX(double x) {

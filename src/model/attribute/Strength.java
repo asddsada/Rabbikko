@@ -10,6 +10,7 @@ import model.entity.Hero;
 import model.items.Inventory;
 import model.items.Weapons;
 import utility.ResourceLoader;
+import utility.Constant;
 import utility.Pair;
 import view.SceneManeger;
 
@@ -75,13 +76,13 @@ public class Strength extends Attribute {
 
 			@Override
 			public double getWidth() {
-				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.y
+				return ((GameLogic.hero.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.y
 						: attackRange.x * 1.5;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((GameLogic.hero.getDirection() % 3) == SceneManeger.Y_AXIS) ? attackRange.x * 2 : attackRange.y;
+				return ((GameLogic.hero.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.x * 2 : attackRange.y;
 			}
 		};
 	}

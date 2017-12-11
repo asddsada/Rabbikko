@@ -14,6 +14,7 @@ import model.entity.Hero;
 import model.items.Weapons;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 import utility.InputUtility;
 import utility.ResourceLoader;
 import view.SceneManeger;
@@ -26,11 +27,11 @@ public class DungeonCanvas extends Canvas {
 	private DungeonScene scene;
 
 	public DungeonCanvas(DungeonScene scene) {
-		super(SceneManeger.WIDGTH, SceneManeger.HEIGHT);
+		super(Constant.WIDTH, Constant.HEIGHT);
 		this.scene = scene;
 		gc = this.getGraphicsContext2D();
 		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, SceneManeger.WIDGTH, SceneManeger.HEIGHT);
+		gc.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
 
 		InputUtility.bindMouseOnListeners(this);
 	}
@@ -39,9 +40,9 @@ public class DungeonCanvas extends Canvas {
 		if (!ResourceLoader.isLoadFinish()) {
 			gc.setFill(Color.WHITE);
 			gc.fillText("NOWLOADING",
-					SceneManeger.WIDGTH / 2
+					Constant.WIDTH / 2
 							- ResourceLoader.fontLoader.computeStringWidth("NOWLOADING", gc.getFont()) / 2,
-					SceneManeger.HEIGHT / 2
+					Constant.HEIGHT / 2
 							- ResourceLoader.fontLoader.getFontMetrics(gc.getFont()).getLineHeight() / 2);
 		} else {
 			for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {

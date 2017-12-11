@@ -12,6 +12,7 @@ import model.items.Health;
 import model.items.Inventory;
 import model.items.Item;
 import model.items.Mana;
+import utility.Constant;
 import utility.InputUtility;
 import utility.ResourceLoader;
 import utility.Pair;
@@ -22,8 +23,8 @@ public class Navigation extends Field {
 	public static final double NAVIG_HEIGHT = ResourceLoader.navigBar.getHeight();
 	public static final int BAR_HEIGHT = 30;
 	public static final int BORDER_WIDTH = 200;
-	public static final double sceneWidth = SceneManeger.WIDGTH;
-	public static final double sceneHeight = SceneManeger.HEIGHT;
+	public static final double sceneWidth = Constant.WIDTH;
+	public static final double sceneHeight = Constant.HEIGHT;
 
 	private static String name;
 
