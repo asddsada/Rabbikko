@@ -7,12 +7,9 @@ import logic.GameLogic;
 import model.Obstructable;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
-import model.entity.Entity;
 import model.field.Dungeon;
-import model.field.Navigation;
 import utility.Constant;
 import utility.RandomUtility;
-import view.SceneManeger;
 
 public class Monster extends DungeonableEntity<Attribute> implements Obstructable {
 	private int idleParameter;
@@ -26,10 +23,10 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 
 	public Monster(Image img, int row, int column, int movespeed, int mass, int maxHp, int baseAtk, Attribute atkType,
 			int idleParameter, int timidParaneter, int persistentParameter, int eyesight, int bounty, double size) {
-		super(RandomUtility.randomInt((int) (Constant.WIDTH * 0.01), (int) (Constant.WIDTH * 0.9)),
-				RandomUtility.randomInt((int) (Constant.HEIGHT * 0.01),
-						(int) ((Constant.HEIGHT - Navigation.NAVIG_HEIGHT) * 0.8)),
-				img, row, column, Entity.FRONT, movespeed, mass, maxHp, baseAtk, atkType);
+		super(RandomUtility.randomInt((int) (Constant.SCENE_WIDTH * 0.01), (int) (Constant.SCENE_WIDTH * 0.9)),
+				RandomUtility.randomInt((int) (Constant.SCENE_HEIGHT * 0.01),
+						(int) ((Constant.SCENE_HEIGHT - Constant.NAVIG_HEIGHT) * 0.8)),
+				img, row, column, Constant.ENTITY_FRONT, movespeed, mass, maxHp, baseAtk, atkType);
 		this.idleParameter = idleParameter;
 		this.timidParameter = timidParaneter;
 		this.persistentParameter = persistentParameter;
@@ -37,15 +34,16 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		this.bounty = bounty;
 		this.size = size;
 		this.count = idleParameter;
+		this.race = Constant.ENTITY_MONSTER;
 	}
 
 //	private int heroDirection() {
 //		double dx = GameLogic.hero.getX();
 //		double dy = GameLogic.hero.getY();
 //		if (pos.diffX(dx) <= pos.diffY(dy)) {
-//			return (pos.x - dx) >= 0 ? Entity.LEFT : Entity.RIGHT;
+//			return (pos.x - dx) >= 0 ? Constant.LEFT : Constant.RIGHT;
 //		} else {
-//			return (pos.y - dy) >= 0 ? Entity.BACK : Entity.FRONT;
+//			return (pos.y - dy) >= 0 ? Constant.BACK : Constant.FRONT;
 //		}
 //	}
 

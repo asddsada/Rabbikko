@@ -33,19 +33,19 @@ public class Strength extends Attribute {
 					if (owner instanceof Hero) {
 						if (owner.getAtkType().getAttackTime() > 3) {
 							// gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-							if (owner.getDirection() == Entity.RIGHT) {
+							if (owner.getDirection() == Constant.ENTITY_RIGHT) {
 								gc.drawImage(ResourceLoader.sEffect2, pos.x - getWidth() / 2, pos.y - getHeight() / 2,
 										ResourceLoader.sEffect2.getWidth() * 0.8,
 										ResourceLoader.sEffect2.getHeight() * 0.8);
-							} else if (owner.getDirection() == Entity.LEFT) {
+							} else if (owner.getDirection() == Constant.ENTITY_LEFT) {
 								gc.drawImage(ResourceLoader.sEffect, pos.x - getWidth() * 1.2,
 										pos.y - getHeight() / 2, ResourceLoader.sEffect2.getWidth() * 0.8,
 										ResourceLoader.sEffect2.getHeight() * 0.8);
-							} else if (owner.getDirection() == Entity.BACK) {
+							} else if (owner.getDirection() == Constant.ENTITY_BACK) {
 								gc.drawImage(ResourceLoader.sEffect, pos.x - getWidth() / 6,
 										pos.y - getHeight() * 0.6, ResourceLoader.sEffect2.getWidth() * 0.8,
 										ResourceLoader.sEffect2.getHeight() * 0.8);
-							} else if (owner.getDirection() == Entity.FRONT) {
+							} else if (owner.getDirection() == Constant.ENTITY_FRONT) {
 								gc.drawImage(ResourceLoader.sEffect2, pos.x - getWidth() * 0.4,
 										pos.y - getHeight() * 0.4, ResourceLoader.sEffect2.getWidth() * 0.8,
 										ResourceLoader.sEffect2.getHeight() * 0.8);
@@ -54,16 +54,16 @@ public class Strength extends Attribute {
 					} else {
 						if (owner.getAtkType().getAttackTime() > 0) {
 							// gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-							if (owner.getDirection() == Entity.RIGHT) {
+							if (owner.getDirection() == Constant.ENTITY_RIGHT) {
 								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() * 5 / 6,
 										pos.y - getHeight());
-							} else if (owner.getDirection() == Entity.LEFT) {
+							} else if (owner.getDirection() == Constant.ENTITY_LEFT) {
 								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() * 1.3,
 										pos.y - getHeight());
-							} else if (owner.getDirection() == Entity.BACK) {
+							} else if (owner.getDirection() == Constant.ENTITY_BACK) {
 								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() / 2,
 										pos.y - getHeight() * 5 / 6);
-							} else if (owner.getDirection() == Entity.FRONT) {
+							} else if (owner.getDirection() == Constant.ENTITY_FRONT) {
 								gc.drawImage(ResourceLoader.monsterEffect, pos.x - getWidth() / 2,
 										pos.y - getHeight() * 5 / 6);
 							}
@@ -76,13 +76,13 @@ public class Strength extends Attribute {
 
 			@Override
 			public double getWidth() {
-				return ((GameLogic.hero.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.y
+				return ((GameLogic.hero.getDirection() % 3) == Constant.SCENE_Y_AXIS) ? attackRange.y
 						: attackRange.x * 1.5;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((GameLogic.hero.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.x * 2 : attackRange.y;
+				return ((GameLogic.hero.getDirection() % 3) == Constant.SCENE_Y_AXIS) ? attackRange.x * 2 : attackRange.y;
 			}
 		};
 	}
@@ -90,21 +90,21 @@ public class Strength extends Attribute {
 	public void update(int direction, double x, double y) {
 		try {
 			super.update(direction, x, y);
-			if (direction == Entity.RIGHT) {
+			if (direction == Constant.ENTITY_RIGHT) {
 				this.attackObj.setX(x + owner.getWidth() * 2 / 3);
 				this.attackObj.setY(y + owner.getHeight() / 3);
-			} else if (direction == Entity.LEFT) {
+			} else if (direction == Constant.ENTITY_LEFT) {
 				this.attackObj.setX(x + owner.getWidth() / 3 - attackRange.x);
 				this.attackObj.setY(y + owner.getHeight() / 3);
-			} else if (direction == Entity.BACK) {
+			} else if (direction == Constant.ENTITY_BACK) {
 				this.attackObj.setX(x + (owner.getWidth() - this.attackObj.getWidth()) / 2);
 				this.attackObj.setY(y - attackRange.y + owner.getHeight() * 5 / 6);
-			} else if (direction == Entity.FRONT) {
+			} else if (direction == Constant.ENTITY_FRONT) {
 				this.attackObj.setX(x + (owner.getWidth() - this.attackObj.getWidth()) / 2);
 				this.attackObj.setY(y + owner.getHeight() * 2 / 3);
 			}
 
-			else if (direction == Entity.BACK) {
+			else if (direction == Constant.ENTITY_BACK) {
 				this.attackObj.setZ(owner.getZ() - 10);
 			} else
 				this.attackObj.setZ(owner.getZ() + 10);

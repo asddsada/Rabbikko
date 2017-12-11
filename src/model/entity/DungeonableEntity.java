@@ -13,8 +13,7 @@ import model.field.Dungeon;
 import sharedObj.RenderableHolder;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
-	public static final int HUMANITY = 1;
-	public static final int MONSTER = 0;
+
 	protected double maxHp;
 	protected double currentHp;
 	protected int baseAtk;

@@ -30,13 +30,13 @@ public class Agility extends Attribute {
 			public void draw(GraphicsContext gc) {
 				if (owner.getAtkType().getAttackTime()  > 0) {
 //					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-					if(owner.getDirection()==Entity.RIGHT) {	
+					if(owner.getDirection()== Constant.ENTITY_RIGHT) {	
 						gc.drawImage(ResourceLoader.aEffect2,pos.x-getWidth(),pos.y-getHeight()/2);
-					}else if(owner.getDirection()==Entity.LEFT) {	
+					}else if(owner.getDirection()== Constant.ENTITY_LEFT) {	
 						gc.drawImage(ResourceLoader.aEffect,pos.x-getWidth(),pos.y-getHeight()/2);
-					}else if(owner.getDirection()==Entity.BACK) {	
+					}else if(owner.getDirection()== Constant.ENTITY_BACK) {	
 						gc.drawImage(ResourceLoader.aEffect4,pos.x-getWidth()/2,pos.y-getHeight()*1.5);
-					}else if(owner.getDirection()==Entity.FRONT) {	
+					}else if(owner.getDirection()== Constant.ENTITY_FRONT) {	
 						gc.drawImage(ResourceLoader.aEffect3,pos.x-getWidth()/2,pos.y-getHeight());
 					}
 				}
@@ -44,13 +44,13 @@ public class Agility extends Attribute {
 
 			@Override
 			public double getWidth() {
-				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.y * 0.7
+				return ((owner.getDirection() % 3) == Constant.SCENE_Y_AXIS) ? attackRange.y * 0.7
 						: attackRange.x;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.x
+				return ((owner.getDirection() % 3) == Constant.SCENE_Y_AXIS) ? attackRange.x
 						: attackRange.y * 0.7;
 			}			
 		};
@@ -59,20 +59,20 @@ public class Agility extends Attribute {
 	@Override
 	public void update(int direction, double x, double y) {
 		super.update(direction, x, y);
-		if (direction == Entity.RIGHT) {
+		if (direction == Constant.ENTITY_RIGHT) {
 			this.attackObj.setX(x + owner.getWidth() * 2 / 3);
 			this.attackObj.setY(y + owner.getHeight() / 3);
-		} else if (direction == Entity.LEFT) {
+		} else if (direction == Constant.ENTITY_LEFT) {
 			this.attackObj.setX(x + owner.getWidth() / 3 - attackRange.x);
 			this.attackObj.setY(y + owner.getHeight() / 3);
-		} else if (direction == Entity.BACK) {
+		} else if (direction == Constant.ENTITY_BACK) {
 			this.attackObj.setX(x + owner.getWidth() / 6);
 			this.attackObj.setY(y - attackObj.getHeight() + owner.getHeight() * 5 / 6);
-		} else if (direction == Entity.FRONT) {
+		} else if (direction == Constant.ENTITY_FRONT) {
 			this.attackObj.setX(x + owner.getWidth() / 6);
 			this.attackObj.setY(y + owner.getHeight() * 2 / 3);
 		}
-		else if (direction == Entity.BACK) {
+		else if (direction == Constant.ENTITY_BACK) {
 			this.attackObj.setZ(owner.getZ()-10);
 		}else this.attackObj.setZ(owner.getZ()+10);
 	}

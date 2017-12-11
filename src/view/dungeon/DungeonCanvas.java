@@ -27,11 +27,11 @@ public class DungeonCanvas extends Canvas {
 	private DungeonScene scene;
 
 	public DungeonCanvas(DungeonScene scene) {
-		super(Constant.WIDTH, Constant.HEIGHT);
+		super(Constant.SCENE_WIDTH, Constant.SCENE_HEIGHT);
 		this.scene = scene;
 		gc = this.getGraphicsContext2D();
 		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, Constant.WIDTH, Constant.HEIGHT);
+		gc.fillRect(0, 0, Constant.SCENE_WIDTH, Constant.SCENE_HEIGHT);
 
 		InputUtility.bindMouseOnListeners(this);
 	}
@@ -40,9 +40,9 @@ public class DungeonCanvas extends Canvas {
 		if (!ResourceLoader.isLoadFinish()) {
 			gc.setFill(Color.WHITE);
 			gc.fillText("NOWLOADING",
-					Constant.WIDTH / 2
+					Constant.SCENE_WIDTH / 2
 							- ResourceLoader.fontLoader.computeStringWidth("NOWLOADING", gc.getFont()) / 2,
-					Constant.HEIGHT / 2
+					Constant.SCENE_HEIGHT / 2
 							- ResourceLoader.fontLoader.getFontMetrics(gc.getFont()).getLineHeight() / 2);
 		} else {
 			for (IRenderable entity : RenderableHolder.getInstance().getEntities()) {

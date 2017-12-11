@@ -19,18 +19,15 @@ import utility.Pair;
 import view.SceneManeger;
 
 public class Navigation extends Field {
-	public static final double NAVIG_WIDTH = ResourceLoader.navigBar.getWidth();
-	public static final double NAVIG_HEIGHT = ResourceLoader.navigBar.getHeight();
-	public static final int BAR_HEIGHT = 30;
-	public static final int BORDER_WIDTH = 200;
-	public static final double sceneWidth = Constant.WIDTH;
-	public static final double sceneHeight = Constant.HEIGHT;
+
+	public static final double sceneWidth = Constant.SCENE_WIDTH;
+	public static final double sceneHeight = Constant.SCENE_HEIGHT;
 
 	private static String name;
 
 	public Navigation() {
 		super(ResourceLoader.navigBar, ResourceLoader.navigBar.getWidth(), ResourceLoader.navigBar.getHeight(),
-				new Pair(0, sceneHeight - NAVIG_HEIGHT));
+				new Pair(0, sceneHeight - Constant.NAVIG_HEIGHT));
 		this.z = 2000;
 	}
 
@@ -48,7 +45,7 @@ public class Navigation extends Field {
 
 	@Override
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(ResourceLoader.navigBar, 0, sceneHeight - NAVIG_HEIGHT, NAVIG_WIDTH, NAVIG_HEIGHT);
+		gc.drawImage(ResourceLoader.navigBar, 0, sceneHeight - Constant.NAVIG_HEIGHT, Constant.NAVIG_WIDTH, Constant.NAVIG_HEIGHT);
 		if ((((Health) Inventory.getBag()[0]).getAmount()) != 0)
 			gc.drawImage(ResourceLoader.hpPotion, 481, 571);
 		if ((((Mana) Inventory.getBag()[1]).getAmount()) != 0)
@@ -64,7 +61,7 @@ public class Navigation extends Field {
 
 		// name
 		gc.setFont(Font.font("Castellar", 25));
-		gc.fillText(name, BORDER_WIDTH, sceneHeight - BAR_HEIGHT * 3.5);
+		gc.fillText(name, Constant.NAVIG_BORDER_WIDTH, sceneHeight - Constant.NAVIG_BAR_HEIGHT * 3.5);
 
 		// money
 		gc.setFont(Font.font("Castellar", 20));

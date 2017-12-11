@@ -25,15 +25,15 @@ public class Dungeon extends Field {
 	public static MonsterDen monsterDen;
 	private int lvl;
 	private static int lvlChangetimer;
-	private static final int CHANGE_TIME_MAX = 400;
+	
 
 	public Dungeon() {
-		super(ResourceLoader.dungeonBg, Constant.WIDTH, Constant.HEIGHT - Navigation.NAVIG_HEIGHT,
+		super(ResourceLoader.dungeonBg, Constant.SCENE_WIDTH, Constant.SCENE_HEIGHT - Constant.NAVIG_HEIGHT,
 				new Pair(0, 0));
 		this.lvl = 0;
 		this.z = -99999;
 		monsterDen = new MonsterDen();
-		lvlChangetimer=CHANGE_TIME_MAX;
+		lvlChangetimer=Constant.DUNGEON_CHANGE_TIME_MAX;
 	}
 
 	public boolean isInBoarder(Entity e, double x, double y) {
@@ -89,7 +89,7 @@ public class Dungeon extends Field {
 	private void upLevel() {
 		if (lvlChangetimer == 0) {
 			lvl++;
-			lvlChangetimer = CHANGE_TIME_MAX;
+			lvlChangetimer = Constant.DUNGEON_CHANGE_TIME_MAX;
 			monsterDen.setDunLvl(this.lvl);
 		}
 		

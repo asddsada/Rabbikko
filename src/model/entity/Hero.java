@@ -26,13 +26,13 @@ public class Hero extends DungeonableEntity<Attribute> {
 	private String name;
 
 	public Hero(int direction, Attribute atkType) {
-		super(Constant.WIDTH / 2, (Constant.HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction, 7,
+		super(Constant.SCENE_WIDTH / 2, (Constant.SCENE_HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction, 7,
 				50, 1000, 60, atkType);
 		this.maxMp = 400;
 		this.currentMp = 0;
 		this.money = 0;
 		this.z = -1;
-		this.race = DungeonableEntity.HUMANITY;
+		this.race = Constant.ENTITY_HUMANITY;
 		Hero.inventory = new Inventory();
 		setAtktype(atkType);
 		name = Navigation.getName();
@@ -78,13 +78,13 @@ public class Hero extends DungeonableEntity<Attribute> {
 		if (isAlive && dmgTimer == 0) {
 			if(GameLogic.dungeon.getLvl()%10==0) restoreHp();
 			if (InputUtility.isKeyPressed(KeyCode.W) || InputUtility.isKeyPressed(KeyCode.UP))
-				move(Entity.BACK);
+				move(Constant.ENTITY_BACK);
 			if (InputUtility.isKeyPressed(KeyCode.S) || InputUtility.isKeyPressed(KeyCode.DOWN))
-				move(Entity.FRONT);
+				move(Constant.ENTITY_FRONT);
 			if (InputUtility.isKeyPressed(KeyCode.A) || InputUtility.isKeyPressed(KeyCode.LEFT))
-				move(Entity.LEFT);
+				move(Constant.ENTITY_LEFT);
 			if (InputUtility.isKeyPressed(KeyCode.D) || InputUtility.isKeyPressed(KeyCode.RIGHT))
-				move(Entity.RIGHT);
+				move(Constant.ENTITY_RIGHT);
 			if ((InputUtility.isKeyPressed(KeyCode.SPACE) ||
 					((!(GameLogic.navig.isInBorder(InputUtility.mouseX, InputUtility.mouseY)) && InputUtility.isMousePressed())))
 					&& atkType.getAttackTime()==0)

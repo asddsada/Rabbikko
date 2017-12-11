@@ -16,6 +16,7 @@ import model.entity.Hero;
 import model.field.Dungeon;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 import utility.ResourceLoader;
 
 public class Weapons extends GameObject implements Useable {
@@ -86,35 +87,35 @@ public class Weapons extends GameObject implements Useable {
 		if (GameLogic.hero.isAlive()) {
 			if (GameLogic.hero.getAtkType().getAttackTime() == 0) {
 				if (GameLogic.hero.getAtkType() instanceof Strength) {
-					if (GameLogic.hero.getDirection() == Entity.RIGHT) {
+					if (GameLogic.hero.getDirection() == Constant.ENTITY_RIGHT) {
 						gc.drawImage(imgWeapon, pos.x - getWidth() * 2.5, pos.y - getHeight() / 2);
-					} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
+					} else if (GameLogic.hero.getDirection() == Constant.ENTITY_LEFT) {
 						gc.drawImage(imgWeapon, pos.x + getWidth() * 1.75, pos.y - getHeight() / 2);
-					} else if (GameLogic.hero.getDirection() == Entity.BACK) {
+					} else if (GameLogic.hero.getDirection() == Constant.ENTITY_BACK) {
 						gc.drawImage(imgWeapon, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2);
-					} else if (GameLogic.hero.getDirection() == Entity.FRONT) {
+					} else if (GameLogic.hero.getDirection() == Constant.ENTITY_FRONT) {
 						gc.drawImage(imgWeapon, pos.x + getWidth(), pos.y - getHeight() / 2);
 					}
 				} else if (GameLogic.hero.getAtkType() instanceof Agility) {
-					if (GameLogic.hero.getDirection() == Entity.RIGHT) {
+					if (GameLogic.hero.getDirection() == Constant.ENTITY_RIGHT) {
 						gc.drawImage(imgWeapon, pos.x - getWidth() * 2.7, pos.y - getHeight() / 3);
-					} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
+					} else if (GameLogic.hero.getDirection() == Constant.ENTITY_LEFT) {
 						gc.drawImage(ResourceLoader.bow3, pos.x + getWidth() * 1.2, pos.y - getHeight() / 2);
-					} else if (GameLogic.hero.getDirection() == Entity.BACK) {
+					} else if (GameLogic.hero.getDirection() == Constant.ENTITY_BACK) {
 						gc.drawImage(imgWeapon, pos.x - getWidth() * 1.5, pos.y - getHeight() / 4);
-					} else if (GameLogic.hero.getDirection() == Entity.FRONT) {
+					} else if (GameLogic.hero.getDirection() == Constant.ENTITY_FRONT) {
 						gc.drawImage(ResourceLoader.bow3, pos.x + getWidth() / 1.5, pos.y - getHeight() / 4);
 					}
 				}
 			}
 			if (GameLogic.hero.getAtkType() instanceof Intelligence) {
-				if (GameLogic.hero.getDirection() == Entity.RIGHT) {
+				if (GameLogic.hero.getDirection() == Constant.ENTITY_RIGHT) {
 					gc.drawImage(imgWeapon, pos.x - getWidth() * 2.5, pos.y - getHeight() / 2);
-				} else if (GameLogic.hero.getDirection() == Entity.LEFT) {
+				} else if (GameLogic.hero.getDirection() == Constant.ENTITY_LEFT) {
 					gc.drawImage(imgWeapon, pos.x + getWidth() * 1.75, pos.y - getHeight() / 2);
-				} else if (GameLogic.hero.getDirection() == Entity.BACK) {
+				} else if (GameLogic.hero.getDirection() == Constant.ENTITY_BACK) {
 					gc.drawImage(imgWeapon, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2);
-				} else if (GameLogic.hero.getDirection() == Entity.FRONT) {
+				} else if (GameLogic.hero.getDirection() == Constant.ENTITY_FRONT) {
 					gc.drawImage(imgWeapon, pos.x + getWidth(), pos.y - getHeight() / 2);
 				}
 			}
@@ -137,26 +138,26 @@ public class Weapons extends GameObject implements Useable {
 	}
 
 	public void update(int direction, double x, double y) {
-		if (direction == Entity.RIGHT) {
+		if (direction == Constant.ENTITY_RIGHT) {
 			this.pos.x = x + GameLogic.hero.getWidth() + getWidth();
 			this.pos.y = (y + getHeight());
-		} else if (direction == Entity.LEFT) {
+		} else if (direction == Constant.ENTITY_LEFT) {
 			this.pos.x = (x - getWidth());
 			this.pos.y = (y + getHeight());
-		} else if (direction == Entity.BACK) {
+		} else if (direction == Constant.ENTITY_BACK) {
 			this.pos.x = (x + getWidth());
 			this.pos.y = (y - getHeight());
-		} else if (direction == Entity.FRONT) {
+		} else if (direction == Constant.ENTITY_FRONT) {
 			this.pos.x = (x + getWidth());
 			this.pos.y = (y + GameLogic.hero.getHeight() / 2 + getHeight());
 		}
-		if (GameLogic.hero.getDirection() == Entity.LEFT || GameLogic.hero.getDirection() == Entity.FRONT)
+		if (GameLogic.hero.getDirection() == Constant.ENTITY_LEFT || GameLogic.hero.getDirection() == Constant.ENTITY_FRONT)
 			this.pos.x = GameLogic.hero.getX() - (getWidth());
 		else
 			this.pos.x = GameLogic.hero.getX() + GameLogic.hero.getWidth() + (getWidth());
 
 		this.pos.y = GameLogic.hero.getY() + 30;
-		if (GameLogic.hero.getDirection() == Entity.LEFT)
+		if (GameLogic.hero.getDirection() == Constant.ENTITY_LEFT)
 			this.z = GameLogic.hero.getZ() - 1;
 		else
 			this.z = GameLogic.hero.getZ() + 1;

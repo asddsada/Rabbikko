@@ -49,32 +49,32 @@ public class Intelligence extends Attribute {
 			public void draw(GraphicsContext gc) {
 				if (owner.getAtkType().getAttackTime() > 0 ) {
 //					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-//					if (owner.getDirection() == Entity.RIGHT) {
+//					if (owner.getDirection() ==  Constant.RIGHT) {
 //						gc.drawImage(Loader.mEffect, pos.x - getWidth() / 4, pos.y - getHeight() * 2,
 //								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
-//					} else if (owner.getDirection() == Entity.LEFT) {
+//					} else if (owner.getDirection() ==  Constant.LEFT) {
 //						gc.drawImage(Loader.mEffect, pos.x - getWidth() * 3, pos.y - getHeight() * 2,
 //								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
-//					} else if (owner.getDirection() == Entity.BACK) {
+//					} else if (owner.getDirection() ==  Constant.BACK) {
 //						gc.drawImage(Loader.mEffect, pos.x - getWidth(), pos.y - getHeight() * 2,
 //								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
-//					} else if (owner.getDirection() == Entity.FRONT) {
+//					} else if (owner.getDirection() ==  Constant.FRONT) {
 //						gc.drawImage(Loader.mEffect, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2,
 //								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
 //					}
 				}
 				for (Entry<Pair, Pair> e : magicTime.entrySet()) {
 					double a = 0, b = 0;
-					if (e.getValue().x == Entity.FRONT) {
+					if (e.getValue().x ==  Constant.ENTITY_FRONT) {
 						a = e.getKey().x + (owner.getWidth() - magicW) ;
 						b = e.getKey().y + e.getValue().y + owner.getHeight() / 3;
-					} else if (e.getValue().x == Entity.BACK) {
+					} else if (e.getValue().x ==  Constant.ENTITY_BACK) {
 						a = e.getKey().x + (owner.getWidth() - magicW) ;
 						b = e.getKey().y - e.getValue().y ;
-					} else if (e.getValue().x == Entity.LEFT) {
+					} else if (e.getValue().x ==  Constant.ENTITY_LEFT) {
 						a = e.getKey().x - e.getValue().y-magicW/2;
 						b = e.getKey().y ;
-					} else if (e.getValue().x == Entity.RIGHT) {
+					} else if (e.getValue().x ==  Constant.ENTITY_RIGHT) {
 						a = e.getKey().x + e.getValue().y;
 						b = e.getKey().y ;
 					}
@@ -86,12 +86,12 @@ public class Intelligence extends Attribute {
 
 			@Override
 			public double getWidth() {
-				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.y * 0.7 : attackRange.x;
+				return ((owner.getDirection() % 3) == Constant.SCENE_Y_AXIS) ? attackRange.y * 0.7 : attackRange.x;
 			}
 
 			@Override
 			public double getHeight() {
-				return ((owner.getDirection() % 3) == Constant.Y_AXIS) ? attackRange.x * 1.5 : attackRange.y * 0.6;
+				return ((owner.getDirection() % 3) == Constant.SCENE_Y_AXIS) ? attackRange.x * 1.5 : attackRange.y * 0.6;
 			}
 
 			@Override
@@ -100,16 +100,16 @@ public class Intelligence extends Attribute {
 				if (GameLogic.hero.getCurrentMp() > 5) {
 					for (Entry<Pair, Pair> e : magicTime.entrySet()) {
 						double a = 0, b = 0;
-						if (e.getValue().x == Entity.FRONT) {
+						if (e.getValue().x ==  Constant.ENTITY_FRONT) {
 							a = e.getKey().x + (owner.getWidth() - magicW) ;
 							b = e.getKey().y + e.getValue().y + owner.getHeight() / 3;
-						} else if (e.getValue().x == Entity.BACK) {
+						} else if (e.getValue().x ==  Constant.ENTITY_BACK) {
 							a = e.getKey().x + (owner.getWidth() - magicW) ;
 							b = e.getKey().y - e.getValue().y ;
-						} else if (e.getValue().x == Entity.LEFT) {
+						} else if (e.getValue().x ==  Constant.ENTITY_LEFT) {
 							a = e.getKey().x - e.getValue().y-magicW/2;
 							b = e.getKey().y ;
-						} else if (e.getValue().x == Entity.RIGHT) {
+						} else if (e.getValue().x ==  Constant.ENTITY_RIGHT) {
 							a = e.getKey().x + e.getValue().y;
 							b = e.getKey().y ;
 						}
@@ -134,16 +134,16 @@ public class Intelligence extends Attribute {
 	@Override
 	public void update(int direction, double x, double y) {
 		super.update(direction, x, y);
-		if (direction == Entity.RIGHT) {
+		if (direction ==  Constant.ENTITY_RIGHT) {
 			this.attackObj.setX(x + owner.getWidth() * 2 / 3);
 			this.attackObj.setY(y + owner.getHeight() / 3);
-		} else if (direction == Entity.LEFT) {
+		} else if (direction ==  Constant.ENTITY_LEFT) {
 			this.attackObj.setX(x + owner.getWidth() / 3 - attackRange.x);
 			this.attackObj.setY(y + owner.getHeight() / 3);
-		} else if (direction == Entity.BACK) {
+		} else if (direction ==  Constant.ENTITY_BACK) {
 			this.attackObj.setX(x + owner.getWidth() / 6);
 			this.attackObj.setY(y - attackRange.y + owner.getHeight() * 5 / 6);
-		} else if (direction == Entity.FRONT) {
+		} else if (direction ==  Constant.ENTITY_FRONT) {
 			this.attackObj.setX(x + owner.getWidth() / 6);
 			this.attackObj.setY(y + owner.getHeight() * 2 / 3);
 		}

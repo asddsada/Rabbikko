@@ -12,7 +12,7 @@
   </interface>  
   <class id="2" language="java" name="model.field.Field" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/field/Field.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="465" y="47"/>    
+    <position height="-1" width="-1" x="485" y="-244"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="model.field.Dungeon" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/field/Dungeon.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="927" y="-60"/>    
+    <position height="-1" width="-1" x="996" y="-192"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="model.entity.Entity" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/entity/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="756" y="409"/>    
+    <position height="-1" width="-1" x="781" y="410"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="model.GameObject" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/GameObject.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="442" y="390"/>    
+    <position height="-1" width="-1" x="439" y="323"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="model.entity.Npc" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/entity/Npc.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1085" y="587"/>    
+    <position height="-1" width="-1" x="1230" y="599"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="model.entity.DungeonableEntity" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/entity/DungeonableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1171" y="243"/>    
+    <position height="-1" width="-1" x="1276" y="277"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="model.monster.Monster" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/monster/Monster.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1629" y="348"/>    
+    <position height="-1" width="-1" x="1726" y="390"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="model.entity.Hero" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/entity/Hero.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1596" y="67"/>    
+    <position height="-1" width="-1" x="1644" y="-93"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="model.attribute.Attribute" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/attribute/Attribute.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2031" y="145"/>    
+    <position height="-1" width="-1" x="2358" y="139"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="model.attribute.Agility" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/attribute/Agility.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1874" y="242"/>    
+    <position height="-1" width="-1" x="2063" y="335"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="model.attribute.Intelligence" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/attribute/Intelligence.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1857" y="131"/>    
+    <position height="-1" width="-1" x="2038" y="96"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="model.attribute.Strength" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/attribute/Strength.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1868" y="3"/>    
+    <position height="-1" width="-1" x="2007" y="-92"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="model.field.Navigation" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/field/Navigation.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="869" y="-376"/>    
+    <position height="-1" width="-1" x="881" y="-512"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="model.monster.MonsterDen" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/monster/MonsterDen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1581" y="538"/>    
+    <position height="-1" width="-1" x="1655" y="718"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <interface id="17" language="java" name="model.Obstructable" project="2110215_Project_2017_Rabbiko" 
     file="/2110215_Project_2017_Rabbiko/src/model/Obstructable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1159" y="739"/>    
+    <position height="-1" width="-1" x="1402" y="785"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -155,57 +155,53 @@
     </display>  
   </interface>  
   <generalization id="18">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
-  <realization id="19">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="17"/>  
-  </realization>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="21">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="5"/>  
   </generalization>  
-  <generalization id="22">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="10"/>  
-  </generalization>  
-  <generalization id="23">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <realization id="24">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="1"/>  
-  </realization>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </generalization>  
-  <generalization id="26">    
+  <generalization id="19">    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <generalization id="27">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <realization id="28">    
+  <realization id="20">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="1"/>  
   </realization>  
-  <generalization id="29">    
+  <generalization id="21">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
-  <generalization id="30">    
+  <generalization id="22">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="24">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <realization id="25">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <generalization id="26">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="10"/>  
   </generalization>  
+  <generalization id="27">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <realization id="29">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

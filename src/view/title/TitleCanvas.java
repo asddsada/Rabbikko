@@ -23,7 +23,7 @@ public class TitleCanvas extends Canvas {
 	private Font f;
 
 	public TitleCanvas() {
-		super(Constant.WIDTH, Constant.HEIGHT);
+		super(Constant.SCENE_WIDTH, Constant.SCENE_HEIGHT);
 		gc = this.getGraphicsContext2D();
 		
 		this.drawMainMenu();
@@ -32,23 +32,23 @@ public class TitleCanvas extends Canvas {
 
 	private void drawMainMenu() {
 		// draw bg
-		gc.drawImage(ResourceLoader.mainImage,0, 0,Constant.WIDTH, Constant.HEIGHT);
+		gc.drawImage(ResourceLoader.mainImage,0, 0,Constant.SCENE_WIDTH, Constant.SCENE_HEIGHT);
 
 		// draw title
 		gc.setFill(Color.WHITE);
 		f = Font.font("Castellar", 90);
 		gc.setFont(f);
 		gc.setTextAlign(TextAlignment.CENTER);
-		gc.fillText("RABBIKKO RPG", Constant.WIDTH / 2, Constant.HEIGHT / 3);
+		gc.fillText("RABBIKKO RPG", Constant.SCENE_WIDTH / 2, Constant.SCENE_HEIGHT / 3);
 
 		// draw btn
-		gc.drawImage(ResourceLoader.mainBtnImage, Constant.WIDTH / 3, Constant.HEIGHT / 2);
+		gc.drawImage(ResourceLoader.mainBtnImage, Constant.SCENE_WIDTH / 3, Constant.SCENE_HEIGHT / 2);
 
 		// draw credit text
 		f = Font.font("Century Schoolbook", 20);
 		gc.setFont(f);
-		gc.fillText("Credit : 5930188521 (Natthawan) , 5931044021 (Penpicha)", Constant.WIDTH / 2,
-				Constant.HEIGHT / 4 * 3);
+		gc.fillText("Credit : 5930188521 (Natthawan) , 5931044021 (Penpicha)", Constant.SCENE_WIDTH / 2,
+				Constant.SCENE_HEIGHT / 4 * 3);
 	}
 
 	private void goToDun() {
@@ -59,12 +59,12 @@ public class TitleCanvas extends Canvas {
 	}
 
 	private void onButton(MouseEvent event, boolean isGoNext) {
-		if (event.getSceneX() >= Constant.WIDTH / 3 && event.getSceneX() <= Constant.WIDTH / 3 + 300
-				&& event.getSceneY() >= Constant.HEIGHT / 2 && event.getSceneY() <= Constant.HEIGHT / 2 + 87) {
+		if (event.getSceneX() >= Constant.SCENE_WIDTH / 3 && event.getSceneX() <= Constant.SCENE_WIDTH / 3 + 300
+				&& event.getSceneY() >= Constant.SCENE_HEIGHT / 2 && event.getSceneY() <= Constant.SCENE_HEIGHT / 2 + 87) {
 			if (isGoNext) {				
 				goToDun();
 			} else {
-				gc.drawImage(ResourceLoader.mainBtnImage, Constant.WIDTH / 3.05 , Constant.HEIGHT / 2 ,ResourceLoader.mainBtnImage.getWidth()*1.05,ResourceLoader.mainBtnImage.getHeight()*1.05);
+				gc.drawImage(ResourceLoader.mainBtnImage, Constant.SCENE_WIDTH / 3.05 , Constant.SCENE_HEIGHT / 2 ,ResourceLoader.mainBtnImage.getWidth()*1.05,ResourceLoader.mainBtnImage.getHeight()*1.05);
 			}
 		} 
 		else {

@@ -14,10 +14,6 @@ import utility.Pair;
 import view.SceneManeger;
 
 public abstract class Entity extends GameObject {
-	public static final int FRONT = 0;
-	public static final int LEFT = 1;
-	public static final int RIGHT = 2;
-	public static final int BACK = 3;
 
 	protected static double w;
 	protected static double h;
@@ -66,7 +62,7 @@ public abstract class Entity extends GameObject {
 
 	public synchronized void setPos(double dPos, int direction) {
 //		System.out.println(this.getClass().getSimpleName() + " sync");
-		if (direction == BACK || direction == FRONT)
+		if (direction == Constant.ENTITY_BACK || direction ==  Constant.ENTITY_FRONT)
 			setEntityY(dPos);
 		else
 			setEntityX(dPos);
@@ -117,14 +113,14 @@ public abstract class Entity extends GameObject {
 			addWalkTick();
 		}
 
-		if (direction == FRONT)
-			setPos((movespeed / 10.0) * Constant.HEIGHT / 150, FRONT);
-		if (direction == BACK)
-			setPos((-1) * (movespeed / 10.0) * Constant.HEIGHT / 150, BACK);
-		if (direction == RIGHT)
-			setPos((movespeed / 10.0) * Constant.WIDTH / 200, RIGHT);
-		if (direction == LEFT)
-			setPos((-1) * (movespeed / 10.0) * Constant.WIDTH / 200, LEFT);
+		if (direction ==  Constant.ENTITY_FRONT)
+			setPos((movespeed / 10.0) * Constant.SCENE_HEIGHT / 150,  Constant.ENTITY_FRONT);
+		if (direction ==  Constant.ENTITY_BACK)
+			setPos((-1) * (movespeed / 10.0) * Constant.SCENE_HEIGHT / 150,  Constant.ENTITY_BACK);
+		if (direction ==  Constant.ENTITY_RIGHT)
+			setPos((movespeed / 10.0) * Constant.SCENE_WIDTH / 200,  Constant.ENTITY_RIGHT);
+		if (direction ==  Constant.ENTITY_LEFT)
+			setPos((-1) * (movespeed / 10.0) * Constant.SCENE_WIDTH / 200,  Constant.ENTITY_LEFT);
 	}
 
 	public abstract void update();
@@ -140,9 +136,9 @@ public abstract class Entity extends GameObject {
 	}
 
 	public int getAxis(int direction) {
-		if (direction == Entity.BACK || direction == Entity.FRONT)
-			return Constant.Y_AXIS;
-		return Constant.Y_AXIS;
+		if (direction ==  Constant.ENTITY_BACK || direction ==  Constant.ENTITY_FRONT)
+			return Constant.SCENE_Y_AXIS;
+		return Constant.SCENE_Y_AXIS;
 	}
 
 	public int getDirection() {

@@ -6,6 +6,7 @@ import model.entity.Hero;
 import model.field.Dungeon;
 import model.field.Navigation;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 
 public class GameLogic {
 	public static Dungeon dungeon;
@@ -21,7 +22,7 @@ public class GameLogic {
 	}
 	
 	public <T extends Attribute>void newHero(T atkType) {
-		hero = new Hero(Entity.FRONT, atkType);
+		hero = new Hero(Constant.ENTITY_FRONT, atkType);
 		Dungeon.addEntities(hero);
 	}
 

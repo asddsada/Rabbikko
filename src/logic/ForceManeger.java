@@ -32,7 +32,7 @@ public class ForceManeger {
 		double d = entity.getMovespeed()*entity.getMovespeed()/2;
 		Pair Ft =totalForce(entity);
 		// bug able to push out of the field
-		if (axis % 3 == Constant.Y_AXIS)
+		if (axis % 3 == Constant.SCENE_Y_AXIS)
 			d /= (Ft.y / entity.getMass());
 		else
 			d /= (Ft.x / entity.getMass());
@@ -58,10 +58,10 @@ public class ForceManeger {
 
 	public static <T extends Attribute> int calculateForce(int force, int axis,
 			DungeonableEntity<T> dungeonableEntity) {
-		if (axis == Constant.X_AXIS)
-			return (int) (force * Constant.WIDTH / 200);
+		if (axis == Constant.SCENE_X_AXIS)
+			return (int) (force * Constant.SCENE_WIDTH / 200);
 		else
-			return (int) (force * Constant.HEIGHT / 150);
+			return (int) (force * Constant.SCENE_HEIGHT / 150);
 	}
 
 	public static <T extends Attribute> int calculateDirection(int direction) {
