@@ -2,22 +2,14 @@ package view.dungeon;
 
 import java.util.ConcurrentModificationException;
 
-import com.sun.javafx.tk.FontLoader;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import model.entity.Hero;
-import model.items.Weapons;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
 import utility.Constant;
 import utility.InputUtility;
 import utility.ResourceLoader;
-import view.SceneManeger;
 
 public class DungeonCanvas extends Canvas {
 	// constructor

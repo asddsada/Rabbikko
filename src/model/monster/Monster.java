@@ -89,8 +89,8 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 			return false;
 		ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(this, x, y);
 		for (DungeonableEntity<Attribute> other : inArea) {
-			if (this.race != other.getRace())
-				other.damage(this.getBaseAtk(), other.getDirection());
+//			if (this.race != other.getRace())
+//				other.damage(this.getBaseAtk(), other.getDirection());
 			return true;
 		}
 		return false;

@@ -25,7 +25,6 @@ public class Dungeon extends Field {
 	public static MonsterDen monsterDen;
 	private int lvl;
 	private static int lvlChangetimer;
-	
 
 	public Dungeon() {
 		super(ResourceLoader.dungeonBg, Constant.SCENE_WIDTH, Constant.SCENE_HEIGHT - Constant.NAVIG_HEIGHT,
@@ -33,7 +32,7 @@ public class Dungeon extends Field {
 		this.lvl = 0;
 		this.z = -99999;
 		monsterDen = new MonsterDen();
-		lvlChangetimer=Constant.DUNGEON_CHANGE_TIME_MAX;
+		lvlChangetimer = Constant.DUNGEON_CHANGE_TIME_MAX;
 	}
 
 	public boolean isInBoarder(Entity e, double x, double y) {
@@ -45,10 +44,14 @@ public class Dungeon extends Field {
 	public void draw(GraphicsContext gc) {
 		super.draw(gc);
 		if (lvlChangetimer != 0) {
+			gc.setGlobalAlpha(0.6);
 			gc.setFill(Color.BLACK);
-			gc.fillRect(0, height / 2 - 50, width, 100);
+			gc.fillRect(0, height / 2 - 50, width, 100 + ResourceLoader.fontLoader.getFontMetrics(gc.getFont()).getLineHeight());
 			gc.setFill(Color.WHITE);
-			gc.fillText("Level "+lvl+" "+Double.toString(lvlChangetimer / 100), width /2.25, height / 2);
+			gc.fillText("LEVEL " + lvl,
+					(width - ResourceLoader.fontLoader.computeStringWidth("LEVEL " + lvl, gc.getFont()) )/ 2,
+					(height + ResourceLoader.fontLoader.getFontMetrics(gc.getFont()).getLineHeight() )/ 2);
+			gc.setGlobalAlpha(1.0);
 		}
 	}
 
@@ -60,12 +63,12 @@ public class Dungeon extends Field {
 	}
 
 	public static <T extends Attribute> void destroyEntities(DungeonableEntity<T> e) {
-			e.setVisible(false);
+		e.setVisible(false);
 		graveyard.add((DungeonableEntity<Attribute>) e);
 	}
 
 	public void update() {
-		
+
 		graveyard.clear();
 		for (DungeonableEntity<Attribute> e : entities_holder) {
 			e.update();
@@ -73,13 +76,15 @@ public class Dungeon extends Field {
 		for (DungeonableEntity<Attribute> e : graveyard) {
 			if (e instanceof Hero) {
 				SceneManeger.dungeonScene.toDialog(4); // dead
-			}else entities_holder.remove(e);
+			} else
+				entities_holder.remove(e);
 		}
 		if (isLevelClear())
 			upLevel();
-		if(lvlChangetimer>0) lvlChangetimer--;
+		if (lvlChangetimer > 0)
+			lvlChangetimer--;
 	}
-	
+
 	public boolean isLevelClear() {
 		return (entities_holder.size() == 1 && entities_holder.contains(GameLogic.hero) && !monsterDen.isGenerate());
 	}
@@ -94,7 +99,7 @@ public class Dungeon extends Field {
 
 	public void restart() {
 		lvl = 0;
-		lvlChangetimer=0;
+		lvlChangetimer = 0;
 		monsterDen.restart();
 		RenderableHolder.getInstance().clear();
 		entities_holder.clear();

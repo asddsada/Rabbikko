@@ -31,7 +31,7 @@ public class Intelligence extends Attribute {
 		heroWeapon = (Weapons) Inventory.getBag()[Constant.STAFF];
 		attackMultiply = 1.5;
 		attackRange = new Pair(getHeroWeapon().getWidth() * 1.2, getHeroWeapon().getHeight());
-		attackSpeed = 1;
+		attackSpeed = 0.6;
 		hpMultiply = 1;
 		hpRegen = 1;
 		mpRegen = 5;
@@ -106,7 +106,8 @@ public class Intelligence extends Attribute {
 							isMagicHit = true;						
 					}
 				}
-//				if(owner.getAtkType().getAttackTime() ==0) return (super.isCollide(other, x, y)|| isMagicHit);
+				if((owner instanceof Hero) && magicTime.size()==0 && getAttackTime()==0) return false;
+				else if(owner.getAtkType().getAttackTime() ==0) return (super.isCollide(other, x, y)|| isMagicHit);
 				return isMagicHit;
 			}
 
@@ -117,7 +118,6 @@ public class Intelligence extends Attribute {
 	public void setOwner(DungeonableEntity<Attribute> owner) {
 		// TODO Auto-generated method stub
 		super.setOwner(owner);
-		if(owner instanceof Hero) attackSpeed /=2;
 	}
 
 	@Override
@@ -136,7 +136,6 @@ public class Intelligence extends Attribute {
 			this.attackObj.setX(x + owner.getWidth() / 6);
 			this.attackObj.setY(y + owner.getHeight() * 2 / 3);
 		}
-//		if (owner.getAtkType().getAttackTime() != 0) {
 			ArrayList<DungeonableEntity<Attribute>> inArea = Dungeon.getEntityInArea(owner.getAtkType().getAttackObj(),
 					owner.getAtkType().getAttackObj().getX(), owner.getAtkType().getAttackObj().getY());
 			if (!(inArea == null || inArea.size() <= 1))
@@ -146,8 +145,7 @@ public class Intelligence extends Attribute {
 						owner.getAtkType().attack(owner, other);
 					}
 				}
-//		}
-		if (!(owner instanceof Hero)||GameLogic.hero.getCurrentMp() >= 30) {
+		
 			for (Entry<Pair, Pair> e : magicTime.entrySet()) {
 				e.getValue().y += 2;
 				if (e.getValue().y >= maxMagicTime)
@@ -157,7 +155,7 @@ public class Intelligence extends Attribute {
 				magicTime.remove(e);
 			}
 			delTemp.clear();
-		}
+		
 	}
 	
 	@Override

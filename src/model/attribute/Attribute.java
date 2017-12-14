@@ -27,18 +27,22 @@ public abstract class Attribute {
 	public Attribute() {
 		attackTime = 0;
 	}
-	public void update(int direction, double x, double y) {		
-		if(attackTime>0) attackTime--;
-		if(this.owner.isDestroyed()) this.attackObj.setVisible(false);
+
+	public void update(int direction, double x, double y) {
+		if (attackTime > 0)
+			attackTime--;
+		if (this.owner.isDestroyed())
+			this.attackObj.setVisible(false);
 	};
 
 	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
 			DungeonableEntity<T2> other) {
-		if(other.getDmgTimer() < Constant.DMG_TIME_MAX/2) {
-		other.damage((int) (attacker.getBaseAtk() * attackMultiply*((GameLogic.dungeon.getLvl()/20)+1)),
-		ForceUtility.calculateDirection(attacker.getDirection()));
+		if (other.getDmgTimer() < Constant.DMG_TIME_MAX / 2) {
+			other.damage((int) (attacker.getBaseAtk() * attackMultiply * ((GameLogic.dungeon.getLvl() / 20) + 1)),
+					ForceUtility.calculateDirection(attacker.getDirection()));
 		}
 	}
+
 	public Weapons getHeroWeapon() {
 		return heroWeapon;
 	}
@@ -50,7 +54,7 @@ public abstract class Attribute {
 	public void setAttackObj(GameObject attackObj) {
 		this.attackObj = attackObj;
 	}
-	
+
 	public int getAtkTimeMax() {
 		return (int) (Constant.BASE_ATTACK_TIMER_MAX / getAttackSpeed());
 	}
@@ -78,15 +82,16 @@ public abstract class Attribute {
 	public int getMpRegen() {
 		return mpRegen;
 	}
-	
+
 	public int getAttackTime() {
 		return attackTime;
 	}
-	
+
 	public void resetAttackTime() {
-		if(getAttackTime()==0)attackTime = getAtkTimeMax();
+		if (getAttackTime() == 0)
+			attackTime = getAtkTimeMax();
 	}
-	
+
 	public void setOwner(DungeonableEntity<Attribute> owner) {
 		this.owner = owner;
 		attackObj.setVisible(true);
@@ -96,10 +101,10 @@ public abstract class Attribute {
 	public void use() {
 		resetAttackTime();
 	}
-	
+
 	public Image getImage() {
 		return animationImg;
 	}
-	
+
 	public abstract int getManaUsed();
 }
