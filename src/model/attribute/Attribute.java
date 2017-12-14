@@ -1,6 +1,7 @@
 package model.attribute;
 
 import javafx.scene.image.Image;
+
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;

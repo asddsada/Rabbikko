@@ -1,15 +1,9 @@
-package logic;
+package utility;
 
-import com.sun.javafx.scene.traversal.Direction;
-
-import Main.Main;
 import model.attribute.Attribute;
 import model.entity.DungeonableEntity;
-import model.field.Dungeon;
-import sharedObj.RenderableHolder;
 import utility.Constant;
 import utility.Pair;
-import view.SceneManeger;
 
 public class ForceUtility {
 
