@@ -24,5 +24,6 @@ public abstract class Constant {
 	public static final int SWORD = 2;
 	public static final int BOW = 3;
 	public static final int STAFF = 4;
-	
+	public static final int BOUNTY_MULTIPLYER = 49;
+
 }

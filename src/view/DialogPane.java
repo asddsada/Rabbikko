@@ -66,9 +66,6 @@ public class DialogPane extends VBox {
 	}
 
 	public void opening() {
-//		Text head = new Text("Welcome!");
-//		head.setFont(Font.font("Castellar", 40));
-//
 		Text sub = new Text("Please enter your name");
 		sub.setFont(Font.font("Castellar", 25));
 
@@ -150,13 +147,13 @@ public class DialogPane extends VBox {
 
 	private void openAction(TextField textField) {
 		// check if player has entered their name
-		// if (textField.getText().trim().isEmpty()) {
-		// textField.setPromptText("Please enter your name!!!");
-		// }
-		// else {
-		Navigation.setName(textField.getText().trim());
-		scene.toDialog(5);
-		// }
+		if (textField.getText().trim().isEmpty()) {
+			textField.setPromptText("Please enter your name!!!");
+		}
+		else {
+			Navigation.setName(textField.getText().trim());
+			scene.toDialog(5);
+		}
 	}
 
 	public GridPane generate(Image img) {
@@ -243,7 +240,6 @@ public class DialogPane extends VBox {
 			t3.setText("Amount : " + ((Weapons) Inventory.getBag()[2]).getAmount());
 			t1.setText("Sword\n");
 			t2.setText("Price : 5000 g");
-			// t3.setText("Amount : " + ((Weapons)Inventory.getBag()[2]).getAmount());
 		});
 
 		bow.setOnMouseClicked((MouseEvent e) -> {
@@ -382,7 +378,7 @@ public class DialogPane extends VBox {
 		
 		DungeonMain.getCanvas().canvasUpdate();
 		defaultDraw(scene, ResourceLoader.dead);
-		Button close = new Button("restart");
+		Button close = new Button("Restart");
 		close.setStyle("-fx-color: red;-fx-border: none ");
 		close.setOnMouseClicked((MouseEvent e) -> {
 			ResourceLoader.clickSound.play(100);
@@ -392,12 +388,25 @@ public class DialogPane extends VBox {
 			scene.toDungeon();
 		});
 
-		Button buyBack = new Button("Revive");
+		Button buyBack = new Button("Revive\n" + (5000+Constant.BOUNTY_MULTIPLYER*GameLogic.dungeon.getLvl()) + "Gold");
 		buyBack.setStyle("-fx-color: red;-fx-border: none ");
 		buyBack.setOnMouseClicked((MouseEvent e) -> {
 			ResourceLoader.clickSound.play(100);
-			GameLogic.hero.revive();
-			scene.toDungeon();
+			if (GameLogic.hero.getMoney() < 5000+Constant.BOUNTY_MULTIPLYER*GameLogic.dungeon.getLvl()) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setContentText("Not enough money");
+				 alert.setHeaderText("Revive error");
+				 alert.showAndWait();
+				 GameLogic.dungeon.restart();
+				DungeonMain.getLogic().newHero(GameLogic.hero.getAtkType());
+				GameLogic.hero.inventory.reset();
+				scene.toDungeon();
+			}
+			else {
+				GameLogic.hero.useMoney(5000+Constant.BOUNTY_MULTIPLYER);
+				GameLogic.hero.revive();
+				scene.toDungeon();
+			}
 		});
 		this.getChildren().addAll(buyBack, close);
 	}
