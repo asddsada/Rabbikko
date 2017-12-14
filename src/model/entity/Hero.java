@@ -23,7 +23,7 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	public Hero(int direction, Attribute atkType) {
 		super(Constant.SCENE_WIDTH / 2, (Constant.SCENE_HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction,
-				7, 50, 1000, 60, atkType);
+				5, 50, 1000, 60, atkType);
 		this.maxMp = 400;
 		this.currentMp = 0;
 		this.money = 0;

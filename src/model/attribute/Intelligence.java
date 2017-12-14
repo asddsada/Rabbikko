@@ -31,7 +31,7 @@ public class Intelligence extends Attribute {
 		heroWeapon = (Weapons) Inventory.getBag()[Constant.STAFF];
 		attackMultiply = 1.5;
 		attackRange = new Pair(getHeroWeapon().getWidth() * 1.2, getHeroWeapon().getHeight());
-		attackSpeed = 0.9;
+		attackSpeed = 1;
 		hpMultiply = 1;
 		hpRegen = 1;
 		mpRegen = 5;
