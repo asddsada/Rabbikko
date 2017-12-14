@@ -5,7 +5,6 @@ import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
-import model.entity.Hero;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.Constant;

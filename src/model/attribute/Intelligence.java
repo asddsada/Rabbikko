@@ -11,7 +11,6 @@ import javafx.scene.canvas.GraphicsContext;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
-import model.entity.Entity;
 import model.entity.Hero;
 import model.field.Dungeon;
 import model.items.Inventory;
@@ -19,7 +18,6 @@ import model.items.Weapons;
 import utility.ResourceLoader;
 import utility.Constant;
 import utility.Pair;
-import view.SceneManeger;
 
 public class Intelligence extends Attribute {
 	private Map<Pair, Pair> magicTime;
@@ -30,14 +28,14 @@ public class Intelligence extends Attribute {
 
 	public Intelligence() {
 		super();
-		heroWeapon = (Weapons) Inventory.getBag()[4];
+		heroWeapon = (Weapons) Inventory.getBag()[Constant.STAFF];
 		attackMultiply = 1.5;
 		attackRange = new Pair(getHeroWeapon().getWidth() * 1.2, getHeroWeapon().getHeight());
-		attackSpeed = 0.5;
+		attackSpeed = 0.9;
 		hpMultiply = 1;
 		hpRegen = 1;
 		mpRegen = 5;
-		maxMagicTime = getHeroWeapon().getWidth() * 5;
+		maxMagicTime = Constant.MAX_MAGIC_TIME;
 		magicTime = new HashMap<>();
 		delTemp = new LinkedList<>();
 		magicW = attackRange.x*2;
@@ -47,22 +45,6 @@ public class Intelligence extends Attribute {
 
 			@Override
 			public void draw(GraphicsContext gc) {
-				if (owner.getAtkType().getAttackTime() > 0 ) {
-//					gc.fillRect(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-//					if (owner.getDirection() ==  Constant.RIGHT) {
-//						gc.drawImage(Loader.mEffect, pos.x - getWidth() / 4, pos.y - getHeight() * 2,
-//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
-//					} else if (owner.getDirection() ==  Constant.LEFT) {
-//						gc.drawImage(Loader.mEffect, pos.x - getWidth() * 3, pos.y - getHeight() * 2,
-//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
-//					} else if (owner.getDirection() ==  Constant.BACK) {
-//						gc.drawImage(Loader.mEffect, pos.x - getWidth(), pos.y - getHeight() * 2,
-//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
-//					} else if (owner.getDirection() ==  Constant.FRONT) {
-//						gc.drawImage(Loader.mEffect, pos.x - getWidth() * 1.5, pos.y - getHeight() / 2,
-//								Loader.mEffect.getWidth() / 2, Loader.mEffect.getHeight() / 2);
-//					}
-				}
 				for (Entry<Pair, Pair> e : magicTime.entrySet()) {
 					double a = 0, b = 0;
 					if (e.getValue().x ==  Constant.ENTITY_FRONT) {
@@ -130,6 +112,13 @@ public class Intelligence extends Attribute {
 
 		};
 	}
+	
+	@Override
+	public void setOwner(DungeonableEntity<Attribute> owner) {
+		// TODO Auto-generated method stub
+		super.setOwner(owner);
+		if(owner instanceof Hero) attackSpeed /=2;
+	}
 
 	@Override
 	public void update(int direction, double x, double y) {
@@ -174,10 +163,10 @@ public class Intelligence extends Attribute {
 	@Override
 	public void use() {
 		super.use();
-		if (magicTime.size() <= 6 )
+		if (magicTime.size() <= Constant.MAX_SPELL_ACTIVE )
 			magicTime.put(new Pair(attackObj.getX(), attackObj.getY()), new Pair(owner.getDirection(), 0));
 
-		if(owner instanceof Hero) GameLogic.hero.useMp(30);
+		if(owner instanceof Hero) GameLogic.hero.useMp(Constant.BASE_MP_USE*2);
 	}
 
 }

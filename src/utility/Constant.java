@@ -1,5 +1,8 @@
 package utility;
 
+import model.items.Inventory;
+import model.items.Weapons;
+
 public abstract class Constant {
 	public static final double SCENE_WIDTH = 1000;
 	public static final double SCENE_HEIGHT = 700;
@@ -25,5 +28,8 @@ public abstract class Constant {
 	public static final int BOW = 3;
 	public static final int STAFF = 4;
 	public static final int BOUNTY_MULTIPLYER = 49;
+	public static final int BASE_MP_USE = 15;
+	public static final double MAX_MAGIC_TIME = ((Weapons) Inventory.getBag()[STAFF]).getWidth() * 5;
+	public static final int MAX_SPELL_ACTIVE = 6;;
 
 }

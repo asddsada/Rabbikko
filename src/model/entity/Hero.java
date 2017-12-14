@@ -2,22 +2,16 @@ package model.entity;
 
 import java.util.ArrayList;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
-import logic.ForceManeger;
 import logic.GameLogic;
 import model.Obstructable;
 import model.attribute.Attribute;
 import model.field.Dungeon;
 import model.field.Navigation;
 import model.items.Inventory;
-import sharedObj.RenderableHolder;
 import utility.Constant;
 import utility.InputUtility;
 import utility.ResourceLoader;
-import view.SceneManeger;
 
 public class Hero extends DungeonableEntity<Attribute> {
 	private double maxMp;

@@ -112,10 +112,4 @@ public class Strength extends Attribute {
 			System.out.println("cannot update attack effect");
 		}
 	}
-	
-	@Override
-	public void use() {
-		super.use();
-		GameLogic.hero.useMp(5);
-	}
 }
