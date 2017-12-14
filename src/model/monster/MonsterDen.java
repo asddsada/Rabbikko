@@ -80,10 +80,6 @@ public class MonsterDen {
 		monsterCount = 0;
 	}
 
-	public void update() {
-		
-	}
-
 	private Image monsterImg(int i) {
 		if (i < 1)
 			i = 1;

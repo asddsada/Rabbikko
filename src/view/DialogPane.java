@@ -403,7 +403,7 @@ public class DialogPane extends VBox {
 				scene.toDungeon();
 			}
 			else {
-				GameLogic.hero.useMoney(5000+Constant.BOUNTY_MULTIPLYER);
+				GameLogic.hero.useMoney((int) (5000+Constant.BOUNTY_MULTIPLYER));
 				GameLogic.hero.revive();
 				scene.toDungeon();
 			}

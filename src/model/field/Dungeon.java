@@ -65,8 +65,6 @@ public class Dungeon extends Field {
 	}
 
 	public void update() {
-
-		monsterDen.update(); //for admin key only
 		
 		graveyard.clear();
 		for (DungeonableEntity<Attribute> e : entities_holder) {
