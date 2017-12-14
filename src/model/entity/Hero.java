@@ -36,12 +36,15 @@ public class Hero extends DungeonableEntity<Attribute> {
 
 	@Override
 	public boolean attack() {
-		boolean r = super.attack();
-		if (r)
-			this.healMp(15);
-		else
-			this.atkType.getHeroWeapon().use();
-		return r;
+		if (atkType.getManaUsed() < currentMp ) {
+			boolean r = super.attack();
+			if (r)
+				this.healMp(15);
+			else
+				this.atkType.getHeroWeapon().use();
+			return r;
+		}
+		return false;
 	}
 
 	@Override

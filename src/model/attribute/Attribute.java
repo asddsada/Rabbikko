@@ -99,4 +99,6 @@ public abstract class Attribute {
 	public Image getImage() {
 		return animationImg;
 	}
+	
+	public abstract int getManaUsed();
 }

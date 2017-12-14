@@ -76,6 +76,10 @@ public class Agility extends Attribute {
 	public void use() {
 		super.use();
 		if (owner instanceof Hero)
-			GameLogic.hero.useMp(Constant.BASE_MP_USE);
+			GameLogic.hero.useMp(getManaUsed());
+	}
+	
+	public int getManaUsed() {
+		return Constant.BASE_MP_USE;
 	}
 }

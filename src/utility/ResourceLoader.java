@@ -16,7 +16,6 @@ public abstract class ResourceLoader {
 
 	public static Image mainImage;
 	public static Image mainBtnImage;
-	public static Image dialogBtnImage;
 	public static Image dialogFrame;
 	public static Image dungeonBg;
 	public static Image humanImage;

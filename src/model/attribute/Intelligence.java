@@ -166,7 +166,10 @@ public class Intelligence extends Attribute {
 		if (magicTime.size() <= Constant.MAX_SPELL_ACTIVE )
 			magicTime.put(new Pair(attackObj.getX(), attackObj.getY()), new Pair(owner.getDirection(), 0));
 
-		if(owner instanceof Hero) GameLogic.hero.useMp(Constant.BASE_MP_USE*2);
+		if(owner instanceof Hero) GameLogic.hero.useMp(getManaUsed());
 	}
 
+	public int getManaUsed() {
+		return Constant.BASE_MP_USE*2;
+	}
 }
