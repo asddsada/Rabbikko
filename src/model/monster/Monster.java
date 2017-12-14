@@ -26,7 +26,7 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		super(RandomUtility.randomInt((int) (Constant.SCENE_WIDTH * 0.01), (int) (Constant.SCENE_WIDTH * 0.9)),
 				RandomUtility.randomInt((int) (Constant.SCENE_HEIGHT * 0.01),
 						(int) ((Constant.SCENE_HEIGHT - Constant.NAVIG_HEIGHT) * 0.8)),
-				img, row, column, Constant.ENTITY_FRONT, movespeed, mass, maxHp, baseAtk, atkType);
+				img, row, column, Constant.ENTITY_FRONT, movespeed/2, mass, maxHp, baseAtk, atkType);
 		this.idleParameter = idleParameter;
 		this.timidParameter = timidParaneter;
 		this.persistentParameter = persistentParameter;
@@ -36,16 +36,27 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 		this.count = idleParameter;
 		this.race = Constant.ENTITY_MONSTER;
 	}
+	
+	@Override
+	public double getWidth() {
+		return super.getWidth()*size;
+	}
+	
+	@Override
+	public double getHeight() {
+		return super.getHeight()*size;
+	}
 
-//	private int heroDirection() {
-//		double dx = GameLogic.hero.getX();
-//		double dy = GameLogic.hero.getY();
-//		if (pos.diffX(dx) <= pos.diffY(dy)) {
-//			return (pos.x - dx) >= 0 ? Constant.LEFT : Constant.RIGHT;
-//		} else {
-//			return (pos.y - dy) >= 0 ? Constant.BACK : Constant.FRONT;
-//		}
-//	}
+	private int heroDirection() {
+		double dx = GameLogic.hero.getX();
+		double dy = GameLogic.hero.getY();
+		if(pos.diffD(dx, dy)>= eyesight) return RandomUtility.randomByPercent(rand, this.direction, 98);
+		if (pos.diffX(dx) > pos.diffY(dy)) {
+			return (pos.x - dx) >= 0 ? Constant.ENTITY_LEFT : Constant.ENTITY_RIGHT;
+		} else {
+			return (pos.y - dy) >= 0 ? Constant.ENTITY_BACK : Constant.ENTITY_FRONT;
+		}
+	}
 
 	@Override
 	public void update() {
@@ -55,9 +66,9 @@ public class Monster extends DungeonableEntity<Attribute> implements Obstructabl
 			GameLogic.hero.earnMoney(bounty);
 		} else if ((isAlive) && (dmgTimer == 0) && (count < idleParameter / 2)) {
 			rand = RandomUtility.randomInt(0, 100);
-//			if ((rand * timidParameter) % 100 < persistentParameter)
-//				move(heroDirection());
-//			else
+			if (((rand) % 100 < persistentParameter/100 ) || (dmgTimer > 1000/persistentParameter))
+				move(heroDirection());
+			else
 				move(RandomUtility.randomByPercent(rand, this.direction, 98));
 				attack();
 			if (isBlock(pos.x, pos.y))
