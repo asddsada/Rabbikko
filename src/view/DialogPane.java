@@ -1,7 +1,6 @@
 package view;
 
 import Main.DungeonMain;
-import Main.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -19,18 +18,15 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import logic.GameLogic;
-import model.GameObject;
 import model.attribute.Agility;
 import model.attribute.Attribute;
 import model.attribute.Intelligence;
 import model.attribute.Strength;
-import model.entity.Hero;
 import model.field.Navigation;
 import model.items.Health;
 import model.items.Inventory;
@@ -39,7 +35,6 @@ import model.items.Mana;
 import model.items.Shop;
 import model.items.Weapons;
 import utility.Constant;
-import utility.InputUtility;
 import utility.ResourceLoader;
 import view.dungeon.DungeonScene;
 
