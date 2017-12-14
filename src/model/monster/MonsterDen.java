@@ -21,14 +21,13 @@ import model.items.Inventory;
 import model.items.Weapons;
 import sharedObj.IRenderable;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 import utility.InputUtility;
 import utility.Pair;
 import utility.RandomUtility;
 import utility.ResourceLoader;
 
 public class MonsterDen {
-	// method to generate monster
-	// call random to generate monster here
 	private static Thread monsterThread;
 	private int monsterCount;
 	private int maxMonster;
@@ -47,7 +46,7 @@ public class MonsterDen {
 						System.out.println("monsterThread has been interrupted.");
 						break;
 					}
-					if (Main.isGameRunning && RenderableHolder.getInstance().size() < 35 && GameLogic.hero.isAlive()) {
+					if (Main.isGameRunning && RenderableHolder.getInstance().size() < Constant.MAX_NUMBER_RENDERABLE_HOLD && GameLogic.hero.isAlive()) {
 						if (monsterCount < maxMonster && (Dungeon.getLvlChangetimer() == 0)) {
 							try {
 								addMonster();

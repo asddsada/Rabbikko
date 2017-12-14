@@ -6,12 +6,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
-import logic.ForceManeger;
 import logic.GameLogic;
 import model.attribute.Attribute;
 import model.field.Dungeon;
 import sharedObj.RenderableHolder;
 import utility.Constant;
+import utility.ForceUtility;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
@@ -89,11 +89,11 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 		this.dmg = dmg;
 		if(dmgTimerDelay.size()<=20) dmgTimerDelay.add(50);
 		dmgTimer = Constant.DMG_TIME_MAX;
-		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
+		this.damageTake[direction] += ForceUtility.<T>calculateForce(dmg, getAxis(direction), this);
 		this.currentHp = this.currentHp - dmg >= 0 ? this.currentHp - dmg : 0;
 		if (this.currentHp == 0)
 			isAlive = false;
-		ForceManeger.reactionEffect(this, direction);
+		ForceUtility.reactionEffect(this, direction);
 		this.hpBarTimer = 180;
 	}
 

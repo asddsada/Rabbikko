@@ -15,7 +15,6 @@ public class GameLogic {
 
 	public GameLogic() {
 		dungeon = new Dungeon();
-
 		RenderableHolder.getInstance().add(dungeon);
 		navig = new Navigation();
 		RenderableHolder.getInstance().add(navig);
@@ -24,10 +23,6 @@ public class GameLogic {
 	public <T extends Attribute>void newHero(T atkType) {
 		hero = new Hero(Constant.ENTITY_FRONT, atkType);
 		Dungeon.addEntities(hero);
-	}
-
-	protected void addNewObject(Entity entity) {
-		RenderableHolder.getInstance().add(entity);
 	}
 
 	public void logicUpdate() {

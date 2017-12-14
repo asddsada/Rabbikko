@@ -1,13 +1,13 @@
 package model.attribute;
 
 import javafx.scene.image.Image;
-import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
 import utility.Constant;
+import utility.ForceUtility;
 import utility.Pair;
 
 public abstract class Attribute {
@@ -35,7 +35,7 @@ public abstract class Attribute {
 			DungeonableEntity<T2> other) {
 		if(other.getDmgTimer() < Constant.DMG_TIME_MAX/2) {
 		other.damage((int) (attacker.getBaseAtk() * attackMultiply*((GameLogic.dungeon.getLvl()/20)+1)),
-		ForceManeger.calculateDirection(attacker.getDirection()));
+		ForceUtility.calculateDirection(attacker.getDirection()));
 		}
 	}
 	public Weapons getHeroWeapon() {

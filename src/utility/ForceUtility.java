@@ -11,22 +11,7 @@ import utility.Constant;
 import utility.Pair;
 import view.SceneManeger;
 
-public class ForceManeger {
-	private static Thread physicThread = null;
-	private static boolean threadState;
-	private static final float TIME_DIV = 15;
-
-	public static void initilized() {
-		threadState = true;
-	}
-
-	public static void startForceRule() {
-		// threadState = true;
-	}
-
-	public static void pauseForceRule() {
-		// threadState = false;
-	}
+public class ForceUtility {
 
 	public static <T extends Attribute> void reactionEffect(DungeonableEntity<T> entity, int axis) {
 		double d = entity.getMovespeed()*entity.getMovespeed()/2;

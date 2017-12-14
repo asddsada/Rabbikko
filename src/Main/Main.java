@@ -7,10 +7,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import logic.ForceManeger;
 import logic.GameLogic;
 import model.field.Dungeon;
 import model.monster.MonsterDen;
+import utility.ForceUtility;
 import utility.ResourceLoader;
 import view.SceneManeger;
 

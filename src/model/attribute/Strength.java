@@ -1,7 +1,6 @@
 package model.attribute;
 
 import javafx.scene.canvas.GraphicsContext;
-import logic.ForceManeger;
 import logic.GameLogic;
 import model.GameObject;
 import model.entity.DungeonableEntity;
@@ -11,6 +10,7 @@ import model.items.Inventory;
 import model.items.Weapons;
 import utility.ResourceLoader;
 import utility.Constant;
+import utility.ForceUtility;
 import utility.Pair;
 import view.SceneManeger;
 
