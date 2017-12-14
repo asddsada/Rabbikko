@@ -94,6 +94,8 @@ public class DialogPane extends VBox {
 				openAction(textField);
 			} else if (e.getCode() == KeyCode.ESCAPE) {
 				textField.setText("");
+			}else {
+				textField.setText(textField.getText()+e.getCode().toString());
 			}
 		});
 	}
@@ -139,8 +141,11 @@ public class DialogPane extends VBox {
 
 	private <T extends Attribute> void nextAction(T atkType, int i) {
 		GameLogic.dungeon.restart();
+		try {
+			GameLogic.hero.inventory.reset();
+		} catch (NullPointerException e) {
+		}
 		DungeonMain.getLogic().newHero(atkType);		
-		GameLogic.hero.inventory.reset();
 		GameLogic.hero.inventory.add(i);
 		scene.toDungeon();
 	}
