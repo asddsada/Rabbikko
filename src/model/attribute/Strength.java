@@ -112,4 +112,8 @@ public class Strength extends Attribute {
 			System.out.println("cannot update attack effect");
 		}
 	}
+	
+	public int getManaUsed() {
+		return 0;
+	}
 }
