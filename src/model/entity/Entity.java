@@ -5,7 +5,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import logic.GameLogic;
 import model.GameObject;
+import model.attribute.Attribute;
+import model.field.Dungeon;
+import sharedObj.RenderableHolder;
 import utility.Constant;
+import utility.InputUtility;
+import utility.Pair;
+import view.SceneManeger;
 
 public abstract class Entity extends GameObject {
 
@@ -29,6 +35,7 @@ public abstract class Entity extends GameObject {
 		this.mass = mass;
 		this.isAlive=true;
 		this.counter = 0;
+		this.walktick = 1;
 		this.img = new WritableImage(img.getPixelReader(), (int) w * 3 * column, (int) h * 4 * row, (int) w * 3,
 				(int) h * 4);
 	}
@@ -96,12 +103,10 @@ public abstract class Entity extends GameObject {
 	}
 
 	protected void move(int direction) {
-		this.direction = direction;
-		if ((this.direction != direction) && (this.direction % Constant.ENTITY_WALK_STAGE) == (direction % Constant.ENTITY_WALK_STAGE)) {
+		if ((this.direction != direction) && ((this.direction+direction)%Constant.ENTITY_WALK_STAGE==0)) {
 			this.counter = 0;
 			this.walktick = 1;
-		} else if ((this.direction == direction)
-				|| ((this.direction % 3) != (direction % 3) && (this.direction % Constant.ENTITY_WALK_STAGE) != 0 && (direction % Constant.ENTITY_WALK_STAGE) == 0)) {
+		} else if (this.direction == direction || ((this.direction+direction)%Constant.ENTITY_WALK_STAGE!=0)) {
 			addWalkTick();
 		}
 
@@ -113,6 +118,8 @@ public abstract class Entity extends GameObject {
 			setPos((movespeed / 10.0) * Constant.SCENE_WIDTH / 200,  Constant.ENTITY_RIGHT);
 		if (direction ==  Constant.ENTITY_LEFT)
 			setPos((-1) * (movespeed / 10.0) * Constant.SCENE_WIDTH / 200,  Constant.ENTITY_LEFT);
+
+		this.direction = direction;
 	}
 
 	public abstract void update();
