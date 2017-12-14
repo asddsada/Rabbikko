@@ -8,6 +8,7 @@ import model.entity.DungeonableEntity;
 import model.entity.Hero;
 import model.items.Weapons;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 import utility.Pair;
 
 public abstract class Attribute {
@@ -20,13 +21,11 @@ public abstract class Attribute {
 	protected int mpRegen;
 	protected Weapons heroWeapon;
 	protected int attackTime;
-	protected int atkTimeMax;
 	protected DungeonableEntity<Attribute> owner;
-	protected Image img;
+	protected Image animationImg;
 
 	public Attribute() {
 		attackTime = 0;
-		this.atkTimeMax = 30;
 	}
 	public void update(int direction, double x, double y) {		
 		if(attackTime>0) attackTime--;
@@ -35,7 +34,7 @@ public abstract class Attribute {
 
 	public <T1 extends Attribute, T2 extends Attribute> void attack(DungeonableEntity<T1> attacker,
 			DungeonableEntity<T2> other) {
-		if(other.getDmgTimer() < DungeonableEntity.DMG_TIME_MAX/2) {
+		if(other.getDmgTimer() < Constant.DMG_TIME_MAX/2) {
 		other.damage((int) (attacker.getBaseAtk() * attackMultiply*((GameLogic.dungeon.getLvl()/20)+1)),
 		ForceManeger.calculateDirection(attacker.getDirection()));
 		}
@@ -53,7 +52,7 @@ public abstract class Attribute {
 	}
 	
 	public int getAtkTimeMax() {
-		return (int) (atkTimeMax / getAttackSpeed());
+		return (int) (Constant.BASE_ATTACK_TIMER_MAX / getAttackSpeed());
 	}
 
 	public double getAttackMultiply() {
@@ -84,8 +83,8 @@ public abstract class Attribute {
 		return attackTime;
 	}
 	
-	public int resetAttackTime() {
-		return attackTime;
+	public void resetAttackTime() {
+		if(getAttackTime()==0)attackTime = getAtkTimeMax();
 	}
 	
 	public void setOwner(DungeonableEntity<Attribute> owner) {
@@ -95,10 +94,10 @@ public abstract class Attribute {
 	}
 
 	public void use() {
-		if(getAttackTime()==0)attackTime = getAtkTimeMax();
+		resetAttackTime();
 	}
 	
 	public Image getImage() {
-		return img;
+		return animationImg;
 	}
 }

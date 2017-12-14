@@ -16,4 +16,13 @@ public abstract class Constant {
 	public static final double NAVIG_HEIGHT = ResourceLoader.navigBar.getHeight();
 	public static final int NAVIG_BAR_HEIGHT = 30;
 	public static final int NAVIG_BORDER_WIDTH = 200;
+	public static final int ENTITY_WALK_TICK_DELAY = 8;
+	public static final int ENTITY_WALK_STAGE = 3;
+	public static final int DMG_TIME_MAX = 10;
+	public static final double BASE_HEAL_AMOUNT = 0.3;
+	public static final int BASE_ATTACK_TIMER_MAX = 30;
+	public static final int SWORD = 2;
+	public static final int BOW = 3;
+	public static final int STAFF = 4;
+	
 }

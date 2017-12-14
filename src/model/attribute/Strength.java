@@ -17,14 +17,14 @@ import view.SceneManeger;
 public class Strength extends Attribute {
 	public Strength() {
 		super();
-		heroWeapon = (Weapons) Inventory.getBag()[2];
+		heroWeapon = (Weapons) Inventory.getBag()[Constant.SWORD];
 		attackMultiply = 1;
 		attackRange = new Pair(getHeroWeapon().getWidth(), getHeroWeapon().getHeight());
 		attackSpeed = 1;
 		hpMultiply = 1.4;
 		hpRegen = 5;
 		mpRegen = 1;
-		img = ResourceLoader.strength;
+		animationImg = ResourceLoader.strength;
 		attackObj = new GameObject(0, 0, 500) {
 
 			@Override

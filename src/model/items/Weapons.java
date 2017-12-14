@@ -20,9 +20,7 @@ import utility.Constant;
 import utility.ResourceLoader;
 
 public class Weapons extends GameObject implements Useable {
-	public static final int SWORD = 2;
-	public static final int BOW = 3;
-	public static final int STAFF = 4;
+	
 	private int price;
 	private Image imgWeapon;
 	private int amount;
@@ -46,11 +44,11 @@ public class Weapons extends GameObject implements Useable {
 		try {
 			if (GameLogic.hero.getAtkType().getHeroWeapon().type != this.type)
 				takeWeaponOff();
-			if (type == SWORD && GameLogic.hero.getAtkType().getHeroWeapon().type != SWORD)
+			if (type == Constant.SWORD && GameLogic.hero.getAtkType().getHeroWeapon().type != Constant.SWORD)
 				GameLogic.hero.setAtktype(new Strength());
-			else if (type == BOW && GameLogic.hero.getAtkType().getHeroWeapon().type != BOW)
+			else if (type == Constant.BOW && GameLogic.hero.getAtkType().getHeroWeapon().type != Constant.BOW)
 				GameLogic.hero.setAtktype(new Agility());
-			else if (type == STAFF && GameLogic.hero.getAtkType().getHeroWeapon().type != STAFF)
+			else if (type == Constant.STAFF && GameLogic.hero.getAtkType().getHeroWeapon().type != Constant.STAFF)
 				GameLogic.hero.setAtktype(new Intelligence());
 			this.update(GameLogic.hero.getDirection(), GameLogic.hero.getX(), GameLogic.hero.getY());
 			DungeonMain.getCanvas().canvasUpdate();

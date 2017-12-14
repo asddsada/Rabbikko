@@ -118,7 +118,7 @@ public class DialogPane extends VBox {
 		sword.setOnMouseClicked((MouseEvent e) -> {
 			// Loader.titleBgm.stop();
 			ResourceLoader.clickSound.play(100);
-			nextAction(new Strength(),Weapons.SWORD);
+			nextAction(new Strength(),Constant.SWORD);
 		});
 		
 		Button staff = new Button("int");
@@ -127,7 +127,7 @@ public class DialogPane extends VBox {
 		staff.setOnMouseClicked((MouseEvent e) -> {
 			// Loader.titleBgm.stop();
 			ResourceLoader.clickSound.play(100);
-			nextAction(new Intelligence(),Weapons.STAFF);
+			nextAction(new Intelligence(),Constant.STAFF);
 		});
 		
 		Button bow = new Button("agi");
@@ -136,7 +136,7 @@ public class DialogPane extends VBox {
 		bow.setOnMouseClicked((MouseEvent e) -> {
 			// Loader.titleBgm.stop();
 			ResourceLoader.clickSound.play(100);
-			nextAction(new Agility(),Weapons.BOW);
+			nextAction(new Agility(),Constant.BOW);
 		});
 		
 		this.getChildren().addAll(head, sub, sword,bow,staff);

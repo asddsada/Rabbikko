@@ -11,6 +11,7 @@ import logic.GameLogic;
 import model.attribute.Attribute;
 import model.field.Dungeon;
 import sharedObj.RenderableHolder;
+import utility.Constant;
 
 public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 
@@ -24,7 +25,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	private int hpBarTimer;
 	private ArrayList<Integer> dmgTimerDelay;
 	private int dmg;
-	public static final int DMG_TIME_MAX = 10;
+	
 
 	public DungeonableEntity(double x, double y, Image img, int row, int column, int direction, int movespeed, int mass,
 			int maxHp, int baseAtk, T atkType) {
@@ -87,7 +88,7 @@ public abstract class DungeonableEntity<T extends Attribute> extends Entity {
 	public void damage(int dmg, int direction) {
 		this.dmg = dmg;
 		if(dmgTimerDelay.size()<=20) dmgTimerDelay.add(50);
-		dmgTimer = DMG_TIME_MAX;
+		dmgTimer = Constant.DMG_TIME_MAX;
 		this.damageTake[direction] += ForceManeger.<T>calculateForce(dmg, getAxis(direction), this);
 		this.currentHp = this.currentHp - dmg >= 0 ? this.currentHp - dmg : 0;
 		if (this.currentHp == 0)

@@ -42,7 +42,7 @@ public class Intelligence extends Attribute {
 		delTemp = new LinkedList<>();
 		magicW = attackRange.x*2;
 		magicH = attackRange.y*0.7;
-		img = ResourceLoader.intelligence;
+		animationImg = ResourceLoader.intelligence;
 		attackObj = new GameObject(heroWeapon.getX() + 20, heroWeapon.getY(), 500) {
 
 			@Override

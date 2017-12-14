@@ -26,8 +26,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 	private String name;
 
 	public Hero(int direction, Attribute atkType) {
-		super(Constant.SCENE_WIDTH / 2, (Constant.SCENE_HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction, 7,
-				50, 1000, 60, atkType);
+		super(Constant.SCENE_WIDTH / 2, (Constant.SCENE_HEIGHT - 100) / 2, ResourceLoader.humanImage, 0, 3, direction,
+				7, 50, 1000, 60, atkType);
 		this.maxMp = 400;
 		this.currentMp = 0;
 		this.money = 0;
@@ -36,13 +36,6 @@ public class Hero extends DungeonableEntity<Attribute> {
 		Hero.inventory = new Inventory();
 		setAtktype(atkType);
 		name = Navigation.getName();
-	}
-
-	@Override
-	public void draw(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
-			super.draw(gc);
 	}
 
 	@Override
@@ -76,7 +69,8 @@ public class Hero extends DungeonableEntity<Attribute> {
 	public void update() {
 		super.update();
 		if (isAlive && dmgTimer == 0) {
-			if(GameLogic.dungeon.getLvl()%10==0) restoreHp();
+			if (GameLogic.dungeon.getLvl() % 10 == 0)
+				restoreHp();
 			if (InputUtility.isKeyPressed(KeyCode.W) || InputUtility.isKeyPressed(KeyCode.UP))
 				move(Constant.ENTITY_BACK);
 			if (InputUtility.isKeyPressed(KeyCode.S) || InputUtility.isKeyPressed(KeyCode.DOWN))
@@ -85,31 +79,33 @@ public class Hero extends DungeonableEntity<Attribute> {
 				move(Constant.ENTITY_LEFT);
 			if (InputUtility.isKeyPressed(KeyCode.D) || InputUtility.isKeyPressed(KeyCode.RIGHT))
 				move(Constant.ENTITY_RIGHT);
-			if ((InputUtility.isKeyPressed(KeyCode.SPACE) ||
-					((!(GameLogic.navig.isInBorder(InputUtility.mouseX, InputUtility.mouseY)) && InputUtility.isMousePressed())))
-					&& atkType.getAttackTime()==0)
+			if ((InputUtility.isKeyPressed(KeyCode.SPACE)
+					|| ((!(GameLogic.navig.isInBorder(InputUtility.mouseX, InputUtility.mouseY))
+							&& InputUtility.isMousePressed())))
+					&& atkType.getAttackTime() == 0)
 				attack();
-//			if ((InputUtility.isKeyPressed(KeyCode.ENTER) ||
-//					((!(GameLogic.navig.isInBoarder(InputUtility.mouseX, InputUtility.mouseY)) && InputUtility.isMousePressed())))
-//					&& atkType.getAttackTime()==0 && currentMana==getMaxMana)
-//				ultimate();
+			// if ((InputUtility.isKeyPressed(KeyCode.ENTER) ||
+			// ((!(GameLogic.navig.isInBoarder(InputUtility.mouseX, InputUtility.mouseY)) &&
+			// InputUtility.isMousePressed())))
+			// && atkType.getAttackTime()==0 && currentMana==getMaxMana)
+			// ultimate();
 
 			if (isBlock(pos.x, pos.y))
 				struct = true;
 			else
 				struct = false;
 			if (currentHp != getMaxHp())
-				healHp(0.3 *(((GameLogic.dungeon.getLvl()/20)+1)));
+				healHp(Constant.BASE_HEAL_AMOUNT * (((GameLogic.dungeon.getLvl() / 20) + 1)));
 			if (currentMp != getMaxMp())
-				healMp(0.2);
+				healMp(Constant.BASE_HEAL_AMOUNT);
 		}
 		if (isAlive) {
 			this.atkType.getHeroWeapon().update(direction, pos.x, pos.y);
 			this.atkType.update(this.direction, this.pos.x, this.pos.y);
-			moneyDelay=moneyDelay<=1?moneyDelay=120:moneyDelay-1;
-			if(moneyDelay==5) money++;
+			moneyDelay = moneyDelay <= 1 ? moneyDelay = 120 : moneyDelay - 1;
+			if (moneyDelay == 5)
+				money++;
 		}
-		// System.out.println(atkType.getClass().getSimpleName());
 	}
 
 	public void healHp(double i) {
@@ -151,10 +147,11 @@ public class Hero extends DungeonableEntity<Attribute> {
 	public double getMaxMp() {
 		return maxMp;
 	}
-	
-	public  double getMaxHp() {
-		if(GameLogic.dungeon.getLvl()<6) return super.getMaxHp();
-		return super.getMaxHp() * (GameLogic.dungeon.getLvl()/5);
+
+	public double getMaxHp() {
+		if (GameLogic.dungeon.getLvl() < 6)
+			return super.getMaxHp();
+		return super.getMaxHp() * (GameLogic.dungeon.getLvl() / 5);
 	}
 
 	public double getCurrentMp() {

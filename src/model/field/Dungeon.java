@@ -113,7 +113,6 @@ public class Dungeon extends Field {
 		for (DungeonableEntity<Attribute> e : entities_holder) {
 			if (e.hashCode() != object.hashCode() && object.isCollide(e, x, y)) {
 				result.add(e);
-				// System.out.println(e.getClass().getSimpleName());
 			}
 		}
 		return result;

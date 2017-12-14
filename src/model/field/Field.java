@@ -46,18 +46,18 @@ public abstract class Field implements IRenderable {
 	}
 
 	protected boolean isInBorderX(double x) {
-		if (this.getTopRight().x < x && this.getTopRight().x + this.getWidth() > x)
+		if (this.getTopLeft().x < x && this.getTopLeft().x + this.getWidth() > x)
 			return true;
 		return false;
 	}
 
 	protected boolean isInBorderY(double y) {
-		if (this.getTopRight().y < y && this.getTopRight().y + this.getHeight() > y)
+		if (this.getTopLeft().y < y && this.getTopLeft().y + this.getHeight() > y)
 			return true;
 		return false;
 	}
 	
-	public Pair getTopRight() {
+	public Pair getTopLeft() {
 		return topLeft;
 	}
 

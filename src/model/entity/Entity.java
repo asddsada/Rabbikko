@@ -43,7 +43,7 @@ public abstract class Entity extends GameObject {
 	public void draw(GraphicsContext gc) {
 		// TODO Auto-generated method stub
 		gc.drawImage(new WritableImage(img.getPixelReader(), (int) w * walktick, (int) h * direction, (int) w, (int) h),
-				pos.x, pos.y, w * 2.5, h * 2.5);
+				pos.x, pos.y,getWidth(), getHeight());
 //		gc.strokeRect(pos.x, pos.y, getWidth(), getHeight());
 //		gc.strokeRect(pos.x + getWidth() / 6, pos.y, getWidth() / 1.5, getHeight());
 	}
@@ -70,8 +70,8 @@ public abstract class Entity extends GameObject {
 	}
 
 	private void addWalkTick() {
-		if (counter == 8) {
-			this.walktick = (this.walktick + 1) % 3;
+		if (counter == Constant.ENTITY_WALK_TICK_DELAY) {
+			this.walktick = (this.walktick + 1) % Constant.ENTITY_WALK_STAGE;
 			counter = 0;
 		}
 		counter++;
@@ -103,13 +103,13 @@ public abstract class Entity extends GameObject {
 
 	protected void move(int direction) {
 		this.direction = direction;
-		if ((this.direction != direction) && (this.direction % 3) == (direction % 3)) {
+		if ((this.direction != direction) && (this.direction % Constant.ENTITY_WALK_STAGE) == (direction % Constant.ENTITY_WALK_STAGE)) {
 			this.counter = 0;
 			this.walktick = 1;
 		} else if (InputUtility.isKeyTrig()) {
-			this.walktick = (this.walktick + 1) % 3;
+			this.walktick = (this.walktick + 1) % Constant.ENTITY_WALK_STAGE;
 		} else if ((this.direction == direction)
-				|| ((this.direction % 3) != (direction % 3) && (this.direction % 3) != 0 && (direction % 3) == 0)) {
+				|| ((this.direction % 3) != (direction % 3) && (this.direction % Constant.ENTITY_WALK_STAGE) != 0 && (direction % Constant.ENTITY_WALK_STAGE) == 0)) {
 			addWalkTick();
 		}
 
@@ -138,7 +138,7 @@ public abstract class Entity extends GameObject {
 	public int getAxis(int direction) {
 		if (direction ==  Constant.ENTITY_BACK || direction ==  Constant.ENTITY_FRONT)
 			return Constant.SCENE_Y_AXIS;
-		return Constant.SCENE_Y_AXIS;
+		return Constant.SCENE_X_AXIS;
 	}
 
 	public int getDirection() {
