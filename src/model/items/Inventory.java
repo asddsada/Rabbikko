@@ -19,7 +19,7 @@ public class Inventory {
 	public void reset() {
 		this.bagCapacity = 1;
 		for(Useable i:BAG) {
-			if(GameLogic.hero.getAtkType().getHeroWeapon().hashCode()!=i.hashCode()) i.reset();
+			i.reset();
 		}
 	}
 	
