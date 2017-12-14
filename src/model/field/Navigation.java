@@ -106,12 +106,9 @@ public class Navigation extends Field {
 			ResourceLoader.clickSound.play(100);
 			SceneManeger.dungeonScene.toDialog(3);
 		} else if (xPos >= 484 && xPos <= 527 && yPos >= 576 && yPos <= 615 && InputUtility.isMouseClick()) {
-			// Loader.clickSound.play(100);
 			Inventory.getBag()[0].use();
 		} else if (xPos >= 545 && xPos <= 585 && yPos >= 576 && yPos <= 615 && InputUtility.isMouseClick()) {
-			// Loader.clickSound.play(100);
 			Inventory.getBag()[1].use();
 		}
 	}
-
 }

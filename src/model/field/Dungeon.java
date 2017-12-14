@@ -92,7 +92,6 @@ public class Dungeon extends Field {
 			lvlChangetimer = Constant.DUNGEON_CHANGE_TIME_MAX;
 			monsterDen.setDunLvl(this.lvl);
 		}
-		
 	}
 
 	public void restart() {
@@ -125,5 +124,4 @@ public class Dungeon extends Field {
 	public static int getLvlChangetimer() {
 		return lvlChangetimer;
 	}
-
 }
