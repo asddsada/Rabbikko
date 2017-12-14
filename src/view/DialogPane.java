@@ -141,8 +141,11 @@ public class DialogPane extends VBox {
 
 	private <T extends Attribute> void nextAction(T atkType, int i) {
 		GameLogic.dungeon.restart();
+		try {
+			GameLogic.hero.inventory.reset();
+		} catch (NullPointerException e) {
+		}
 		DungeonMain.getLogic().newHero(atkType);		
-		GameLogic.hero.inventory.reset();
 		GameLogic.hero.inventory.add(i);
 		scene.toDungeon();
 	}
