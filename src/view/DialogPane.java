@@ -104,7 +104,7 @@ public class DialogPane extends VBox {
 		Text sub = new Text("Please select your initial stat");
 		sub.setFont(Font.font("Castellar", 20));
 
-		Button sword = new Button("strength");
+		Button sword = new Button("Strength");
 		sword.setFont(Font.font("Castellar", 20));
 
 		sword.setOnMouseClicked((MouseEvent e) -> {
@@ -113,7 +113,7 @@ public class DialogPane extends VBox {
 			nextAction(new Strength(),Constant.SWORD);
 		});
 		
-		Button staff = new Button("int");
+		Button staff = new Button("Intelligence");
 		staff.setFont(Font.font("Castellar", 20));		
 
 		staff.setOnMouseClicked((MouseEvent e) -> {
@@ -122,7 +122,7 @@ public class DialogPane extends VBox {
 			nextAction(new Intelligence(),Constant.STAFF);
 		});
 		
-		Button bow = new Button("agi");
+		Button bow = new Button("Agility");
 		bow.setFont(Font.font("Castellar", 20));
 
 		bow.setOnMouseClicked((MouseEvent e) -> {
@@ -208,7 +208,13 @@ public class DialogPane extends VBox {
 
 		potion1.setOnMouseClicked((MouseEvent e) -> {
 			ResourceLoader.clickSound.play(100);
-			use.setVisible(false);
+			if (((Item) Inventory.getBag()[0]).getAmount() >= 1) {
+				use.setDisable(false);
+				use.setId("0");
+			} else {
+				use.setId("");
+				use.setDisable(true);
+			}
 			t3.setText("Amount : " + ((Health) Inventory.getBag()[0]).getAmount());
 			t1.setText("Hp Potion\nHeal 100 points to Hp.");
 			t2.setText("Price : 500 g");
@@ -216,7 +222,13 @@ public class DialogPane extends VBox {
 
 		potion2.setOnMouseClicked((MouseEvent e) -> {
 			ResourceLoader.clickSound.play(100);
-			use.setVisible(false);
+			if (((Item) Inventory.getBag()[1]).getAmount() >= 1) {
+				use.setDisable(false);
+				use.setId("1");
+			} else {
+				use.setId("");
+				use.setDisable(true);
+			}
 			t3.setText("Amount : " + ((Mana) Inventory.getBag()[1]).getAmount());
 			t1.setText("Mp Potion\nHeal 100 points to Mp.");
 			t2.setText("Price : 500 g");
@@ -272,6 +284,7 @@ public class DialogPane extends VBox {
 			if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Item
 					&& ((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).isUsable()) {
 				((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).use();
+				
 				t3.setText("Amount : " + ((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).getAmount());
 			} else if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Weapons) {
 				((Weapons) (Inventory.getBag()[Integer.valueOf(use.getId())])).setWeapon();
