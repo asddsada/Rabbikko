@@ -3,6 +3,8 @@ package model.entity;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import logic.ForceManeger;
 import logic.GameLogic;

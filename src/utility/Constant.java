@@ -16,4 +16,5 @@ public abstract class Constant {
 	public static final double NAVIG_HEIGHT = ResourceLoader.navigBar.getHeight();
 	public static final int NAVIG_BAR_HEIGHT = 30;
 	public static final int NAVIG_BORDER_WIDTH = 200;
+	public static final int BOUNTY_MULTIPLYER = 49;
 }

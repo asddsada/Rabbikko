@@ -8,11 +8,6 @@ import model.entity.Hero;
 import utility.ResourceLoader;
 
 public class Shop {
-	private final static int SHELF_SIZE = 5; // change to match with the shelf
-
-	public void shop() {
-
-	}
 	
 	public void buy(int index) {
 		if (Inventory.getBag()[index] instanceof Item) {
