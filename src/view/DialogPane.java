@@ -93,6 +93,8 @@ public class DialogPane extends VBox {
 				openAction(textField);
 			} else if (e.getCode() == KeyCode.ESCAPE) {
 				textField.setText("");
+			}else {
+				textField.setText(textField.getText()+e.getCode().toString());
 			}
 		});
 	}
