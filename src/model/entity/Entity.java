@@ -5,13 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import logic.GameLogic;
 import model.GameObject;
-import model.attribute.Attribute;
-import model.field.Dungeon;
-import sharedObj.RenderableHolder;
 import utility.Constant;
-import utility.InputUtility;
-import utility.Pair;
-import view.SceneManeger;
 
 public abstract class Entity extends GameObject {
 
