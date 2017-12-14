@@ -154,7 +154,7 @@ public class MonsterDen {
 			Dungeon.addEntities(new Monster(monsterImg(img), row, col, speed, mass, hp * ((dunLvl / 20) + 1),
 					Math.max((int) ((((2 - img % 3) / 3.0 * 300.0) + 13 * (col * img) + 6 * (row) + hp / 1377.0 * 400) / 2),15), atr,
 					idle, (1 + img % 3), (3 - img % 3) * 300, speed * (3 - img % 3) * 40,
-					(int) ((hp / 49.0 * dunLvl) + ( (9 - ((4 - col) / (row + 1)) - (mass / 2000.0)))*3+ (img-1)*50), size));
+					(int) ((hp / Constant.BOUNTY_MULTIPLYER * dunLvl) + ( (9 - ((4 - col) / (row + 1)) - (mass / 2000.0)))*3+ (img-1)*50), size));
 			monsterCount += size;
 		}
 	}

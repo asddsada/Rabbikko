@@ -106,8 +106,6 @@ public abstract class Entity extends GameObject {
 		if ((this.direction != direction) && (this.direction % Constant.ENTITY_WALK_STAGE) == (direction % Constant.ENTITY_WALK_STAGE)) {
 			this.counter = 0;
 			this.walktick = 1;
-		} else if (InputUtility.isKeyTrig()) {
-			this.walktick = (this.walktick + 1) % Constant.ENTITY_WALK_STAGE;
 		} else if ((this.direction == direction)
 				|| ((this.direction % 3) != (direction % 3) && (this.direction % Constant.ENTITY_WALK_STAGE) != 0 && (direction % Constant.ENTITY_WALK_STAGE) == 0)) {
 			addWalkTick();

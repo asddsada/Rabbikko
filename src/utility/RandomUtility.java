@@ -13,10 +13,6 @@ public abstract class RandomUtility {
 	public static int randomByPercent(int rand,int base,int percent) { 
 		return (base + (rand > percent ? rand % 4 : 0)) % 4;
 	}
-
-	public static int charateristicRand(Object o) {
-		return 0;
-	}
 	
 	public static int randomByLevel(int lvl) {
 		if(lvl==0) return 0;

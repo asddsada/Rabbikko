@@ -20,7 +20,6 @@ public abstract class InputUtility {
 
 	// keyboard setter
 	private static void addKey(KeyCode code) {
-		// System.out.println(keyPressed.size());
 		keyPressed.add(code);
 	}
 
@@ -31,10 +30,6 @@ public abstract class InputUtility {
 	// keyboard getter
 	public static boolean isKeyPressed(KeyCode code) {
 		return keyPressed.contains(code);
-	}
-
-	public static boolean isKeyTrig() {
-		return keyPressed.size() == 0;
 	}
 
 	// mouse getter

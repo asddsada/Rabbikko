@@ -27,7 +27,7 @@ public abstract class Constant {
 	public static final int SWORD = 2;
 	public static final int BOW = 3;
 	public static final int STAFF = 4;
-	public static final int BOUNTY_MULTIPLYER = 49;
+	public static final double BOUNTY_MULTIPLYER = 49.0;
 	public static final int BASE_MP_USE = 30;
 	public static final double MAX_MAGIC_TIME = ((Weapons) Inventory.getBag()[STAFF]).getWidth() * 5;
 	public static final int MAX_SPELL_ACTIVE = 6;
