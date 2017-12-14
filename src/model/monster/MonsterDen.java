@@ -81,45 +81,7 @@ public class MonsterDen {
 	}
 
 	public void update() {
-		// admin key
-//		if (InputUtility.isKeyPressed(KeyCode.P)) { // add monster
-//			try {
-//				addMonster();
-//			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-//					| InvocationTargetException | SecurityException e) {
-//				e.printStackTrace();
-//			}
-//		} else if (InputUtility.isKeyPressed(KeyCode.O)) { // restore hero hp
-//			GameLogic.hero.restoreHp();
-//		} else if (InputUtility.isKeyPressed(KeyCode.Y)) { // clear dungeon floor
-//			for (DungeonableEntity<Attribute> e : Dungeon.getEntitiesHolder())
-//				if (!(e instanceof Hero))
-//					Dungeon.destroyEntities(e);
-//		} else if (InputUtility.isKeyPressed(KeyCode.U)) { // hero assassinate
-//			GameLogic.hero.healHp(-1000);
-//			GameLogic.hero.setAlive(false);
-//		} else if (InputUtility.isKeyPressed(KeyCode.L)) { // skip level
-//			try {
-//				addMonster();
-//			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
-//					| InvocationTargetException | SecurityException e) {
-//				e.printStackTrace();
-//			}
-//			this.monsterCount = maxMonster;
-//			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
-//					.forEach(m -> m.setAlive(false));
-//			Dungeon.getEntitiesHolder().stream().filter(i -> i instanceof Monster).map(i -> (Monster) i)
-//					.forEach(Dungeon::destroyEntities);
-//		} else if (InputUtility.isKeyPressed(KeyCode.K)) { // instance buy staff
-//			((Weapons) (Inventory.getBag()[4])).setWeapon();
-//		} else if (InputUtility.isKeyPressed(KeyCode.J)) { // instance buy bow
-//			((Weapons) (Inventory.getBag()[3])).setWeapon();
-//		} else if (InputUtility.isKeyPressed(KeyCode.H)) { // instance buy sword
-//			((Weapons) (Inventory.getBag()[2])).setWeapon();
-//
-//		} else if (InputUtility.isKeyPressed(KeyCode.M)) { // money hag
-//			GameLogic.hero.earnMoney(999999);
-//		}
+		
 	}
 
 	private Image monsterImg(int i) {
