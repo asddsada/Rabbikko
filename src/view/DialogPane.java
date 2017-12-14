@@ -1,6 +1,7 @@
 package view;
 
 import Main.DungeonMain;
+import Main.Main;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -287,7 +288,7 @@ public class DialogPane extends VBox {
 			if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Item
 					&& ((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).isUsable()) {
 				((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).use();
-				
+				DungeonMain.getCanvas().canvasUpdate();
 				t3.setText("Amount : " + ((Item) Inventory.getBag()[Integer.valueOf(use.getId())]).getAmount());
 			} else if (Inventory.getBag()[Integer.valueOf(use.getId())] instanceof Weapons) {
 				((Weapons) (Inventory.getBag()[Integer.valueOf(use.getId())])).setWeapon();
