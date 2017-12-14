@@ -22,7 +22,7 @@ public class DungeonMain {
 	public DungeonMain() {
 		logic = new GameLogic();
 		canvas = (DungeonCanvas) SceneManeger.dungeonScene.getCanvas();
-		ForceUtility.initilized();
+//		ForceUtility.initilized();
 	}
 
 	private static AnimationTimer animation = new AnimationTimer() {
@@ -44,13 +44,13 @@ public class DungeonMain {
 	public static void start() {
 		Main.isGameRunning = true;
 		animation.start();
-		ForceUtility.startForceRule();
+//		ForceUtility.startForceRule();
 	}
 
 	public static void stop() {
 		Main.isGameRunning = false;
 		animation.stop();
-		ForceUtility.pauseForceRule();
+//		ForceUtility.pauseForceRule();
 	}
 
 	public static DungeonCanvas getCanvas() {

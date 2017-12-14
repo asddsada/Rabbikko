@@ -6,9 +6,9 @@ import utility.ResourceLoader;
 public class Inventory {
 	private static final Useable[] BAG = {
 			new Health(),new Mana(),
-			new	Weapons(500, ResourceLoader.sword2, ResourceLoader.sword,2),
-			new	Weapons(500, ResourceLoader.bow2, ResourceLoader.bow,3),
-			new	Weapons(500, ResourceLoader.staff2, ResourceLoader.staff,4),
+			new	Weapons(1000, ResourceLoader.sword2, ResourceLoader.sword,2),
+			new	Weapons(1000, ResourceLoader.bow2, ResourceLoader.bow,3),
+			new	Weapons(1000, ResourceLoader.staff2, ResourceLoader.staff,4),
 		};
 	public int bagCapacity;
 	
