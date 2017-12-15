@@ -94,8 +94,11 @@ public class DialogPane extends VBox {
 				openAction(textField);
 			} else if (e.getCode() == KeyCode.ESCAPE) {
 				textField.setText("");
-			}else {
-				textField.setText(textField.getText()+e.getCode().toString());
+			}else if(e.getCode() != KeyCode.BACK_SPACE){
+				textField.setText(textField.getText()+e.getText());
+			}else if(e.getCode() == KeyCode.BACK_SPACE) {
+				if(textField.getText().length()!=0)
+				textField.setText(textField.getText().substring(0, textField.getText().length()-1));
 			}
 		});
 	}
@@ -136,7 +139,7 @@ public class DialogPane extends VBox {
 
 		this.getChildren().addAll(head, sub, sword, bow, staff);
 		
-		
+		this.setOnKeyPressed((KeyEvent e) -> {});
 	}
 
 	private <T extends Attribute> void nextAction(T atkType, int i) {
@@ -185,6 +188,13 @@ public class DialogPane extends VBox {
 			this.getChildren().clear();
 			ResourceLoader.clickSound.play(100);
 			scene.toDungeon();
+		});
+		this.setOnKeyPressed((KeyEvent e)->{
+			if(e.getCode()==KeyCode.ENTER) {
+				this.getChildren().clear();
+				ResourceLoader.clickSound.play(100);
+				scene.toDungeon();
+			}
 		});
 		gp.add(close, 2, 13);
 		return gp;
@@ -386,6 +396,11 @@ public class DialogPane extends VBox {
 		resume.setOnMouseClicked((MouseEvent e) -> {
 			ResourceLoader.clickSound.play(100);
 			scene.toDungeon();
+		});
+		resume.setOnKeyPressed((KeyEvent e)->{
+			if(e.getCode()==KeyCode.ENTER) {
+				
+			}
 		});
 		this.getChildren().add(resume);
 	}
