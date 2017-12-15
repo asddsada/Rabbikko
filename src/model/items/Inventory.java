@@ -19,7 +19,7 @@ public class Inventory {
 	public void reset() {
 		this.bagCapacity = 1;
 		for(Useable i:BAG) {
-			 i.reset();
+			i.reset();
 		}
 	}
 	
